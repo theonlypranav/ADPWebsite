@@ -31,17 +31,17 @@ function Navbar() {
     const content = (
         <>
             <div className='lg:hidden block absolute top-16 w-full left-0 right-0 bg-black text-white transition'>
-                <ul className='text-center text-xl p-20'>
+                <ul className='text-center text-sm p-20'>
                     {navItems.map((item, index) => (
                         <Link key={index} to={item} spy={true} smooth={true}>
-                            <li className='my-4 py-4 border-b-0 hover:border-b-2 hover:border-silver-700 hover:bg-silver-700 hover:rounded'>{item}</li>
+                            <li className='my-4 py-4 border-b-0 hover:border-b-2 hover:border-silver-700 hover:bg-silver-700 hover:rounded whitespace-nowrap'>{item}</li>
                         </Link>
                     ))}
-                    <li className='my-4 py-4 border-b-0 hover:border-b-2 hover:border-silver-700 hover:bg-silver-700 hover:rounded cursor-pointer'>
+                    <li className='my-4 py-4 border-b-0 hover:border-b-2 hover:border-silver-700 hover:bg-silver-700 hover:rounded cursor-pointer whitespace-nowrap'>
                         Our Verticals
                         <ul className='mt-2'>
                             {verticals.map((vertical, index) => (
-                                <li key={index} className='py-2 hover:bg-silver-700 hover:text-black'>{vertical}</li>
+                                <li key={index} className='py-2 hover:bg-silver-700 hover:text-black whitespace-nowrap'>{vertical}</li>
                             ))}
                         </ul>
                     </li>
@@ -75,19 +75,19 @@ function Navbar() {
                         </span>
                     </div>
                     <div className='lg:flex md:flex flex-1 items-center justify-end font-normal hidden'>
-                        <ul className='flex gap-8 text-[18px]'>
+                        <ul className='flex gap-8 text-sm'>
                             {navItems.map((item, index) => (
                                 <Link key={index} to={item} spy={true} smooth={true}>
-                                    <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer'>{item}</li>
+                                    <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>{item}</li>
                                 </Link>
                             ))}
                             <div className='relative group'>
-                                <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer'>
+                                <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
                                     Our Verticals
                                 </li>
                                 <ul className='absolute left-0 mt-2 w-40 bg-black border border-silver-500 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity'>
                                     {verticals.map((vertical, index) => (
-                                        <li key={index} className='py-2 px-4 hover:bg-silver-500 hover:text-black transition cursor-pointer'>{vertical}</li>
+                                        <li key={index} className='py-2 px-4 hover:bg-silver-500 hover:text-black whitespace-nowrap'>{vertical}</li>
                                     ))}
                                 </ul>
                             </div>
