@@ -21,7 +21,7 @@ function TechStack() {
   };
 
   return (
-    <div id='Our Team' className='bg-black text-white p-20 flex flex-col items-center justify-center'>
+    <div id='Our Team' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center'>
       <h1 data-aos='fade-right' className='text-[72px] font-semibold mb-4 leading-normal uppercase text-silver-700'>Our Team</h1>
       <p data-aos='fade-left' className='text-lg mb-20 text-center opacity-0 transition-opacity duration-1000 ease-in-out'> {/* Fade effect */}
         Meet the passionate and dedicated members who make up our incredible team.

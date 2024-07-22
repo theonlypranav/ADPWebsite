@@ -10,7 +10,7 @@ function Contact() {
   }, []);
 
   return (
-    <div id='Contact' className='bg-black text-white dark:bg-black dark:text-white p-4 lg:p-20 flex flex-col items-center justify-center'>
+    <div id='Contact' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 lg:p-20 flex flex-col items-center justify-center'>
       <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-20 leading-normal uppercase text-silver-700'>Contact Us</h1>
       <form action="https://api.web3forms.com/submit" method="POST" className='flex flex-col gap-4 lg:w-1/2'>
         <div className='dark:text-slate-500 lg:flex gap-6'>

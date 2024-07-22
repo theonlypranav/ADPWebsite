@@ -11,7 +11,7 @@ function Projects() {
   }, []);
 
   return (
-    <div id='Our Projects' className='bg-black text-white p-20 flex flex-col items-center justify-center relative'>
+    <div id='Our Projects' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center relative'>
       <div className='absolute top-0 left-0 w-full h-[100px]'></div>
       <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-20 leading-normal uppercase text-silver-700 mt-[100px]'>
         Our Work
