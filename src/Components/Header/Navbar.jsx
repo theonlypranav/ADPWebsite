@@ -24,7 +24,9 @@ function Navbar() {
     }, []);
 
     const handleClick = () => setClick(!click);
+    
     const navItems = ['Home', 'About ADP', 'Our Team', 'Our Projects', 'Contact'];
+    const verticals = ['Media', 'Structure', 'Publicity', 'Painting'];
 
     const content = (
         <>
@@ -35,6 +37,14 @@ function Navbar() {
                             <li className='my-4 py-4 border-b-0 hover:border-b-2 hover:border-silver-700 hover:bg-silver-700 hover:rounded'>{item}</li>
                         </Link>
                     ))}
+                    <li className='my-4 py-4 border-b-0 hover:border-b-2 hover:border-silver-700 hover:bg-silver-700 hover:rounded cursor-pointer'>
+                        Our Verticals
+                        <ul className='mt-2'>
+                            {verticals.map((vertical, index) => (
+                                <li key={index} className='py-2 hover:bg-silver-700 hover:text-black'>{vertical}</li>
+                            ))}
+                        </ul>
+                    </li>
                     <div>
                         <label className="relative inline-flex items-center cursor-pointer">
                             <input
@@ -61,8 +71,7 @@ function Navbar() {
                 <div className='h-10vh flex justify-between z-50 lg:py-5 pl-20 pr-14 py-4 border-b border-silver-500'>
                     <div className='flex items-center flex-1'>
                         <span className='text-3xl font-bold flex items-center'>
-                            <img src={logo} alt="Logo" className='h-8 w-8 mr-2' /> {/* Adjust the size as needed */}
-                            <Link to='Home' spy={true} smooth={true}>ADP</Link>
+                            <Link to='Home' spy={true} smooth={true}><img src={logo} alt="Logo" className='h-8 w-8 mr-2' /></Link>
                         </span>
                     </div>
                     <div className='lg:flex md:flex flex-1 items-center justify-end font-normal hidden'>
@@ -72,6 +81,16 @@ function Navbar() {
                                     <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer'>{item}</li>
                                 </Link>
                             ))}
+                            <div className='relative group'>
+                                <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer'>
+                                    Our Verticals
+                                </li>
+                                <ul className='absolute left-0 mt-2 w-40 bg-black border border-silver-500 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity'>
+                                    {verticals.map((vertical, index) => (
+                                        <li key={index} className='py-2 px-4 hover:bg-silver-500 hover:text-black transition cursor-pointer'>{vertical}</li>
+                                    ))}
+                                </ul>
+                            </div>
                             <div>
                                 <label className="relative inline-flex items-center cursor-pointer">
                                     <input

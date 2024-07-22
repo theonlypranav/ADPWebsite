@@ -17,14 +17,15 @@ function Footer() {
     ];
 
     return (
-        <footer className='bg-neutral-900 text-white border-t border-silver-700 p-5 lg:px-48 md:flex justify-between'>
-            
-            <div className='md:flex lg:flex gap-10'>
+        <footer className='bg-neutral-900 text-white border-t border-silver-700 p-5 lg:px-48 flex justify-between'>
+            <div className='flex flex-col md:flex-row gap-10'>
                 <div>
                     <h2 className='text-[22px] font-semibold text-silver-700 py-2 uppercase'>Contact</h2>
                     <a href="mailto:chiragjain.jain7@gmail.com" className='text-[16px] hover:text-silver-700 transition-all duration-150 ease-in-out cursor-pointer'><b>Email</b>: adp@bits-oasis.org; adp@bits-apogee.org</a>
                     <p className='text-[16px] pb-5 hover:text-silver-700 transition-all duration-150 ease-in-out'>Phone: +91-8302421632</p>
                 </div>
+            </div>
+            <div className='flex flex-col md:flex-row gap-10'>
                 <div>
                     <h2 className='text-[22px] font-semibold text-silver-700 py-2 uppercase'>Follow Us On</h2>
                     <div className='flex space-x-4'>
