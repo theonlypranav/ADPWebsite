@@ -9,7 +9,6 @@ const ProjectsList = [
         id: 1,
         title: 'Oasis 2023',
         link: 'https://bitspilaniac-my.sharepoint.com/personal/f20220551_pilani_bits-pilani_ac_in/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Ff20220551%5Fpilani%5Fbits%2Dpilani%5Fac%5Fin%2FDocuments%2FADP%20Database%2FOASIS',
-        github: 'https://github.com/chiragjain307/Todo-WebApp',
         image: img1
         
     },
@@ -17,7 +16,6 @@ const ProjectsList = [
         id: 2,
         title: 'APOGEE 2024',
         link: 'https://bitspilaniac-my.sharepoint.com/:f:/g/personal/f20220551_pilani_bits-pilani_ac_in/EtTYWIPmf9JBgtdSCBEXYS4BePbvfYaqHrfeC4AWyLZDzA?e=rg0r8c',
-        github: 'https://github.com/chiragjain307/Weather-WebApp',
         image: img2
     },
     {

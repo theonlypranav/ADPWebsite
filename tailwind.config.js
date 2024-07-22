@@ -6,8 +6,14 @@ export default {
   ],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'silver-glow': '0 0 15px 5px rgba(192, 192, 192, 0.7)',
+      },
+      colors: {
+        'silver-500': '#C0C0C0',
+      },
+    },
   },
   plugins: [],
-  
 }
