@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn, FaInstagram } from 'react-icons/fa'
-import img from '../../assets/profile.jpg'
+import img from '../../assets/ADPLogoNewGrad.png'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
@@ -56,7 +56,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <img data-aos='fade-up' src={img} width={290} height={290} alt="" className='rounded-full border-2 p-1 border-fuchsia-500 img_glow' />
+      <img data-aos='fade-up' src={img} width={500} height={500} alt="" className='rounded-full border-2 p-1 border-fuchsia-500 img_glow' />
     </div>
   )
 }
