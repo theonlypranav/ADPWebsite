@@ -19,14 +19,6 @@ function Home() {
       icon: <FaLinkedinIn className="icon-glow text-silver-700 hover:text-silver-500" />,
     },
     {
-      link: 'https://github.com/chiragjain307',
-      icon: <AiFillGithub className="icon-glow text-silver-700 hover:text-silver-500" />,
-    },
-    {
-      link: 'https://twitter.com/mr_kasliwal',
-      icon: <FaXTwitter className="icon-glow text-silver-700 hover:text-silver-500" />,
-    },
-    {
       link: 'https://www.instagram.com/adp_bitspilani/',
       icon: <FaInstagram className="icon-glow text-silver-700 hover:text-silver-500" />,
     }

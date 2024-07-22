@@ -9,30 +9,30 @@ import GRADIOAP from '../assets/AP.png';
 import GRADIOSH from '../assets/SH.png';
 import GRADIOSM from '../assets/SM.png';
 
-const TechStackList = [
+const DevsList = [
     {
         id: 1,
         image: HTML,
         title: "Shreyansh Vanjani",
-        subtitle: "StuCCAn, Oasis '24"
+        subtitle: "Executive Lead"
     },
     {
         id: 2,
-        image: BJ,
-        title: "Bhoomika Jain",
-        subtitle: "CoStAAn, APOGEE '25"
+        image: REACT,
+        title: "Pranav Deshpande",
+        subtitle: "Front-End Developer"
     },
     {
         id: 3,
         image: TAILWIND,
         title: "Ayush Jain",
-        subtitle: "Structure Coord, Oasis '24"
+        subtitle: "Front-End Developer"
     },
     {
         id: 4,
         image: ND,
         title: "Navya Dhiman",
-        subtitle: "Painting Coord, Oasis '24"
+        subtitle: "Tech & Design Intern"
     },
     {
         id: 5,
@@ -73,4 +73,4 @@ const TechStackList = [
 
 ];
 
-export default TechStackList;
+export default DevsList;

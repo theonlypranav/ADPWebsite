@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import img from '../../assets/Snap.jpeg'
+import img from '../../assets/snap2.jpeg'
 
 function About() {
 
@@ -26,13 +26,7 @@ function About() {
           <br /><br />
           Our exploration of different mediums of paintings; physical and digital, sculpting and graphic designing opens up a large avenue for all your budding interests.
         </p>
-        <div className='flex mt-8 gap-2 space-x-2 items-center justify-center'>
-          <a href="https://forms.gle/UvVKwkFNgcNMZorVA" target="_blank" rel="noopener noreferrer">
-            <div className='nano-button shadow-xl hover:shadow-silver-700/50 border-2 hover:bg-silver-700 border-silver-500 rounded-lg py-4 px-8 uppercase overflow-hidden'>
-              Apply For Us
-            </div>
-          </a>
-        </div>
+        
       </div>
     </div>
   )
