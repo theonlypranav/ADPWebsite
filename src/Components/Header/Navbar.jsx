@@ -28,11 +28,11 @@ function Navbar() {
 
     const content = (
         <>
-            <div className='lg:hidden block absolute top-16 w-full left-0 right-0 bg-white dark:bg-slate-900 transition '>
+            <div className='lg:hidden block absolute top-16 w-full left-0 right-0 bg-black text-white transition'>
                 <ul className='text-center text-xl p-20'>
                     {navItems.map((item, index) => (
                         <Link key={index} to={item} spy={true} smooth={true}>
-                            <li className='my-4 py-4 border-b border-slate-800 hover:bg-slate-800 hover:rounded'>{item}</li>
+                            <li className='my-4 py-4 border-b-0 hover:border-b-2 hover:border-silver-700 hover:bg-silver-700 hover:rounded'>{item}</li>
                         </Link>
                     ))}
                     <div>
@@ -44,9 +44,9 @@ function Navbar() {
                                 onChange={toggleTheme}
                                 checked={darkMode}
                             />
-                            <div className="w-[49px] h-6 bg-slate-500 rounded-full peer-checked:after:translate-x-6 after:absolute after:top-[2px]  after:left-[2px] after:bg-gray-300 after:rounded-full after:h-5  after:w-5 after:transition-all">
-                                <img src={light} alt="light" className="absolute w-4 z-10 m-[4px] text-white " />
-                                <img src={dark} alt="dark" className="absolute w-4 z-10 m-[4px] text-white right-0 " />
+                            <div className="w-[49px] h-6 bg-silver-500 rounded-full border border-gray-400 peer-checked:after:translate-x-6 after:absolute after:top-[2px] after:left-[2px] after:bg-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all">
+                                <img src={light} alt="light" className="absolute w-4 z-10 m-[4px]" />
+                                <img src={dark} alt="dark" className="absolute w-4 z-10 m-[4px] right-0" />
                             </div>
                         </label>
                     </div>
@@ -57,8 +57,8 @@ function Navbar() {
 
     return (
         <>
-            <nav className='sticky top-0 bg-white text-black dark:bg-slate-900 dark:text-white'>
-                <div className='h-10vh flex justify-between z-50 lg:py-5 pl-20 pr-14 py-4 border-b border-slate-800'>
+            <nav className='sticky top-0 bg-black text-white'>
+                <div className='h-10vh flex justify-between z-50 lg:py-5 pl-20 pr-14 py-4 border-b border-silver-500'>
                     <div className='flex items-center flex-1'>
                         <span className='text-3xl font-bold flex items-center'>
                             <img src={logo} alt="Logo" className='h-8 w-8 mr-2' /> {/* Adjust the size as needed */}
@@ -69,7 +69,7 @@ function Navbar() {
                         <ul className='flex gap-8 text-[18px]'>
                             {navItems.map((item, index) => (
                                 <Link key={index} to={item} spy={true} smooth={true}>
-                                    <li className='hover:text-blue-700 transition border-b-2 border-slate-900 hover:border-blue-700 cursor-pointer'>{item}</li>
+                                    <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer'>{item}</li>
                                 </Link>
                             ))}
                             <div>
@@ -81,9 +81,9 @@ function Navbar() {
                                         onChange={toggleTheme}
                                         checked={darkMode}
                                     />
-                                    <div className="w-[49px] h-6 bg-slate-500 rounded-full peer-checked:after:translate-x-6 after:absolute after:top-[2px]  after:left-[2px] after:bg-gray-300 after:rounded-full after:h-5  after:w-5 after:transition-all">
-                                        <img src={light} alt="light" className="absolute w-4 z-10 m-[4px] text-white " />
-                                        <img src={dark} alt="dark" className="absolute w-4 z-10 m-[4px] text-white right-0 " />
+                                    <div className="w-[49px] h-6 bg-silver-500 rounded-full border border-gray-400 peer-checked:after:translate-x-6 after:absolute after:top-[2px] after:left-[2px] after:bg-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all">
+                                        <img src={light} alt="light" className="absolute w-4 z-10 m-[4px]" />
+                                        <img src={dark} alt="dark" className="absolute w-4 z-10 m-[4px] right-0" />
                                     </div>
                                 </label>
                             </div>

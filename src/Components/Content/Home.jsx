@@ -8,33 +8,33 @@ import 'aos/dist/aos.css';
 
 function Home() {
 
-  //for animation of the content in a component
+  // For animation of the content in a component
   useEffect(() => {
     AOS.init({ duration: 1000 });
-  }, [1000]);
+  }, []);
 
   const social = [
     {
       link: 'https://www.linkedin.com/company/department-of-art-design-and-publicity-bits-pilani/',
-      icon: <FaLinkedinIn className="text-silver-700 hover:text-silver-500" />,
+      icon: <FaLinkedinIn className="icon-glow text-silver-700 hover:text-silver-500" />,
     },
     {
       link: 'https://github.com/chiragjain307',
-      icon: <AiFillGithub className="text-silver-700 hover:text-silver-500" />,
+      icon: <AiFillGithub className="icon-glow text-silver-700 hover:text-silver-500" />,
     },
     {
       link: 'https://twitter.com/mr_kasliwal',
-      icon: <FaXTwitter className="text-silver-700 hover:text-silver-500" />,
+      icon: <FaXTwitter className="icon-glow text-silver-700 hover:text-silver-500" />,
     },
     {
       link: 'https://www.instagram.com/adp_bitspilani/',
-      icon: <FaInstagram className="text-silver-700 hover:text-silver-500" />,
+      icon: <FaInstagram className="icon-glow text-silver-700 hover:text-silver-500" />,
     }
   ];
 
   return (
-    <div id='Home' className=' bg-white text-black dark:bg-slate-900 dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col-reverse justify-between lg:gap-28 items-center'>
-      <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center '>
+    <div id='Home' className='bg-black text-white dark:bg-black dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col-reverse justify-between lg:gap-28 items-center'>
+      <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center'>
         <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-8 leading-normal uppercase'>
           Welcome To <span className='text-silver-700'>The Department of Art, Design and Publicity</span>
         </h1>
@@ -43,7 +43,7 @@ function Home() {
           <div className='flex items-center justify-center'>
             <div className='flex space-x-2'>
               {social.map((social, index) => (
-                <a key={index} target="_blank" href={social.link} className='hover:text-silver-700 rounded-full glow p-2'>
+                <a key={index} target="_blank" href={social.link} className='hover:text-silver-500 rounded-full p-2'>
                   <div className='text-[28px]'>
                     {social.icon}
                   </div>

@@ -1,4 +1,4 @@
-import img1 from '../assets/todoApp.png'
+import img1 from '../assets/O23.jpeg'
 import img2 from '../assets/mqdefault.jpg'
 import img3 from '../assets/blog.png'
 import img4 from '../assets/tours-travel.png'

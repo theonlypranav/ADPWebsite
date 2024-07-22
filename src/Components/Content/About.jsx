@@ -8,10 +8,10 @@ function About() {
   // For animation of the content in a component
   useEffect(() => {
     AOS.init({ duration: 1000 })
-  }, [1000])
+  }, [])
 
   return (
-    <div id='About ADP' className='bg-white text-black dark:bg-slate-900 dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-28 items-center'>
+    <div id='About ADP' className='bg-black text-white dark:bg-black dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-28 items-center'>
       <img data-aos='fade-down' src={img} width={650} height={290} alt="" className='rounded-[20px] border-1 p-1 border-silver-500 img_glow' />
       <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center'>
         <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
