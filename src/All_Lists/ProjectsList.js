@@ -1,5 +1,5 @@
 import img1 from '../assets/todoApp.png'
-import img2 from '../assets/weather.png'
+import img2 from '../assets/mqdefault.jpg'
 import img3 from '../assets/blog.png'
 import img4 from '../assets/tours-travel.png'
 import img5 from '../assets/media-player.png'
@@ -7,7 +7,7 @@ import img5 from '../assets/media-player.png'
 const ProjectsList = [
     {
         id: 1,
-        title: 'Daily Todos',
+        title: 'Oasis 2023',
         link: 'https://todo-webapp-pro.vercel.app',
         github: 'https://github.com/chiragjain307/Todo-WebApp',
         image: img1
@@ -15,14 +15,14 @@ const ProjectsList = [
     },
     {
         id: 2,
-        title: 'Current Weather',
-        link: 'https://weather-webapp-pro.vercel.app',
+        title: 'APOGEE 2024',
+        link: 'https://bitspilaniac-my.sharepoint.com/:f:/g/personal/f20220551_pilani_bits-pilani_ac_in/EtTYWIPmf9JBgtdSCBEXYS4BePbvfYaqHrfeC4AWyLZDzA?e=rg0r8c',
         github: 'https://github.com/chiragjain307/Weather-WebApp',
         image: img2
     },
     {
         id: 3,
-        title: 'Social Media Blogging App',
+        title: 'Oasis 2022',
         link: 'https://bloging-webapp.vercel.app',
         github: 'https://github.com/chiragjain307/appWrite_blog_app',
         image: img3
