@@ -13,11 +13,11 @@
 }
 
 .glow:hover {
-    box-shadow: 0 0 25px rgb(206, 71, 193);
+    box-shadow: 0 0 25px rgb(75, 75, 75);
 }
 
 .img_glow {
-    box-shadow: 0 0 55px rgb(206, 71, 193);
+    box-shadow: 0 0 55px rgb(75, 75, 75);
 }
 
 .nano-button {
@@ -25,9 +25,9 @@
 }
 
 .nano-button:hover {
-    box-shadow: 0 0 15px rgb(206, 71, 193);
+    box-shadow: 0 0 15px rgb(75, 75, 75);
 }
 
 .border-glow {
-    box-shadow: 0 0 15px rgb(206, 71, 193);
+    box-shadow: 0 0 15px rgb(75, 75, 75);
 }

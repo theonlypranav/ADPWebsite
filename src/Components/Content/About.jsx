@@ -16,7 +16,7 @@ function About() {
     <div id='About ADP' className='bg-white text-black dark:bg-slate-900 dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-28 items-center'>
       <img data-aos='fade-down' src={img} width={600} height={290} alt="" className='rounded-[20px] border-1 p-1 border-fuchsia-500 img_glow' />
       <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center'>
-        <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-8 leading-normal text-fuchsia-500 uppercase'>
+        <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-8 leading-normal text-blue-800 uppercase'>
           About ADP
         </h1>
         <p data-aos='fade-left '>
@@ -28,7 +28,7 @@ function About() {
         </p>
         <div className='flex mt-8 gap-2 space-x-2 items-center justify-center'>
           <a href={Resume} target="_blank">
-            <div className='nano-button shadow-xl hover:shadow-fuchsia-800/50 border-2 hover:bg-fuchsia-800 border-fuchsia-800 rounded-lg py-4 px-8 uppercase overflow-hidden'>
+            <div className='nano-button shadow-xl hover:shadow-blue-700/50 border-2 hover:bg-blue-700 border-fuchsia-800 rounded-lg py-4 px-8 uppercase overflow-hidden'>
               Resume
             </div>
           </a>

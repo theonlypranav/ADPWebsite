@@ -71,7 +71,7 @@ function Navbar() {
                         <ul className='flex gap-8 text-[18px]'>
                             {navItems.map((item, index) => (
                                 <Link key={index} to={item} spy={true} smooth={true}>
-                                    <li className='hover:text-fuchsia-600 transition border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer'>{item}</li>
+                                    <li className='hover:text-blue-700 transition border-b-2 border-slate-900 hover:border-blue-700 cursor-pointer'>{item}</li>
                                 </Link>
                             ))}
                             <div>
