@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import light from '../../assets/light.png'
-import dark from '../../assets/dark.png'
-import { Link } from 'react-scroll'
-import { FaTimes } from 'react-icons/fa'
-import { CiMenuFries } from 'react-icons/ci'
+import React, { useEffect, useState } from 'react';
+import light from '../../assets/light.png';
+import dark from '../../assets/dark.png';
+import logo from '../../assets/ADPLogoNewGrad.png'; // Import the logo image
+import { Link } from 'react-scroll';
+import { FaTimes } from 'react-icons/fa';
+import { CiMenuFries } from 'react-icons/ci';
 
 function Navbar() {
-    const [click, setClick] = useState(false)
+    const [click, setClick] = useState(false);
     const [darkMode, setDarkMode] = useState(true);
 
     const toggleTheme = (event) => {
-        setDarkMode(!darkMode)
+        setDarkMode(!darkMode);
         if (event.target.checked) {
             document.documentElement.setAttribute('class', 'dark');
         } else {
             document.documentElement.removeAttribute('class');
         }
-    }
+    };
 
     useEffect(() => {
         document.documentElement.setAttribute('class', 'dark');
-    }, [])
+    }, []);
 
-    const handleClick = () => setClick(!click)
-    const navItems = ['Home', 'About ADP', 'Our Team', 'Our Projects', 'Contact']
+    const handleClick = () => setClick(!click);
+    const navItems = ['Home', 'About ADP', 'Our Team', 'Our Projects', 'Contact'];
 
-
-    const content =
+    const content = (
         <>
             <div className='lg:hidden block absolute top-16 w-full left-0 right-0 bg-white dark:bg-slate-900 transition '>
                 <ul className='text-center text-xl p-20'>
@@ -36,7 +36,7 @@ function Navbar() {
                         </Link>
                     ))}
                     <div>
-                        <label className="relative inline-flex items-center cursor-pointer	">
+                        <label className="relative inline-flex items-center cursor-pointer">
                             <input
                                 type="checkbox"
                                 value=""
@@ -45,25 +45,23 @@ function Navbar() {
                                 checked={darkMode}
                             />
                             <div className="w-[49px] h-6 bg-slate-500 rounded-full peer-checked:after:translate-x-6 after:absolute after:top-[2px]  after:left-[2px] after:bg-gray-300 after:rounded-full after:h-5  after:w-5 after:transition-all">
-                                <img src={light} alt="light"
-                                    className="absolute w-4 z-10 m-[4px] text-white " />
-                                <img src={dark} alt="dark"
-                                    className="absolute w-4 z-10 m-[4px] text-white right-0 " />
+                                <img src={light} alt="light" className="absolute w-4 z-10 m-[4px] text-white " />
+                                <img src={dark} alt="dark" className="absolute w-4 z-10 m-[4px] text-white right-0 " />
                             </div>
                         </label>
                     </div>
                 </ul>
             </div>
         </>
-
-
+    );
 
     return (
         <>
             <nav className='sticky top-0 bg-white text-black dark:bg-slate-900 dark:text-white'>
                 <div className='h-10vh flex justify-between z-50 lg:py-5 pl-20 pr-14 py-4 border-b border-slate-800'>
                     <div className='flex items-center flex-1'>
-                        <span className='text-3xl font-bold'>
+                        <span className='text-3xl font-bold flex items-center'>
+                            <img src={logo} alt="Logo" className='h-8 w-8 mr-2' /> {/* Adjust the size as needed */}
                             <Link to='Home' spy={true} smooth={true}>ADP</Link>
                         </span>
                     </div>
@@ -75,7 +73,7 @@ function Navbar() {
                                 </Link>
                             ))}
                             <div>
-                                <label className="relative inline-flex items-center cursor-pointer	">
+                                <label className="relative inline-flex items-center cursor-pointer">
                                     <input
                                         type="checkbox"
                                         value=""
@@ -84,10 +82,8 @@ function Navbar() {
                                         checked={darkMode}
                                     />
                                     <div className="w-[49px] h-6 bg-slate-500 rounded-full peer-checked:after:translate-x-6 after:absolute after:top-[2px]  after:left-[2px] after:bg-gray-300 after:rounded-full after:h-5  after:w-5 after:transition-all">
-                                        <img src={light} alt="light"
-                                            className="absolute w-4 z-10 m-[4px] text-white " />
-                                        <img src={dark} alt="dark"
-                                            className="absolute w-4 z-10 m-[4px] text-white right-0 " />
+                                        <img src={light} alt="light" className="absolute w-4 z-10 m-[4px] text-white " />
+                                        <img src={dark} alt="dark" className="absolute w-4 z-10 m-[4px] text-white right-0 " />
                                     </div>
                                 </label>
                             </div>
@@ -95,17 +91,16 @@ function Navbar() {
                     </div>
                     <button
                         className='block md:hidden transition text-2xl'
-                        onClick={handleClick} >
+                        onClick={handleClick}>
                         {click ? <FaTimes /> : <CiMenuFries />}
                     </button>
                     <div className='md:hidden'>
                         {click && content}
                     </div>
-
                 </div>
             </nav>
         </>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

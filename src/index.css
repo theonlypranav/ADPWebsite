@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,11 +14,11 @@
 }
 
 .glow:hover {
-    box-shadow: 0 0 25px rgb(75, 75, 75);
+    box-shadow: 0 0 25px rgb(186, 186, 187);
 }
 
 .img_glow {
-    box-shadow: 0 0 55px rgb(75, 75, 75);
+    box-shadow: 0 0 55px rgb(186, 186, 187);
 }
 
 .nano-button {
@@ -25,9 +26,12 @@
 }
 
 .nano-button:hover {
-    box-shadow: 0 0 15px rgb(75, 75, 75);
+    box-shadow: 0 0 15px rgb(186, 186, 187);
 }
 
 .border-glow {
-    box-shadow: 0 0 15px rgb(75, 75, 75);
+    box-shadow: 0 0 15px rgb(186, 186, 187);
 }
+.shadow-silver-glow {
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.5); /* Light silver glow */
+  }

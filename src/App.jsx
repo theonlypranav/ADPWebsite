@@ -26,12 +26,12 @@ function App() {
   return (
     <>
       {loading ?
-        <div className="bg-slate-900 h-[100vh] flex justify-center items-center">
+        <div className="bg-customDark h-[100vh] flex justify-center items-center">
           <BallTriangle
             height={100}
             width={100}
             radius={5}
-            color="#d946ef"
+            color="#BABABB"
             ariaLabel="ball-triangle-loading"
             wrapperStyle={{}}
             wrapperClass=""
