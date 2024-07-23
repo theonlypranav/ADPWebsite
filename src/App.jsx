@@ -40,7 +40,13 @@ function App() {
         </div>
       ) : (
         <Routes>
-          <Route path="/slideshow" element={<Slideshow />} />
+          <Route path="/slideshow" element={
+            <>
+              <Navbar />
+              <Slideshow />
+              <Footer />
+            </>
+          } />
           <Route path="/" element={
             <>
               <Navbar />
