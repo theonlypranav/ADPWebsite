@@ -25,7 +25,7 @@ function Navbar() {
 
     const handleClick = () => setClick(!click);
     
-    const navItems = ['Home', 'About ADP', 'Our Team', 'Our Projects', 'Contact'];
+    const navItems = ['Home', 'About ADP', 'Our Team', 'Our Projects', 'The Developers'];
     const verticals = ['Media', 'Structure', 'Publicity', 'Painting'];
 
     const content = (
@@ -67,15 +67,15 @@ function Navbar() {
 
     return (
         <>
-            <nav className='sticky top-0 bg-black text-white'>
-                <div className='h-10vh flex justify-between z-50 lg:py-5 pl-20 pr-14 py-4 border-b border-silver-500'>
+            <nav className='fixed top-0 left-0 right-0 bg-black text-white z-50'>
+                <div className='h-16 flex justify-between items-center lg:py-5 pl-20 pr-14 py-4 border-b border-silver-500'>
                     <div className='flex items-center flex-1'>
                         <span className='text-3xl font-bold flex items-center'>
                             <Link to='Home' spy={true} smooth={true}><img src={logo} alt="Logo" className='h-8 w-8 mr-2' /></Link>
                         </span>
                     </div>
                     <div className='lg:flex md:flex flex-1 items-center justify-end font-normal hidden'>
-                        <ul className='flex gap-8 text-sm'>
+                        <ul className='flex gap-8 text-sm items-center'>
                             {navItems.map((item, index) => (
                                 <Link key={index} to={item} spy={true} smooth={true}>
                                     <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>{item}</li>
@@ -118,6 +118,9 @@ function Navbar() {
                     </div>
                 </div>
             </nav>
+            <div style={{ paddingTop: '64px' }}> {/* Adjust this value based on the height of your navbar */}
+                {/* Your main content goes here */}
+            </div>
         </>
     );
 }
