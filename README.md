@@ -33,7 +33,7 @@ Visit the live demo: [Portfolio](https://chirags-portfolio.vercel.app)
 
 ## Installation
 
-To get started, follow these steps:
+To get started, follow these steps:npm 
 
 1. Clone the repository: `git clone https://github.com/chiragjain307/Portfolio-Website.git`
 2. Navigate to the project folder: `cd Portfolio-Website`
