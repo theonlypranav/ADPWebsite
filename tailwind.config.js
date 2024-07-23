@@ -14,6 +14,9 @@ export default {
         'silver-500': '#C0C0C0',
         'custom-dark': '#000000', // First custom color
         'custom-light': '#FFFFFF', // Second custom color
+        'custom-border': '#333',    // Border color for table
+        'custom-text-light': '#333', // Text color for light mode
+        'custom-text-dark': '#f5f5f5',
       },
     },
   },

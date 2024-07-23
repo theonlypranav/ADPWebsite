@@ -14,7 +14,7 @@ function Projects() {
   return (
     <div id='Our Projects' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center relative'>
       {/* Slideshow Button with Box */}
-      <div className='absolute top-4 right-4 border-2 border-silver-700 p-1 rounded z-50 pointer-events-auto'>
+      <div className='absolute top-4 right-4 border-2 border-silver-700 p-1 rounded z-10 pointer-events-auto'>
         <button 
           className='bg-silver-700 text-white py-2 px-4 rounded hover:bg-silver-500 transition duration-300'
           onClick={handleSlideshowClick}
@@ -23,7 +23,9 @@ function Projects() {
         </button>
       </div>
       
+      {/* Ensure space for the navbar */}
       <div className='absolute top-0 left-0 w-full h-[100px]'></div>
+      
       <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-8 leading-normal uppercase text-silver-700 mt-[60px]'>
         Our Projects
       </h1>

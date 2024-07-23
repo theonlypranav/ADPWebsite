@@ -9,8 +9,31 @@ const Slideshow = () => {
   };
 
   return (
-    <div className="slideshow">
-      <h1>Slideshow Page</h1>
+    <div className="slideshow p-4 bg-custom-light-bg text-custom-light-text dark:bg-custom-dark-bg dark:text-custom-dark-text">
+      {/* Title */}
+      <h1 className="text-4xl font-bold text-center mb-6">Oasis</h1>
+
+      {/* Table */}
+      <table className="w-full border-collapse border border-custom-border">
+        <thead>
+          <tr>
+            <th className="border border-custom-border p-2">Column 1</th>
+            <th className="border border-custom-border p-2">Column 2</th>
+            <th className="border border-custom-border p-2">Column 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.from({ length: 3 }).map((_, rowIndex) => (
+            <tr key={rowIndex}>
+              <td className="border border-custom-border p-2">Row {rowIndex + 1}, Col 1</td>
+              <td className="border border-custom-border p-2">Row {rowIndex + 1}, Col 2</td>
+              <td className="border border-custom-border p-2">Row {rowIndex + 1}, Col 3</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Button */}
       <button 
         className='absolute top-4 right-4 bg-silver-700 text-white py-2 px-4 rounded hover:bg-silver-500 transition duration-300'
         onClick={handleSlideshow}
@@ -22,6 +45,11 @@ const Slideshow = () => {
 };
 
 export default Slideshow;
+
+
+
+
+
 
 // import React from 'react';
 
