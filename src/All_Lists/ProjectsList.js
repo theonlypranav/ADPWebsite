@@ -18,7 +18,7 @@ const ProjectsList = [
     {
         id: 2,
         title: 'APOGEE',
-        link: '../Components/Apogee/Apogee24/Apogee24.html',
+        link: '../../public/Apogee24.html',
         image: img2,
         instagram: 'https://www.instagram.com/bitsapogee/',
         linkedin: 'https://www.linkedin.com/company/apogee-bits-pilani/',
