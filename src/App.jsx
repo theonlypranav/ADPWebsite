@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Header/Navbar';
 import Home from './Components/Content/Home';
 import About from './Components/Content/About';
@@ -6,6 +7,7 @@ import TechStack from './Components/Content/TechStack';
 import Projects from './Components/Content/Projects';
 import Contact from './Components/Content/Contact';
 import Footer from './Components/Footer/Footer';
+import Slideshow from './Components/Content/Slideshow'; // Import the new Slideshow component
 import { BallTriangle } from 'react-loader-spinner';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -22,7 +24,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Router>
       {loading ? (
         <div className="bg-black h-[100vh] flex justify-center items-center">
           <BallTriangle
@@ -37,19 +39,24 @@ function App() {
           />
         </div>
       ) : (
-        <>
-          <Navbar />
-          <Home />
-          <About />
-          <Projects />
-          <TechStack />
-          <Contact />
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </>
+        <Routes>
+          <Route path="/slideshow" element={<Slideshow />} />
+          <Route path="/" element={
+            <>
+              <Navbar />
+              <Home />
+              <About />
+              <Projects />
+              <TechStack />
+              <Contact />
+              <Footer />
+              <Analytics />
+              <SpeedInsights />
+            </>
+          } />
+        </Routes>
       )}
-    </>
+    </Router>
   );
 }
 
