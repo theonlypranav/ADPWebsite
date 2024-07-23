@@ -9,7 +9,7 @@ function Projects() {
   // For animation of the content in a component
   useEffect(() => {
     AOS.init({ duration: 1000 });
-  }, []
+  }, [])
   return (
     <div id='Our Projects' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center relative'>
       <div className='absolute top-0 left-0 w-full h-[100px]'></div>
@@ -46,6 +46,6 @@ function Projects() {
       </div>
     </div>
   );
-}
+};
 
 export default Projects;
