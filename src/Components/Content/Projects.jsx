@@ -15,7 +15,7 @@ function Projects() {
   const handleSlideshowClick = (e) => {
     e.stopPropagation(); // Stop event propagation
     console.log("Slideshow button clicked");
-    navigate('/slideshow');
+    navigate('/endpoint');
   };
 
   return (
