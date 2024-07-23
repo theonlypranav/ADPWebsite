@@ -1,8 +1,8 @@
 import HTML from '../assets/SV2.png';
 import REACT from '../assets/PD.png';
 import TAILWIND from '../assets/Aj.png';
-import REDUX from '../assets/Dummy.png';
-
+import REDUX from '../assets/kv1.png';
+import DUMMY from '../assets/Dummy.png';
 
 const DevsList = [
     {
@@ -25,7 +25,7 @@ const DevsList = [
     },
     {
         id: 4,
-        image: REDUX,
+        image: DUMMY,
         title: "Navya Jain",
         subtitle: "Tech & Design Intern"
     },
