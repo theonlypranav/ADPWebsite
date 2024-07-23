@@ -38,38 +38,8 @@ const DevsList = [
         id: 5,
         image: REDUX,
         title: "Krish Vora",
-        subtitle: "Publicity Coord, Oasis '24"
-    },
-    {
-        id: 6,
-        image: REDUX,
-        title: "Sarthak Juneja",
-        subtitle: "Media Coord, Oasis '24"
-    },
-    {
-        id: 7,
-        image: GRADIOSH,
-        title: "Shlok Jaiswal",
-        subtitle: "Structure Coord, APOGEE '25"
-    },
-    {
-        id: 8,
-        image: GRADIOSM,
-        title: "Saanidhya Mittal",
-        subtitle: "Painting Coord, APOGEE '25"
-    },
-    {
-        id: 9,
-        image: GRADIOCJ,
-        title: "Chavi Gupta",
-        subtitle: "Publicity Coord, APOGEE '25"
-    },
-    {
-        id: 10,
-        image: GRADIOAP,
-        title: "Archi Patel",
-        subtitle: "Media Coord, APOGEE '25"
-    },
+        subtitle: "Tech & Design Intern"
+    }
 
 ];
 
