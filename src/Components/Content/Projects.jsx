@@ -10,7 +10,7 @@ function Projects() {
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
-  }, []
+  }, [])
   return (
     <div id='Our Projects' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center relative'>
       {/* Slideshow Button with Box */}
