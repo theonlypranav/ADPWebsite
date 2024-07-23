@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import ProjectsList from '../../All_Lists/ProjectsList';
+import { FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 function Projects() {
 
@@ -13,10 +14,10 @@ function Projects() {
   return (
     <div id='Our Projects' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center relative'>
       <div className='absolute top-0 left-0 w-full h-[100px]'></div>
-      <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-20 leading-normal uppercase text-silver-700 mt-[100px]'>
+      <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-8 leading-normal uppercase text-silver-700 mt-[60px]'>
         Our Projects
       </h1>
-      <p data-aos='fade-left' className='text-lg mb-20 text-center opacity-0 transition-opacity duration-1000 ease-in-out'> {/* Fade effect */}
+      <p data-aos='fade-left' className='text-lg mb-8 text-center opacity-0 transition-opacity duration-1000 ease-in-out'> {/* Fade effect */}
         Meet the passionate and dedicated members who make up our incredible team.
       </p>
       <div className='flex flex-row gap-10'>
@@ -29,9 +30,20 @@ function Projects() {
                 <div className='absolute inset-0 border-2 border-silver-500 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-silver-glow'></div>
               </div>
             </a>
-            <p className='flex gap-2 h-full mt-6 justify-center text-silver-700 text-[36px] text-center'>
+            <p className='flex gap-2 h-full mt-4 justify-center text-silver-700 text-[36px] text-center'>
               {project.title}
             </p>
+            <div className='flex gap-4 mt-2'>
+              <a href={project.instagram} target="_blank" rel="noopener noreferrer">
+                <FaInstagram className='text-silver-700 hover:text-silver-500 transition duration-300' size={24} />
+              </a>
+              <a href={project.linkedin} target="_blank" rel="noopener noreferrer">
+                <FaLinkedin className='text-silver-700 hover:text-silver-500 transition duration-300' size={24} />
+              </a>
+              <a href={project.twitter} target="_blank" rel="noopener noreferrer">
+                <FaTwitter className='text-silver-700 hover:text-silver-500 transition duration-300' size={24} />
+              </a>
+            </div>
           </div>
         ))}
       </div>
@@ -40,4 +52,3 @@ function Projects() {
 }
 
 export default Projects;
-
