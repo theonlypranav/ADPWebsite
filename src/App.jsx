@@ -41,8 +41,8 @@ function App() {
           <Navbar />
           <Home />
           <About />
-          <TechStack />
           <Projects />
+          <TechStack />
           <Contact />
           <Footer />
           <Analytics />
