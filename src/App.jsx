@@ -11,6 +11,7 @@ import Slideshow from './Components/Content/Slideshow'; // Import the new Slides
 import { BallTriangle } from 'react-loader-spinner';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import Endpoint from './Components/Content/endpoint';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -44,6 +45,13 @@ function App() {
             <>
               <Navbar />
               <Slideshow />
+              <Footer />
+            </>
+          } />
+        <Route path="/endpoint" element={
+            <>
+              <Navbar />
+              <Endpoint />
               <Footer />
             </>
           } />
