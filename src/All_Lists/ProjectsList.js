@@ -18,34 +18,12 @@ const ProjectsList = [
     {
         id: 2,
         title: 'APOGEE',
-        link: 'https://bitspilaniac-my.sharepoint.com/:f:/g/personal/f20220551_pilani_bits-pilani_ac_in/EtTYWIPmf9JBgtdSCBEXYS4BePbvfYaqHrfeC4AWyLZDzA?e=rg0r8c',
+        link: '/Apogee24.html',
         image: img2,
         instagram: 'https://www.instagram.com/bitsapogee/',
         linkedin: 'https://www.linkedin.com/company/apogee-bits-pilani/',
         twitter: 'https://x.com/BITSApogee'
-    },
-    {
-        id: 3,
-        title: 'Oasis 2022',
-        link: 'https://bloging-webapp.vercel.app',
-        github: 'https://github.com/chiragjain307/appWrite_blog_app',
-        image: img3
-    },
-    {
-        id: 4,
-        title: 'Tours & Travel',
-        link: 'https://tours-travel-pro.vercel.app',
-        github: 'https://github.com/chiragjain307/Tours-Travel',
-        image: img4
-    },
-    {
-        id: 5,
-        title: 'Media Player',
-        link: 'https://media-player-pro.vercel.app',
-        github: 'https://github.com/chiragjain307/Media-Player',
-        image: img5
-    },
-    
+    }
 ]
 
 export default ProjectsList
