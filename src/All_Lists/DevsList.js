@@ -3,7 +3,7 @@ import BJ from '../assets/bj.jpeg';
 import ND from '../assets/ND.png';
 import REACT from '../assets/PD.png';
 import TAILWIND from '../assets/Aj.png';
-import REDUX from '../assets/Sj.jpeg';
+import REDUX from '../assets/Dummy.png';
 import GRADIOCJ from '../assets/CJ.png';
 import GRADIOAP from '../assets/AP.png';
 import GRADIOSH from '../assets/SH.png';
@@ -30,14 +30,14 @@ const DevsList = [
     },
     {
         id: 4,
-        image: ND,
-        title: "Navya Dhiman",
+        image: REDUX,
+        title: "Navya Jain",
         subtitle: "Tech & Design Intern"
     },
     {
         id: 5,
-        image: REACT,
-        title: "Pranav Deshpande",
+        image: REDUX,
+        title: "Krish Vora",
         subtitle: "Publicity Coord, Oasis '24"
     },
     {
