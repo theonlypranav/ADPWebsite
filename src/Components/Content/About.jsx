@@ -1,18 +1,50 @@
-import React, { useEffect } from 'react'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import img from '../../assets/snap2.jpeg'
+import React, { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import Modal from 'react-modal';
+import img from '../../assets/snap2.jpeg';
+
+Modal.setAppElement('#root'); // Set the root element for accessibility
 
 function About() {
+  // State for controlling modal
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // For animation of the content in a component
   useEffect(() => {
-    AOS.init({ duration: 1000 })
-  }, [])
+    AOS.init({ duration: 1000 });
+  }, []);
+
+  // Function to open the modal
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  // Function to download the image
+  const downloadImage = () => {
+    const link = document.createElement('a');
+    link.href = img;
+    link.download = 'image.jpg';
+    link.target = '_blank';
+    link.click();
+  };
 
   return (
     <div id='About ADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-28 items-center'>
-      <img data-aos='fade-down' src={img} width={650} height={290} alt="" className='rounded-[20px] border-1 p-1 border-silver-500 img_glow' />
+      <img
+        data-aos='fade-down'
+        src={img}
+        width={650}
+        height={290}
+        alt=""
+        className='rounded-[20px] border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300'
+        onClick={openModal} // Open modal on click
+      />
       <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center'>
         <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
           About ADP
@@ -26,10 +58,30 @@ function About() {
           <br /><br />
           Our exploration of different mediums of paintings; physical and digital, sculpting and graphic designing opens up a large avenue for all your budding interests.
         </p>
-        
       </div>
+
+      {/* Modal Component */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Image Modal"
+        className='flex justify-center items-center'
+        overlayClassName='fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center'
+      >
+        <div className='relative bg-white dark:bg-custom-dark rounded-lg shadow-lg p-4 w-[80%] h-[80%] flex flex-col items-center'>
+          <div className='flex justify-between mb-4 w-full'>
+            <button onClick={closeModal} className='text-black dark:text-white bg-silver-700 hover:bg-silver-500 text-sm px-3 py-1 rounded'>
+              Close
+            </button>
+            <button onClick={downloadImage} className='text-black dark:text-white bg-silver-700 hover:bg-silver-500 text-sm px-3 py-1 rounded'>
+              Download
+            </button>
+          </div>
+          <img src={img} alt="Enlarged" className='max-w-full max-h-full object-contain rounded-lg' />
+        </div>
+      </Modal>
     </div>
-  )
+  );
 }
 
-export default About
+export default About;

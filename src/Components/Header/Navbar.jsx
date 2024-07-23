@@ -25,7 +25,7 @@ function Navbar() {
 
     const handleClick = () => setClick(!click);
     
-    const navItems = ['Home', 'About ADP', 'Our Team', 'Our Projects', 'Contact'];
+    const navItems = ['Home', 'About ADP', 'Our Team', 'Our Projects', 'The Developers'];
     const verticals = ['Media', 'Structure', 'Publicity', 'Painting'];
 
     const content = (
