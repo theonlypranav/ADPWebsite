@@ -1,13 +1,8 @@
 import HTML from '../assets/SV2.png';
-import BJ from '../assets/bj.jpeg';
-import ND from '../assets/ND.png';
 import REACT from '../assets/PD.png';
 import TAILWIND from '../assets/Aj.png';
 import REDUX from '../assets/Dummy.png';
-import GRADIOCJ from '../assets/CJ.png';
-import GRADIOAP from '../assets/AP.png';
-import GRADIOSH from '../assets/SH.png';
-import GRADIOSM from '../assets/SM.png';
+
 
 const DevsList = [
     {
