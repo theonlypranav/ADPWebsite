@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 
 const Endpoint = () => {
   const [photos, setPhotos] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null);
   const [enlargedPhoto, setEnlargedPhoto] = useState(null);
+  const location = useLocation();
+  const {description} = location.state || {};
+  
 
   useEffect(() => {
     const loadImages = async () => {
-      const imageContext = import.meta.glob('../../assets/fest1/*.{jpg,jpeg,png}');
+      const imageContext = import.meta.glob('../../assets/'+'fest1'+'/*.{jpg,jpeg,png}');
       const imageModules = await Promise.all(
         Object.values(imageContext).map(importFn => importFn())
       );

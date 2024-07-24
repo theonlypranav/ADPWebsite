@@ -31,11 +31,14 @@ const Slideshow = () => {
       <div className='grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-x-12 gap-y-10 mt-10'>
         {TechStackList2.slice(2).map((tech, index) => (
           <div key={index} data-aos={tech.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center'>
-              <Link to={tech.link}>
+            <Link to={{
+              pathname: tech.link,
+              state: { description: tech.description } // Passing the description string
+            }}>
               <div className='text-silver-800 rounded-2xl border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-48 w-80 cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow'>
                 <img className='h-full w-full object-cover rounded-2xl' src={tech.image} alt={tech.title} />
               </div>
-              </Link>
+            </Link>
             <h2 className='text-[26px] font-semibold mt-4 text-center text-silver-700'>{tech.title}</h2>
           </div>
         ))}
