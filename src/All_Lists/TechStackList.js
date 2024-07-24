@@ -1,13 +1,13 @@
-import HTML from '../assets/SV2.png';
-import BJ from '../assets/bj.jpeg';
-import ND from '../assets/ND.png';
-import REACT from '../assets/PD.png';
-import TAILWIND from '../assets/Aj.png';
-import REDUX from '../assets/Sj.jpeg';
-import GRADIOCJ from '../assets/CJ.png';
-import GRADIOAP from '../assets/AP.png';
-import GRADIOSH from '../assets/SH.png';
-import GRADIOSM from '../assets/SM.png';
+import HTML from '../assets/Cords/SV2.png';
+import BJ from '../assets/Cords/bj.jpeg';
+import ND from '../assets/Cords/ND.png';
+import REACT from '../assets/Cords/PD.png';
+import TAILWIND from '../assets/Cords/Aj.png';
+import REDUX from '../assets/Cords/Sj.jpeg';
+import GRADIOCJ from '../assets/Cords/CJ.png';
+import GRADIOAP from '../assets/Cords/AP.png';
+import GRADIOSH from '../assets/Cords/SH.png';
+import GRADIOSM from '../assets/Cords/SM.png';
 
 const TechStackList = [
     {

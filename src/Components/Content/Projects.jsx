@@ -15,7 +15,7 @@ function Projects() {
   const handleSlideshowClick = (e) => {
     e.stopPropagation(); // Stop event propagation
     console.log("Slideshow button clicked");
-    navigate('/slideshow');
+    navigate('/endpoint');
   };
 
   return (
@@ -33,9 +33,8 @@ function Projects() {
       <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-8 leading-normal uppercase text-silver-700'>
         Our Projects
       </h1>
-      <p data-aos='fade-left' className='text-lg mb-8 text-center opacity-0 transition-opacity duration-1000 ease-in-out'>
-        Meet the passionate and dedicated members who make up our incredible team.
-      </p>
+      
+      
       <div className='flex flex-row gap-10'>
         {ProjectsList.slice(0, 2).map((project) => (
           <div key={project.id} data-aos={project.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center group'>
