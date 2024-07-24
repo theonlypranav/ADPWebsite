@@ -25,7 +25,7 @@ const TechStackList2 = [
         title: "Oasis 2024 | #52",
         subtitle: "Regal Roulette",
         link: '../endpoint',
-        description: 'fest1'
+        description: 'APOGEE 2023'
     },
     {
         id: 4,

@@ -9,16 +9,28 @@ const Endpoint = () => {
   const [currentIndex, setCurrentIndex] = useState(null);
   const [enlargedPhoto, setEnlargedPhoto] = useState(null);
   const location = useLocation();
-  const {description} = location.state || {};
-  
+  const query = new URLSearchParams(location.search);
+  const description = query.get('description');
+  const imageContextFest1 = import.meta.glob('../../assets/APOGEE 2023/*.{jpg,jpeg,png}');
+  const imageContextFest2 = import.meta.glob('../../assets/fest1/*.{jpg,jpeg,png}');
 
   useEffect(() => {
     const loadImages = async () => {
-      const imageContext = import.meta.glob('../../assets/'+'fest1'+'/*.{jpg,jpeg,png}');
-      const imageModules = await Promise.all(
-        Object.values(imageContext).map(importFn => importFn())
-      );
-      setPhotos(imageModules.map(module => module.default));
+      let imageContext;
+
+      // Select the appropriate glob based on the description
+      if (description === 'APOGEE 2023') {
+        imageContext = imageContextFest1;
+      } else if (description === 'fest1') {
+        imageContext = imageContextFest2;
+      }
+
+      if (imageContext) {
+        const imageModules = await Promise.all(
+          Object.values(imageContext).map((importFn) => importFn())
+        );
+        setPhotos(imageModules.map((module) => module.default));
+      }
     };
 
     loadImages();
