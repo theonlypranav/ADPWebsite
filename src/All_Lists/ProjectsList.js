@@ -10,17 +10,19 @@ const ProjectsList = [
         image: img1,
         instagram: 'https://www.instagram.com/bitsoasis/',
         linkedin: 'https://www.linkedin.com/company/oasis24-bits-pilani/',
-        twitter: 'https://x.com/bitsoasis'
+        twitter: 'https://x.com/bitsoasis',
+        description: 'OASIS'
         
     },
     {
         id: 2,
         title: 'APOGEE',
-        link: '../../public/Apogee24.html',
+        link: '/slideshow',
         image: img2,
         instagram: 'https://www.instagram.com/bitsapogee/',
         linkedin: 'https://www.linkedin.com/company/apogee-bits-pilani/',
-        twitter: 'https://x.com/BITSApogee'
+        twitter: 'https://x.com/BITSApogee',
+        description: 'APOGEE'
     }
 ]
 

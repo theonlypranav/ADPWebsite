@@ -11,18 +11,26 @@ const Endpoint = () => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const description = query.get('description');
-  const imageContextFest1 = import.meta.glob('../../assets/APOGEE 2023/*.{jpg,jpeg,png}');
-  const imageContextFest2 = import.meta.glob('../../assets/fest1/*.{jpg,jpeg,png}');
+
+  // specifying paths for various folders contating images
+  const oasisfest2023 = import.meta.glob('../../assets/OASIS 2023/*.{jpg,jpeg,png}');
+  const oasisfest2022 = import.meta.glob('../../assets/OASIS 2022/*.{jpg,jpeg,png}');
+  const apogeefest2024 = import.meta.glob('../../assets/APOGEE 2024/*.{jpg,jpeg,png}');
+  const apogeefest2023 = import.meta.glob('../../assets/APOGEE 2023/*.{jpg,jpeg,png}');
 
   useEffect(() => {
     const loadImages = async () => {
       let imageContext;
 
       // Select the appropriate glob based on the description
-      if (description === 'APOGEE 2023') {
-        imageContext = imageContextFest1;
-      } else if (description === 'fest1') {
-        imageContext = imageContextFest2;
+      if (description === 'OASIS 2023') {
+        imageContext = oasisfest2023;
+      } else if (description === 'OASIS 2022') {
+        imageContext = oasisfest2022;
+      } else if (description === 'APOGEE 2024') {
+        imageContext = apogeefest2024;
+      } else if (description === 'APOGEE 2023') {
+        imageContext = apogeefest2023;
       }
 
       if (imageContext) {
@@ -53,7 +61,7 @@ const Endpoint = () => {
       </h1>
       <div className='w-full overflow-x-auto py-10'>
         <div className='flex flex-row gap-5'>
-          {Array(10).fill(0).map((_, index) => (
+          {Array(photos.length).fill(0).map((_, index) => (
             <div key={index} className='flex flex-col items-center p-8'>
               <div
                 className={`relative h-[510px] w-[510px] overflow-hidden rounded-3xl border-2 border-silver-700 group-hover:border-silver-500 transition-all duration-300 ${
