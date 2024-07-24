@@ -27,7 +27,7 @@ function App() {
   return (
     <Router>
       {loading ? (
-        <div className="bg-black h-[100vh] flex justify-center items-center">
+        <div className="bg-black min-h-screen flex flex-grow justify-center items-center">
           <BallTriangle
             height={100}
             width={100}
