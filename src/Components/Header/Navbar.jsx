@@ -88,7 +88,7 @@ function Navbar() {
 
     return (
         <>
-            <nav className='fixed top-0 left-0 right-0 bg-black text-white z-50'>
+            <nav className='fixed top-0 left-0 right-0 bg-black text-white z-50 opacity-100'>
                 <div className='h-16 flex justify-between items-center lg:py-5 pl-20 pr-14 py-4 border-b border-silver-500'>
                     <div className='flex items-center flex-1'>
                         <span className='text-3xl font-bold flex items-center'>
@@ -167,5 +167,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TechStackList2 from '../../All_Lists/TechStackList2';
 
@@ -8,7 +8,14 @@ const Slideshow = () => {
   const handleSlideshow = () => {
     navigate('/slideshow');
   };
+
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   console.log(TechStackList2);
+
   return (
     <div className="slideshow bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center relative">
       <h1 className="text-6xl font-bold mb-4">Oasis Through The Years</h1>
@@ -36,12 +43,3 @@ const Slideshow = () => {
 };
 
 export default Slideshow;
-
-
-
-
-
-
-
-
-

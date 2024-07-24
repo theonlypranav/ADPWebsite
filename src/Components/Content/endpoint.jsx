@@ -19,6 +19,9 @@ const Endpoint = () => {
     loadImages();
 
     AOS.init({ duration: 1000 });
+
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
   }, []);
 
   const handleImageClick = (index) => {
@@ -28,7 +31,7 @@ const Endpoint = () => {
 
   return (
     <div id='slideshow' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center relative'>
-      <h1 data-aos='fade-right'style={{ fontFamily: 'Anton',letterSpacing: '0.7px' }} className='text-[60px] font-normal mb-8 leading-normal uppercase text-silver-700 mt-[60px] font-anton'>
+      <h1 data-aos='fade-right' style={{ fontFamily: 'Anton', letterSpacing: '0.7px' }} className='text-[60px] font-normal mb-8 leading-normal uppercase text-silver-700 mt-[60px] font-anton'>
         RELIVE THE MEMORIES
       </h1>
       <div className='w-full overflow-x-auto py-10'>
@@ -37,7 +40,7 @@ const Endpoint = () => {
             <div key={index} className='flex flex-col items-center p-8'>
               <div
                 className={`relative h-[510px] w-[510px] overflow-hidden rounded-3xl border-2 border-silver-700 group-hover:border-silver-500 transition-all duration-300 ${
-                  index === currentIndex? 'active' : ''
+                  index === currentIndex ? 'active' : ''
                 }`}
                 onClick={() => handleImageClick(index)}
               >
