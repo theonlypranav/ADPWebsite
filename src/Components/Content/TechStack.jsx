@@ -105,9 +105,9 @@ function TechStack() {
                         <div className='flex h-full'>
                             <img className='w-1/2 h-full object-cover' src={selectedItem.picture} alt="Item" />
                             <div className='w-1/2 p-4 overflow-y-auto'>
-                                <h2 className='text-4xl font-bold text-white mb-2'>{selectedItem.title}</h2>
+                                <h2 className='text-3xl font-bold text-white mb-2'>{selectedItem.title}</h2>
                                 <p className='text-white mb-4 text-base'>{selectedItem.description}</p>
-                                <ul className='list-disc list-inside text-white text-l'>
+                                <ul className='list-disc list-inside text-white text-sm'>
                                     {selectedItem.list.map((name, index) => (
                                         <li key={index}>{name}</li>
                                     ))}
@@ -122,5 +122,6 @@ function TechStack() {
 }
 
 export default TechStack;
+
 
 
