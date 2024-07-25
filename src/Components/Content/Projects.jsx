@@ -29,7 +29,7 @@ function Projects() {
         {ProjectsList.slice(0, 2).map((project) => (
           <div key={project.id} data-aos={project.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center group'>
             <Link to={`${project.link}?description=${project.description}`}>
-              <div className='relative h-[400px] w-[400px] overflow-hidden rounded-3xl border-2 border-silver-700 group-hover:border-silver-500 transition-all duration-300'>
+              <div className='relative h-[400px] w-[400px] overflow-hidden rounded-3xl border-2 border-silver-700 shadow-silver-glow-strong group-hover:border-silver-500 transition-all duration-300'>
                 <img className='absolute inset-0 object-cover w-full h-full' src={project.image} alt="project" />
                 <div className='absolute inset-0 border-2 border-silver-500 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-silver-glow'></div>
               </div>
