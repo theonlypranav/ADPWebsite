@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; // Import arrow icons
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const Endpoint = () => {
   const [photos, setPhotos] = useState([]);
@@ -20,7 +20,6 @@ const Endpoint = () => {
   };
 
   useEffect(() => {
-
     const loadImages = async () => {
       const imageContext = imageFolders[description];
 
@@ -53,10 +52,10 @@ const Endpoint = () => {
 
   const handleKeyDown = (event) => {
     if (event.key === 'ArrowRight') {
-      event.preventDefault(); // Prevent default action
+      event.preventDefault();
       handleNext();
     } else if (event.key === 'ArrowLeft') {
-      event.preventDefault(); // Prevent default action
+      event.preventDefault();
       handlePrev();
     }
   };
@@ -73,8 +72,8 @@ const Endpoint = () => {
   const nextIndex = (currentIndex + 1) % photos.length;
 
   return (
-    <div id='slideshow' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-10 flex flex-col items-center justify-center relative'>
-      <h1 data-aos='fade-right' style={{ fontFamily: 'Anton', letterSpacing: '0.7px' }} className='text-[60px] font-normal mb-4 leading-normal uppercase text-silver-700 font-anton'>
+    <div id='slideshow' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen'>
+      <h1 data-aos='fade-right' className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-4 leading-normal uppercase text-silver-700 font-anton'>
         RELIVE THE MEMORIES
       </h1>
       <div className='relative w-full max-w-[1000px] flex items-center justify-center'>
@@ -82,17 +81,17 @@ const Endpoint = () => {
           <FaArrowLeft />
         </button>
         <div className='flex flex-row items-center'>
-          <div className='relative w-[20vw] h-[20vw] opacity-50 mx-8' onClick={handlePrev}>
+          <div className='relative w-[20vw] h-[20vw] sm:w-[15vw] sm:h-[15vw] md:w-[12vw] md:h-[12vw] lg:w-[10vw] lg:h-[10vw] opacity-50 mx-4 sm:mx-6 md:mx-8' onClick={handlePrev}>
             {photos.length > 0 && (
               <img src={photos[prevIndex]} alt="Previous Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg cursor-pointer' />
             )}
           </div>
-          <div className='relative w-[40vw] h-[40vw]'>
+          <div className='relative w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] md:w-[40vw] md:h-[40vw] lg:w-[30vw] lg:h-[30vw]'>
             {photos.length > 0 && (
               <img src={photos[currentIndex]} alt="Current Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg' />
             )}
           </div>
-          <div className='relative w-[20vw] h-[20vw] opacity-50 mx-8' onClick={handleNext}>
+          <div className='relative w-[20vw] h-[20vw] sm:w-[15vw] sm:h-[15vw] md:w-[12vw] md:h-[12vw] lg:w-[10vw] lg:h-[10vw] opacity-50 mx-4 sm:mx-6 md:mx-8' onClick={handleNext}>
             {photos.length > 0 && (
               <img src={photos[nextIndex]} alt="Next Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg cursor-pointer' />
             )}

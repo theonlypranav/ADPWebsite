@@ -13,21 +13,21 @@ function Projects() {
   }, []);
 
   const handleSlideshowClick = (e) => {
-    e.stopPropagation(); // Stop event propagation
+    e.stopPropagation();
     console.log("Slideshow button clicked");
     navigate('/endpoint');
   };
 
   return (
     <div
-    id="Our Projects"
-    className="bg-custom-light text-black dark:bg-custom-dark dark:text-white p-10 md:p-20 flex flex-col items-center justify-center relative w-screen h-screen">
-      
-      <h1 data-aos='fade-right' className='text-[32px] md:text-[52px] font-semibold mb-8 leading-normal uppercase text-silver-700'>
+      id="Our Projects"
+      className="bg-custom-light text-black dark:bg-custom-dark dark:text-white p-10 md:p-20 flex flex-col items-center justify-center relative w-full min-h-screen"
+    >
+      <h1 data-aos='fade-right' className='text-[32px] sm:text-[40px] md:text-[52px] font-semibold mb-8 leading-normal uppercase text-silver-700'>
         Our Projects
       </h1>
       
-      <div className='flex flex-col md:flex-row flex-wrap gap-10 justify-center'>
+      <div className='flex flex-col md:flex-row flex-wrap gap-10 justify-center items-center w-full'>
         {ProjectsList.slice(0, 2).map((project) => (
           <div key={project.id} data-aos={project.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center group'>
             <Link to={`${project.link}?description=${project.description}`}>

@@ -10,11 +10,9 @@ import { useLocation } from 'react-router-dom';
 function Home() {
   const location = useLocation();
 
-  // For animation of the content in a component
   useEffect(() => {
     AOS.init({ duration: 1000 });
 
-    // Handle scrolling to section if specified in the location state
     const scrollToSection = location.state?.scrollTo;
     if (scrollToSection) {
       document.getElementById(scrollToSection)?.scrollIntoView({ behavior: 'smooth' });
@@ -37,18 +35,20 @@ function Home() {
   ];
 
   return (
-    <div id='Home' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col-reverse justify-between lg:gap-28 items-center'>
+    <div id='Home' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col-reverse justify-between lg:gap-28 items-center min-h-screen'>
       <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center'>
-        <h1 data-aos='fade-right' style={{ fontFamily: 'Anton' }} className='text-[58px] font-bold mb-8 leading-normal uppercase'>
+        <h1 data-aos='fade-right' style={{ fontFamily: 'Anton' }} className='text-[28px] sm:text-[36px] md:text-[48px] lg:text-[58px] font-bold mb-8 leading-normal uppercase'>
           Welcome To <span className='text-silver-700'>The Department of Art, Design and Publicity</span>
         </h1>
-        <p data-aos='fade-left'>A collective of passionate artists, we are the visionaries behind the stunning aesthetics of Oasis and APOGEE, the grand cultural and technical fest of BITS Pilani. From breathtaking backdrops to mind-blowing structures, we craft the ambiance that defines these iconic festivals. We are the architects of the visual narrative, infusing every corner with creativity and innovation. Beyond the artistic realm, we are the driving force behind the publicity of these flagship events. Our canvas is the stage, and our colors are imagination. We create more than just visuals; we craft experiences.</p>
+        <p data-aos='fade-left' className='text-sm sm:text-base md:text-lg lg:text-xl'>
+          A collective of passionate artists, we are the visionaries behind the stunning aesthetics of Oasis and APOGEE, the grand cultural and technical fest of BITS Pilani. From breathtaking backdrops to mind-blowing structures, we craft the ambiance that defines these iconic festivals. We are the architects of the visual narrative, infusing every corner with creativity and innovation. Beyond the artistic realm, we are the driving force behind the publicity of these flagship events. Our canvas is the stage, and our colors are imagination. We create more than just visuals; we craft experiences.
+        </p>
         <div data-aos='fade-up' className='flex mt-8 gap-2'>
           <div className='flex items-center justify-center'>
             <div className='flex space-x-2'>
               {social.map((social, index) => (
                 <a key={index} target="_blank" href={social.link} className='hover:text-silver-500 rounded-full p-2'>
-                  <div className='text-[28px]'>
+                  <div className='text-[20px] sm:text-[24px] md:text-[28px]'>
                     {social.icon}
                   </div>
                 </a>
@@ -57,7 +57,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <img data-aos='fade-up' src={img} width={500} height={500} alt="" className='rounded-full border-2 p-1 border-silver-700 img_glow' />
+      <img data-aos='fade-up' src={img} alt="ADP Logo" className='rounded-full border-2 p-1 border-silver-700 img_glow w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]' />
     </div>
   );
 }

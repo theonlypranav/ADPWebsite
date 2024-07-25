@@ -4,28 +4,23 @@ import 'aos/dist/aos.css';
 import Modal from 'react-modal';
 import img from '../../assets/snap2.jpeg';
 
-Modal.setAppElement('#root'); // Set the root element for accessibility
+Modal.setAppElement('#root');
 
 function About() {
-  // State for controlling modal
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  // For animation of the content in a component
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  // Function to open the modal
   const openModal = () => {
     setModalIsOpen(true);
   };
 
-  // Function to close the modal
   const closeModal = () => {
     setModalIsOpen(false);
   };
 
-  // Function to download the image
   const downloadImage = () => {
     const link = document.createElement('a');
     link.href = img;
@@ -35,21 +30,19 @@ function About() {
   };
 
   return (
-    <div id='About ADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-28 items-center'>
+    <div id='About ADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-28 items-center min-h-screen'>
       <img
         data-aos='fade-down'
         src={img}
-        width={650}
-        height={290}
-        alt=""
-        className='rounded-[20px] border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300'
-        onClick={openModal} // Open modal on click
+        alt="ADP Image"
+        className='rounded-[20px] border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300 w-full max-w-[650px] h-auto'
+        onClick={openModal}
       />
       <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center'>
-        <h1 data-aos='fade-right' className='text-[52px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
+        <h1 data-aos='fade-right' className='text-[32px] sm:text-[40px] md:text-[48px] lg:text-[52px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
           About ADP
         </h1>
-        <p data-aos='fade-left'>
+        <p data-aos='fade-left' className='text-sm sm:text-base md:text-lg lg:text-xl'>
           Who are we, you ask? We're the Department of Art, Design and Publicity.
           <br /><br />
           We are responsible for publicising our festivals: Oasis and APOGEE with promotional material, and adorning the campus with massive paintings and breathtaking structures alike.
@@ -60,7 +53,6 @@ function About() {
         </p>
       </div>
 
-      {/* Modal Component */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -68,7 +60,7 @@ function About() {
         className='flex justify-center items-center'
         overlayClassName='fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center'
       >
-        <div className='relative bg-white dark:bg-custom-dark rounded-lg shadow-lg p-4 w-[70%] h-[70%] flex flex-col items-center'>
+        <div className='relative bg-white dark:bg-custom-dark rounded-lg shadow-lg p-4 w-full max-w-[90%] max-h-[90%] flex flex-col items-center'>
           <div className='flex justify-between mb-4 w-full'>
             <button onClick={closeModal} className='text-black dark:text-white bg-silver-700 hover:bg-silver-500 text-sm px-4 py-2 rounded'>
               Close
