@@ -95,19 +95,20 @@ function TechStack() {
                 </div>
             )}
 
-            {/* Modal for buttons */}
             {selectedItem && (
                 <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-                    <div className='relative bg-black rounded-xl overflow-hidden' style={{ width: '45vw', height: '45vw' }}>
+                    <div className='relative bg-black rounded-xl overflow-hidden w-full max-w-4xl h-auto max-h-4xl m-4'>
                         <button onClick={handleCloseModal} className='absolute top-4 right-4 text-white text-2xl font-bold hover:text-silver-500'>
                             &times;
                         </button>
-                        <div className='flex h-full'>
-                            <img className='w-1/2 h-full object-cover' src={selectedItem.picture} alt="Item" />
-                            <div className='w-1/2 p-4 overflow-y-auto'>
+                        <div className='flex flex-col md:flex-row h-full'>
+                            <div className='w-full md:w-1/2 h-64 md:h-auto'>
+                                <img className='w-full h-full object-cover' src={selectedItem.picture} alt="Item" />
+                            </div>
+                            <div className='w-full md:w-1/2 p-4 overflow-y-auto'>
                                 <h2 className='text-3xl font-bold text-white mb-2'>{selectedItem.title}</h2>
-                                <p className='text-white mb-4 text-base'>{selectedItem.description}</p>
-                                <ul className='list-disc list-inside text-white text-sm'>
+                                <p className='text-white mb-4'>{selectedItem.description}</p>
+                                <ul className='list-disc list-inside text-white'>
                                     {selectedItem.list.map((name, index) => (
                                         <li key={index}>{name}</li>
                                     ))}
