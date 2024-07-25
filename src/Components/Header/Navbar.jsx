@@ -35,7 +35,7 @@ function Navbar() {
 
     const handleClick = () => setClick(!click);
 
-    const navItems = ['Home', 'About ADP', 'Our Team', 'Our Projects', 'The Developers'];
+    const navItems = ['Home', 'About ADP', 'Our Projects', 'Our Team'];
     const verticals = ['Media', 'Structure', 'Publicity', 'Painting'];
 
     const content = (
@@ -56,14 +56,14 @@ function Navbar() {
                             </li>
                         </ScrollLink>
                     ))}
-                    <li className='my-4 py-4 border-b-0 hover:border-b-2 hover:border-silver-700 hover:bg-silver-700 hover:rounded cursor-pointer whitespace-nowrap'>
+                    {/* <li className='my-4 py-4 border-b-0 hover:border-b-2 hover:border-silver-700 hover:bg-silver-700 hover:rounded cursor-pointer whitespace-nowrap'>
                         Our Verticals
                         <ul className='mt-2'>
                             {verticals.map((vertical, index) => (
                                 <li key={index} className='py-2 hover:bg-silver-700 hover:text-black whitespace-nowrap'>{vertical}</li>
                             ))}
                         </ul>
-                    </li>
+                    </li> */}
                     <div>
                         <label className="relative inline-flex items-center cursor-pointer">
                             <input
@@ -122,7 +122,7 @@ function Navbar() {
                                     </RouterLink>
                                 )
                             ))}
-                            <div className='relative group'>
+                            {/* <div className='relative group'>
                                 <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
                                     Our Verticals
                                 </li>
@@ -131,7 +131,7 @@ function Navbar() {
                                         <li key={index} className='py-2 px-4 hover:bg-silver-500 hover:text-black whitespace-nowrap'>{vertical}</li>
                                     ))}
                                 </ul>
-                            </div>
+                            </div> */}
                             <div>
                                 <label className="relative inline-flex items-center cursor-pointer">
                                     <input
