@@ -100,29 +100,32 @@ function TechStack() {
           </div>
         )}
             
-        {selectedItem && (
-          <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-            <div className='relative bg-black rounded-xl overflow-hidden w-full max-w-4xl h-[80vh] max-h-[80vh]'>
-              <button onClick={handleCloseModal} className='absolute top-4 right-4 text-white text-2xl font-bold hover:text-silver-500'>
-                &times;
-              </button>
-              <div className='flex flex-col md:flex-row h-full'>
-                <div className='w-full md:w-1/2 h-1/2 md:h-full'>
-                  <img className='w-full h-full object-cover' src={selectedItem.picture} alt="Item" />
-                </div>
-                <div className='w-full md:w-1/2 p-4 max-h-full overflow-y-auto'>
-                  <h2 className='text-3xl font-bold text-white mb-2'>{selectedItem.title}</h2>
-                  <p className='text-white mb-4'>{selectedItem.description}</p>
-                  <ul className='list-disc list-inside text-white'>
-                    {selectedItem.list.map((name, index) => (
-                      <li key={index}>{name}</li>
-                    ))}
-                  </ul>
+            {selectedItem && (
+              <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+                <div className='relative bg-black rounded-xl overflow-hidden w-[80vw] h-[80vh]'>
+                <button 
+                  onClick={handleCloseModal} 
+                  className='absolute top-1 right-1 text-white text-3xl font-bold hover:text-silver-500 p-1'>
+                  &times;
+                </button>
+                  <div className='flex flex-col md:flex-row h-full'>
+                    <div className='w-full md:w-1/2 h-1/2 md:h-full'>
+                      <img className='w-full h-full object-cover' src={selectedItem.picture} alt="Item" />
+                    </div>
+                    <div className='w-full md:w-1/2 p-4 max-h-full overflow-y-auto'>
+                      <h2 className='text-3xl font-bold text-white mb-2'>{selectedItem.title}</h2>
+                      <p className='text-white mb-4'>{selectedItem.description}</p>
+                      <ul className='list-disc list-inside text-white'>
+                        {selectedItem.list.map((name, index) => (
+                          <li key={index}>{name}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        )}
+            )}
+
 
         </div>
       );

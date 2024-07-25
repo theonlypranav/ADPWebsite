@@ -22,7 +22,9 @@ function Developers() {
 
   return (
     <div id='The Developers' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center'>
-      <h1 data-aos='fade-right' className='text-[72px] font-semibold mb-4 leading-normal uppercase text-silver-700'>The Developers</h1>
+      <h1 data-aos='fade-right' className='text-[32px] md:text-[72px] font-semibold mb-4 leading-normal uppercase text-silver-700'>
+        The Developers
+      </h1>
       <p data-aos='fade-left' className='text-lg mb-20 text-center opacity-0 transition-opacity duration-1000 ease-in-out'>
         Meet the passionate and dedicated developers who make up our incredible team.
       </p>
