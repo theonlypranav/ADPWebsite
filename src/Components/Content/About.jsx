@@ -68,12 +68,12 @@ function About() {
         className='flex justify-center items-center'
         overlayClassName='fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center'
       >
-        <div className='relative bg-white dark:bg-custom-dark rounded-lg shadow-lg p-4 w-[80%] h-[80%] flex flex-col items-center'>
+        <div className='relative bg-white dark:bg-custom-dark rounded-lg shadow-lg p-4 w-[70%] h-[70%] flex flex-col items-center'>
           <div className='flex justify-between mb-4 w-full'>
-            <button onClick={closeModal} className='text-black dark:text-white bg-silver-700 hover:bg-silver-500 text-sm px-3 py-1 rounded'>
+            <button onClick={closeModal} className='text-black dark:text-white bg-silver-700 hover:bg-silver-500 text-sm px-4 py-2 rounded'>
               Close
             </button>
-            <button onClick={downloadImage} className='text-black dark:text-white bg-silver-700 hover:bg-silver-500 text-sm px-3 py-1 rounded'>
+            <button onClick={downloadImage} className='text-black dark:text-white bg-silver-700 hover:bg-silver-500 text-sm px-4 py-2 rounded'>
               Download
             </button>
           </div>
