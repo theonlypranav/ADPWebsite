@@ -57,7 +57,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <img data-aos='fade-up' src={img} alt="ADP Logo" className='rounded-full border-2 p-1 border-silver-700 img_glow w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]' />
+      <img data-aos='fade-up' src={img} alt="ADP Logo" className='rounded-full border-2 p-1 border-silver-700 img_glow sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]' />
     </div>
   );
 }
