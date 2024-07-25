@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn, FaInstagram, FaWhatsapp } from 'react-icons/fa';
-import img from '../../assets/ADPLogoNewGrad.png';
+import img from '../../assets/ADPLogoNewGrad_Transparent.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useLocation } from 'react-router-dom';

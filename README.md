@@ -64,3 +64,11 @@ This project is licensed under the [MIT License](License).
 ---
 
 **Feel free to use this template for your own portfolio and showcase your work! If you encounter any issues or have suggestions for improvement, please open an issue or submit a pull request. Happy coding!**
+
+
+# Design change from black to a specific pattern
+# Department heads for both fests
+# Theme name in slideshow
+# developers linkedin connect to theier photos
+# All image and text to be displayed pixel wise
+# 

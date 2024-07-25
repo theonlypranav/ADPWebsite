@@ -64,21 +64,6 @@ function Navbar() {
                             ))}
                         </ul>
                     </li> */}
-                    <div>
-                        <label className="relative inline-flex items-center cursor-pointer">
-                            <input
-                                type="checkbox"
-                                value=""
-                                className="sr-only peer"
-                                onChange={toggleTheme}
-                                checked={darkMode}
-                            />
-                            <div className="w-[49px] h-6 bg-silver-500 rounded-full border border-gray-400 peer-checked:after:translate-x-6 after:absolute after:top-[2px] after:left-[2px] after:bg-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all">
-                                <img src={light} alt="light" className="absolute w-4 z-10 m-[4px]" />
-                                <img src={dark} alt="dark" className="absolute w-4 z-10 m-[4px] right-0" />
-                            </div>
-                        </label>
-                    </div>
                 </ul>
             </div>
         </>
@@ -132,21 +117,6 @@ function Navbar() {
                                     ))}
                                 </ul>
                             </div> */}
-                            <div>
-                                <label className="relative inline-flex items-center cursor-pointer">
-                                    <input
-                                        type="checkbox"
-                                        value=""
-                                        className="sr-only peer"
-                                        onChange={toggleTheme}
-                                        checked={darkMode}
-                                    />
-                                    <div className="w-[49px] h-6 bg-silver-500 rounded-full border border-gray-400 peer-checked:after:translate-x-6 after:absolute after:top-[2px] after:left-[2px] after:bg-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all">
-                                        <img src={light} alt="light" className="absolute w-4 z-10 m-[4px]" />
-                                        <img src={dark} alt="dark" className="absolute w-4 z-10 m-[4px] right-0" />
-                                    </div>
-                                </label>
-                            </div>
                         </ul>
                     </div>
                     <button
