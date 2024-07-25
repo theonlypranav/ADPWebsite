@@ -42,8 +42,7 @@ const DevsList = [
         id: 6,
         image: IMAGE,
         title: "Devansh Agarwal",
-        subtitle: "Tech & Design Intern"
-    }
+        subtitle: "Tech & Design Intern"    }
 ];
 
 export default DevsList;
