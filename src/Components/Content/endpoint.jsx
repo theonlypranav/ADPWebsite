@@ -21,12 +21,6 @@ const Endpoint = () => {
 
   useEffect(() => {
 
-    /*const folder = description;
-    if (folder) {
-      const images = loadImages(folder);
-      setPhotos(images.map(image => image.default));
-    }*/
-
     const loadImages = async () => {
       const imageContext = imageFolders[description];
 
