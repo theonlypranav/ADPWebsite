@@ -11,6 +11,7 @@ const Endpoint = () => {
   const query = new URLSearchParams(location.search);
   const description = query.get('description');
 
+  // Import images based on the description
   const imageFolders = {
     'OASIS 2023': import.meta.glob('../../assets/OASIS 2023/*.{jpg,jpeg,png}'),
     'OASIS 2022': import.meta.glob('../../assets/OASIS 2022/*.{jpg,jpeg,png}'),
@@ -26,7 +27,9 @@ const Endpoint = () => {
         const imageModules = await Promise.all(
           Object.values(imageContext).map((importFn) => importFn())
         );
-        setPhotos(imageModules.map((module) => module.default));
+        const loadedPhotos = imageModules.map((module) => module.default);
+        setPhotos(loadedPhotos);
+        setCurrentIndex(0); // Reset to the first image when loading new images
       }
     };
 
@@ -36,13 +39,35 @@ const Endpoint = () => {
   }, [description]);
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    if (photos.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    }
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+    if (photos.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+    }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowRight') {
+      event.preventDefault(); // Prevent default action
+      handleNext();
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault(); // Prevent default action
+      handlePrev();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  // Calculate indices for previous and next images
   const prevIndex = (currentIndex - 1 + photos.length) % photos.length;
   const nextIndex = (currentIndex + 1) % photos.length;
 
@@ -56,33 +81,31 @@ const Endpoint = () => {
           <FaArrowLeft />
         </button>
         <div className='flex flex-row items-center'>
-          <div className='relative w-[20vw] h-[20vw] opacity-50 mx-8'>
-            <img src={photos[prevIndex]} alt={`Previous Photo`} className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg' />
+          <div className='relative w-[20vw] h-[20vw] opacity-50 mx-8' onClick={handlePrev}>
+            {photos.length > 0 && (
+              <img src={photos[prevIndex]} alt="Previous Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg cursor-pointer' />
+            )}
           </div>
           <div className='relative w-[40vw] h-[40vw]'>
-            <img src={photos[currentIndex]} alt={`Current Photo`} className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg' />
+            {photos.length > 0 && (
+              <img src={photos[currentIndex]} alt="Current Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg' />
+            )}
           </div>
-          <div className='relative w-[20vw] h-[20vw] opacity-50 mx-8'>
-            <img src={photos[nextIndex]} alt={`Next Photo`} className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg' />
+          <div className='relative w-[20vw] h-[20vw] opacity-50 mx-8' onClick={handleNext}>
+            {photos.length > 0 && (
+              <img src={photos[nextIndex]} alt="Next Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg cursor-pointer' />
+            )}
           </div>
         </div>
         <button onClick={handleNext} className='fixed right-4 top-1/2 transform -translate-y-1/2 text-white bg-black p-3 rounded-full z-20 text-3xl'>
           <FaArrowRight />
         </button>
       </div>
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-      `}</style>
+      <style jsx>{
+        `@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');`
+      }</style>
     </div>
   );
 };
 
 export default Endpoint;
-
-
-
-
-
-
-
-
