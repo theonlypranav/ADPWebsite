@@ -28,7 +28,7 @@ function Developers() {
       </p>
       
       <div className='flex flex-col items-center'>
-        <div className='flex flex-wrap gap-10 justify-center'>
+        <div className='flex flex-row flex-wrap gap-10 justify-center'>
           {DevsList.slice(0, 6).map((tech, index) => (
             <div key={index} data-aos={tech.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center'>
               <div className='text-silver-800 rounded-3xl border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-40 w-40 cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow' onClick={() => handleImageClick(tech.image)}>
