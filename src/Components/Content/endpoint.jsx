@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; // Import arrow icons
 
 const Endpoint = () => {
   const [photos, setPhotos] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(null);
-  const [enlargedPhoto, setEnlargedPhoto] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const description = query.get('description');
 
-  // specifying paths for various folders contating images
   const oasisfest2023 = import.meta.glob('../../assets/OASIS 2023/*.{jpg,jpeg,png}');
   const oasisfest2022 = import.meta.glob('../../assets/OASIS 2022/*.{jpg,jpeg,png}');
   const apogeefest2024 = import.meta.glob('../../assets/APOGEE 2024/*.{jpg,jpeg,png}');
@@ -22,7 +20,6 @@ const Endpoint = () => {
     const loadImages = async () => {
       let imageContext;
 
-      // Select the appropriate glob based on the description
       if (description === 'OASIS 2023') {
         imageContext = oasisfest2023;
       } else if (description === 'OASIS 2022') {
@@ -42,66 +39,46 @@ const Endpoint = () => {
     };
 
     loadImages();
-
     AOS.init({ duration: 1000 });
-
-    // Scroll to the top of the page when the component mounts
     window.scrollTo(0, 0);
-  }, []);
+  }, [description]);
 
-  const handleImageClick = (index) => {
-    setCurrentIndex(index);
-    setEnlargedPhoto(photos[index % photos.length]);
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
   };
 
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+  };
+
+  const prevIndex = (currentIndex - 1 + photos.length) % photos.length;
+  const nextIndex = (currentIndex + 1) % photos.length;
+
   return (
-    <div id='slideshow' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-20 flex flex-col items-center justify-center relative'>
-      <h1 data-aos='fade-right' style={{ fontFamily: 'Anton', letterSpacing: '0.7px' }} className='text-[60px] font-normal mb-8 leading-normal uppercase text-silver-700 mt-[60px] font-anton'>
+    <div id='slideshow' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-10 flex flex-col items-center justify-center relative'>
+      <h1 data-aos='fade-right' style={{ fontFamily: 'Anton', letterSpacing: '0.7px' }} className='text-[60px] font-normal mb-4 leading-normal uppercase text-silver-700 font-anton'>
         RELIVE THE MEMORIES
       </h1>
-      <div className='w-full overflow-x-auto py-10'>
-        <div className='flex flex-row gap-5'>
-          {Array(photos.length).fill(0).map((_, index) => (
-            <div key={index} className='flex flex-col items-center p-8'>
-              <div
-                className={`relative h-[510px] w-[510px] overflow-hidden rounded-3xl border-2 border-silver-700 group-hover:border-silver-500 transition-all duration-300 ${
-                  index === currentIndex ? 'active' : ''
-                }`}
-                onClick={() => handleImageClick(index)}
-              >
-                <img src={photos[index % photos.length]} alt={`Photo ${index + 1}`} className='absolute inset-0 object-cover w-full h-full'/>
-              </div>
-              {index === currentIndex && (
-                <p className='text-lg text-white font-semibold'>{`Photo ${index + 1} - Description`}</p>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-      {enlargedPhoto && (
-        <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-10' onClick={() => setEnlargedPhoto(null)}>
-          <div className='bg-white p-8 rounded-lg' style={{ maxWidth: '50%' }}>
-            <img src={enlargedPhoto} alt='Enlarged Photo' className='w-full mb-4 rounded-lg'/>
-            <p className='text-lg text-gray-700'>{`Photo ${currentIndex + 1} - Description`}</p>
+      <div className='relative w-full max-w-[1000px] flex items-center justify-center'>
+        <button onClick={handlePrev} className='fixed left-4 top-1/2 transform -translate-y-1/2 text-white bg-black p-3 rounded-full z-20 text-3xl'>
+          <FaArrowLeft />
+        </button>
+        <div className='flex flex-row items-center'>
+          <div className='relative w-[20vw] h-[20vw] opacity-50 mx-8'>
+            <img src={photos[prevIndex]} alt={`Previous Photo`} className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg' />
+          </div>
+          <div className='relative w-[40vw] h-[40vw]'>
+            <img src={photos[currentIndex]} alt={`Current Photo`} className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg' />
+          </div>
+          <div className='relative w-[20vw] h-[20vw] opacity-50 mx-8'>
+            <img src={photos[nextIndex]} alt={`Next Photo`} className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg' />
           </div>
         </div>
-      )}
+        <button onClick={handleNext} className='fixed right-4 top-1/2 transform -translate-y-1/2 text-white bg-black p-3 rounded-full z-20 text-3xl'>
+          <FaArrowRight />
+        </button>
+      </div>
       <style jsx>{`
-       .active {
-          z-index: 1;
-          transform: scale(1.1);
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-       .flex-row {
-          overflow-x: auto;
-          scrollbar-width: none;
-        }
-
-       .flex-row::-webkit-scrollbar {
-          display: none;
-        }
-
         @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
       `}</style>
     </div>
@@ -109,3 +86,11 @@ const Endpoint = () => {
 };
 
 export default Endpoint;
+
+
+
+
+
+
+
+
