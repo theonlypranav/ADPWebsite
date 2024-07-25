@@ -65,7 +65,7 @@ function TechStack() {
                         <div key={index} className='flex flex-col items-center' data-aos='fade-up' data-aos-delay={`${index * 100}`}>
                             <button
                                 className='bg-dark-custom text-white border border-light-custom p-4 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-custom-light-glow font-bold'
-                                style={{ width: '14rem', fontSize: '18px', boxShadow: '0 4px 8px rgba(255, 255, 255, 0.5)' }}
+                                style={{ width: '12rem', fontSize: '16px', boxShadow: '0 4px 8px rgba(255, 255, 255, 0.5)' }}
                                 onClick={() => handleButtonClick(index)}
                             >
                                 {name}
@@ -78,8 +78,8 @@ function TechStack() {
             {/* Modal for images */}
             {selectedImage && (
                 <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-                    <div className='relative bg-black rounded-xl overflow-hidden' style={{ width: '50vw', height: '50vw' }}>
-                        <button onClick={handleCloseModal} className='absolute top-4 right-4 text-white text-3xl font-bold hover:text-silver-500'>
+                    <div className='relative bg-black rounded-xl overflow-hidden' style={{ width: '45vw', height: '45vw' }}>
+                        <button onClick={handleCloseModal} className='absolute top-4 right-4 text-white text-2xl font-bold hover:text-silver-500'>
                             &times;
                         </button>
                         <img className='w-full h-full object-cover' src={selectedImage} alt="Expanded view" />
@@ -90,14 +90,14 @@ function TechStack() {
             {/* Modal for buttons */}
             {selectedItem && (
                 <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-                    <div className='relative bg-black rounded-xl overflow-hidden' style={{ width: '50vw', height: '50vw' }}>
-                        <button onClick={handleCloseModal} className='absolute top-4 right-4 text-white text-3xl font-bold hover:text-silver-500'>
+                    <div className='relative bg-black rounded-xl overflow-hidden' style={{ width: '45vw', height: '45vw' }}>
+                        <button onClick={handleCloseModal} className='absolute top-4 right-4 text-white text-2xl font-bold hover:text-silver-500'>
                             &times;
                         </button>
                         <div className='flex h-full'>
                             <img className='w-1/2 h-full object-cover' src={selectedItem.picture} alt="Item" />
                             <div className='w-1/2 p-4'>
-                                <h2 className='text-4xl font-bold text-white mb-2'>{selectedItem.title}</h2>
+                                <h2 className='text-3xl font-bold text-white mb-2'>{selectedItem.title}</h2>
                                 <p className='text-white mb-4'>{selectedItem.description}</p>
                                 <ul className='list-disc list-inside text-white'>
                                     {selectedItem.list.map((name, index) => (
@@ -114,4 +114,3 @@ function TechStack() {
 }
 
 export default TechStack;
-
