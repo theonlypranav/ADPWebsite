@@ -27,7 +27,7 @@ const TeamList = {
       title: 'Media',
       picture: REDUX,
       description: 'In the Media Relations Team, you will be working towards forging collaborations with news media houses, influencers and more for amplifying the reach of the fest.In media relations, you learn to create marketing opportunities for the fests and handle partnerships with various firms, and personalities. In the past, we have collaborated with various companies, organisations like Yahoo, Times of India, Hindustan Times, Red FM, New Delhi Times, News18, Money Control; we play a crucial role in increasing the footfall and spreading the fests name.',
-      list: ['Sarthak', 'Archi', 'Bhoomika', 'Navya D.', 'Saanidhya','Ayush', 'Sarthak', 'Krish', 'Siya', 'Swarnima', 'Mann', 'Vamsi', 'Lakshit', 'Krishnansh', 'Devansh', 'Aditya B.', 'Rudr', 'Medhansh']
+      list: ['Sarthak', 'Archi', 'Bhoomika', 'Saanidhya','Ayush', 'Krish', 'Siya', 'Swarnima', 'Mann', 'Vamsi', 'Lakshit', 'Krishnansh', 'Devansh', 'Aditya B.', 'Rudr', 'Medhansh']
   }
 };
 
