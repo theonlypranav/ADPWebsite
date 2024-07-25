@@ -60,12 +60,12 @@ function TechStack() {
                     ))}
                 </div>
 
-                <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-20 mb-10'> {/* Increased gap here */}
+                <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-20 mb-10'>
                     {buttonNames.map((name, index) => (
-                        <div key={index} className='flex flex-col items-center'>
+                        <div key={index} className='flex flex-col items-center' data-aos='fade-up' data-aos-delay={`${index * 100}`}>
                             <button
-                                className='bg-dark-custom text-white border border-light-custom p-4 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-custom-light-glow'
-                                style={{ width: '14rem', fontSize: '18px', boxShadow: '0 4px 8px rgba(255, 255, 255, 0.5)' }} // Custom shadow
+                                className='bg-dark-custom text-white border border-light-custom p-4 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-custom-light-glow font-bold'
+                                style={{ width: '14rem', fontSize: '18px', boxShadow: '0 4px 8px rgba(255, 255, 255, 0.5)' }}
                                 onClick={() => handleButtonClick(index)}
                             >
                                 {name}
@@ -114,5 +114,4 @@ function TechStack() {
 }
 
 export default TechStack;
-
 
