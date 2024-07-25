@@ -11,24 +11,16 @@ const Endpoint = () => {
   const query = new URLSearchParams(location.search);
   const description = query.get('description');
 
-  const oasisfest2023 = import.meta.glob('../../assets/OASIS 2023/*.{jpg,jpeg,png}');
-  const oasisfest2022 = import.meta.glob('../../assets/OASIS 2022/*.{jpg,jpeg,png}');
-  const apogeefest2024 = import.meta.glob('../../assets/APOGEE 2024/*.{jpg,jpeg,png}');
-  const apogeefest2023 = import.meta.glob('../../assets/APOGEE 2023/*.{jpg,jpeg,png}');
+  const imageFolders = {
+    'OASIS 2023': import.meta.glob('../../assets/OASIS 2023/*.{jpg,jpeg,png}'),
+    'OASIS 2022': import.meta.glob('../../assets/OASIS 2022/*.{jpg,jpeg,png}'),
+    'APOGEE 2024': import.meta.glob('../../assets/APOGEE 2024/*.{jpg,jpeg,png}'),
+    'APOGEE 2023': import.meta.glob('../../assets/APOGEE 2023/*.{jpg,jpeg,png}'),
+  };
 
   useEffect(() => {
     const loadImages = async () => {
-      let imageContext;
-
-      if (description === 'OASIS 2023') {
-        imageContext = oasisfest2023;
-      } else if (description === 'OASIS 2022') {
-        imageContext = oasisfest2022;
-      } else if (description === 'APOGEE 2024') {
-        imageContext = apogeefest2024;
-      } else if (description === 'APOGEE 2023') {
-        imageContext = apogeefest2023;
-      }
+      const imageContext = imageFolders[description];
 
       if (imageContext) {
         const imageModules = await Promise.all(
