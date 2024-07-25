@@ -89,16 +89,16 @@ function TechStack() {
           </div>
     
           {/* Modal for images */}
-          {selectedImage && (
-            <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-              <div className='relative bg-black rounded-xl overflow-hidden w-full max-w-3xl h-auto max-h-3xl'>
-                <button onClick={handleCloseModal} className='absolute top-4 right-4 text-white text-2xl font-bold hover:text-silver-500'>
-                  &times;
-                </button>
-                <img className='w-full h-full object-cover' src={selectedImage} alt="Expanded view" />
-              </div>
+            {selectedImage && (
+          <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+            <div className='relative bg-black rounded-xl overflow-hidden' style={{ width: '40vw', height: '40vw' }}>
+              <button onClick={handleCloseModal} className='absolute top-4 right-4 text-white text-3xl font-bold hover:text-silver-500'>
+                &times;
+              </button>
+              <img className='w-full h-full object-cover' src={selectedImage} alt="Expanded view" />
             </div>
-          )}
+          </div>
+        )}
     
           {selectedItem && (
             <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
