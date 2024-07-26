@@ -33,9 +33,6 @@ const Treedesign = () => {
         {/* Central Arrow */}
         <div className="absolute bottom-0 w-5 bg-red-500 h-full"></div>
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-12 border-r-12 border-b-24 border-red-500"></div>
-        {/* Arrowhead at the top of the central arrow */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-b-10 border-red-500"></div>
-
         <div className="mt-10 flex flex-col items-center w-full relative">
           {heads.map((tech, index) => (
             <div
@@ -53,7 +50,7 @@ const Treedesign = () => {
                   <img className="h-full w-full object-cover rounded-full" src={tech.image} alt={tech.title} />
                 </div>
                 <h2 className="text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-semibold mt-4 text-center text-silver-700">{tech.title}</h2>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl mt-2 text-center text-silver-500">{tech.subtitle}</p> {/* Subtitle */}
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl mt-2 text-center text-silver-500">{tech.subtitle}</p>
               </div>
             </div>
           ))}
