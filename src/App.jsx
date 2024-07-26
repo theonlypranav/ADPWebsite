@@ -12,6 +12,7 @@ import { BallTriangle } from 'react-loader-spinner';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Endpoint from './Components/Content/endpoint';
+import './App.css';
 
 function App() {
   const [loading, setLoading] = useState(false);

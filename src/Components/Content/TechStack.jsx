@@ -36,7 +36,7 @@ function TechStack() {
     const buttonNames = ['Structure', 'Painting', 'Publicity', 'Media'];
 
     return (
-        <div id='Our Team' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-10 md:p-20 flex flex-col items-center justify-center w-full min-h-screen'>
+        <div id='Our Team' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-10 md:p-20 flex flex-col items-center justify-center w-full min-h-screen overflow-hidden'>
             <h1 data-aos='fade-right' className='text-[32px] sm:text-[40px] md:text-[52px] font-semibold mb-4 leading-normal uppercase text-silver-700'>
                 Our Team
             </h1>

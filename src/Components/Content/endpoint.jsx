@@ -72,7 +72,7 @@ const Endpoint = () => {
   const nextIndex = (currentIndex + 1) % photos.length;
 
   return (
-    <div id='slideshow' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen'>
+    <div id='slideshow' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen overflow-hidden'>
       <h1 data-aos='fade-right' className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-4 leading-normal uppercase text-silver-700 font-anton'>
         RELIVE THE MEMORIES
       </h1>

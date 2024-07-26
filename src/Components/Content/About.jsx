@@ -30,7 +30,7 @@ function About() {
   };
 
   return (
-    <div id='About ADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-28 items-center min-h-screen'>
+    <div id='About ADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-28 items-center min-h-screen overflow-hidden'>
       <img
         data-aos='fade-down'
         src={img}

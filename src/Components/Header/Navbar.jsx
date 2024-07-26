@@ -73,67 +73,85 @@ function Navbar() {
 
     return (
         <>
-            <nav className='fixed top-0 left-0 right-0 bg-black text-white z-50 opacity-100'>
-                <div className='h-16 flex justify-between items-center lg:py-5 pl-20 pr-14 py-4 border-b border-silver-500'>
-                    <div className='flex items-center flex-1'>
-                        <span className='text-3xl font-bold flex items-center'>
-                            <RouterLink to='/'><img src={logo} alt="Logo" className='h-8 w-8 mr-2' /></RouterLink>
-                        </span>
-                    </div>
-                    <div className='lg:flex md:flex flex-1 items-center justify-end font-normal hidden'>
-                        <ul className='flex gap-8 text-sm items-center'>
-                            {navItems.map((item, index) => (
-                                isHomePage ? (
-                                    <ScrollLink
-                                        key={index}
-                                        to={item}
-                                        spy={true}
-                                        smooth={true}
-                                        offset={-70} // Adjust based on your navbar height
-                                    >
-                                        <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                                            {item}
-                                        </li>
-                                    </ScrollLink>
-                                ) : (
-                                    <RouterLink
-                                        key={index}
-                                        to='/'
-                                        state={{ scrollTo: item }}
-                                    >
-                                        <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                                            {item}
-                                        </li>
-                                    </RouterLink>
-                                )
-                            ))}
-                            {/* <div className='relative group'>
-                                <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                                    Our Verticals
-                                </li>
-                                <ul className='absolute left-0 mt-2 w-40 bg-black border border-silver-500 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity'>
-                                    {verticals.map((vertical, index) => (
-                                        <li key={index} className='py-2 px-4 hover:bg-silver-500 hover:text-black whitespace-nowrap'>{vertical}</li>
-                                    ))}
-                                </ul>
-                            </div> */}
-                        </ul>
-                    </div>
-                    <button
-                        className='block md:hidden transition text-2xl'
-                        onClick={handleClick}>
-                        {click ? <FaTimes /> : <CiMenuFries />}
-                    </button>
-                    <div className='md:hidden'>
-                        {click && content}
-                    </div>
-                </div>
-            </nav>
-            <div style={{ paddingTop: '64px' }}> {/* Adjust this value based on the height of your navbar */}
-                {/* Your main content goes here */}
+          <nav className='fixed top-0 left-0 right-0 bg-black text-white z-50 overflow-hidden'>
+            <div className='flex items-center justify-between px-4 py-4 lg:px-20 lg:py-6 border-b border-silver-500'>
+              <RouterLink to='/' className='flex items-center'>
+                <img src={logo} alt="Logo" className='h-8 w-8 lg:h-12 lg:w-12' />
+              </RouterLink>
+              <button
+                className='block lg:hidden text-2xl'
+                onClick={handleClick}
+              >
+                {click ? <FaTimes /> : <CiMenuFries />}
+              </button>
+              <div className='hidden lg:flex flex-1 items-center justify-end'>
+                <ul className='flex gap-8 text-base items-center'>
+                  {navItems.map((item, index) => (
+                    isHomePage ? (
+                      <ScrollLink
+                        key={index}
+                        to={item}
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                      >
+                        <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+                          {item}
+                        </li>
+                      </ScrollLink>
+                    ) : (
+                      <RouterLink
+                        key={index}
+                        to='/'
+                        state={{ scrollTo: item }}
+                      >
+                        <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+                          {item}
+                        </li>
+                      </RouterLink>
+                    )
+                  ))}
+                </ul>
+              </div>
             </div>
+            {click && (
+              <div className='lg:hidden'>
+                <ul className='flex flex-col gap-4 text-base items-center'>
+                  {navItems.map((item, index) => (
+                    isHomePage ? (
+                      <ScrollLink
+                        key={index}
+                        to={item}
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        onClick={() => setClick(false)}
+                      >
+                        <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+                          {item}
+                        </li>
+                      </ScrollLink>
+                    ) : (
+                      <RouterLink
+                        key={index}
+                        to='/'
+                        state={{ scrollTo: item }}
+                        onClick={() => setClick(false)}
+                      >
+                        <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+                          {item}
+                        </li>
+                      </RouterLink>
+                    )
+                  ))}
+                </ul>
+              </div>
+            )}
+          </nav>
+          <div style={{ paddingTop: '64px' }}>
+            {/* Your main content goes here */}
+          </div>
         </>
-    );
-}
-
+      );
+    };
 export default Navbar;

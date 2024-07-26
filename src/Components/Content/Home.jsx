@@ -35,7 +35,7 @@ function Home() {
   ];
 
   return (
-    <div id='Home' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col-reverse justify-between lg:gap-28 items-center min-h-screen'>
+    <div id='Home' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col-reverse justify-between lg:gap-28 items-center min-h-screen overflow-hidden'>
       <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center'>
         <h1 data-aos='fade-right' style={{ fontFamily: 'Anton' }} className='text-[28px] sm:text-[36px] md:text-[48px] lg:text-[58px] font-bold mb-8 leading-normal uppercase'>
           Welcome To <span className='text-silver-700'>The Department of Art, Design and Publicity</span>
