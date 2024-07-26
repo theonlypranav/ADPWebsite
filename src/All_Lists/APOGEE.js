@@ -7,13 +7,17 @@ const TechStackList2 = [
         id: 1,
         image: BJ,
         title: "APOGEE 2024",
-        subtitle: "Jo bhoomika decide kare"
+        subtitle: "Jo bhoomika decide kare",
+        link:"/endpoint",
+        description: "APOGEE 2024"
     },
     {
         id: 2,
         image: BJ,
         title: "APOGEE 2023",
-        subtitle: "A Hivemind Genesis"
+        subtitle: "A Hivemind Genesis",
+        link:"/endpoint",
+        description: "APOGEE 2023"
     }
 
 ];
