@@ -30,19 +30,19 @@ function About() {
   };
 
   return (
-    <div id='About ADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-56 lg:py-0 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-28 items-center min-h-screen overflow-hidden'>
+    <div id='About ADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-20 items-center min-h-screen overflow-hidden'>
       <img
         data-aos='fade-down'
         src={img}
         alt="ADP Image"
-        className='rounded-[20px] border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300 w-full max-w-[650px] h-auto'
+        className='rounded-[20px] border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300 w-full max-w-[400px] lg:max-w-[650px] h-auto'
         onClick={openModal}
       />
-      <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center'>
+      <div className='h-full lg:py-20 flex flex-col justify-center lg:items-start items-center'>
         <h1 data-aos='fade-right' className='text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
           About ADP
         </h1>
-        <p data-aos='fade-left' className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] leading-relaxed text-silver-700'>
+        <p data-aos='fade-left' className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-relaxed text-silver-700 max-w-[500px] lg:max-w-none'>
           Who are we, you ask? We're the Department of Art, Design and Publicity.
           <br /><br />
           We are responsible for publicising our festivals: Oasis and APOGEE with promotional material, and adorning the campus with massive paintings and breathtaking structures alike.
