@@ -39,10 +39,10 @@ function About() {
         onClick={openModal}
       />
       <div className='h-full lg:py-40 flex flex-col justify-center lg:items-start items-center'>
-        <h1 data-aos='fade-right' className='text-[32px] sm:text-[40px] md:text-[48px] lg:text-[52px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
+        <h1 data-aos='fade-right' className='text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
           About ADP
         </h1>
-        <p data-aos='fade-left' className='text-sm sm:text-base md:text-lg lg:text-xl'>
+        <p data-aos='fade-left' className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] leading-relaxed text-silver-700'>
           Who are we, you ask? We're the Department of Art, Design and Publicity.
           <br /><br />
           We are responsible for publicising our festivals: Oasis and APOGEE with promotional material, and adorning the campus with massive paintings and breathtaking structures alike.
