@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import DevsList from '../../All_Lists/DevsList';
 
 function Developers() {
-  const [selectedImage, setSelectedImage] = useState(null);
-
   // For animation of the content in a component
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  const handleImageClick = (image) => {
-    console.log('Image clicked:', image);  // Debugging
-    setSelectedImage(image);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedImage(null);
+  const handleImageClick = (linkedin) => {
+    window.open(linkedin, "_blank");
   };
 
   return (
@@ -33,7 +26,7 @@ function Developers() {
         <div className='flex flex-row flex-wrap gap-6 justify-center'>
           {DevsList.slice(0, 6).map((tech, index) => (
             <div key={index} data-aos={tech.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center'>
-              <div className='text-silver-800 rounded-3xl border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-[100px] w-[100px] sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px] cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow' onClick={() => handleImageClick(tech.image)}>
+              <div className='text-silver-800 rounded-3xl border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-[100px] w-[100px] sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px] cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow' onClick={() => handleImageClick(tech.linkedin)}>
                 <img className='h-full w-full object-cover rounded-3xl' src={tech.image} alt="" />
               </div>
               <h2 className='text-[16px] sm:text-[20px] md:text-[24px] font-semibold mt-3 text-center text-silver-700'>{tech.title}</h2>
@@ -42,18 +35,6 @@ function Developers() {
           ))}
         </div>
       </div>
-
-      {/* Modal */}
-      {selectedImage && (
-        <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-          <div className='relative bg-black rounded-xl overflow-hidden' style={{ width: '80%', height: '80%' }}>
-            <button onClick={handleCloseModal} className='absolute top-4 right-4 text-white text-3xl font-bold hover:text-silver-500'>
-              &times;
-            </button>
-            <img className='w-full h-full object-cover' src={selectedImage} alt="Expanded view" />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
