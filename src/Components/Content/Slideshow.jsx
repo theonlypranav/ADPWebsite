@@ -28,7 +28,7 @@ const Slideshow = () => {
         There will be 2 panels outside the Audi, 1 backdrop for the Auditorium, and additional inside and small panels.
       </p>
       <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-6 sm:gap-x-8 md:gap-x-12 gap-y-6 mt-10'>
-        {fests.slice(2).map((tech, index) => (
+        {fests.map((tech, index) => (
           <div key={index} data-aos={tech.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center'>
             <Link to={`${tech.link}?description=${tech.description}`}>
               <div className='text-silver-800 rounded-2xl border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-48 w-64 sm:w-72 md:w-80 lg:w-96 cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow'>
@@ -36,6 +36,7 @@ const Slideshow = () => {
               </div>
             </Link>
             <h2 className='text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-semibold mt-4 text-center text-silver-700'>{tech.title}</h2>
+            <p className='text-sm sm:text-base md:text-lg lg:text-xl text-center text-silver-600 mt-2'>{tech.subtitle}</p> {/* Subtitle added here */}
           </div>
         ))}
       </div>
