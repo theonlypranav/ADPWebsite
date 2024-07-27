@@ -1,19 +1,14 @@
 import HTML from '../assets/Cords/SV2.png';
 import BJ from '../assets/LogoApogee.jpg';
+import AS from '../assets/APOGEE 2024/central structure.jpg';
+import AD from '../assets/APOGEE 2023/backdrop 1 edit.jpg';
+import AF from '../assets/APOGEE 2000/Struct 2.jpeg';
 
 
 const TechStackList2 = [
     {
-        id: 1,
-        image: BJ,
-        title: "APOGEE 2025",
-        subtitle: "To be decided",
-        link:"/endpoint",
-        description: "APOGEE 2025"
-    },
-    {
         id: 2,
-        image: BJ,
+        image: AS,
         title: "APOGEE 2024",
         subtitle: "Celestial Epiphany",
         link:"/endpoint",
@@ -21,7 +16,7 @@ const TechStackList2 = [
     },
     {
         id: 3,
-        image: BJ,
+        image: AD,
         title: "APOGEE 2023",
         subtitle: "A Hivemind Genesis",
         link:"/endpoint",
@@ -205,7 +200,7 @@ const TechStackList2 = [
     },
     {
         id: 26,
-        image: BJ,
+        image: AF,
         title: "APOGEE 2000",
         subtitle: "Exploring the Genie'us",
         link:"/endpoint",
