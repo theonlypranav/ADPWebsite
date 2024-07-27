@@ -8,6 +8,7 @@ import AK from '../assets/APOGEE/APOGEE 2005/Struct 2 edit.jpg';
 import RT from '../assets/APOGEE/APOGEE 2006/Struct 7 edit.jpeg';
 import TR from '../assets/APOGEE/APOGEE 2007/Painting 1.jpg';
 import AW from '../assets/APOGEE/APOGEE 2015/Painting 2015.jpeg';
+import DF from '../assets/APOGEE/APOGEE 2022/panel 7 edit.jpeg';
 
 import XX from '../assets/APOGEE/logos/ApLogoYear 02.jpeg';
 import AA from '../assets/APOGEE/logos/ApLogoYear 03.jpeg';
@@ -47,7 +48,7 @@ const TechStackList2 = [
     },
     {
         id: 4,
-        image: AF,
+        image: DF,
         title: "APOGEE 2022",
         subtitle: "Encrypted Dimension",
         link:"/endpoint",
