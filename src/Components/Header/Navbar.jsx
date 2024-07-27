@@ -33,9 +33,14 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
 
-  const navItems = ['Home', 'About ADP', 'Our Projects', 'Our Team'];
+  const navItems = ['Home', 'AboutUs', 'OurProjects', 'OurTeam'];
 
   const isHomePage = location.pathname === '/';
+
+  function formatNavItem(navItem) {
+    return navItem.replace(/([A-Z])/g, ' $1').trim();
+  }
+  
 
   return (
     <>
@@ -62,7 +67,7 @@ function Navbar() {
                     offset={-70}
                   >
                     <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                      {item}
+                    {formatNavItem(item)}
                     </li>
                   </ScrollLink>
                 ) : (

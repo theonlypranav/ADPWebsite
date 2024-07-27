@@ -31,7 +31,7 @@ function About() {
   };
 
   return (
-    <div id='AboutADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-20 items-center min-h-screen overflow-hidden'>
+    <div id='AboutUs' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-20 items-center min-h-screen overflow-hidden'>
       <div className="top-transition"></div>
       <img
         data-aos='fade-down'
