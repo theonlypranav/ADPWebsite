@@ -8,11 +8,11 @@ import Projects from './Components/Content/Projects';
 import Contact from './Components/Content/Contact';
 import Footer from './Components/Footer/Footer';
 import Slideshow from './Components/Content/Slideshow'; // Import the new Slideshow component
-import { BallTriangle } from 'react-loader-spinner';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Endpoint from './Components/Content/endpoint';
 import Treedesign from './Components/Content/Treedesign'
+import LoadingScreen from './LoadingScreen'; // Import the new LoadingScreen component
 import './App.css';
 
 function App() {
@@ -20,7 +20,6 @@ function App() {
 
   // For loading screen
   useEffect(() => {
-    setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 1500);
@@ -29,18 +28,7 @@ function App() {
   return (
     <Router>
       {loading ? (
-        <div className="bg-black min-h-screen flex flex-grow justify-center items-center">
-          <BallTriangle
-            height={100}
-            width={100}
-            radius={5}
-            color="#BABABB"
-            ariaLabel="ball-triangle-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-          />
-        </div>
+        <LoadingScreen />
       ) : (
         <Routes>
           <Route path="/slideshow" element={
