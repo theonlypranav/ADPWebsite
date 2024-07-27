@@ -21,7 +21,7 @@ const glowBorderBefore = {
   left: 0,
   width: '100%',
   height: '100%',
-  borderRadius: 'inherit',
+  borderRadius: '50%',
   boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)', // White glow effect
   pointerEvents: 'none'
 };
@@ -58,7 +58,7 @@ const Treedesign = () => {
           <VerticalTimelineElement
             key={index}
             className="vertical-timeline-element"
-            contentStyle={{ background: 'transparent', color: '#fff', padding: '2rem' }} // Transparent background
+            contentStyle={{ background: 'transparent', color: '#fff', padding: '1rem', boxSizing: 'border-box' }} // Adjust padding for mobile
             contentArrowStyle={{ borderRight: '7px solid #000' }} // Black arrow
             date={head.date}
             iconStyle={{ background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }} // Black icon background and centering
@@ -84,15 +84,15 @@ const Treedesign = () => {
                   <img
                     src={head.image}
                     alt={head.title}
-                    className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 max-w-full object-cover rounded-full border-4 border-gray-600 shadow-lg"
+                    className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 max-w-full object-cover rounded-full border-4 border-gray-600 shadow-lg"
                     style={{ boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)' }}
                   />
                 </a>
               </div>
-              <div className="flex-1 text-left sm:ml-6">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2">{head.title}</h3>
-                <h4 className="text-lg sm:text-xl md:text-2xl mb-2">{head.subtitle}</h4>
-                <p className="text-base sm:text-lg md:text-xl">{head.description}</p>
+              <div className="flex-1 text-left sm:ml-4">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">{head.title}</h3>
+                <h4 className="text-base sm:text-lg md:text-xl mb-2">{head.subtitle}</h4>
+                <p className="text-sm sm:text-base md:text-lg">{head.description}</p>
               </div>
             </div>
           </VerticalTimelineElement>
