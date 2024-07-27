@@ -9,19 +9,22 @@ const oasisheads = [
         id: 1,
         image: i1,
         title: "Shreyansh Vanjani",
-        subtitle: "StuCCAn, Oasis '24"
+        subtitle: "StuCCAn, Oasis '24",
+        linkedinProfile: "https://www.linkedin.com/in/shreyansh-vanjani-28b198226/"
     },
     {
         id: 2,
         image: i2,
         title: "Adarsh Goel",
-        subtitle: "StuCCAn, Oasis '23"
+        subtitle: "StuCCAn, Oasis '23",
+        linkedinProfile: "https://www.linkedin.com/in/adarsh-goel-64b0b01bb/"
     },
     {
         id: 3,
         image: i3,
         title: "Rhythm Saxena",
-        subtitle: "StuCCAn, Oasis '22"
+        subtitle: "StuCCAn, Oasis '22",
+        linkedinProfile: "https://www.linkedin.com/in/rhythmsaxena/"
     },
     {
         id: 4,

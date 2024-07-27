@@ -65,11 +65,13 @@ const Treedesign = () => {
             icon={
               <div style={{ ...glowBorderStyle, width: '4rem', height: '4rem', borderRadius: '50%' }}>
                 <div style={glowBorderBefore} />
-                <img
-                  src={isOasis ? Img1 : Img2}
-                  alt="Icon"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
-                />
+                <a href={head.linkedinProfile} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={isOasis ? Img1 : Img2}
+                    alt="Icon"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                  />
+                </a>
               </div>
             } // Conditional icon image with overflow hidden
             data-aos="fade-up" // AOS fade-in effect
@@ -77,11 +79,13 @@ const Treedesign = () => {
           >
             <div className="flex items-center justify-between mb-6"> {/* Add margin bottom to the image container */}
               <div className="flex-shrink-0">
-                <img
-                  src={head.image}
-                  alt={head.title}
-                  style={{ width: '10rem', height: '10rem', objectFit: 'cover', borderRadius: '50%', border: '4px solid #6B7280', boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)' }} // Larger image size with white glow effect
-                />
+                <a href={head.linkedinProfile} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={head.image}
+                    alt={head.title}
+                    style={{ width: '10rem', height: '10rem', objectFit: 'cover', borderRadius: '50%', border: '4px solid #6B7280', boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)' }} // Larger image size with white glow effect
+                  />
+                </a>
               </div>
               <div className="flex-1 text-left ml-6"> {/* Increased margin */}
                 <h3 className="text-2xl font-semibold mb-2">{head.title}</h3> {/* Larger text */}
