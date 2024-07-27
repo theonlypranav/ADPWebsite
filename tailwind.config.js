@@ -14,8 +14,10 @@ export default {
         'silver-500': '#C0C0C0',
         'custom-dark': '#000000', // First custom color
         'custom-light': '#FFFFFF', // Second custom color
+        'customNav': 'rgb(8,2,33)', // New custom RGBA color
       },
     },
   },
   plugins: [],
 }
+

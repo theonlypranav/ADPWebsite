@@ -44,6 +44,7 @@ function Developers() {
           ))}
         </div>
       </div>
+      <div className="bottom-transition"></div>
     </div>
   );
 }

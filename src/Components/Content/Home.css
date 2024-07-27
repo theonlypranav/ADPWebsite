@@ -38,8 +38,6 @@
     pointer-events: none;
   }
   
-  
-
   html {
    
     --_g: var(--c3) 0 120deg,#0000 0;
