@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useLocation } from 'react-router-dom';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 import oasisheads from '../../All_Lists/oasisheads';
 import apogeeheads from '../../All_Lists/apogeeheads';
+import Img1 from '../../assets/img2.jpg'; // Import the IMG1
+import Img2 from '../../assets/img1.jpg'; // Import the IMG2
 
 const Treedesign = () => {
   const [heads, setHeads] = useState([]);
   const location = useLocation();
+  const [isOasis, setIsOasis] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -18,39 +23,49 @@ const Treedesign = () => {
 
     if (description === 'stuccan') {
       setHeads(oasisheads);
+      setIsOasis(true);
     } else {
       setHeads(apogeeheads);
+      setIsOasis(false);
     }
   }, [location.search]);
 
   return (
     <div className="relative bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center min-h-screen overflow-hidden">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-center">
         {location.search.includes('stuccan') ? "Our StuCCAn's over the years..." : "Our CoStAAn's over the years..."}
       </h1>
 
-      <div className="mt-10 flex flex-col items-center w-full relative">
-        {heads.map((tech, index) => (
-          <div
+      <VerticalTimeline>
+        {heads.map((head, index) => (
+          <VerticalTimelineElement
             key={index}
-            data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
-            className="flex justify-center w-full my-8 relative"
+            className="vertical-timeline-element"
+            contentStyle={{ background: '#000', color: '#fff', padding: '2rem' }} // Black background and padding for the card
+            contentArrowStyle={{ borderRight: '7px solid #000' }} // Black arrow
+            date={head.date}
+            iconStyle={{ background: '#000', color: '#fff' }} // Black icon background
+            icon={<img src={isOasis ? Img1 : Img2} alt="Icon" className="w-12 h-12 rounded-full" />} // Conditional icon image
+            data-aos="fade-up" // AOS fade-in effect
+            data-aos-delay={index * 100} // Stagger the animations
           >
-            <div
-              className="flex flex-col items-center"
-              style={{
-                transform: `translateX(${index % 2 === 0 ? '-300px' : '300px'})`,
-              }}
-            >
-              <div className="text-silver-800 rounded-full border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-24 w-24 sm:h-32 sm:w-32 md:h-40 md:w-40 lg:h-48 lg:w-48 cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow">
-                <img className="h-full w-full object-cover rounded-full" src={tech.image} alt={tech.title} />
+            <div className="flex items-center justify-between mb-6"> {/* Add margin bottom to the image container */}
+              <div className="flex-shrink-0">
+                <img
+                  src={head.image}
+                  alt={head.title}
+                  className="w-32 h-32 object-cover rounded-full border-2 border-gray-600" // Larger image size
+                />
               </div>
-              <h2 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-semibold mt-4 text-center text-silver-700">{tech.title}</h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg mt-2 text-center text-silver-500">{tech.subtitle}</p>
+              <div className="flex-1 text-left ml-6"> {/* Increased margin */}
+                <h3 className="text-2xl font-semibold mb-2">{head.title}</h3> {/* Larger text */}
+                <h4 className="text-xl mb-2">{head.subtitle}</h4> {/* Larger text */}
+                <p className="text-lg">{head.description}</p> {/* Larger text */}
+              </div>
             </div>
-          </div>
+          </VerticalTimelineElement>
         ))}
-      </div>
+      </VerticalTimeline>
     </div>
   );
 };
