@@ -9,6 +9,23 @@ import apogeeheads from '../../All_Lists/apogeeheads';
 import Img1 from '../../assets/OCircle.png'; // Import the IMG1
 import Img2 from '../../assets/Acircle.png'; // Import the IMG2
 
+const glowBorderStyle = {
+  position: 'relative',
+  display: 'inline-block'
+};
+
+const glowBorderBefore = {
+  content: "''",
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  borderRadius: 'inherit',
+  boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)', // White glow effect
+  pointerEvents: 'none'
+};
+
 const Treedesign = () => {
   const [heads, setHeads] = useState([]);
   const location = useLocation();
@@ -46,11 +63,12 @@ const Treedesign = () => {
             date={head.date}
             iconStyle={{ background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }} // Black icon background and centering
             icon={
-              <div className="w-12 h-12 rounded-full overflow-hidden">
+              <div style={{ ...glowBorderStyle, width: '4rem', height: '4rem', borderRadius: '50%' }}>
+                <div style={glowBorderBefore} />
                 <img
                   src={isOasis ? Img1 : Img2}
                   alt="Icon"
-                  className="w-full h-full object-cover"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
                 />
               </div>
             } // Conditional icon image with overflow hidden
@@ -62,7 +80,7 @@ const Treedesign = () => {
                 <img
                   src={head.image}
                   alt={head.title}
-                  className="w-32 h-32 object-cover rounded-full border-2 border-gray-600" // Larger image size
+                  style={{ width: '10rem', height: '10rem', objectFit: 'cover', borderRadius: '50%', border: '4px solid #6B7280', boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)' }} // Larger image size with white glow effect
                 />
               </div>
               <div className="flex-1 text-left ml-6"> {/* Increased margin */}
