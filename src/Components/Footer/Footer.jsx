@@ -21,7 +21,7 @@ function Footer() {
     ];
 
     return (
-        <footer className='bg-neutral-900 text-white border-t border-silver-700 p-5 lg:px-48 flex justify-between'>
+        <footer style = {{backgroundColor: 'rgba(0, 13, 26, 0.8)', backdropFilter: 'blur(10px)'}} className='text-white border-t border-silver-700 p-5 lg:px-48 flex justify-between'>
             <div className='flex flex-col md:flex-row gap-10'>
                 <div>
                     <h2 className='text-[24px] font-normal text-silver-700 py-2 uppercase'style={{ fontFamily: 'Anton',letterSpacing: '0.7px' }}>Contact</h2>
