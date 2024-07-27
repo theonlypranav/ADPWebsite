@@ -1,4 +1,3 @@
-import HTML from '../assets/Cords/SV2.png';
 import BJ from '../assets/LogoApogee.jpg';
 import AS from '../assets/APOGEE 2024/central structure.jpg';
 import AD from '../assets/APOGEE 2023/backdrop 1 edit.jpg';
