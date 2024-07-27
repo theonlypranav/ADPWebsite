@@ -23,8 +23,6 @@ function Footer() {
 
     return (
         <footer id='' className='bg-customNav text-white border-t border-indigo-900 p-5 lg:px-48 flex justify-between'>
-        <div className="bottom-transition"></div>
-
           <div className='flex flex-col md:flex-row gap-10'>
             <div>
               <h2 className='text-[24px] font-normal text-silver-700 py-2 uppercase' style={{ fontFamily: 'Anton', letterSpacing: '0.7px' }}>
