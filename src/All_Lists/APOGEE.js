@@ -71,7 +71,7 @@ const TechStackList2 = [
         id: 9,
         image: BJ,
         title: "APOGEE 2016",
-        subtitle: "Ihe Retro Vision",
+        subtitle: "The Retro Vision",
         link:"/endpoint",
         description: "APOGEE 2016"
     },
