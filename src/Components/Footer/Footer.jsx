@@ -25,9 +25,9 @@ function Footer() {
             <div className='flex flex-col md:flex-row gap-10'>
                 <div>
                     <h2 className='text-[24px] font-normal text-silver-700 py-2 uppercase'style={{ fontFamily: 'Anton',letterSpacing: '0.7px' }}>Contact</h2>
-                    <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=adp@bits-oasis.org`} target="_blank" rel="noopener noreferrer" className='text-[16px] hover:text-silver-700 transition-all duration-150 ease-in-out cursor-pointer'><b>Email</b>: adp@bits-oasis.org</a>
+                    <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=adp@bits-oasis.org`} target="_blank" rel="noopener noreferrer" style={{fontFamily:'Poppins'}} className='text-[16px] hover:text-silver-700 transition-all duration-150 ease-in-out cursor-pointer'><b>Email</b>: adp@bits-oasis.org</a>
                     <br/>
-                    <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=adp@bits-apogee.org`} target="_blank" rel="noopener noreferrer" className='text-[16px] hover:text-silver-700 transition-all duration-150 ease-in-out cursor-pointer'><b>Email</b>: adp@bits-apogee.org</a>
+                    <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=adp@bits-apogee.org`} target="_blank" rel="noopener noreferrer" style={{fontFamily:'Poppins'}} className='text-[16px] hover:text-silver-700 transition-all duration-150 ease-in-out cursor-pointer'><b>Email</b>: adp@bits-apogee.org</a>
                 </div>
             </div>
             <div className='flex flex-col md:flex-row gap-10'>

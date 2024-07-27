@@ -44,7 +44,8 @@ function About() {
         <h1 data-aos='fade-right' style={{fontFamily:'Anton', letterSpacing:0.8 }}className='text-[32px] sm:text-[40px] md:text-[48px] lg:text-[60px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
           About ADP
         </h1>
-        <p data-aos='fade-left' className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-relaxed text-silver-700 max-w-[500px] lg:max-w-none'>
+        <p data-aos='fade-left'  style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }}
+            className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] mb-8 leading-normal text-silver-700 max-w-[500px] lg:max-w-none">
           Who are we, you ask? We're the Department of Art, Design and Publicity.
           <br /><br />
           We are responsible for publicising our festivals: Oasis and APOGEE with promotional material, and adorning the campus with massive paintings and breathtaking structures alike.
