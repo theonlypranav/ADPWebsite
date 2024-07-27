@@ -48,7 +48,7 @@ const Treedesign = () => {
   }, [location.search]);
 
   return (
-    <div className="relative bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center min-h-screen overflow-hidden">
+    <div id="tree" className="relative bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center min-h-screen overflow-hidden">
       <h1 style={{ fontFamily: 'Anton', letterSpacing: 0.8 }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-center">
         {location.search.includes('stuccan') ? "Our StuCCAn's over the years..." : "Our CoStAAn's over the years..."}
       </h1>
@@ -58,7 +58,7 @@ const Treedesign = () => {
           <VerticalTimelineElement
             key={index}
             className="vertical-timeline-element"
-            contentStyle={{ background: '#000', color: '#fff', padding: '2rem' }} // Black background and padding for the card
+            contentStyle={{ background: 'transparent', color: '#fff', padding: '2rem' }} // Transparent background
             contentArrowStyle={{ borderRight: '7px solid #000' }} // Black arrow
             date={head.date}
             iconStyle={{ background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }} // Black icon background and centering

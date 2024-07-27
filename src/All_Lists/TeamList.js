@@ -1,8 +1,8 @@
 // TeamList.js
-import ND from '../assets/OASIS 2023/working 3.jpg';
-import REACT from '../assets/OASIS 2023/pub working 1.jpg';
-import TAILWIND from '../assets/OASIS 2022/working.jpg';
-import REDUX from '../assets/OASIS 2022/media.jpeg';
+import ND from '../assets/OASIS/OASIS 2023/working 3.jpg';
+import REACT from '../assets/OASIS/OASIS 2023/pub working 1.jpg';
+import TAILWIND from '../assets/OASIS/OASIS 2022/working.jpg';
+import REDUX from '../assets/OASIS/OASIS 2022/media.jpeg';
 
 const TeamList = {
   0: {
