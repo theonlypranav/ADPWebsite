@@ -10,7 +10,7 @@
   }
   #Home {
     position: relative;
-    background-image: url('I:\ADPWebsite\src\assets\bg.jpg');
+    background-image: url('../../assets/bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
