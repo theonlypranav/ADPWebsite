@@ -83,7 +83,7 @@ function Home() {
           data-aos="fade-up"
           src={img}
           alt="ADP Logo"
-          className="rounded-full border-2 p-1 border-silver-700 img_glow w-[150px] sm:w-[200px] md:w-[300px] lg:w-[400px] xl:w-[500px] h-auto"
+          className="rounded-full border-2 p-1 border-silver-700 img_glow w-[250px] sm:w-[300px] md:w-[300px] lg:w-[400px] xl:w-[500px] h-auto"
         />
       </div>
       <div className="bottom-transition"></div>
