@@ -88,7 +88,7 @@ function Navbar() {
                 )
               ))}
               <div className='relative group'>
-                <button className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+                <button className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700  transition cursor-pointer whitespace-nowrap'>
                   Our Legacy
                 </button>
                 <div className='absolute left-0 mt-2 bg-black text-white border border-silver-500 py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity z-50'>
@@ -109,7 +109,7 @@ function Navbar() {
         </div>
         {click && (
           <div className='lg:hidden'>
-            <ul className='flex flex-col gap-4 text-base items-center'>
+            <ul className='flex flex-col gap-4 text-base items-center pb-4'>
               {navItems.map((item, index) => (
                 isHomePage ? (
                   <ScrollLink
