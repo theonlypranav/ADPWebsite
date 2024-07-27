@@ -25,7 +25,7 @@ const Slideshow = () => {
   const content = description === 'OASIS' ? 'There will be 1 major structure outside the central Audi, 1 front structure in front of the clock tower, a structure in FD-2, and 2-3 photo booths. There will be 2 panels outside the Audi, 1 backdrop for the Auditorium, and additional inside and small panels.' : 'There will be 1 major structure outside the central Audi and 1 front structure in front of the clock tower, and 2-3 photo booths. There will be 2 panels outside the Audi, 1 backdrop for the Auditorium, and additional small panels.'
 
   return (
-    <div className="slideshow bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen overflow-hidden">
+    <div id='slideshow' className="slideshow bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen overflow-hidden">
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
         {headingText}
       </h1>

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import './Home.css';
 
 const Endpoint = () => {
   const [photos, setPhotos] = useState([]);
@@ -110,9 +111,9 @@ const Endpoint = () => {
               <img src={photos[prevIndex]} alt="Previous Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg cursor-pointer' />
             )}
           </div>
-          <div className='relative w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] md:w-[40vw] md:h-[40vw] lg:w-[30vw] lg:h-[30vw]'>
+          <div className='relative w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] md:w-[40vw] md:h-[40vw] lg:w-[30vw] lg:h-[30vw] img_glow_end '>
             {photos.length > 0 && (
-              <img src={photos[currentIndex]} alt="Current Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg' />
+              <img src={photos[currentIndex]} alt="Current Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg ' />
             )}
           </div>
           <div className='relative w-[20vw] h-[20vw] sm:w-[15vw] sm:h-[15vw] md:w-[12vw] md:h-[12vw] lg:w-[10vw] lg:h-[10vw] opacity-50 mx-4 sm:mx-6 md:mx-8' onClick={handleNext}>
