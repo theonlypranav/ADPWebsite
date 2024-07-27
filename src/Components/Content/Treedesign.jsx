@@ -69,7 +69,8 @@ const Treedesign = () => {
                   <img
                     src={isOasis ? Img1 : Img2}
                     alt="Icon"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                    className="w-full h-full object-cover rounded-full" // Responsive image styling
+                    style={{ borderRadius: '50%' }}
                   />
                 </a>
               </div>
