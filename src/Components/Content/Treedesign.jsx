@@ -77,20 +77,21 @@ const Treedesign = () => {
             data-aos="fade-up" // AOS fade-in effect
             data-aos-delay={index * 100} // Stagger the animations
           >
-            <div className="flex items-center justify-between mb-6"> {/* Add margin bottom to the image container */}
+            <div className="flex flex-col sm:flex-row items-center justify-between mb-6"> {/* Flex column to row on small screens */}
               <div className="flex-shrink-0">
                 <a href={head.linkedinProfile} target="_blank" rel="noopener noreferrer">
                   <img
                     src={head.image}
                     alt={head.title}
-                    style={{ width: '10rem', height: '10rem', objectFit: 'cover', borderRadius: '50%', border: '4px solid #6B7280', boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)' }} // Larger image size with white glow effect
+                    className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover rounded-full border-4 border-gray-600 shadow-lg"
+                    style={{ boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)' }} // White glow effect
                   />
                 </a>
               </div>
-              <div className="flex-1 text-left ml-6"> {/* Increased margin */}
-                <h3 className="text-2xl font-semibold mb-2">{head.title}</h3> {/* Larger text */}
-                <h4 className="text-xl mb-2">{head.subtitle}</h4> {/* Larger text */}
-                <p className="text-lg">{head.description}</p> {/* Larger text */}
+              <div className="flex-1 text-left sm:ml-6"> {/* Increased margin for larger screens */}
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2">{head.title}</h3>
+                <h4 className="text-lg sm:text-xl md:text-2xl mb-2">{head.subtitle}</h4>
+                <p className="text-base sm:text-lg md:text-xl">{head.description}</p>
               </div>
             </div>
           </VerticalTimelineElement>
