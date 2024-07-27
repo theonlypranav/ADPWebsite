@@ -43,7 +43,7 @@ function Home() {
           <h1
             data-aos="fade-right"
             style={{ fontFamily: 'Anton', letterSpacing: 0.8 }}
-            className="text-[16px] sm:text-[18px] md:text-[24px] lg:text-[30px] font-bold mb-2 leading-normal uppercase"
+            className="text-[16px] sm:text-[18px] md:text-[24px] lg:text-[30px] font-bold  leading-normal uppercase"
           >
             Welcome To The Department of
             <br />
@@ -51,7 +51,7 @@ function Home() {
               Art, Design and Publicity
             </span>
           </h1>
-          <div data-aos="fade-up" className="flex mb-6 gap-2">
+          <div data-aos="fade-up" className="flex mb-2 gap-2">
             <div className="flex items-center justify-center">
               <div className="flex space-x-2">
                 {social.map((social, index) => (
