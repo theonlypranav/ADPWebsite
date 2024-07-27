@@ -98,7 +98,7 @@ const Endpoint = () => {
 
   return (
     <div id='slideshow' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen overflow-hidden'>
-      <h1 data-aos='fade-right' className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-4 leading-normal uppercase text-silver-700 font-anton'>
+      <h1 data-aos='fade-right' style={{ fontFamily: 'Anton', letterSpacing: 0.8 }}className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-16 leading-normal uppercase text-silver-700 font-anton'>
         RELIVE THE MEMORIES
       </h1>
       <div className='relative w-full max-w-[1000px] flex items-center justify-center'>

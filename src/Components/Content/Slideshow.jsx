@@ -26,10 +26,10 @@ const Slideshow = () => {
 
   return (
     <div id='slideshow' className="slideshow bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen overflow-hidden">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
+      <h1 style={{ fontFamily: 'Anton', letterSpacing: 0.8 }} className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-12 text-center">
         {headingText}
       </h1>
-      <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 text-center">
+      <p  style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 text-center">
         {content}
       </p>
       <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-24 sm:gap-x-26 md:gap-x-28 gap-y-6 mt-10'>
@@ -40,8 +40,8 @@ const Slideshow = () => {
                 <img className='h-full w-full object-cover rounded-2xl' src={tech.image} alt={tech.title} />
               </div>
             </Link>
-            <h2 className='text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-semibold mt-4 text-center text-silver-700'>{tech.title}</h2>
-            <p className='text-sm sm:text-base md:text-lg lg:text-xl text-center text-silver-600 mt-2'>{tech.subtitle}</p> {/* Subtitle added here */}
+            <h2 style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className='text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-semibold mt-4 mb-0 text-center text-silver-700'>{tech.title}</h2>
+            <p style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className='text-sm sm:text-base md:text-lg lg:text-xl font-regular text-center text-silver-500 mb-5'>{tech.subtitle}</p> {/* Subtitle added here */}
           </div>
         ))}
       </div>
