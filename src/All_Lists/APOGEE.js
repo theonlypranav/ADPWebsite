@@ -1,10 +1,28 @@
 import BJ from '../assets/LogoApogee.jpg';
-import AS from '../assets/APOGEE 2024/central structure.jpg';
-import AD from '../assets/APOGEE 2023/backdrop 1 edit.jpg';
-import AF from '../assets/APOGEE 2000/Struct 2.jpeg';
-import AG from '../assets/APOGEE 2004/Struct 2.jpg';
-import AH from '../assets/APOGEE 2001/Painting 5.jpeg';
-import AK from '../assets/APOGEE 2005/Struct 2 edit.jpg';
+import AS from '../assets/APOGEE/APOGEE 2024/central structure.jpg';
+import AD from '../assets/APOGEE/APOGEE 2023/backdrop 1 edit.jpg';
+import AF from '../assets/APOGEE/APOGEE 2000/Struct 2.jpeg';
+import AG from '../assets/APOGEE/APOGEE 2004/Struct 2.jpg';
+import AH from '../assets/APOGEE/APOGEE 2001/Painting 5.jpeg';
+import AK from '../assets/APOGEE/APOGEE 2005/Struct 2 edit.jpg';
+import RT from '../assets/APOGEE/APOGEE 2006/Struct 7 edit.jpeg';
+import TR from '../assets/APOGEE/APOGEE 2007/Painting 1.jpg';
+import AW from '../assets/APOGEE/APOGEE 2015/Painting 2015.jpeg';
+
+import AA from '../assets/APOGEE/logos/ApLogoYear 03.jpeg';
+import DD from '../assets/APOGEE/logos/ApLogoYear 09.jpeg';
+import EE from '../assets/APOGEE/logos/ApLogoYear 10.jpeg';
+import FF from '../assets/APOGEE/logos/ApLogoYear 11.jpeg';
+import GG from '../assets/APOGEE/logos/ApLogoYear 12.jpeg';
+import HH from '../assets/APOGEE/logos/ApLogoYear 13.jpeg';
+import II from '../assets/APOGEE/logos/ApLogoYear 14.jpeg';
+import JJ from '../assets/APOGEE/logos/ApLogoYear 16.jpeg';
+import KK from '../assets/APOGEE/logos/ApLogoYear 17.jpeg';
+import LL from '../assets/APOGEE/logos/ApLogoYear 19.jpeg';
+import MM from '../assets/APOGEE/logos/ApLogoYear 20.jpeg';
+import NN from '../assets/APOGEE/logos/ApLogoYear 21.jpeg';
+import ZZ from '../assets/APOGEE/logos/ApLogoYear 18.jpeg';
+import YY from '../assets/APOGEE/logos/ApLogoYear 08.jpeg';
 
 
 const TechStackList2 = [
@@ -26,7 +44,7 @@ const TechStackList2 = [
     },
     {
         id: 4,
-        image: BJ,
+        image: ,
         title: "APOGEE 2022",
         subtitle: "Encrypted Dimension",
         link:"/endpoint",
@@ -34,7 +52,7 @@ const TechStackList2 = [
     },
     {
         id: 5,
-        image: BJ,
+        image: NN,
         title: "APOGEE 2021",
         subtitle: "Digitilized Renaissance",
         link:"/endpoint",
@@ -42,7 +60,7 @@ const TechStackList2 = [
     },
     {
         id: 6,
-        image: BJ,
+        image: MM,
         title: "APOGEE 2020",
         subtitle: "The Glitch Repository",
         link:"/endpoint",
@@ -50,7 +68,7 @@ const TechStackList2 = [
     },
     {
         id: 7,
-        image: BJ,
+        image: LL,
         title: "APOGEE 2019",
         subtitle: "Reality Roulette",
         link:"/endpoint",
@@ -58,7 +76,7 @@ const TechStackList2 = [
     },
     {
         id: 8,
-        image: BJ,
+        image: ZZ,
         title: "APOGEE 2018",
         subtitle: "A Cybernetic Vision",
         link:"/endpoint",
@@ -66,7 +84,7 @@ const TechStackList2 = [
     },
     {
         id: 9,
-        image: BJ,
+        image: KK,
         title: "APOGEE 2017",
         subtitle: "The Retro Vision",
         link:"/endpoint",
@@ -74,7 +92,7 @@ const TechStackList2 = [
     },
     {
         id: 10,
-        image: BJ,
+        image: JJ,
         title: "APOGEE 2016",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -82,7 +100,7 @@ const TechStackList2 = [
     },
     {
         id: 11,
-        image: BJ,
+        image: AW,
         title: "APOGEE 2015",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -90,7 +108,7 @@ const TechStackList2 = [
     },
     {
         id: 12,
-        image: BJ,
+        image: II,
         title: "APOGEE 2014",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -98,7 +116,7 @@ const TechStackList2 = [
     },
     {
         id: 13,
-        image: BJ,
+        image: HH,
         title: "APOGEE 2013",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -106,7 +124,7 @@ const TechStackList2 = [
     },
     {
         id: 14,
-        image: BJ,
+        image: GG,
         title: "APOGEE 2012",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -114,14 +132,14 @@ const TechStackList2 = [
     },
     {
         id: 15,
-        image: BJ,
+        image: FF,
         title: "APOGEE 2011",
         subtitle: "Information Unavailable",
         link:"/endpoint",
         description: "APOGEE 2011"
     },
     {
-        id: 16,
+        id: EE,
         image: BJ,
         title: "APOGEE 2010",
         subtitle: "Information Unavailable",
@@ -129,7 +147,7 @@ const TechStackList2 = [
         description: "APOGEE 2010"
     },
     {
-        id: 17,
+        id: DD,
         image: BJ,
         title: "APOGEE 2009",
         subtitle: "Information Unavailable",
@@ -138,7 +156,7 @@ const TechStackList2 = [
     },
     {
         id: 18,
-        image: BJ,
+        image: YY,
         title: "APOGEE 2008",
         subtitle: "Thought Pivot",
         link:"/endpoint",
@@ -146,7 +164,7 @@ const TechStackList2 = [
     },
     {
         id: 19,
-        image: BJ,
+        image: TR,
         title: "APOGEE 2007",
         subtitle: "Dhiti",
         link:"/endpoint",
@@ -154,7 +172,7 @@ const TechStackList2 = [
     },
     {
         id: 20,
-        image: BJ,
+        image: RT,
         title: "APOGEE 2006",
         subtitle: "Sanshodhanam",
         link:"/endpoint",
@@ -178,7 +196,7 @@ const TechStackList2 = [
     },
     {
         id: 23,
-        image: BJ,
+        image: AA,
         title: "APOGEE 2003",
         subtitle: "Vivista",
         link:"/endpoint",
