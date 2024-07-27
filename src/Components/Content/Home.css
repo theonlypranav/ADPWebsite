@@ -63,3 +63,22 @@ Here's what each property is doing: */
     box-shadow: 0px 0px 60px rgb(131, 90, 148);
     background-color: rgba(58, 56, 56, 0.329); /* Same color as the shadow */
 }
+
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    height: auto;
+    max-height: 80%;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .modal-content {
+    width: 60%;
+    height: auto;
+    max-height: 80%;
+    padding: 2rem;
+  }
+}
