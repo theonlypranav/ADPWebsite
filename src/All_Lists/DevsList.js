@@ -17,14 +17,14 @@ const DevsList = [
         id: 2,
         image: REACT,
         title: "Pranav Deshpande",
-        subtitle: "Tech & Front-End Lead",
+        subtitle: "Technical Lead",
         linkedin: "https://www.linkedin.com/in/pranav-deshpande-0a0764246/"
     },
     {
         id: 3,
         image: TAILWIND,
         title: "Ayush Jain",
-        subtitle: "Research & Front-End Lead",
+        subtitle: "Front-End Lead",
         linkedin: "https://www.linkedin.com/in/ayush-jain-0275a8252/"
     },
     {
