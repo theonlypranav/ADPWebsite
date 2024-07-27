@@ -43,15 +43,15 @@ function Home() {
           <h1
             data-aos="fade-right"
             style={{ fontFamily: 'Anton', letterSpacing: 0.8 }}
-            className="text-[16px] sm:text-[18px] md:text-[24px] lg:text-[30px] font-bold mb-8 leading-normal uppercase"
+            className="text-[16px] sm:text-[18px] md:text-[24px] lg:text-[30px] font-bold mb-2 leading-normal uppercase"
           >
             Welcome To The Department of
             <br />
-            <span className="text-[100px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[72px] font-bold mb-8 leading-normal uppercase text-silver-700">
+            <span className="text-[100px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[72px] font-bold leading-normal uppercase text-silver-700">
               Art, Design and Publicity
             </span>
           </h1>
-          <div data-aos="fade-up" className="flex  mb-8 gap-2">
+          <div data-aos="fade-up" className="flex mb-6 gap-2">
             <div className="flex items-center justify-center">
               <div className="flex space-x-2">
                 {social.map((social, index) => (
@@ -60,8 +60,9 @@ function Home() {
                     target="_blank"
                     href={social.link}
                     className="hover:text-silver-500 rounded-full p-2"
+                    
                   >
-                    <div className="text-[20px] sm:text-[24px] md:text-[28px]">
+                    <div className="text-[24px] sm:text-[28px] md:text-[32px]" >
                       {social.icon}
                     </div>
                   </a>
