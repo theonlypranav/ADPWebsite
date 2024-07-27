@@ -17,35 +17,35 @@ const DevsList = [
         id: 2,
         image: REACT,
         title: "Pranav Deshpande",
-        subtitle: "Front-End Developer",
+        subtitle: "Tech & Front-End Lead",
         linkedin: "https://www.linkedin.com/in/pranav-deshpande-0a0764246/"
     },
     {
         id: 3,
         image: TAILWIND,
         title: "Ayush Jain",
-        subtitle: "Front-End Developer",
+        subtitle: "Research & Front-End Lead",
         linkedin: "https://www.linkedin.com/in/ayush-jain-0275a8252/"
     },
     {
         id: 4,
         image: DUMMY,
         title: "Navya Jain",
-        subtitle: "Tech & Design Intern",
+        subtitle: "Developer",
         linkedin: "https://www.linkedin.com/in/navya-jain-a6a5aa29b/"
     },
     {
         id: 5,
         image: REDUX,
         title: "Krish Vora",
-        subtitle: "Tech & Design Intern",
+        subtitle: "Developer",
         linkedin: "https://www.linkedin.com/in/krish-vora-59066b29b/"
     },
     {
         id: 6,
         image: IMAGE,
         title: "Devansh Agarwal",
-        subtitle: "Tech & Design Intern",
+        subtitle: "UI/UX Designer",
         linkedin: "https://www.linkedin.com/in/devansh-agarwal-8bbab228b/"
     }
 ];

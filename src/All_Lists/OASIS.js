@@ -17,7 +17,7 @@ const TechStackList2 = [
         id: 2,
         image: BJ,
         title: "Oasis 2022 | #50",
-        subtitle: "Demenesce of the Lost Gold",
+        subtitle: "Demesne of the Lost Gold",
         link:"/endpoint",
         description: "OASIS 2022"
     },
@@ -65,7 +65,7 @@ const TechStackList2 = [
         id: 8,
         image: BJ,
         title: "Oasis 2015 | #44",
-        subtitle: "Ye toh pata hi nhi",
+        subtitle: "Information Unavailable",
         link:"/endpoint",
         description: "OASIS 2015"
     },
@@ -73,7 +73,7 @@ const TechStackList2 = [
         id: 9,
         image: BJ,
         title: "Oasis 2014 | #43",
-        subtitle: "Ye toh pata hi nhi",
+        subtitle: "Information Unavailable",
         link:"/endpoint",
         description: "OASIS 2014"
     },
@@ -81,7 +81,7 @@ const TechStackList2 = [
         id: 10,
         image: BJ,
         title: "Oasis 2013 | #42",
-        subtitle: "Ye toh pata hi nhi",
+        subtitle: "Information Unavailable",
         link:"/endpoint",
         description: "OASIS 2013"
     },
@@ -89,7 +89,7 @@ const TechStackList2 = [
         id: 11,
         image: BJ,
         title: "Oasis 2012 | #41",
-        subtitle: "Ye toh pata hi nhi",
+        subtitle: "Information Unavailable",
         link:"/endpoint",
         description: "OASIS 2012"
     },
@@ -97,7 +97,7 @@ const TechStackList2 = [
         id: 12,
         image: BJ,
         title: "Oasis 2011 | #40",
-        subtitle: "Ye toh pata hi nhi",
+        subtitle: "Information Unavailable",
         link:"/endpoint",
         description: "OASIS 2011"
     },
@@ -113,7 +113,7 @@ const TechStackList2 = [
         id: 14,
         image: BJ,
         title: "Oasis 2009 | #38",
-        subtitle: "Ye toh pata hi nhi",
+        subtitle: "Information Unavailable",
         link:"/endpoint",
         description: "OASIS 2009"
     },
