@@ -1,82 +1,90 @@
 import HTML from '../assets/Cords/SV2.png';
-import BJ from '../assets/LogoOasis.png';
+import BJ from '../assets/LogoApogee.jpg';
 
 
 const TechStackList2 = [
     {
         id: 1,
         image: BJ,
-        title: "APOGEE 2024",
+        title: "APOGEE 2025",
         subtitle: "To be decided",
         link:"/endpoint",
-        description: "APOGEE 2024"
+        description: "APOGEE 2025"
     },
     {
         id: 2,
         image: BJ,
-        title: "APOGEE 2023",
+        title: "APOGEE 2024",
         subtitle: "Celestial Epiphany",
         link:"/endpoint",
-        description: "APOGEE 2023"
+        description: "APOGEE 2024"
     },
     {
         id: 3,
         image: BJ,
-        title: "APOGEE 2022",
+        title: "APOGEE 2023",
         subtitle: "A Hivemind Genesis",
         link:"/endpoint",
-        description: "APOGEE 2022"
+        description: "APOGEE 2023"
     },
     {
         id: 4,
         image: BJ,
-        title: "APOGEE 2021",
+        title: "APOGEE 2022",
         subtitle: "Encrypted Dimension",
         link:"/endpoint",
-        description: "APOGEE 2021"
+        description: "APOGEE 2022"
     },
     {
         id: 5,
         image: BJ,
-        title: "APOGEE 2020",
+        title: "APOGEE 2021",
         subtitle: "Digitilized Renaissance",
         link:"/endpoint",
-        description: "APOGEE 2020"
+        description: "APOGEE 2021"
     },
     {
         id: 6,
         image: BJ,
-        title: "APOGEE 2019",
+        title: "APOGEE 2020",
         subtitle: "The Glitch Repository",
         link:"/endpoint",
-        description: "APOGEE 2019"
+        description: "APOGEE 2020"
     },
     {
         id: 7,
         image: BJ,
-        title: "APOGEE 2018",
+        title: "APOGEE 2019",
         subtitle: "Reality Roulette",
         link:"/endpoint",
-        description: "APOGEE 2018"
+        description: "APOGEE 2019"
     },
     {
         id: 8,
         image: BJ,
-        title: "APOGEE 2017",
+        title: "APOGEE 2018",
         subtitle: "A Cybernetic Vision",
         link:"/endpoint",
-        description: "APOGEE 2017"
+        description: "APOGEE 2018"
     },
     {
         id: 9,
         image: BJ,
-        title: "APOGEE 2016",
+        title: "APOGEE 2017",
         subtitle: "The Retro Vision",
+        link:"/endpoint",
+        description: "APOGEE 2017"
+    },
+    {
+        id: 10,
+        image: BJ,
+        title: "APOGEE 2016",
+        subtitle: "Information Unavailable",
         link:"/endpoint",
         description: "APOGEE 2016"
     },
     {
-        id: 10,
+        id: 11,
         image: BJ,
         title: "APOGEE 2015",
         subtitle: "Information Unavailable",
@@ -84,7 +92,7 @@ const TechStackList2 = [
         description: "APOGEE 2015"
     },
     {
-        id: 11,
+        id: 12,
         image: BJ,
         title: "APOGEE 2014",
         subtitle: "Information Unavailable",
@@ -92,7 +100,7 @@ const TechStackList2 = [
         description: "APOGEE 2014"
     },
     {
-        id: 12,
+        id: 13,
         image: BJ,
         title: "APOGEE 2013",
         subtitle: "Information Unavailable",
@@ -100,7 +108,7 @@ const TechStackList2 = [
         description: "APOGEE 2013"
     },
     {
-        id: 13,
+        id: 14,
         image: BJ,
         title: "APOGEE 2012",
         subtitle: "Information Unavailable",
@@ -108,7 +116,7 @@ const TechStackList2 = [
         description: "APOGEE 2012"
     },
     {
-        id: 14,
+        id: 15,
         image: BJ,
         title: "APOGEE 2011",
         subtitle: "Information Unavailable",
@@ -116,7 +124,7 @@ const TechStackList2 = [
         description: "APOGEE 2011"
     },
     {
-        id: 15,
+        id: 16,
         image: BJ,
         title: "APOGEE 2010",
         subtitle: "Information Unavailable",
@@ -124,7 +132,7 @@ const TechStackList2 = [
         description: "APOGEE 2010"
     },
     {
-        id: 16,
+        id: 17,
         image: BJ,
         title: "APOGEE 2009",
         subtitle: "Information Unavailable",
@@ -132,7 +140,7 @@ const TechStackList2 = [
         description: "APOGEE 2009"
     },
     {
-        id: 17,
+        id: 18,
         image: BJ,
         title: "APOGEE 2008",
         subtitle: "Thought Pivot",
@@ -140,7 +148,7 @@ const TechStackList2 = [
         description: "APOGEE 2008"
     },
     {
-        id: 18,
+        id: 19,
         image: BJ,
         title: "APOGEE 2007",
         subtitle: "Dhiti",
@@ -148,7 +156,7 @@ const TechStackList2 = [
         description: "APOGEE 2007"
     },
     {
-        id: 19,
+        id: 20,
         image: BJ,
         title: "APOGEE 2006",
         subtitle: "Sanshodhanam",
@@ -156,7 +164,7 @@ const TechStackList2 = [
         description: "APOGEE 2006"
     },
     {
-        id: 20,
+        id: 21,
         image: BJ,
         title: "APOGEE 2005",
         subtitle: "Inspiring Innovation",
@@ -164,7 +172,7 @@ const TechStackList2 = [
         description: "APOGEE 2005"
     },
     {
-        id: 21,
+        id: 22,
         image: BJ,
         title: "APOGEE 2004",
         subtitle: "Celebrating Technology",
@@ -172,7 +180,7 @@ const TechStackList2 = [
         description: "APOGEE 2004"
     },
     {
-        id: 22,
+        id: 23,
         image: BJ,
         title: "APOGEE 2003",
         subtitle: "Vivista",
@@ -180,7 +188,7 @@ const TechStackList2 = [
         description: "APOGEE 2003"
     },
     {
-        id: 23,
+        id: 24,
         image: BJ,
         title: "APOGEE 2002",
         subtitle: "Transcending Reality",
@@ -188,7 +196,7 @@ const TechStackList2 = [
         description: "APOGEE 2002"
     },
     {
-        id: 24,
+        id: 25,
         image: BJ,
         title: "APOGEE 2001",
         subtitle: "Cradling Aspirations",
@@ -196,14 +204,13 @@ const TechStackList2 = [
         description: "APOGEE 2001"
     },
     {
-        id: 25,
+        id: 26,
         image: BJ,
         title: "APOGEE 2000",
         subtitle: "Exploring the Genie'us",
         link:"/endpoint",
         description: "APOGEE 2000"
     }
-
 ];
 
 export default TechStackList2;
