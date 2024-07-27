@@ -9,7 +9,7 @@ const Slideshow = () => {
   const query = new URLSearchParams(location.search);
   const description = query.get('description');
   let fests;
-  
+
   if (description === 'OASIS') {
     fests = OASIS;
   } else if (description === 'APOGEE') {
@@ -20,14 +20,19 @@ const Slideshow = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Determine the heading text based on the description
+  const headingText = description === 'APOGEE' ? 'Apogee Through The Years' : 'Oasis Through The Years';
+  const content = description === 'OASIS' ? 'There will be 1 major structure outside the central Audi, 1 front structure in front of the clock tower, a structure in FD-2, and 2-3 photo booths. There will be 2 panels outside the Audi, 1 backdrop for the Auditorium, and additional inside and small panels.' : 'There will be 1 major structure outside the central Audi and 1 front structure in front of the clock tower, and 2-3 photo booths. There will be 2 panels outside the Audi, 1 backdrop for the Auditorium, and additional small panels.'
+
   return (
     <div className="slideshow bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen overflow-hidden">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">Oasis Through The Years</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
+        {headingText}
+      </h1>
       <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 text-center">
-        There will be 1 major structure outside the central Audi, 1 front structure in front of the clock tower, a structure in FD-2, and 2-3 photo booths.
-        There will be 2 panels outside the Audi, 1 backdrop for the Auditorium, and additional inside and small panels.
+        {content}
       </p>
-      <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-6 sm:gap-x-8 md:gap-x-12 gap-y-6 mt-10'>
+      <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-24 sm:gap-x-26 md:gap-x-28 gap-y-6 mt-10'>
         {fests.map((tech, index) => (
           <div key={index} data-aos={tech.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center'>
             <Link to={`${tech.link}?description=${tech.description}`}>
