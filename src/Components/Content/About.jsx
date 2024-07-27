@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Modal from 'react-modal';
 import img from '../../assets/snap2.jpeg';
+import './Home.css';
 
 Modal.setAppElement('#root');
 
@@ -30,7 +31,8 @@ function About() {
   };
 
   return (
-    <div id='About ADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-20 items-center min-h-screen overflow-hidden'>
+    <div id='AboutADP' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-20 items-center min-h-screen overflow-hidden'>
+      <div className="top-transition"></div>
       <img
         data-aos='fade-down'
         src={img}
@@ -72,6 +74,7 @@ function About() {
           <img src={img} alt="Enlarged" className='max-w-full max-h-full object-contain rounded-lg' />
         </div>
       </Modal>
+      <div className="bottom-transition"></div>
     </div>
   );
 }

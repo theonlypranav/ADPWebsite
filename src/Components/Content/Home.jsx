@@ -37,6 +37,7 @@ function Home() {
   return (
     <div className="home-container">
       <div id="Home" className="bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-40 md:px-24 px-10 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col-reverse justify-between lg:gap-20 md:gap-16 items-center min-h-screen overflow-hidden">
+      <div className="top-transition"></div>
         <div className="h-full lg:py-40 md:py-24 flex flex-col justify-center lg:items-start items-center">
           <h1
             data-aos="fade-right"
