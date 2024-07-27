@@ -46,7 +46,7 @@ function Home() {
           >
             Welcome To The Department of
             <br />
-            <span className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[72px] font-bold mb-8 leading-normal uppercase text-silver-700">
+            <span className="text-[100px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[72px] font-bold mb-8 leading-normal uppercase text-silver-700">
               Art, Design and Publicity
             </span>
           </h1>

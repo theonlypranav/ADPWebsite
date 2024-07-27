@@ -25,7 +25,7 @@ function Projects() {
     >
     <div className="top-transition"></div>
 
-      <h1 data-aos='fade-right' className='text-[32px] sm:text-[40px] md:text-[52px] font-semibold mb-8 leading-normal uppercase text-silver-700'>
+      <h1 data-aos='fade-right'style={{fontFamily:'Anton', letterSpacing:0.8 }}className='text-[32px] sm:text-[40px] md:text-[48px] lg:text-[60px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
         Our Projects
       </h1>
       

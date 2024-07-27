@@ -39,7 +39,7 @@ function TechStack() {
         <div id='OurTeam' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-10 md:p-20 flex flex-col items-center justify-center w-full min-h-screen overflow-hidden'>
             <div className="top-transition"></div>
 
-            <h1 data-aos='fade-right' className='text-[32px] sm:text-[40px] md:text-[52px] font-semibold mb-4 leading-normal uppercase text-silver-700'>
+            <h1 data-aos='fade-right' style={{fontFamily:'Anton', letterSpacing:0.8 }}className='text-[32px] sm:text-[40px] md:text-[48px] lg:text-[60px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
                 Our Team
             </h1>
             
