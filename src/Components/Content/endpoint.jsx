@@ -54,7 +54,6 @@ const Endpoint = () => {
     'APOGEE 2011': import.meta.glob('../../assets/APOGEE 2011/*.{jpg,jpeg,png}'),
     'APOGEE 2010': import.meta.glob('../../assets/APOGEE 2010/*.{jpg,jpeg,png}'),
     'APOGEE 2009': import.meta.glob('../../assets/APOGEE 2009/*.{jpg,jpeg,png}'),
-    'APOGEE 2009': import.meta.glob('../../assets/APOGEE 2009/*.{jpg,jpeg,png}'),
     'APOGEE 2008': import.meta.glob('../../assets/APOGEE 2008/*.{jpg,jpeg,png}'),
     'APOGEE 2007': import.meta.glob('../../assets/APOGEE 2007/*.{jpg,jpeg,png}'),
     'APOGEE 2006': import.meta.glob('../../assets/APOGEE 2006/*.{jpg,jpeg,png}'),

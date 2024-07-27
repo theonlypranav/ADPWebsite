@@ -71,4 +71,3 @@ This project is licensed under the [MIT License](License).
 # Theme name in slideshow
 # developers linkedin connect to theier photos
 # All image and text to be displayed pixel wise
-# 
