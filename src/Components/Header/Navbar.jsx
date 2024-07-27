@@ -24,7 +24,6 @@ function Navbar() {
   }, []);
 
   useEffect(() => {
-    // Scroll to the section if present in the state
     const scrollToSection = location.state?.scrollTo;
     if (scrollToSection) {
       document.getElementById(scrollToSection)?.scrollIntoView({ behavior: 'smooth' });
@@ -41,10 +40,16 @@ function Navbar() {
     return navItem.replace(/([A-Z])/g, ' $1').trim();
   }
   
-
   return (
     <>
-      <nav style={{fontFamily:'Poppins'}} className='fixed top-0 left-0 right-0 bg-black text-white z-50'>
+      <nav
+        style={{ 
+          fontFamily: 'Poppins', 
+          backgroundColor: 'rgba(0, 13, 26, 0.8)', // Very dark blue with 80% opacity
+          backdropFilter: 'blur(10px)', // Apply the blur effect
+        }}
+        className='fixed top-0 left-0 right-0 text-white z-50'
+      >
         <div className='flex items-center justify-between px-4 py-4 lg:px-20 lg:py-6 border-b border-silver-500'>
           <RouterLink to='/' className='flex items-center'>
             <img src={logo} alt="Logo" className='h-8 w-8 lg:h-12 lg:w-12' />
@@ -67,7 +72,7 @@ function Navbar() {
                     offset={-70}
                   >
                     <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                    {formatNavItem(item)}
+                      {formatNavItem(item)}
                     </li>
                   </ScrollLink>
                 ) : (
