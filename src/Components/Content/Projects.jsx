@@ -37,7 +37,7 @@ function Projects() {
                 <img className='absolute inset-0 object-cover w-full h-full' src={project.image} alt="project" />
                 <div className='absolute inset-0 border-2 border-silver-500 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-silver-glow'></div>
               </div>
-              <p className='flex gap-2 h-full mt-4 justify-center text-silver-700 text-[24px] md:text-[36px] text-center cursor-pointer'>
+              <p style={{fontFamily:'Poppins'}}className='flex gap-2 h-full mt-4 justify-center text-silver-700 text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] font-semibold text-center cursor-pointer'>
                 {project.title}
               </p>
             </Link>

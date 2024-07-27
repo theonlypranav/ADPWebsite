@@ -44,7 +44,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className='fixed top-0 left-0 right-0 bg-black text-white z-50'>
+      <nav style={{fontFamily:'Poppins'}} className='fixed top-0 left-0 right-0 bg-black text-white z-50'>
         <div className='flex items-center justify-between px-4 py-4 lg:px-20 lg:py-6 border-b border-silver-500'>
           <RouterLink to='/' className='flex items-center'>
             <img src={logo} alt="Logo" className='h-8 w-8 lg:h-12 lg:w-12' />

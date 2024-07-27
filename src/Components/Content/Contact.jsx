@@ -19,7 +19,8 @@ function Developers() {
       <h1 data-aos='fade-right'style={{fontFamily:'Anton', letterSpacing:0.8 }}className='text-[32px] sm:text-[40px] md:text-[48px] lg:text-[60px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
         The Developers
       </h1>
-      <p data-aos='fade-left' className='text-base sm:text-lg md:text-xl mb-20 text-center opacity-0 transition-opacity duration-1000 ease-in-out'>
+      <p data-aos='fade-left'  style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }}
+            className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] mb-20 text-center opacity-0 transition-opacity duration-1000 ease-in-out'>
         Meet the passionate and dedicated developers who make up our incredible team.
       </p>
       
@@ -30,8 +31,8 @@ function Developers() {
               <div className='text-silver-800 rounded-3xl border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-[100px] w-[100px] sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px] cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow' onClick={() => handleImageClick(tech.linkedin)}>
                 <img className='h-full w-full object-cover rounded-3xl' src={tech.image} alt="" />
               </div>
-              <h2 className='text-[16px] sm:text-[20px] md:text-[24px] font-semibold mt-3 text-center text-silver-700'>{tech.title}</h2>
-              <h3 className='text-[14px] sm:text-[16px] md:text-[18px] font-medium text-center text-silver-500'>{tech.subtitle}</h3>
+              <h2 style={{ fontFamily: 'Poppins', letterSpacing: 0.4 }} className='text-[16px] sm:text-[20px] md:text-[24px] font-semibold mt-3 text-center text-silver-700'>{tech.title}</h2>
+              <h3 style={{ fontFamily: 'Poppins', letterSpacing: 0.4 }} className='text-[14px] sm:text-[16px] md:text-[18px] font-medium text-center text-silver-500'>{tech.subtitle}</h3>
             </div>
           ))}
         </div>
