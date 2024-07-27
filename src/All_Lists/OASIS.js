@@ -15,6 +15,14 @@ import i13 from '../assets/OASIS 2001/structure - boothouse.jpg';
 import i14 from '../assets/OASIS 2000/choreo backdrop.jpg';
 import i15 from '../assets/OASIS 1999/structure 2.jpg';
 import i16 from '../assets/OASIS 1998/wolf panel.jpg';
+import i17 from '../assets/oasis 16.jpg';
+import i18 from '../assets/oasis 15.jpg';
+import i19 from '../assets/oasis 14.jpg';
+import i20 from '../assets/oasis 13.jpg';
+import i21 from '../assets/oasis 12.jpg';
+import i22 from '../assets/oasis 11.jpg';
+import i23 from '../assets/oasis 10.jpg';
+import i24 from '../assets/oasis 9.jpg';
 
 
 
@@ -63,7 +71,7 @@ const TechStackList2 = [
     },
     {
         id: 6,
-        image: BJ,
+        image: i17,
         title: "Oasis 2016 | #45",
         subtitle: "Of Gods and Men",
         link:"/endpoint",
@@ -71,7 +79,7 @@ const TechStackList2 = [
     },
     {
         id: 7,
-        image: BJ,
+        image: i18,
         title: "Oasis 2015 | #44",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -79,7 +87,7 @@ const TechStackList2 = [
     },
     {
         id: 8,
-        image: BJ,
+        image: i19,
         title: "Oasis 2014 | #43",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -87,7 +95,7 @@ const TechStackList2 = [
     },
     {
         id: 9,
-        image: BJ,
+        image: i20,
         title: "Oasis 2013 | #42",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -95,7 +103,7 @@ const TechStackList2 = [
     },
     {
         id: 10,
-        image: BJ,
+        image: i21,
         title: "Oasis 2012 | #41",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -103,7 +111,7 @@ const TechStackList2 = [
     },
     {
         id: 11,
-        image: BJ,
+        image: i22,
         title: "Oasis 2011 | #40",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -111,7 +119,7 @@ const TechStackList2 = [
     },
     {
         id: 12,
-        image: BJ,
+        image: i23,
         title: "Oasis 2010 | #39",
         subtitle: "Insomnia",
         link:"/endpoint",
@@ -119,7 +127,7 @@ const TechStackList2 = [
     },
     {
         id: 13,
-        image: BJ,
+        image: i24,
         title: "Oasis 2009 | #38",
         subtitle: "Information Unavailable",
         link:"/endpoint",
