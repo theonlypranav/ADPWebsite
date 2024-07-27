@@ -9,7 +9,10 @@ import RT from '../assets/APOGEE/APOGEE 2006/Struct 7 edit.jpeg';
 import TR from '../assets/APOGEE/APOGEE 2007/Painting 1.jpg';
 import AW from '../assets/APOGEE/APOGEE 2015/Painting 2015.jpeg';
 
+import XX from '../assets/APOGEE/logos/ApLogoYear 02.jpeg';
 import AA from '../assets/APOGEE/logos/ApLogoYear 03.jpeg';
+import BB from '../assets/APOGEE/logos/ApLogoYear 06.jpeg';
+import CC from '../assets/APOGEE/logos/ApLogoYear 07.jpeg';
 import DD from '../assets/APOGEE/logos/ApLogoYear 09.jpeg';
 import EE from '../assets/APOGEE/logos/ApLogoYear 10.jpeg';
 import FF from '../assets/APOGEE/logos/ApLogoYear 11.jpeg';
@@ -139,16 +142,16 @@ const TechStackList2 = [
         description: "APOGEE 2011"
     },
     {
-        id: EE,
-        image: BJ,
+        id: 16,
+        image: EE,
         title: "APOGEE 2010",
         subtitle: "Information Unavailable",
         link:"/endpoint",
         description: "APOGEE 2010"
     },
     {
-        id: DD,
-        image: BJ,
+        id: 17,
+        image: DD,
         title: "APOGEE 2009",
         subtitle: "Information Unavailable",
         link:"/endpoint",
@@ -204,7 +207,7 @@ const TechStackList2 = [
     },
     {
         id: 24,
-        image: BJ,
+        image: XX,
         title: "APOGEE 2002",
         subtitle: "Transcending Reality",
         link:"/endpoint",
