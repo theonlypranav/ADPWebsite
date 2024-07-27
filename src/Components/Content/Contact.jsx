@@ -31,8 +31,8 @@ function Developers() {
               <div className='text-silver-800 rounded-3xl border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-[100px] w-[100px] sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px] cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow' onClick={() => handleImageClick(tech.linkedin)}>
                 <img className='h-full w-full object-cover rounded-3xl' src={tech.image} alt="" />
               </div>
-              <h2 style={{ fontFamily: 'Poppins', letterSpacing: 0.4 }} className='text-[16px] sm:text-[20px] md:text-[24px] font-semibold mt-3 text-center text-silver-700'>{tech.title}</h2>
-              <h3 style={{ fontFamily: 'Poppins', letterSpacing: 0.4 }} className='text-[14px] sm:text-[16px] md:text-[18px] font-medium text-center text-silver-500'>{tech.subtitle}</h3>
+              <h2 style={{ fontFamily: 'Poppins', letterSpacing: 0.1 }} className='text-[12px] sm:text-[16px] md:text-[20px] font-semibold mt-3 text-center text-silver-700'>{tech.title}</h2>
+              <h3 style={{ fontFamily: 'Poppins', letterSpacing: 0.1 }} className='text-[8px] sm:text-[12px] md:text-[16px] font-medium text-center text-silver-500'>{tech.subtitle}</h3>
             </div>
           ))}
         </div>
