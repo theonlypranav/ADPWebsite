@@ -6,8 +6,8 @@ import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeli
 import 'react-vertical-timeline-component/style.min.css';
 import oasisheads from '../../All_Lists/oasisheads';
 import apogeeheads from '../../All_Lists/apogeeheads';
-import Img1 from '../../assets/img2.jpg'; // Import the IMG1
-import Img2 from '../../assets/img1.jpg'; // Import the IMG2
+import Img1 from '../../assets/OCircle.png'; // Import the IMG1
+import Img2 from '../../assets/Acircle.png'; // Import the IMG2
 
 const Treedesign = () => {
   const [heads, setHeads] = useState([]);
@@ -32,7 +32,7 @@ const Treedesign = () => {
 
   return (
     <div className="relative bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center min-h-screen overflow-hidden">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-center">
+      <h1 style={{ fontFamily: 'Anton', letterSpacing: 0.8 }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-center">
         {location.search.includes('stuccan') ? "Our StuCCAn's over the years..." : "Our CoStAAn's over the years..."}
       </h1>
 
@@ -44,8 +44,16 @@ const Treedesign = () => {
             contentStyle={{ background: '#000', color: '#fff', padding: '2rem' }} // Black background and padding for the card
             contentArrowStyle={{ borderRight: '7px solid #000' }} // Black arrow
             date={head.date}
-            iconStyle={{ background: '#000', color: '#fff' }} // Black icon background
-            icon={<img src={isOasis ? Img1 : Img2} alt="Icon" className="w-12 h-12 rounded-full" />} // Conditional icon image
+            iconStyle={{ background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }} // Black icon background and centering
+            icon={
+              <div className="w-12 h-12 rounded-full overflow-hidden">
+                <img
+                  src={isOasis ? Img1 : Img2}
+                  alt="Icon"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            } // Conditional icon image with overflow hidden
             data-aos="fade-up" // AOS fade-in effect
             data-aos-delay={index * 100} // Stagger the animations
           >
