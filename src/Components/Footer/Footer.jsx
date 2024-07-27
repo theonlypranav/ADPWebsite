@@ -28,11 +28,11 @@ function Footer() {
               <h2 className='text-[24px] font-normal text-silver-700 py-2 uppercase' style={{ fontFamily: 'Anton', letterSpacing: '0.7px' }}>
                 Contact
               </h2>
-              <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=adp@bits-oasis.org`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Poppins' }} className='text-[16px] hover:text-silver-700 transition-all duration-150 ease-in-out cursor-pointer'>
+              <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=adp@bits-oasis.org`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Poppins' }} className='text-[12px] hover:text-silver-700 transition-all duration-150 ease-in-out cursor-pointer'>
                 <b>Email</b>: adp@bits-oasis.org
               </a>
               <br />
-              <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=adp@bits-apogee.org`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Poppins' }} className='text-[16px] hover:text-silver-700 transition-all duration-150 ease-in-out cursor-pointer'>
+              <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=adp@bits-apogee.org`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Poppins' }} className='text-[12px] hover:text-silver-700 transition-all duration-150 ease-in-out cursor-pointer'>
                 <b>Email</b>: adp@bits-apogee.org
               </a>
             </div>
