@@ -28,7 +28,6 @@ import NN from '../assets/APOGEE/logos/ApLogoYear 21.jpeg';
 import ZZ from '../assets/APOGEE/logos/ApLogoYear 18.jpeg';
 import YY from '../assets/APOGEE/logos/ApLogoYear 08.jpeg';
 
-
 const TechStackList2 = [
     {
         id: 2,
