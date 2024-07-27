@@ -29,18 +29,25 @@ const Treedesign = () => {
         {location.search.includes('stuccan') ? "Our StuCCAn's over the years..." : "Our CoStAAn's over the years..."}
       </h1>
 
-      <div className="mt-10 flex flex-col items-center w-full relative gap-8">
+      <div className="mt-10 flex flex-col items-center w-full relative">
         {heads.map((tech, index) => (
           <div
             key={index}
             data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
-            className="flex flex-col items-center w-full"
+            className="flex justify-center w-full my-8 relative"
           >
-            <div className="text-silver-800 rounded-full border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-48 w-48 sm:w-56 md:w-64 lg:w-72 cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow">
-              <img className="h-full w-full object-cover rounded-full" src={tech.image} alt={tech.title} />
+            <div
+              className="flex flex-col items-center"
+              style={{
+                transform: `translateX(${index % 2 === 0 ? '-300px' : '300px'})`,
+              }}
+            >
+              <div className="text-silver-800 rounded-full border-2 border-silver-700 shadow-silver-glow-strong p-0 flex items-center justify-center h-24 w-24 sm:h-32 sm:w-32 md:h-40 md:w-40 lg:h-48 lg:w-48 cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow">
+                <img className="h-full w-full object-cover rounded-full" src={tech.image} alt={tech.title} />
+              </div>
+              <h2 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-semibold mt-4 text-center text-silver-700">{tech.title}</h2>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg mt-2 text-center text-silver-500">{tech.subtitle}</p>
             </div>
-            <h2 className="text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-semibold mt-4 text-center text-silver-700">{tech.title}</h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl mt-2 text-center text-silver-500">{tech.subtitle}</p>
           </div>
         ))}
       </div>
