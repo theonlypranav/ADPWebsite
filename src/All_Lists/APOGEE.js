@@ -3,6 +3,9 @@ import BJ from '../assets/LogoApogee.jpg';
 import AS from '../assets/APOGEE 2024/central structure.jpg';
 import AD from '../assets/APOGEE 2023/backdrop 1 edit.jpg';
 import AF from '../assets/APOGEE 2000/Struct 2.jpeg';
+import AG from '../assets/APOGEE 2004/Struct 2.jpg';
+import AH from '../assets/APOGEE 2001/Painting 5.jpeg';
+import AK from '../assets/APOGEE 2005/Struct 2 edit.jpg';
 
 
 const TechStackList2 = [
@@ -160,7 +163,7 @@ const TechStackList2 = [
     },
     {
         id: 21,
-        image: BJ,
+        image: AK,
         title: "APOGEE 2005",
         subtitle: "Inspiring Innovation",
         link:"/endpoint",
@@ -168,7 +171,7 @@ const TechStackList2 = [
     },
     {
         id: 22,
-        image: BJ,
+        image: AG,
         title: "APOGEE 2004",
         subtitle: "Celebrating Technology",
         link:"/endpoint",
@@ -192,7 +195,7 @@ const TechStackList2 = [
     },
     {
         id: 25,
-        image: BJ,
+        image: AH,
         title: "APOGEE 2001",
         subtitle: "Cradling Aspirations",
         link:"/endpoint",
