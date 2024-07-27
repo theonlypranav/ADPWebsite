@@ -112,8 +112,8 @@ function TechStack() {
                                 <img className='w-full h-full object-cover' src={selectedItem.picture} alt="Item" />
                             </div>
                             <div className='w-full md:w-1/2 p-4 max-h-full overflow-y-auto'>
-                                <h2 className='text-3xl font-bold text-white mb-2'>{selectedItem.title}</h2>
-                                <p className='text-white mb-4'>{selectedItem.description}</p>
+                                <h2 style={{ fontFamily: 'Anton', letterSpacing: 0.8 }} className='text-5xl font-bold text-white mb-3'>{selectedItem.title}</h2>
+                                <p style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className='text-white mb-4'>{selectedItem.description}</p>
                                 <ul className='list-disc list-inside text-white'>
                                     {selectedItem.list.map((name, index) => (
                                         <li key={index}>{name}</li>
