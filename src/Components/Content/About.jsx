@@ -37,7 +37,7 @@ function About() {
         data-aos='fade-down'
         src={img}
         alt="ADP Image"
-        className='rounded-[20px] border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300 w-full max-w-[400px] lg:max-w-[650px] h-auto'
+        className='rounded-[35px] border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300 w-full max-w-[400px] lg:max-w-[650px] h-auto'
         onClick={openModal}
       />
       <div className='h-full lg:py-20 flex flex-col justify-center lg:items-start items-center'>
@@ -54,29 +54,10 @@ function About() {
           Our exploration of different mediums of paintings; physical and digital, sculpting and graphic designing opens up a large avenue for all your budding interests.
         </p>
       </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Image Modal"
-        className='modal-content flex justify-center items-center'
-        overlayClassName='fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center'
-      >
-        <div className='relative bg-white dark:bg-custom-dark rounded-lg shadow-lg p-4 w-full max-w-[90%] max-h-[90%] flex flex-col items-center'>
-          <div className='flex justify-between mb-4 w-full'>
-            <button onClick={closeModal} className='text-black dark:text-white bg-silver-700 hover:bg-silver-500 text-sm px-4 py-2 rounded'>
-              Close
-            </button>
-            <button onClick={downloadImage} className='text-black dark:text-white bg-silver-700 hover:bg-silver-500 text-sm px-4 py-2 rounded'>
-              Download
-            </button>
-          </div>
-          <img src={img} alt="Enlarged" className='max-w-full max-h-full object-contain rounded-lg' />
-        </div>
-      </Modal>
       <div className="bottom-transition"></div>
     </div>
   );
+  
 }
 
 export default About;
