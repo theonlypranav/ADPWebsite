@@ -33,7 +33,7 @@ function TechStack() {
         setSelectedImage(null);
     };
 
-    const buttonNames = ['STRUCTURE', 'PAINTING', 'PUBLICITY', 'MEDIA'];
+    const buttonNames = ['Structure', 'Painting', 'Publicity', 'Media'];
 
     return (
         <div id='OurTeam' style={{ fontFamily: 'Poppins', letterSpacing: 0.5 }} className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-10 md:p-20 flex flex-col items-center justify-center w-full min-h-screen overflow-hidden'>
@@ -78,7 +78,7 @@ function TechStack() {
                         <div key={index} className='flex flex-col items-center' data-aos='fade-up' data-aos-delay={`${index * 100}`}>
                             <button
                                 className='bg-dark-custom text-white border border-light-custom p-4 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-custom-light-glow font-bold'
-                                style={{fontFamily: 'Anton', width: '12rem', fontSize: '32px',letterSpacing: 1.6, boxShadow: '0 4px 8px rgba(255, 255, 255, 0.5)' }}
+                                style={{ width: '12rem', fontSize: '16px', boxShadow: '0 4px 8px rgba(255, 255, 255, 0.5)' }}
                                 onClick={() => handleButtonClick(index)}
                             >
                                 {name}
