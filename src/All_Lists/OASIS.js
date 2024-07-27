@@ -3,14 +3,7 @@ import BJ from '../assets/LogoOasis.png';
 
 
 const TechStackList2 = [
-    {
-        id: 1,
-        image: BJ,
-        title: "Oasis 2024 | #52",
-        subtitle: "Regalle Roulette",
-        link:"/endpoint",
-        description: "OASIS 2024"
-    },
+   
 
     {
         id: 1,
