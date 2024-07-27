@@ -16,9 +16,7 @@ const Endpoint = () => {
   const imageFolders = {
     'OASIS 2023': import.meta.glob('../../assets/OASIS 2023/*.{jpg,jpeg,png}'),
     'OASIS 2022': import.meta.glob('../../assets/OASIS 2022/*.{jpg,jpeg,png}'),
-    'APOGEE 2024': import.meta.glob('../../assets/APOGEE 2024/*.{jpg,jpeg,png}'),
     'OASIS 2020': import.meta.glob('../../assets/OASIS 2020/*.{jpg,jpeg,png}'),
-    'APOGEE 2023': import.meta.glob('../../assets/APOGEE 2023/*.{jpg,jpeg,png}'),
     'OASIS 2019': import.meta.glob('../../assets/OASIS 2019/*.{jpg,jpeg,png}'),
     'OASIS 2018': import.meta.glob('../../assets/OASIS 2018/*.{jpg,jpeg,png}'),
     'OASIS 2017': import.meta.glob('../../assets/OASIS 2017/*.{jpg,jpeg,png}'),
@@ -41,7 +39,32 @@ const Endpoint = () => {
     'OASIS 2000': import.meta.glob('../../assets/OASIS 2000/*.{jpg,jpeg,png}'),
     'OASIS 1999': import.meta.glob('../../assets/OASIS 1999/*.{jpg,jpeg,png}'),
     'OASIS 1998': import.meta.glob('../../assets/OASIS 1998/*.{jpg,jpeg,png}'),
-    
+    'APOGEE 2024': import.meta.glob('../../assets/APOGEE 2024/*.{jpg,jpeg,png}'),
+    'APOGEE 2023': import.meta.glob('../../assets/APOGEE 2023/*.{jpg,jpeg,png}'),
+    'APOGEE 2022': import.meta.glob('../../assets/APOGEE 2022/*.{jpg,jpeg,png}'),
+    'APOGEE 2021': import.meta.glob('../../assets/APOGEE 2021/*.{jpg,jpeg,png}'),
+    'APOGEE 2020': import.meta.glob('../../assets/APOGEE 2020/*.{jpg,jpeg,png}'),
+    'APOGEE 2019': import.meta.glob('../../assets/APOGEE 2019/*.{jpg,jpeg,png}'),
+    'APOGEE 2018': import.meta.glob('../../assets/APOGEE 2018/*.{jpg,jpeg,png}'),
+    'APOGEE 2017': import.meta.glob('../../assets/APOGEE 2017/*.{jpg,jpeg,png}'),
+    'APOGEE 2016': import.meta.glob('../../assets/APOGEE 2016/*.{jpg,jpeg,png}'),
+    'APOGEE 2015': import.meta.glob('../../assets/APOGEE 2015/*.{jpg,jpeg,png}'),
+    'APOGEE 2014': import.meta.glob('../../assets/APOGEE 2014/*.{jpg,jpeg,png}'),
+    'APOGEE 2013': import.meta.glob('../../assets/APOGEE 2013/*.{jpg,jpeg,png}'),
+    'APOGEE 2012': import.meta.glob('../../assets/APOGEE 2012/*.{jpg,jpeg,png}'),
+    'APOGEE 2011': import.meta.glob('../../assets/APOGEE 2011/*.{jpg,jpeg,png}'),
+    'APOGEE 2010': import.meta.glob('../../assets/APOGEE 2010/*.{jpg,jpeg,png}'),
+    'APOGEE 2009': import.meta.glob('../../assets/APOGEE 2009/*.{jpg,jpeg,png}'),
+    'APOGEE 2009': import.meta.glob('../../assets/APOGEE 2009/*.{jpg,jpeg,png}'),
+    'APOGEE 2008': import.meta.glob('../../assets/APOGEE 2008/*.{jpg,jpeg,png}'),
+    'APOGEE 2007': import.meta.glob('../../assets/APOGEE 2007/*.{jpg,jpeg,png}'),
+    'APOGEE 2006': import.meta.glob('../../assets/APOGEE 2006/*.{jpg,jpeg,png}'),
+    'APOGEE 2005': import.meta.glob('../../assets/APOGEE 2005/*.{jpg,jpeg,png}'),
+    'APOGEE 2004': import.meta.glob('../../assets/APOGEE 2004/*.{jpg,jpeg,png}'),
+    'APOGEE 2003': import.meta.glob('../../assets/APOGEE 2003/*.{jpg,jpeg,png}'),
+    'APOGEE 2002': import.meta.glob('../../assets/APOGEE 2002/*.{jpg,jpeg,png}'),
+    'APOGEE 2001': import.meta.glob('../../assets/APOGEE 2001/*.{jpg,jpeg,png}'),
+    'APOGEE 2000': import.meta.glob('../../assets/APOGEE 2000/*.{jpg,jpeg,png}')
   };
 
   useEffect(() => {
