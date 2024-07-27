@@ -107,19 +107,20 @@ function TechStack() {
                             className='absolute top-1 right-1 text-white text-3xl font-bold hover:text-silver-500 p-1'>
                             &times;
                         </button>
-                        <div className='flex flex-col md:flex-row h-full'>
+                        <div className='flex flex-col md:flex-row h-full custom-bg'>
                             <div className='w-full md:w-1/2 h-1/2 md:h-full'>
                                 <img className='w-full h-full object-cover' src={selectedItem.picture} alt="Item" />
                             </div>
                             <div className='w-full md:w-1/2 p-4 max-h-full overflow-y-auto'>
                                 <h2 style={{ fontFamily: 'Anton', letterSpacing: 0.8 }} className='text-5xl font-bold text-white mb-3'>{selectedItem.title}</h2>
                                 <p style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className='text-white mb-4'>{selectedItem.description}</p>
-                                <ul className='list-disc list-inside text-white'>
+                                <ul className='list-disc list-inside text-white grid grid-cols-2 gap-4'>
                                     {selectedItem.list.map((name, index) => (
                                         <li key={index}>{name}</li>
                                     ))}
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>

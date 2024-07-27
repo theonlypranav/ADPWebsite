@@ -82,3 +82,9 @@ Here's what each property is doing: */
     padding: 2rem;
   }
 }
+
+.custom-bg {
+  background-image: url('../../assets/modalbg.png'); 
+  background-size: cover; 
+  background-position: center; 
+}
