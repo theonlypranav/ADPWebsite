@@ -11,7 +11,10 @@ import Img2 from '../../assets/Acircle.png'; // Import the IMG2
 
 const glowBorderStyle = {
   position: 'relative',
-  display: 'inline-block'
+  display: 'inline-block',
+  width: '4rem',
+  height: '4rem',
+  borderRadius: '50%'
 };
 
 const glowBorderBefore = {
@@ -21,7 +24,7 @@ const glowBorderBefore = {
   left: 0,
   width: '100%',
   height: '100%',
-  borderRadius: '50%',
+  borderRadius: 'inherit',
   boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)', // White glow effect
   pointerEvents: 'none'
 };
@@ -63,14 +66,13 @@ const Treedesign = () => {
             date={head.date}
             iconStyle={{ background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }} // Black icon background and centering
             icon={
-              <div style={{ ...glowBorderStyle, width: '3rem', height: '3rem', borderRadius: '50%' }}> {/* Adjusted size for responsiveness */}
+              <div style={glowBorderStyle}> {/* Defined size and rounded */}
                 <div style={glowBorderBefore} />
                 <a href={head.linkedinProfile} target="_blank" rel="noopener noreferrer">
                   <img
                     src={isOasis ? Img1 : Img2}
                     alt="Icon"
-                    className="w-full h-full object-cover rounded-full" // Responsive image styling
-                    style={{ borderRadius: '50%' }}
+                    className="w-full h-full object-cover rounded-full" // Ensure it covers the container
                   />
                 </a>
               </div>
