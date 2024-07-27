@@ -104,6 +104,12 @@ function Navbar() {
                   </RouterLink>
                 </div>
               </div>
+              {/* Add Apply Button */}
+              <a href='https://forms.gle/RViQ2nyPqwKUc1PV7' target='_blank' rel='noopener noreferrer'>
+                <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+                  Apply
+                </li>
+              </a>
             </ul>
           </div>
         </div>
@@ -154,6 +160,12 @@ function Navbar() {
                   </RouterLink>
                 </div>
               </div>
+              {/* Add Apply Button */}
+              <a href='https://forms.gle/RViQ2nyPqwKUc1PV7' target='_blank' rel='noopener noreferrer'>
+                <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+                  Apply
+                </li>
+              </a>
             </ul>
           </div>
         )}
