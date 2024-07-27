@@ -1,0 +1,37 @@
+:root {
+    --s: 175px; /* control the size */
+    --c1: rgb(29, 29, 29);
+    --c2: rgb(78, 79, 81);
+    --c3: rgb(60, 60, 60);
+  }
+  .home-container {
+    position: relative;
+    overflow: hidden;
+  }
+  #Home {
+    background:
+    conic-gradient(from -60deg at 50% calc(100%/3),var(--_g)),
+    conic-gradient(from 120deg at 50% calc(200%/3),var(--_g)),
+    conic-gradient(from  60deg at calc(200%/3),var(--c3) 60deg,var(--c2) 0 120deg,#0000 0),
+    conic-gradient(from 180deg at calc(100%/3),var(--c1) 60deg,var(--_g)),
+    linear-gradient(90deg,var(--c1)   calc(100%/6),var(--c2) 0 50%,
+                          var(--c1) 0 calc(500%/6),var(--c2) 0);
+  background-size: calc(1.732*var(--s)) var(--s);
+    padding-bottom: 10px;
+  }
+  .bottom-transition {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* Adjust this value to control the height of the transition effect */
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.938)); /* Adjust the color to match your design */
+    pointer-events: none;
+  }
+  
+
+  html {
+   
+    --_g: var(--c3) 0 120deg,#0000 0;
+   
+  }
