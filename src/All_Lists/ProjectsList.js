@@ -1,5 +1,5 @@
-import img1 from '../assets/vs.png'
-import img2 from '../assets/mc.png'
+import img1 from '../assets/oasis.jpg'
+import img2 from '../assets/apogee.jpg'
 
 
 const ProjectsList = [
