@@ -36,7 +36,7 @@ const Endpoint = () => {
     'OASIS 2004': import.meta.glob('../../assets/OASIS 2004/*.{jpg,jpeg,png}'),
     'OASIS 2003': import.meta.glob('../../assets/OASIS 2003/*.{jpg,jpeg,png}'),
     'OASIS 2002': import.meta.glob('../../assets/OASIS 2002/*.{jpg,jpeg,png}'),
-    'OASIS 2002': import.meta.glob('../../assets/OASIS 2001/*.{jpg,jpeg,png}'),
+    'OASIS 2001': import.meta.glob('../../assets/OASIS 2001/*.{jpg,jpeg,png}'),
     'OASIS 2000': import.meta.glob('../../assets/OASIS 2000/*.{jpg,jpeg,png}'),
     'OASIS 1999': import.meta.glob('../../assets/OASIS 1999/*.{jpg,jpeg,png}'),
     'OASIS 1998': import.meta.glob('../../assets/OASIS 1998/*.{jpg,jpeg,png}'),

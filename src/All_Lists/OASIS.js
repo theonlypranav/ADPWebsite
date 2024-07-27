@@ -56,7 +56,7 @@ const TechStackList2 = [
         id: 6,
         image: BJ,
         title: "Oasis 2017 | #46",
-        subtitle: "Ye toh pata hi nhi",
+        subtitle: "Realms Of Fiction",
         link:"/endpoint",
         description: "OASIS 2017"
     },
@@ -64,7 +64,7 @@ const TechStackList2 = [
         id: 7,
         image: BJ,
         title: "Oasis 2016 | #45",
-        subtitle: "Ye toh pata hi nhi",
+        subtitle: "Of Gods and Men",
         link:"/endpoint",
         description: "OASIS 2016"
     },
