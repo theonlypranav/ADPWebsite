@@ -43,13 +43,13 @@ function Projects() {
             </Link>
             <div className='flex gap-4 mt-2'>
               <a href={project.instagram} target="_blank" rel="noopener noreferrer">
-                <FaInstagram className='text-silver-700 hover:text-silver-500 transition duration-300' size={20} md:size={24} />
+                <FaInstagram className='text-silver-700 hover:text-silver-500 transition duration-300' size={30} md:size={24} />
               </a>
               <a href={project.linkedin} target="_blank" rel="noopener noreferrer">
-                <FaLinkedin className='text-silver-700 hover:text-silver-500 transition duration-300' size={20} md:size={24} />
+                <FaLinkedin className='text-silver-700 hover:text-silver-500 transition duration-300' size={30} md:size={24} />
               </a>
               <a href={project.twitter} target="_blank" rel="noopener noreferrer">
-                <FaTwitter className='text-silver-700 hover:text-silver-500 transition duration-300' size={20} md:size={24} />
+                <FaTwitter className='text-silver-700 hover:text-silver-500 transition duration-300' size={30} md:size={24} />
               </a>
             </div>
           </div>
