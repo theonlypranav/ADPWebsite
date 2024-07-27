@@ -37,14 +37,20 @@ function TechStack() {
 
     return (
         <div id='OurTeam' style={{ fontFamily: 'Poppins', letterSpacing: 0.5 }} className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-10 md:p-20 flex flex-col items-center justify-center w-full min-h-screen overflow-hidden'>
+            <style>{`
+                .glowing-border {
+                    border: 2px solid rgba(255, 255, 255, 0.5);
+                    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 25px rgba(255, 255, 255, 0.5), 0 0 35px rgba(255, 255, 255, 0.3);
+                }
+            `}</style>
+            
             <div className="top-transition"></div>
 
-            <h1 data-aos='fade-right' style={{fontFamily:'Anton', letterSpacing:0.8 }}className='text-[32px] sm:text-[40px] md:text-[48px] lg:text-[60px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
+            <h1 data-aos='fade-right' style={{ fontFamily: 'Anton', letterSpacing: 0.8 }} className='text-[32px] sm:text-[40px] md:text-[48px] lg:text-[60px] font-semibold mb-8 leading-normal text-silver-700 uppercase'>
                 Our Team
             </h1>
             
-            <p data-aos='fade-left' style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }}
-            className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] mb-8 leading-normal text-silver-700" mb-20 text-center opacity-0 transition-opacity duration-1000 ease-in-out'>
+            <p data-aos='fade-left' style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] mb-8 leading-normal text-silver-700 mb-20 text-center opacity-0 transition-opacity duration-1000 ease-in-out'>
                 Meet the passionate and dedicated members who make up our incredible team.
             </p>
 
@@ -101,7 +107,7 @@ function TechStack() {
             
             {selectedItem && (
                 <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-                    <div className='relative bg-black rounded-xl overflow-hidden w-[80vw] h-[80vh]'>
+                    <div className='relative bg-black rounded-xl overflow-hidden w-[80vw] h-[80vh] glowing-border'>
                         <button 
                             onClick={handleCloseModal} 
                             className='absolute top-1 right-1 text-white text-3xl font-bold hover:text-silver-500 p-1'>
@@ -120,7 +126,6 @@ function TechStack() {
                                     ))}
                                 </ul>
                             </div>
-
                         </div>
                     </div>
                 </div>
