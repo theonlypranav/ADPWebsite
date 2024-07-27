@@ -88,3 +88,10 @@ Here's what each property is doing: */
   background-size: cover; 
   background-position: center; 
 }
+.active {
+  background-color: rgba(58, 2, 59, 0.925);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+

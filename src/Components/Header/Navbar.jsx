@@ -33,7 +33,7 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
 
-  const navItems = ['Home', 'About Us', 'Our Projects', 'Our Team'];
+  const navItems = ['Home', 'AboutUs', 'OurProjects', 'OurTeam'];
 
   const isHomePage = location.pathname === '/';
 
