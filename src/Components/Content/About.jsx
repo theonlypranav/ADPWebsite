@@ -37,7 +37,15 @@ function About() {
         data-aos='fade-down'
         src={img}
         alt="ADP Image"
+<<<<<<< Updated upstream
         className='rounded-[35px] border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300 w-full max-w-[400px] lg:max-w-[650px] h-auto'
+=======
+<<<<<<< HEAD
+        className='border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300 w-full max-w-[400px] lg:max-w-[650px] h-auto'
+=======
+        className='rounded-[35px] border-1 p-1 border-silver-500 img_glow cursor-pointer transition-transform duration-300 transform hover:scale-105 hover:border-silver-300 w-full max-w-[400px] lg:max-w-[650px] h-auto'
+>>>>>>> 38ce31ecb65dddee14e18a14d8a8990e4fb135d6
+>>>>>>> Stashed changes
         onClick={openModal}
       />
       <div className='h-full lg:py-20 flex flex-col justify-center lg:items-start items-center'>
