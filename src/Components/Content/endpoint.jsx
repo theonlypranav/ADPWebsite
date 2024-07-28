@@ -127,14 +127,27 @@ const Endpoint = () => {
           <FaArrowLeft />
         </button>
         <div className='flex flex-row items-center'>
-          <div className='relative w-[20vw] h-[20vw] sm:w-[15vw] sm:h-[15vw] md:w-[12vw] md:h-[12vw] lg:w-[10vw] lg:h-[10vw] opacity-50 mx-4 sm:mx-6 md:mx-8' onClick={handlePrev}>
+        <div className='relative w-[20vw] h-[20vw] sm:w-[15vw] sm:h-[15vw] md:w-[12vw] md:h-[12vw] lg:w-[10vw] lg:h-[10vw] opacity-50 mx-4 sm:mx-6 md:mx-8' onClick={handlePrev}>
+          {photos.length > 0 && (
+            <img
+              src={photos[prevIndex]}
+              alt="Previous Photo"
+              style={{ opacity: 0.6 }} // Adjust the value to the desired transparency
+              className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg cursor-pointer'
+            />
+          )}
+        </div>
+          <div className='relative w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] md:w-[40vw] md:h-[40vw] lg:w-[30vw] lg:h-[30vw] '>
             {photos.length > 0 && (
-              <img src={photos[prevIndex]} alt="Previous Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg cursor-pointer' />
-            )}
-          </div>
-          <div className='relative w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] md:w-[40vw] md:h-[40vw] lg:w-[30vw] lg:h-[30vw] img_glow_end '>
-            {photos.length > 0 && (
-              <img src={photos[currentIndex]} alt="Current Photo" className='absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg ' />
+              <img
+                style={{
+                  boxShadow: '0 0px 20px rgba(131, 90, 148, 0.676)',
+                  filter: 'drop-shadow(0 0 10px rgba(131, 90, 148, 0.676))',
+                }}
+                className='img-end absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg'
+                src={photos[currentIndex]}
+                alt="Current Photo"
+              />
             )}
           </div>
           <div className='relative w-[20vw] h-[20vw] sm:w-[15vw] sm:h-[15vw] md:w-[12vw] md:h-[12vw] lg:w-[10vw] lg:h-[10vw] opacity-50 mx-4 sm:mx-6 md:mx-8' onClick={handleNext}>
