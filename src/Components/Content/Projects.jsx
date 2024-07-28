@@ -31,7 +31,16 @@ function Projects() {
           }
 
           .shadow-silver-glow-stronger {
-            box-shadow: 0 0 20px 10px rgba(192, 192, 192, 0.75);
+            box-shadow: 0 0 30px 15px rgba(192, 192, 192, 0.75);
+          }
+
+          .group-hover-container:hover .hover-scale-shadow {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px 15px rgba(192, 192, 192, 0.75);
+          }
+
+          .group-hover-container:hover .hover-scale {
+            transform: scale(1.05);
           }
         `}
       </style>
@@ -48,10 +57,10 @@ function Projects() {
 
         <div className='flex flex-col md:flex-row flex-wrap gap-10 justify-center items-center w-full'>
           {ProjectsList.slice(0, 2).map((project) => (
-            <div key={project.id} data-aos={project.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center group'>
+            <div key={project.id} data-aos={project.id % 2 === 0 ? 'fade-down' : 'fade-up'} className='flex flex-col items-center group group-hover-container'>
               <Link to={`${project.link}?description=${project.description}`}>
-                <div className='relative h-[200px] w-[300px] sm:h-[300px] sm:w-[400px] md:h-[400px] md:w-[500px] overflow-hidden rounded-3xl border-2 border-silver-700 shadow-silver-glow-strong group-hover:border-silver-500 transition-all duration-300'>
-                  <img className='absolute inset-0 object-cover w-full h-full transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow-stronger' src={project.image} alt="project" />
+                <div className='relative h-[200px] w-[300px] sm:h-[300px] sm:w-[400px] md:h-[400px] md:w-[500px] overflow-hidden rounded-3xl border-2 border-silver-700 shadow-silver-glow-strong group-hover:border-silver-500 transition-all duration-300 hover-scale-shadow'>
+                  <img className='absolute inset-0 object-cover w-full h-full transform transition-transform duration-300 hover-scale' src={project.image} alt="project" />
                   <div className='absolute inset-0 border-2 border-silver-500 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-silver-glow'></div>
                 </div>
                 <p style={{ fontFamily: 'Poppins' }} className='flex gap-2 h-full mt-4 justify-center text-silver-700 text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] font-semibold text-center cursor-pointer'>
