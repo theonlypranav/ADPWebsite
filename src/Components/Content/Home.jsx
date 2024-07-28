@@ -75,7 +75,7 @@ function Home() {
             style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }}
             className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] mb-8 leading-normal text-silver-700"
           >
-            A collective of passionate artists, we are the visionaries behind the stunning aesthetics of Oasis and APOGEE, the grand cultural and technical fest of BITS Pilani. From breathtaking backdrops to mind-blowing structures, we craft the ambiance that defines these iconic festivals. We are the architects of the visual narrative, infusing every corner with creativity and innovation. Beyond the artistic realm, we are the driving force behind the publicity of these flagship events. Our canvas is the stage, and our colors are imagination. We create more than just visuals; we craft experiences.
+            A collective of passionate artists, we are the visionaries behind the stunning aesthetics of Oasis and APOGEE, the grand cultural and technical fests of BITS Pilani. From breathtaking backdrops to mind-blowing structures, we craft the ambience that defines these iconic festivals. We are the architects of the visual narrative, infusing every corner with creativity and innovation. Beyond the artistic realm, we are the driving force behind the publicity of these flagship events. Our canvas is the stage, and our colors are imagination. We create more than just visuals; we craft experiences.
           </p>
           
         </div>
