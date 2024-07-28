@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-import logo from '../../assets/ADPLogoNewGrad.png';
+import logo from '../../assets/ADPLogoNewGrad_Transparent.png';
 import { FaTimes } from 'react-icons/fa';
 import { CiMenuFries } from 'react-icons/ci';
 

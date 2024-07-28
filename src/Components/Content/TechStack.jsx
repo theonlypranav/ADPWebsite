@@ -6,16 +6,26 @@ import TeamList from '../../All_Lists/TeamList';
 
 function TechStack() {
     const [selectedItem, setSelectedItem] = useState(null);
+    const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
         AOS.init({ duration: 1000 });
     }, []);
 
     useEffect(() => {
-        if (selectedItem) {
+        if (modalVisible) {
             document.body.classList.add('overflow-hidden');
         } else {
             document.body.classList.remove('overflow-hidden');
+        }
+    }, [modalVisible]);
+
+    useEffect(() => {
+        if (selectedItem) {
+            setModalVisible(true);
+        } else {
+            const timer = setTimeout(() => setModalVisible(false), 300); // Match the duration of fadeOut
+            return () => clearTimeout(timer);
         }
     }, [selectedItem]);
 
@@ -35,6 +45,36 @@ function TechStack() {
                 .glowing-border {
                     border: 2px solid rgba(255, 255, 255, 0.5);
                     box-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 25px rgba(255, 255, 255, 0.5), 0 0 35px rgba(255, 255, 255, 0.3);
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.9);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+
+                @keyframes fadeOut {
+                    from {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                    to {
+                        opacity: 0;
+                        transform: scale(0.9);
+                    }
+                }
+
+                .modal-enter {
+                    animation: fadeIn 0.3s forwards;
+                }
+
+                .modal-exit {
+                    animation: fadeOut 0.3s forwards;
                 }
             `}</style>
             
@@ -88,8 +128,8 @@ function TechStack() {
                 </div>
             </div>
 
-            {selectedItem && (
-                <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+            {modalVisible && (
+                <div className={`fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 ${selectedItem ? 'modal-enter' : 'modal-exit'}`}>
                     <div className='relative bg-black rounded-xl overflow-hidden w-[80vw] h-[80vh] glowing-border'>
                         <button 
                             onClick={handleCloseModal} 
@@ -98,13 +138,13 @@ function TechStack() {
                         </button>
                         <div className='flex flex-col md:flex-row h-full custom-bg'>
                             <div className='w-full md:w-1/2 h-1/2 md:h-full'>
-                                <img className='w-full h-full object-cover' src={selectedItem.picture} alt="Item" />
+                                <img className='w-full h-full object-cover' src={selectedItem?.picture} alt="Item" />
                             </div>
                             <div className='w-full md:w-1/2 p-4 max-h-full overflow-y-auto'>
-                                <h2 style={{ fontFamily: 'Anton', letterSpacing: 0.8 }} className='text-5xl font-bold text-white mb-3'>{selectedItem.title}</h2>
-                                <p style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className='text-white mb-4'>{selectedItem.description}</p>
+                                <h2 style={{ fontFamily: 'Anton', letterSpacing: 0.8 }} className='text-5xl font-bold text-white mb-3'>{selectedItem?.title}</h2>
+                                <p style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className='text-white mb-4'>{selectedItem?.description}</p>
                                 <ul className='list-disc list-inside text-white grid grid-cols-2 gap-4'>
-                                    {selectedItem.list.map((name, index) => (
+                                    {selectedItem?.list.map((name, index) => (
                                         <li key={index}>{name}</li>
                                     ))}
                                 </ul>
@@ -119,3 +159,6 @@ function TechStack() {
 }
 
 export default TechStack;
+
+
+
