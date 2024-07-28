@@ -10,7 +10,7 @@ import Img1 from '../../assets/OCircle.png'; // Import the IMG1
 import Img2 from '../../assets/Acircle.png'; // Import the IMG2
 
 const glowBorderStyle = {
-  position: 'relative',
+  position: 'absolute',
   display: 'inline-block',
   width: '4rem',
   height: '4rem',
