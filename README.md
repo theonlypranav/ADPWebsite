@@ -31,7 +31,7 @@ Vercel Deployment: https://adp-website-nu.vercel.app/
 - Members' Vertical-wise List -> TeamList.js
 - Coords List -> TechStackList.js
 
-##Installation
+## Installation
 
 - Clone the repository: `git clone https://github.com/theonlypranav/ADPWebsite.git`
 - Navigate to the project folder: `cd ADPWebsite`
@@ -39,7 +39,7 @@ Vercel Deployment: https://adp-website-nu.vercel.app/
 - run the development server: `npm run dev`
 - Open your browser and visit [http://localhost:3000](http://localhost:3000)
 
-##Usage & Customization 
+## Usage & Customization 
 
 - Update all TeamList 
 - Domain Renewal : Hostinger
