@@ -1,24 +1,18 @@
-# Personal Portfolio Website
+# ADP Website
 
-[![GitHub license](https://img.shields.io/github/license/chiragjain307/Portfolio-Website)](https://github.com/chiragjain307/Portfolio-Website/blob/main/License)
-[![GitHub stars](https://img.shields.io/github/stars/chiragjain307/Portfolio-Website)](https://github.com/chiragjain307/Portfolio-Website/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/chiragjain307/Portfolio-Website)](https://github.com/chiragjain307/Portfolio-Website/issues)
-[![GitHub forks](https://img.shields.io/github/forks/chiragjain307/Portfolio-Website)](https://github.com/chiragjain307/Portfolio-Website/network)
-
-Introducing a dynamic and modern portfolio template, powered by React.js for performance and flexibility. Crafted with simplicity and versatility in mind. Leveraging the power of Tailwind CSS for sleek and responsive design, this template seamlessly integrates dark mode functionality to enhance the user experience. With the added benefits smooth navigation, ensuring an exceptional browsing experience. Explore the live demo to witness the perfect blend of aesthetics and functionality, ready to elevate your online presence. 
-
-View the live demo: [Portfolio](https://chirags-portfolio.vercel.app/)
-
+Domain URL: https://www.adp-bits-pilani.in
+Vercel Deployment: https://adp-website-nu.vercel.app/ 
 
 ## Table of Contents
 
-- [Features](#features)
-- [Demo](#demo)
-- [Installation](#installation)
-- [Usage & Customization](#usage&customization)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
+- Home -> Home.jsx
+- About ADP -> About.jsx
+- Our Projects -> Projects.jsx
+- Our Team -> TechStack.jsx
+- The Developers -> Contact.jsx
+- Projects Home -> Slideshow.jsx
+- Slideshow Pictures -> endpoint.jsx
+- Legacy Lists -> Treedesign.jsx
 
 ## Features
 
