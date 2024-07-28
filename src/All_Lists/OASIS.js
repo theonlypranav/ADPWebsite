@@ -1,4 +1,3 @@
-import BJ from '../assets/oasis logo.jpg';
 import i1 from '../assets/OASIS/OASIS 2023/front structure 3.jpg';
 import i2 from '../assets/OASIS/OASIS 2022/inside audi panel 1 with junta.jpg';
 import i3 from '../assets/OASIS/OASIS 2019/central structure.jpg';
@@ -15,7 +14,7 @@ import i13 from '../assets/OASIS/OASIS 2001/structure - boothouse.jpg';
 import i14 from '../assets/OASIS/OASIS 2000/choreo backdrop.jpg';
 import i15 from '../assets/OASIS/OASIS 1999/structure 2.jpg';
 import i16 from '../assets/OASIS/OASIS 1998/wolf panel.jpg';
-import i17 from '../assets/OASIS/oasis 16.jpg';
+import i17 from '../assets/OASIS/OASIS 2016/Backdrop_16_20 feet.jpeg';
 import i18 from '../assets/OASIS/oasis 15.jpg';
 import i19 from '../assets/OASIS/oasis 14.jpg';
 import i20 from '../assets/OASIS/oasis 13.jpg';

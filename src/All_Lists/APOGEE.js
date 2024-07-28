@@ -1,4 +1,3 @@
-import BJ from '../assets/LogoApogee.jpg';
 import AS from '../assets/APOGEE/APOGEE 2024/central structure.jpg';
 import AD from '../assets/APOGEE/APOGEE 2023/backdrop 1 edit.jpg';
 import AF from '../assets/APOGEE/APOGEE 2000/Struct 2.jpeg';
@@ -6,14 +5,13 @@ import AG from '../assets/APOGEE/APOGEE 2004/Struct 2.jpg';
 import AH from '../assets/APOGEE/APOGEE 2001/Painting 5.jpeg';
 import AK from '../assets/APOGEE/APOGEE 2005/Struct 2 edit.jpg';
 import RT from '../assets/APOGEE/APOGEE 2006/Struct 7 edit.jpeg';
-import TR from '../assets/APOGEE/APOGEE 2007/Painting 1.jpg';
+import TR from '../assets/APOGEE/APOGEE 2007/structure 4.jpg';
 import AW from '../assets/APOGEE/APOGEE 2015/Painting 2015.jpeg';
 import DF from '../assets/APOGEE/APOGEE 2022/panel 7 edit.jpeg';
+import YY from '../assets/APOGEE/APOGEE 2008/structure - arabian nights.jpg';
 
 import XX from '../assets/APOGEE/logos/ApLogoYear 02.jpeg';
 import AA from '../assets/APOGEE/logos/ApLogoYear 03.jpeg';
-import BB from '../assets/APOGEE/logos/ApLogoYear 06.jpeg';
-import CC from '../assets/APOGEE/logos/ApLogoYear 07.jpeg';
 import DD from '../assets/APOGEE/logos/ApLogoYear 09.jpeg';
 import EE from '../assets/APOGEE/logos/ApLogoYear 10.jpeg';
 import FF from '../assets/APOGEE/logos/ApLogoYear 11.jpeg';
@@ -26,7 +24,7 @@ import LL from '../assets/APOGEE/logos/ApLogoYear 19.jpeg';
 import MM from '../assets/APOGEE/logos/ApLogoYear 20.jpeg';
 import NN from '../assets/APOGEE/logos/ApLogoYear 21.jpeg';
 import ZZ from '../assets/APOGEE/logos/ApLogoYear 18.jpeg';
-import YY from '../assets/APOGEE/logos/ApLogoYear 08.jpeg';
+
 
 const TechStackList2 = [
     {
