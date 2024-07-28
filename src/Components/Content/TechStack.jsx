@@ -76,6 +76,31 @@ function TechStack() {
                 .modal-exit {
                     animation: fadeOut 0.3s forwards;
                 }
+
+                .highlight-text {
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .highlight-text::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+                    transition: all 0.5s ease;
+                }
+
+                .highlight-text:hover::before {
+                    left: 100%;
+                }
+
+                .highlight-text span {
+                    position: relative;
+                    z-index: 1;
+                }
             `}</style>
             
             <div className="top-transition"></div>
@@ -117,11 +142,11 @@ function TechStack() {
                     {buttonNames.map((name, index) => (
                         <div key={index} className='flex flex-col items-center' data-aos='fade-up' data-aos-delay={`${index * 100}`}>
                             <button
-                                className='bg-dark-custom text-white border border-light-custom p-4 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-custom-light-glow font-bold'
+                                className='bg-dark-custom text-white border border-light-custom p-4 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-custom-light-glow font-bold highlight-text'
                                 style={{ width: '12rem', fontSize: '16px', boxShadow: '0 4px 8px rgba(255, 255, 255, 0.5)' }}
                                 onClick={() => handleButtonClick(index)}
                             >
-                                {name}
+                                <span>{name}</span>
                             </button>
                         </div>
                     ))}
@@ -159,6 +184,3 @@ function TechStack() {
 }
 
 export default TechStack;
-
-
-
