@@ -2,6 +2,7 @@ import i1 from '../assets/costaans/bhoomika jain.jpeg';
 import i2 from '../assets/costaans/yash choudhary.jpg';
 import i3 from '../assets/costaans/poorvansh kavta.jpg';
 import i4 from '../assets/costaans/rhythm saxena.jpg';
+import i6 from '../assets/costaans/2.jpg';
 import i5 from '../assets/sad2.jpg';
 
 const oasisheads = [
@@ -35,9 +36,17 @@ const oasisheads = [
     },
     {
         id: 5,
+        image: i6,
+        title: "Aditya Pawar",
+        subtitle: "CoStAAn, APOGEE '19",
+        linkedinProfile: "https://www.linkedin.com/in/aditya-pawar-351838133/"
+    },
+    {
+        id: 6,
         image: i5,
         title: "Please provide more information to the team",
-        subtitle: ""
+        subtitle: "",
+        linkedinProfile: "https://www.linkedin.com/company/apogee-bits-pilani/"
     },
 ];
 export default oasisheads;
