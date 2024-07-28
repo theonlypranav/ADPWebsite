@@ -94,10 +94,15 @@ function Navbar() {
                 </li>
               </a>
               <div className='relative group'>
-                <button className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700  transition cursor-pointer whitespace-nowrap'>
+                <button className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
                   Our Legacy
                 </button>
-                <div className='absolute left-0 mt-2 bg-black text-white border border-silver-500 py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity z-50'>
+                <div 
+                  className='absolute left-0 mt-2 text-white border border-silver-500 py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity z-50'
+                  style={{
+                    backgroundColor: 'rgba(0, 13, 26, 0.8)', // Match navbar background color and opacity
+                  }}
+                >
                   <RouterLink to='/treedesign?param=stuccan'>
                     <li className='p-2 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 cursor-pointer whitespace-nowrap rounded-t-lg'>
                       StuCCAn's
@@ -153,7 +158,12 @@ function Navbar() {
                 <button className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
                   Our Legacy
                 </button>
-                <div className='absolute left-0 mt-2 bg-black text-white border border-silver-500 py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity z-50'>
+                <div 
+                  className='absolute left-0 mt-2 text-white border border-silver-500 py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity z-50'
+                  style={{
+                    backgroundColor: 'rgba(0, 13, 26, 0.8)', // Match navbar background color and opacity
+                  }}
+                >
                   <RouterLink to='/treedesign?param=stuccan'>
                     <li className='p-2 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 cursor-pointer whitespace-nowrap rounded-t-lg'>
                       StuCCAn's
