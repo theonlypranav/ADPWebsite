@@ -1,7 +1,13 @@
 # ADP Website
 
 Domain URL: https://www.adp-bits-pilani.in
-Vercel Deployment: https://adp-website-nu.vercel.app/ 
+Vercel Deployment: https://adp-website-nu.vercel.app/
+
+## Features
+
+- Updated Lists of Current Cordinators and Workforce
+- Legacy Database of past Head of the departments
+- Our Porjects contaning artworks as old as 1998.
 
 ## Table of Contents
 
@@ -24,3 +30,18 @@ Vercel Deployment: https://adp-website-nu.vercel.app/
 - Oasis & APOGEE Titles -> ProjectsList.js
 - Members' Vertical-wise List -> TeamList.js
 - Coords List -> TechStackList.js
+
+##Installation
+
+- Clone the repository: `git clone https://github.com/theonlypranav/ADPWebsite.git`
+- Navigate to the project folder: `cd ADPWebsite`
+- Install dependencies: `npm install`
+- run the development server: `npm run dev`
+- Open your browser and visit [http://localhost:3000](http://localhost:3000)
+
+##Usage & Customization 
+
+- Update all TeamList 
+- Domain Renewal : Hostinger
+- Update previous Fest images
+- Customize styles as per the latest Trend 
