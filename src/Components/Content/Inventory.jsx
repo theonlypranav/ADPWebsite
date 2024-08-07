@@ -1,25 +1,52 @@
 import React, { useState } from 'react';
 
 function Inventory() {
-  const [quantities, setQuantities] = useState(Array(4).fill(0));
+  const [items, setItems] = useState(Array(4).fill({ name: '', quantity: 0 }));
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [modal, setModal] = useState({ visible: false, item: '', quantity: 0 });
+  const [addItemModal, setAddItemModal] = useState(false);
+  const [itemsManagerModal, setItemsManagerModal] = useState(false);
+  const [newItemName, setNewItemName] = useState('');
+  const [newItemQuantity, setNewItemQuantity] = useState(0);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
+
+  const addItem = () => {
+    if (newItemName.trim() === '') return;
+    setItems([...items, { name: newItemName, quantity: newItemQuantity }]);
+    setNewItemName('');
+    setNewItemQuantity(0);
+    setAddItemModal(false);
+  };
+
+  const updateItem = () => {
+    if (selectedItemIndex === null) return;
+    const updatedItems = [...items];
+    updatedItems[selectedItemIndex] = { name: newItemName, quantity: newItemQuantity };
+    setItems(updatedItems);
+    setNewItemName('');
+    setNewItemQuantity(0);
+    setItemsManagerModal(false);
+  };
 
   const increaseQuantity = (index) => {
-    setQuantities(quantities.map((qty, i) => (i === index ? qty + 1 : qty)));
+    const updatedItems = [...items];
+    updatedItems[index].quantity += 1;
+    setItems(updatedItems);
   };
 
   const decreaseQuantity = (index) => {
-    setQuantities(quantities.map((qty, i) => (i === index && qty > 0 ? qty - 1 : qty)));
+    const updatedItems = [...items];
+    if (updatedItems[index].quantity > 0) updatedItems[index].quantity -= 1;
+    setItems(updatedItems);
   };
 
   const addToCart = (index) => {
-    const item = `Item ${index + 1}`;
-    const quantity = quantities[index];
+    const item = items[index].name;
+    const quantity = items[index].quantity;
     if (quantity > 0) {
       setCart([...cart, { item, quantity }]);
-      setQuantities(quantities.map((qty, i) => (i === index ? 0 : qty)));
+      setItems(items.map((item, i) => (i === index ? { ...item, quantity: 0 } : item)));
       setModal({ visible: true, item, quantity });
     }
   };
@@ -31,6 +58,21 @@ function Inventory() {
 
   const closeModal = () => {
     setModal({ ...modal, visible: false });
+  };
+
+  const closeAddItemModal = () => {
+    setAddItemModal(false);
+  };
+
+  const closeItemsManagerModal = () => {
+    setItemsManagerModal(false);
+  };
+
+  const openItemsManagerModal = (index) => {
+    setSelectedItemIndex(index);
+    setNewItemName(items[index].name);
+    setNewItemQuantity(items[index].quantity);
+    setItemsManagerModal(true);
   };
 
   return (
@@ -58,6 +100,18 @@ function Inventory() {
             className='bg-gradient-to-r from-red-500 to-red-700 text-white px-5 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300'
           >
             Clear Cart
+          </button>
+          <button
+            onClick={() => setAddItemModal(true)}
+            className='bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-2 rounded shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300'
+          >
+            Add New Item
+          </button>
+          <button
+            onClick={() => setItemsManagerModal(true)}
+            className='bg-gradient-to-r from-purple-500 to-purple-700 text-white px-5 py-2 rounded shadow-md hover:from-purple-600 hover:to-purple-800 transition duration-300'
+          >
+            Items Manager
           </button>
         </div>
       </div>
@@ -93,7 +147,7 @@ function Inventory() {
       )}
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl mt-8'>
-        {quantities.map((quantity, index) => (
+        {items.map((item, index) => (
           <div
             key={index}
             className='bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center'
@@ -104,7 +158,7 @@ function Inventory() {
               className='w-48 h-48 object-cover rounded-lg mb-4'
             />
             <div className='text-lg font-semibold mb-2'>
-              Item Name {index + 1}
+              {item.name || `Item Name ${index + 1}`}
             </div>
             <div className='flex items-center mb-4'>
               <button
@@ -114,7 +168,7 @@ function Inventory() {
                 -
               </button>
               <div className='w-20 text-center text-white'>
-                {quantity}
+                {item.quantity}
               </div>
               <button
                 onClick={() => increaseQuantity(index)}
@@ -133,26 +187,124 @@ function Inventory() {
         ))}
       </div>
 
+      {/* Modal for adding new item */}
+      {addItemModal && (
+        <div className='fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3'>
+            <h3 className='text-xl font-semibold mb-4'>
+              Add New Item
+            </h3>
+            <input
+              type='text'
+              value={newItemName}
+              onChange={(e) => setNewItemName(e.target.value)}
+              placeholder='Item Name'
+              className='border border-gray-300 dark:border-gray-600 px-4 py-2 rounded mb-4 w-full bg-white text-black dark:bg-gray-800 dark:text-white'
+            />
+            <input
+              type='number'
+              value={newItemQuantity}
+              onChange={(e) => setNewItemQuantity(Number(e.target.value))}
+              placeholder='Quantity'
+              min='0'
+              className='border border-gray-300 dark:border-gray-600 px-4 py-2 rounded mb-4 w-full bg-white text-black dark:bg-gray-800 dark:text-white'
+            />
+            <div className='flex justify-end space-x-2'>
+              <button
+                onClick={addItem}
+                className='bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-2 rounded shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300'
+              >
+                Add Item
+              </button>
+              <button
+                onClick={closeAddItemModal}
+                className='bg-gradient-to-r from-gray-500 to-gray-700 text-white px-4 py-2 rounded shadow-md hover:from-gray-600 hover:to-gray-800 transition duration-300'
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal for Items Manager */}
+      {itemsManagerModal && (
+        <div className='fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3'>
+            <h3 className='text-xl font-semibold mb-4'>
+              Items Manager
+            </h3>
+            <select
+              onChange={(e) => setSelectedItemIndex(Number(e.target.value))}
+              value={selectedItemIndex === null ? '' : selectedItemIndex}
+              className='border border-gray-300 dark:border-gray-600 px-4 py-2 rounded mb-4 w-full bg-white text-black dark:bg-gray-800 dark:text-white'
+            >
+              <option value='' disabled>Select an item</option>
+              {items.map((item, index) => (
+                <option key={index} value={index}>
+                  {item.name || `Item Name ${index + 1}`}
+                </option>
+              ))}
+            </select>
+            {selectedItemIndex !== null && (
+              <div>
+                <input
+                  type='text'
+                  value={newItemName}
+                  onChange={(e) => setNewItemName(e.target.value)}
+                  placeholder='Item Name'
+                  className='border border-gray-300 dark:border-gray-600 px-4 py-2 rounded mb-4 w-full bg-white text-black dark:bg-gray-800 dark:text-white'
+                />
+                <input
+                  type='number'
+                  value={newItemQuantity}
+                  onChange={(e) => setNewItemQuantity(Number(e.target.value))}
+                  placeholder='Quantity'
+                  min='0'
+                  className='border border-gray-300 dark:border-gray-600 px-4 py-2 rounded mb-4 w-full bg-white text-black dark:bg-gray-800 dark:text-white'
+                />
+                <div className='flex justify-end space-x-2'>
+                  <button
+                    onClick={updateItem}
+                    className='bg-gradient-to-r from-green-500 to-green-700 text-white px-4 py-2 rounded shadow-md hover:from-green-600 hover:to-green-800 transition duration-300'
+                  >
+                    Update Item
+                  </button>
+                  <button
+                    onClick={closeItemsManagerModal}
+                    className='bg-gradient-to-r from-gray-500 to-gray-700 text-white px-4 py-2 rounded shadow-md hover:from-gray-600 hover:to-gray-800 transition duration-300'
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Modal for Cart Confirmation */}
       {modal.visible && (
         <div className='fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center'>
           <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3'>
             <h3 className='text-xl font-semibold mb-4'>
-              Item Added
+              Cart Confirmation
             </h3>
             <p className='mb-4'>
-              You have added {modal.quantity} {modal.item}(s) to your cart.
+              Item: {modal.item}
+            </p>
+            <p className='mb-4'>
+              Quantity: {modal.quantity}
             </p>
             <button
               onClick={closeModal}
-              className='bg-gradient-to-r from-red-500 to-red-700 text-white px-4 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300'
+              className='bg-gradient-to-r from-gray-500 to-gray-700 text-white px-4 py-2 rounded shadow-md hover:from-gray-600 hover:to-gray-800 transition duration-300'
             >
               Close
             </button>
           </div>
         </div>
       )}
-
-      <div className="bottom-transition"></div>
     </div>
   );
 }
