@@ -5,7 +5,7 @@ import img2 from '../assets/apogee.jpg'
 const ProjectsList = [
     {
         id: 1,
-        title: 'OA5IS',
+        title: 'OASIS',
         link: '/slideshow',
         image: img1,
         instagram: 'https://www.instagram.com/bitsoasis/',
