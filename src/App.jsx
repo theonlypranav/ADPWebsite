@@ -7,12 +7,13 @@ import TechStack from './Components/Content/TechStack';
 import Projects from './Components/Content/Projects';
 import Contact from './Components/Content/Contact';
 import Footer from './Components/Footer/Footer';
-import Slideshow from './Components/Content/Slideshow'; // Import the new Slideshow component
+import Slideshow from './Components/Content/Slideshow';
 import { BallTriangle } from 'react-loader-spinner';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Endpoint from './Components/Content/endpoint';
-import Treedesign from './Components/Content/Treedesign'
+import Treedesign from './Components/Content/Treedesign';
+import Inventory from './Components/Content/Inventory'; // Import the Inventory component
 import './App.css';
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
               <Footer />
             </>
           } />
-        <Route path="/endpoint" element={
+          <Route path="/endpoint" element={
             <>
               <Navbar />
               <Endpoint />
@@ -61,6 +62,13 @@ function App() {
             <>
               <Navbar />
               <Treedesign />
+              <Footer />
+            </>
+          } />
+          <Route path="/inventory" element={
+            <>
+              <Navbar />
+              <Inventory />
               <Footer />
             </>
           } />
