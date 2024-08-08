@@ -13,7 +13,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Endpoint from './Components/Content/endpoint';
 import Treedesign from './Components/Content/Treedesign';
-import Inventory from './Components/Content/Inventory'; // Import the Inventory component
+import Inventory from './Components/Content/Inventory'; 
+import InventoryUser from './Components/Content/InventoryUser';
+import InventoryADP from './Components/Content/InventoryADP';// Import the Inventory component
 import './App.css';
 
 function App() {
@@ -69,6 +71,20 @@ function App() {
             <>
               <Navbar />
               <Inventory />
+              <Footer />
+            </>
+          } />
+          <Route path="/inventoryuser" element={
+            <>
+              <Navbar />
+              <InventoryUser />
+              <Footer />
+            </>
+          } />
+          <Route path="/inventoryadp" element={
+            <>
+              <Navbar />
+              <InventoryADP />
               <Footer />
             </>
           } />
