@@ -14,13 +14,13 @@ function Inventory() {
           onClick={() => navigate('/inventoryadp')}
           className='bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-900 transition duration-300 transform hover:scale-105'
         >
-          Go to Inventory Home
+          ADP Login
         </button>
         <button
           onClick={() => navigate('/inventoryuser')}
           className='bg-gradient-to-r from-green-600 to-green-800 text-white px-6 py-3 rounded-lg shadow-lg hover:from-green-700 hover:to-green-900 transition duration-300 transform hover:scale-105'
         >
-          Go to Another Page
+          Club Coordinator Login
         </button>
       </div>
     </div>
