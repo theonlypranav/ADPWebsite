@@ -77,6 +77,12 @@ function Inventory() {
           >
             Back
           </button>
+          <button
+            onClick={() => navigate('/orders')}
+            className='bg-gradient-to-r from-teal-500 to-teal-700 text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300'
+          >
+            View All Orders
+          </button>
         </div>
       </div>
 
@@ -242,6 +248,3 @@ function Inventory() {
 }
 
 export default Inventory;
-
-
-

@@ -6,6 +6,7 @@ function Inventory() {
   const [items, setItems] = useState(Array(4).fill(null).map(() => ({ name: '', quantity: 0 })));
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [showCompleteOrderModal, setShowCompleteOrderModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [itemBeingEditedName, setItemBeingEditedName] = useState('');
   const [itemBeingEditedQuantity, setItemBeingEditedQuantity] = useState(0);
@@ -97,6 +98,12 @@ function Inventory() {
           >
             Back
           </button>
+          <button
+            onClick={() => setShowCompleteOrderModal(true)}
+            className='bg-gradient-to-r from-purple-500 to-purple-700 text-white px-6 py-2 rounded shadow-md hover:from-purple-600 hover:to-purple-800 transition duration-300'
+          >
+            Complete Order
+          </button>
         </div>
       </div>
 
@@ -127,6 +134,46 @@ function Inventory() {
               )}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {showCompleteOrderModal && (
+        <div className='fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3'>
+            <h3 className='text-xl font-semibold mb-4'>
+              Cart Items
+            </h3>
+            <table className='min-w-full bg-gray-200 dark:bg-gray-800 rounded-lg'>
+              <thead className='bg-gray-300 dark:bg-gray-700'>
+                <tr>
+                  <th className='py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300'>Item</th>
+                  <th className='py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300'>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.length === 0 ? (
+                  <tr>
+                    <td colSpan="2" className='py-4 px-4 text-center text-gray-600 dark:text-gray-300'>
+                      No items in cart
+                    </td>
+                  </tr>
+                ) : (
+                  cart.map((item, index) => (
+                    <tr key={index}>
+                      <td className='py-2 px-4 border-b text-gray-800 dark:text-gray-100'>{item.item}</td>
+                      <td className='py-2 px-4 border-b text-gray-800 dark:text-gray-100'>{item.quantity}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+            <button
+              onClick={() => setShowCompleteOrderModal(false)}
+              className='bg-gradient-to-r from-red-500 to-red-700 text-white px-6 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300 mt-4'
+            >
+              Close
+            </button>
+          </div>
         </div>
       )}
 
