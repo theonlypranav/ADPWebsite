@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 function Inventory() {
   const [items, setItems] = useState([
@@ -27,6 +28,14 @@ function Inventory() {
       className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'
     >
       <h1 className='text-4xl font-bold mb-6'>Inventory Management</h1>
+      
+      {/* Button to link to /inventoryadp */}
+      <Link to='/inventoryadp'>
+        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-4'>
+          Back to Home
+        </button>
+      </Link>
+      
       <table className='min-w-full bg-white dark:bg-gray-800'>
         <thead>
           <tr className='text-left'>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Inventory.css'; // Ensure this includes styles for the tick button
 
 function Inventory() {
   const navigate = useNavigate();
-  const [items, setItems] = useState(Array(4).fill(null).map(() => ({ name: '', quantity: 0 })));
+  const [items, setItems] = useState(Array(4).fill(null).map(() => ({ name: '', quantity: 0, enabled: true })));
   const [addItemModal, setAddItemModal] = useState(false);
   const [itemsManagerModal, setItemsManagerModal] = useState(false);
   const [newItemName, setNewItemName] = useState('');
@@ -11,10 +12,11 @@ function Inventory() {
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [itemBeingEditedName, setItemBeingEditedName] = useState('');
   const [itemBeingEditedQuantity, setItemBeingEditedQuantity] = useState(0);
+  const [itemBeingEditedEnabled, setItemBeingEditedEnabled] = useState(true);
 
   const addItem = () => {
     if (newItemName.trim() === '') return;
-    setItems([...items, { name: newItemName, quantity: newItemQuantity }]);
+    setItems([...items, { name: newItemName, quantity: newItemQuantity, enabled: true }]);
     setNewItemName('');
     setNewItemQuantity(0);
     setAddItemModal(false);
@@ -22,15 +24,16 @@ function Inventory() {
 
   const updateItem = () => {
     if (selectedItemIndex === null) return;
-    setItems(prevItems => 
+    setItems(prevItems =>
       prevItems.map((item, index) =>
         index === selectedItemIndex
-          ? { name: itemBeingEditedName, quantity: itemBeingEditedQuantity }
+          ? { name: itemBeingEditedName, quantity: itemBeingEditedQuantity, enabled: itemBeingEditedEnabled }
           : item
       )
     );
     setItemBeingEditedName('');
     setItemBeingEditedQuantity(0);
+    setItemBeingEditedEnabled(true);
     setSelectedItemIndex(null);
     setItemsManagerModal(false);
   };
@@ -43,6 +46,7 @@ function Inventory() {
     setSelectedItemIndex(index);
     setItemBeingEditedName(items[index].name);
     setItemBeingEditedQuantity(items[index].quantity);
+    setItemBeingEditedEnabled(items[index].enabled);
   };
 
   return (
@@ -102,6 +106,9 @@ function Inventory() {
             </div>
             <div className='text-lg'>
               Quantity: {item.quantity}
+            </div>
+            <div className={`mt-2 text-sm ${item.enabled ? 'text-green-500' : 'text-red-500'}`}>
+              Status: {item.enabled ? 'Enabled' : 'Disabled'}
             </div>
           </div>
         ))}
@@ -168,7 +175,13 @@ function Inventory() {
       {/* Modal for items manager */}
       {itemsManagerModal && (
         <div className='fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center'>
-          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3 relative'>
+            <button
+              onClick={closeItemsManagerModal}
+              className='absolute top-2 right-2 text-gray-500 dark:text-gray-300 text-2xl'
+            >
+              &times;
+            </button>
             <h3 className='text-xl font-semibold mb-4'>
               Edit Item
             </h3>
@@ -184,7 +197,7 @@ function Inventory() {
                 <option value='' disabled>Select an item</option>
                 {items.map((item, index) => (
                   <option key={index} value={index}>
-                    {item.name || `Item Name ${index + 1}`}
+                    {item.name || `Item ${index + 1}`}
                   </option>
                 ))}
               </select>
@@ -223,6 +236,14 @@ function Inventory() {
                       className='w-16 ml-2 px-2 py-1 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700'
                     />
                   </div>
+                </div>
+                <div className='mb-4'>
+                  <button
+                    onClick={() => setItemBeingEditedEnabled(!itemBeingEditedEnabled)}
+                    className={`w-full py-2 rounded-lg text-white ${itemBeingEditedEnabled ? 'bg-green-500' : 'bg-red-500'}`}
+                  >
+                    {itemBeingEditedEnabled ? 'Enabled' : 'Disabled'}
+                  </button>
                 </div>
                 <div className='flex justify-end'>
                   <button
