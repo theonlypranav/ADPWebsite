@@ -13,7 +13,7 @@ function Inventory() {
 
   const updateItem = () => {
     if (selectedItemIndex === null) return;
-    setItems(prevItems => 
+    setItems(prevItems =>
       prevItems.map((item, index) =>
         index === selectedItemIndex
           ? { name: itemBeingEditedName, quantity: itemBeingEditedQuantity }
@@ -25,21 +25,12 @@ function Inventory() {
     setSelectedItemIndex(null);
   };
 
-  const increaseQuantity = (index) => {
-    setItems(prevItems => 
+  const handleQuantityChange = (index, value) => {
+    const newQuantity = Math.max(0, Number(value));
+    setItems(prevItems =>
       prevItems.map((item, i) =>
         i === index
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
-  };
-
-  const decreaseQuantity = (index) => {
-    setItems(prevItems => 
-      prevItems.map((item, i) =>
-        i === index && item.quantity > 0
-          ? { ...item, quantity: item.quantity - 1 }
+          ? { ...item, quantity: newQuantity }
           : item
       )
     );
@@ -191,79 +182,24 @@ function Inventory() {
             <div className='text-lg font-semibold mb-2'>
               {item.name || `Item Name ${index + 1}`}
             </div>
-            <div className='flex items-center mb-4'>
-              <button
-                onClick={() => decreaseQuantity(index)}
-                className='bg-gray-600 dark:bg-gray-800 text-white px-4 py-2 rounded-l'
-              >
-                -
-              </button>
-              <div className='w-20 text-center text-white'>
-                {item.quantity}
-              </div>
-              <button
-                onClick={() => increaseQuantity(index)}
-                className='bg-gray-600 dark:bg-gray-800 text-white px-4 py-2 rounded-r'
-              >
-                +
-              </button>
+            <div className='flex flex-col items-center mb-4'>
+              <input
+                type='number'
+                value={item.quantity}
+                onChange={(e) => handleQuantityChange(index, e.target.value)}
+                className='w-24 text-center p-2 border border-gray-300 rounded-lg text-black'
+                min="0"
+              />
             </div>
             <button
               onClick={() => addToCart(index)}
-              className='bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-2 rounded shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300'
+              className='bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded shadow-md hover:from-purple-600 hover:to-purple-800 transition duration-300'
             >
               Add to Cart
             </button>
           </div>
         ))}
       </div>
-
-      {/* Modal for editing item */}
-      {selectedItemIndex !== null && (
-        <div className='fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center'>
-          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3'>
-            <h3 className='text-xl font-semibold mb-4'>
-              Edit Item
-            </h3>
-            <div className='mb-4'>
-              <label className='block text-sm font-medium mb-1'>
-                Item Name
-              </label>
-              <input
-                type='text'
-                value={itemBeingEditedName}
-                onChange={(e) => setItemBeingEditedName(e.target.value)}
-                className='w-full px-3 py-2 border border-gray-300 rounded-lg'
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-sm font-medium mb-1'>
-                Quantity
-              </label>
-              <input
-                type='number'
-                value={itemBeingEditedQuantity}
-                onChange={(e) => setItemBeingEditedQuantity(Number(e.target.value))}
-                className='w-full px-3 py-2 border border-gray-300 rounded-lg'
-              />
-            </div>
-            <div className='flex justify-end space-x-4'>
-              <button
-                onClick={updateItem}
-                className='bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-2 rounded shadow-md hover:from-green-600 hover:to-green-800 transition duration-300'
-              >
-                Save
-              </button>
-              <button
-                onClick={() => setSelectedItemIndex(null)}
-                className='bg-gradient-to-r from-red-500 to-red-700 text-white px-6 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300'
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
