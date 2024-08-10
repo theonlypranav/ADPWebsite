@@ -7,7 +7,7 @@ function Inventory() {
   return (
     <div className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center justify-center'>
       <h1 className='text-4xl font-bold mb-12 text-center'>
-        Inventory Management
+        INVENTORY MANAGEMENT
       </h1>
       <div className='space-y-6'>
         <button
