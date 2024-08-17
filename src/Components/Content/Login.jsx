@@ -19,42 +19,44 @@ function Login() {
   };
 
   return (
-    <div className="wrapper">
-      <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <div className="input-box">
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <i className='bx bxs-user'></i>
-        </div>
-        <div className="input-box">
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <i className='bx bxs-lock-alt'></i>
-        </div>
-        <div className="remember-forget">
-          <label>
-            <input type="checkbox" />
-            Remember me
-          </label>
-          <a href="#">Forget Password?</a>
-        </div>
-        <button type="submit" className="btn">Login</button>
-        <div className="register-link">
-          <p>Don't have an account? <a href="#">Register</a></p>
-        </div>
-        <div className="tech-support">
-          <p>Tech Support <a href="http://wasap.my/919937020000"><FaWhatsapp className="icon-glow text-silver-700 hover:text-silver-500" /></a></p>
-        </div>
-      </form>
+    <div className='wrapper-pro'>
+      <div className="wrapper">
+        <form onSubmit={handleSubmit}>
+          <h1>Login</h1>
+          <div className="input-box">
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <i className='bx bxs-user'></i>
+          </div>
+          <div className="input-box">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i className='bx bxs-lock-alt'></i>
+          </div>
+          <div className="remember-forget">
+            <label>
+              <input type="checkbox" />
+              Remember me
+            </label>
+            <a href="#">Forget Password?</a>
+          </div>
+          <button type="submit" className="btn"><a href="/inventoryadp">Login</a></button>
+          <div className="register-link">
+            <p>Don't have an account? <a href="/register">Register</a></p>
+          </div>
+          <div className="tech-support">
+            <p>Tech Support <a href="http://wasap.my/919937020000"><FaWhatsapp className="icon-glow text-silver-700 hover:text-silver-500" /></a></p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

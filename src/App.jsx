@@ -18,6 +18,8 @@ import Orders from './Components/Content/Orders';
 import InventoryUser from './Components/Content/InventoryUser';
 import InventoryADP from './Components/Content/InventoryADP';// Import the Inventory component
 import Login from './Components/Content/Login';
+import Register from './Components/Content/Register';
+
 import './App.css';
 
 function App() {
@@ -80,6 +82,13 @@ function App() {
             <>
               <Navbar />
               <Login />
+              <Footer />
+            </>
+          } />
+          <Route path="/register" element={
+            <>
+              <Navbar />
+              <Register />
               <Footer />
             </>
           } />

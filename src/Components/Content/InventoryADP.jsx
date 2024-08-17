@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Inventory.css'; // Ensure this includes styles for the tick button
+import './Inventory.css'; 
+import bgImage from '../../assets/bg.jpg'; 
 
 function Inventory() {
   const navigate = useNavigate();
@@ -94,7 +95,12 @@ function Inventory() {
   
 
   return (
-    <div id='Inventory' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'>
+    <div id='Inventory' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center' style={{
+      backgroundImage: `url(${bgImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center', 
+      backgroundRepeat: 'no-repeat' 
+    }}>
       <div className="top-transition"></div>
       <div className='text-center w-full flex flex-col items-center mb-12'>
         <h1 className='text-4xl font-bold mb-2 text-silver-700 dark:text-silver-300'>
