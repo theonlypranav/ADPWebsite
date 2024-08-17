@@ -8,7 +8,7 @@
     position: relative;
     overflow: hidden;
   }
-  #Home,#OurProjects ,#TheDevelopers ,#slideshow, #tree{
+  #Home,#OurProjects ,#TheDevelopers ,#slideshow, #tree, .wrapper{
     position: relative;
     background-image: url('../../assets/bg.jpg');
     background-size: cover;

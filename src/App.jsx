@@ -17,6 +17,7 @@ import Inventory from './Components/Content/Inventory';
 import Orders from './Components/Content/Orders'; 
 import InventoryUser from './Components/Content/InventoryUser';
 import InventoryADP from './Components/Content/InventoryADP';// Import the Inventory component
+import Login from './Components/Content/Login';
 import './App.css';
 
 function App() {
@@ -72,6 +73,13 @@ function App() {
             <>
               <Navbar />
               <Inventory />
+              <Footer />
+            </>
+          } />
+          <Route path="/login" element={
+            <>
+              <Navbar />
+              <Login />
               <Footer />
             </>
           } />

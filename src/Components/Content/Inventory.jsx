@@ -11,13 +11,13 @@ function Inventory() {
       </h1>
       <div className='flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 mt-20'> {/* Added margin-top for spacing from the heading */}
         <button
-          onClick={() => navigate('/inventoryadp')}
+          onClick={() => navigate('/login')}
           className='bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-900 transition duration-300 transform hover:scale-105 min-w-[200px] text-center'
         >
           ADP Login
         </button>
         <button
-          onClick={() => navigate('/inventoryuser')}
+          onClick={() => navigate('/login')}
           className='bg-gradient-to-r from-green-600 to-green-800 text-white px-6 py-3 rounded-lg shadow-lg hover:from-green-700 hover:to-green-900 transition duration-300 transform hover:scale-105 min-w-[200px] text-center'
         >
           Club Coordinator Login
