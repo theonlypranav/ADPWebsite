@@ -25,6 +25,7 @@ function Login() {
         switch(data.user.email)
         {
           case ("pranav100104@gmail.com"):
+          case ("inventory@adp.com"):
           {
             navigate('/inventoryadp')
             break;}
