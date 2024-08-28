@@ -61,7 +61,7 @@ function Inventory() {
               </td>
               <td className='py-2 px-4 border-b'>
                 <select
-                  className='dropdown'
+                  className='status-dropdown'
                   value={item.status}
                   onChange={(e) => handleStatusChange(index, e.target.value)}
                 >
