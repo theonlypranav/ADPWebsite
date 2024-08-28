@@ -20,3 +20,14 @@
   outline: none; /* Removes default focus outline */
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3); /* Adds subtle shadow on focus */
 }
+.remarks-input {
+  background-color: rgba(0, 0, 0, 0.1); /* Semi-translucent background */
+  border: 0.7px solid #ffffff;
+  border-radius: 4px;
+  padding: 4px 8px; /* Adjust padding for a smaller box */
+  width: 150px; /* Set a specific width */
+  height: 25px; /* Set a specific height */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+

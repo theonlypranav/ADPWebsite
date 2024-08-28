@@ -46,6 +46,7 @@ function Inventory() {
             <th className='py-2 px-4 border-b'>Status</th>
             <th className='py-2 px-4 border-b'>Remarks</th>
           </tr>
+    
         </thead>
         <tbody>
           {items.map((item, index) => (
@@ -71,6 +72,14 @@ function Inventory() {
                   <option value="rejected">Rejected</option>
                   <option value="amazon">Add Amazon Link</option>
                 </select>
+              </td>
+              <td className='py-2 px-4 border-b'>
+                <input
+                  type='text'
+                  className='remarks-input'
+                  value={item.remarks}
+                  onChange={(e) => handleRemarkChange(index, e.target.value)}
+                />
               </td>
             </tr>
             
