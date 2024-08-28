@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 
 function Inventory() {
   const [items, setItems] = useState([
-    { name: 'Item 1', quantity: 10, order: 'Order 1' },
-    { name: 'Item 2', quantity: 5, order: 'Order 2' },
-    { name: 'Item 3', quantity: 8, order: 'Order 3' },
-    { name: 'Item 4', quantity: 12, order: 'Order 4' },
-    { name: 'Item 5', quantity: 7, order: 'Order 5' },
+    { name: 'Club A', coordinator: 'John Doe', contact: '123-456-7890', order: 'Order 1' },
+    { name: 'Club B', coordinator: 'Jane Smith', contact: '234-567-8901', order: 'Order 2' },
+    { name: 'Club C', coordinator: 'Alice Johnson', contact: '345-678-9012', order: 'Order 3' },
+    { name: 'Club D', coordinator: 'Bob Brown', contact: '456-789-0123', order: 'Order 4' },
+    { name: 'Club E', coordinator: 'Emily Davis', contact: '567-890-1234', order: 'Order 5' },
   ]);
+
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -41,7 +42,7 @@ function Inventory() {
           <tr className='text-left'>
             <th className='py-2 px-4 border-b'>Club Name</th>
             <th className='py-2 px-4 border-b'>Coordinator</th>
-            <th className='py-2 px-4 border-b'>Contact Number</th>
+            <th className='py-2 px-4 border-b'>Contact</th>
             <th className='py-2 px-4 border-b'>Order</th>
           </tr>
         </thead>
@@ -49,8 +50,8 @@ function Inventory() {
           {items.map((item, index) => (
             <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
               <td className='py-2 px-4 border-b'>{item.name}</td>
-              <td className='py-2 px-4 border-b'>{`Coordinator ${index + 1}`}</td>
-              <td className='py-2 px-4 border-b'>{`Contact ${index + 1}`}</td>
+              <td className='py-2 px-4 border-b'>{item.coordinator}</td>
+              <td className='py-2 px-4 border-b'>{item.contact}</td>
               <td
                 className='py-2 px-4 border-b cursor-pointer text-blue-500 hover:underline'
                 onClick={() => handleOrderClick(`Order details for ${item.name}`)}
