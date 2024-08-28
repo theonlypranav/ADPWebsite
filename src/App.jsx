@@ -19,6 +19,7 @@ import InventoryUser from './Components/Content/InventoryUser';
 import InventoryADP from './Components/Content/InventoryADP';// Import the Inventory component
 import Login from './Components/Content/Login';
 import Register from './Components/Content/Register';
+import Items from './Components/Content/Items';
 
 import './App.css';
 
@@ -103,6 +104,13 @@ function App() {
             <>
               <Navbar />
               <InventoryADP />
+              <Footer />
+            </>
+          } />
+          <Route path="/items" element={
+            <>
+              <Navbar />
+              <Items />
               <Footer />
             </>
           } />

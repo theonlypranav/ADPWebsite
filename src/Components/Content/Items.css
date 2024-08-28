@@ -1,0 +1,16 @@
+/* Inventory.css */
+.status-dropdown {
+    background-color: black;
+    color: rgba(81, 21, 21, 0.606);
+    border: none;
+    border-radius: 9999px; /* Makes the dropdown round */
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .status-dropdown option {
+    background-color: black;
+    color: black;
+  }
+  
