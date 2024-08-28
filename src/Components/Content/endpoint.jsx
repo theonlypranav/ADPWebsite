@@ -78,6 +78,10 @@ const Endpoint = () => {
         setCurrentIndex(0); // Reset to the first image when loading new images
       }
     };
+    const handleBackClick = () => {
+      navigate(-1); // Go back to the previous page
+    };
+  
 
     loadImages();
     AOS.init({ duration: 1000 });
@@ -119,9 +123,12 @@ const Endpoint = () => {
 
   return (
     <div id='slideshow' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen overflow-hidden'>
-      <h1 data-aos='fade-right' style={{ fontFamily: 'Anton', letterSpacing: 0.8 }}className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-16 leading-normal uppercase text-silver-700 font-anton'>
-        RELIVE THE MEMORIES
-      </h1>
+             
+        {/* Heading */}
+        <h1 data-aos='fade-right' style={{ fontFamily: 'Anton', letterSpacing: 0.8 }} className='text-3xl sm:text-4xl mb-12 md:text-5xl lg:text-6xl font-normal leading-normal uppercase text-silver-700 font-anton'>
+          RELIVE THE MEMORIES
+        </h1>
+               
       <div className='relative w-full max-w-[1000px] flex items-center justify-center'>
         <button onClick={handlePrev} className='fixed left-4 top-1/2 transform -translate-y-1/2 text-white bg-black p-3 rounded-full z-20 text-3xl'>
           <FaArrowLeft />
