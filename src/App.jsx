@@ -20,6 +20,7 @@ import InventoryADP from './Components/Content/InventoryADP';// Import the Inven
 import Login from './Components/Content/Login';
 import Register from './Components/Content/Register';
 import Items from './Components/Content/Items';
+import OrderwiseItem from './Components/Content/OrderwiseItem';
 
 import './App.css';
 
@@ -111,6 +112,13 @@ function App() {
             <>
               <Navbar />
               <Items />
+              <Footer />
+            </>
+          } />
+          <Route path="/orderwiseitem" element={
+            <>
+              <Navbar />
+              <Slideshow />
               <Footer />
             </>
           } />

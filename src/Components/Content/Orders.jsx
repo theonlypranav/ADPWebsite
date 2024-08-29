@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Inventory() {
+
   const [items, setItems] = useState([
     { name: 'Club A', coordinator: 'John Doe', contact: '123-456-7890', order: 'Order 1' },
     { name: 'Club B', coordinator: 'Jane Smith', contact: '234-567-8901', order: 'Order 2' },
@@ -9,14 +10,15 @@ function Inventory() {
     { name: 'Club D', coordinator: 'Bob Brown', contact: '456-789-0123', order: 'Order 4' },
     { name: 'Club E', coordinator: 'Emily Davis', contact: '567-890-1234', order: 'Order 5' },
   ]);
+  
+  const navigate = useNavigate();
+
+  const handleOrderClick = (orderDetails) => {
+  navigate('/OrderwiseItem', { state: { orderDetails } });
+};
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
-
-  const handleOrderClick = (order) => {
-    setSelectedOrder(order);
-    setModalVisible(true);
-  };
 
   const closeModal = () => {
     setModalVisible(false);
@@ -53,11 +55,12 @@ function Inventory() {
               <td className='py-2 px-4 border-b'>{item.coordinator}</td>
               <td className='py-2 px-4 border-b'>{item.contact}</td>
               <td
-                className='py-2 px-4 border-b cursor-pointer text-blue-500 hover:underline'
-                onClick={() => handleOrderClick(`Order details for ${item.name}`)}
-              >
-                View Order
-              </td>
+  className='py-2 px-4 border-b cursor-pointer text-blue-500 hover:underline'
+  onClick={() => handleOrderClick(`Order details for ${item.name}`)}
+>
+  View Order
+</td>
+
             </tr>
           ))}
         </tbody>
