@@ -4,9 +4,9 @@ import './Items.css';
 
 function Inventory() {
   const [items, setItems] = useState([
-    { name: 'Item 1', ReqQ: 10, GivenQ: 20, AddQ: 'Order 1' },
-    { name: 'Item 1', ReqQ: 10, GivenQ: 20, AddQ: 'Order 1' },
-    { name: 'Item 1', ReqQ: 10, GivenQ: 20, AddQ: 'Order 1' }
+    { name: 'Item 1', Tdemand: 10, Tavail: 20 },
+    { name: 'Item 1', Tdemand: 10, Tavail: 20 },
+    { name: 'Item 1', Tdemand: 10, Tavail: 20 },
    
   ]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,7 +27,7 @@ function Inventory() {
       id='Inventory'
       className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'
     >
-      <h1 className='text-4xl font-bold mb-6'>Inventory Management</h1>
+      <h1 className='text-4xl font-bold mb-6'>Item List</h1>
       
       {/* Button to link to /inventoryadp */}
       <Link to='/inventoryadp'>
@@ -39,10 +39,9 @@ function Inventory() {
       <table className='min-w-full bg-white dark:bg-gray-800'>
         <thead>
           <tr className='text-left'>
-            <th className='py-2 px-4 border-b'>Items</th>
-            <th className='py-2 px-4 border-b'>Required Quantity</th>
-            <th className='py-2 px-4 border-b'>Given Quantity</th>
-            <th className='py-2 px-4 border-b'>Add Quantity</th>
+            <th className='py-2 px-4 border-b'>Item</th>
+            <th className='py-2 px-4 border-b'>Total Demand</th>
+            <th className='py-2 px-4 border-b'>Total Available</th>
             <th className='py-2 px-4 border-b'>Status</th>
             <th className='py-2 px-4 border-b'>Remarks</th>
           </tr>
@@ -54,12 +53,7 @@ function Inventory() {
               <td className='py-2 px-4 border-b'>{item.name}</td>
               <td className='py-2 px-4 border-b'>{`Coordinator ${index + 1}`}</td>
               <td className='py-2 px-4 border-b'>{`Contact ${index + 1}`}</td>
-              <td
-                className='py-2 px-4 border-b cursor-pointer text-blue-500 hover:underline'
-                onClick={() => handleOrderClick(`Order details for ${item.name}`)}
-              >
-                View Order
-              </td>
+             
               <td className='py-2 px-4 border-b'>
                 <select
                   className='status-dropdown'
