@@ -3,19 +3,17 @@ import 'boxicons/css/boxicons.min.css';
 import './Login.css';
 import './Home.css';
 import { FaLinkedinIn, FaInstagram, FaWhatsapp } from 'react-icons/fa';
-import supabase from '../../supabase';
-import { useNavigate } from 'react-router-dom';
+
 
 function Login() {
-  const navigate = useNavigate();
-
   // State for username and password
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   // Handle form submission
-  const handleSubmit = async(e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
@@ -39,9 +37,11 @@ function Login() {
         alert(error.message);
       }
     
+=======
+>>>>>>> parent of bff9aec (LOGIN supa)
     // Perform login logic here
-    // console.log('Username:', username);
-    // console.log('Password:', password);
+    console.log('Username:', username);
+    console.log('Password:', password);
   };
 
   return (
@@ -52,9 +52,9 @@ function Login() {
           <div className="input-box">
             <input
               type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <i className='bx bxs-user'></i>
           </div>
@@ -74,7 +74,7 @@ function Login() {
             </label>
             <a href="#">Forget Password?</a>
           </div>
-          <button type="submit" className="btn">Login</button>
+          <button type="submit" className="btn"><a href="/inventoryadp">Login</a></button>
           <div className="register-link">
             <p>Don't have an account? <a href="/register">Register</a></p>
           </div>
