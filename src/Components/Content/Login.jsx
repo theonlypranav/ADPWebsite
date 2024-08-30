@@ -3,45 +3,27 @@ import 'boxicons/css/boxicons.min.css';
 import './Login.css';
 import './Home.css';
 import { FaLinkedinIn, FaInstagram, FaWhatsapp } from 'react-icons/fa';
-import supabase from '../../supabase';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
 
-  // State for username and password
+  // State for email and password
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   // Handle form submission
-  const handleSubmit = async(e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-      if(!error){
-        switch(data.user.email)
-        {
-          case ("pranav100104@gmail.com"):
-          case ("inventory@adp.com"):
-          {
-            navigate('/inventoryadp')
-            break;}
-          case ("adp@gmail.com"):
-            {
-              navigate('/inventoryuser')
-            }
-        }
-      }
-      else {
-        alert(error.message);
-      }
-    
-    // Perform login logic here
-    // console.log('Username:', username);
-    // console.log('Password:', password);
+    // Perform login logic here (e.g., navigate based on email)
+    if (email === "pranav100104@gmail.com" || email === "inventory@adp.com") {
+      navigate('/inventoryadp');
+    } else if (email === "adp@gmail.com") {
+      navigate('/inventoryuser');
+    } else {
+      alert("Invalid email or password");
+    }
   };
 
   return (
