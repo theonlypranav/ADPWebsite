@@ -2,27 +2,44 @@ import React, { useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import './Login.css';
 import './Home.css';
-import { FaLinkedinIn, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
-
-  // State for email and password
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Perform login logic here (e.g., navigate based on email)
-    if (email === "pranav100104@gmail.com" || email === "inventory@adp.com") {
-      navigate('/inventoryadp');
-    } else if (email === "adp@gmail.com") {
-      navigate('/inventoryuser');
-    } else {
-      alert("Invalid email or password");
+
+    try {
+      const response = await fetch('http://localhost:5001/api/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store the JWT token in local storage
+        localStorage.setItem('token', data.token);
+
+        // Navigate based on the user's access level
+        if (data.user.access === 'user') {
+          navigate('/inventoryuser');
+        } else if (data.user.access === 'bosslevel') {
+          navigate('/inventoryadp');
+        } else {
+          alert('Unknown access level');
+        }
+      } else {
+        alert(data.message || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('An error occurred during login.');
     }
   };
 
@@ -34,7 +51,7 @@ function Login() {
           <div className="input-box">
             <input
               type="text"
-              placeholder="Email"
+              placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />

@@ -1,90 +1,158 @@
 import React, { useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import './Register.css';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function Register() {
+  const navigate = useNavigate(); // Initialize useNavigate
   const [formData, setFormData] = useState({
-    coordinatorName: '',
+    cordName: '',
     clubName: '',
-    phoneNumber: '',
+    mobile: '',
     email: '',
     password: '',
+    verificationCode: '', // State for OTP
   });
+  const [otpSent, setOtpSent] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSendOtp = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const response = await fetch('http://localhost:5001/api/users/request-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: formData.email }),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setOtpSent(true);
+        alert('OTP sent to your email.');
+      } else {
+        alert(result.error || 'Failed to send OTP.');
+      }
+    } catch (error) {
+      console.error('Error sending OTP:', error);
+      alert('An error occurred while sending OTP.');
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setIsRegistering(true);
+    try {
+      const response = await fetch('http://localhost:5001/api/users/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        alert('Registration successful!');
+        navigate('/login'); // Redirect to login page
+      } else {
+        alert(result.error || 'Registration failed.');
+      }
+    } catch (error) {
+      console.error('Error registering user:', error);
+      alert('An error occurred during registration.');
+    } finally {
+      setIsRegistering(false);
+    }
   };
 
   return (
-    <div classname = "register-page">
-        <div id="register">
+    <div className="register-page">
+      <div id="register">
         <div className="wrapper">
-            <form onSubmit={handleSubmit}>
+          <form>
             <h1>Register</h1>
             <div className="input-box">
-                <input
-                type="text"
-                name="coordinatorName"
-                placeholder="Co-ordinator Name"
-                value={formData.coordinatorName}
-                onChange={handleChange}
-                required
-                />
-                <i className='bx bxs-user'></i>
-            </div>
-            <div className="input-box">
-                <input
-                type="text"
-                name="clubName"
-                placeholder="Club Name"
-                value={formData.clubName}
-                onChange={handleChange}
-                required
-                />
-                <i className='bx bxs-building'></i>
-            </div>
-            <div className="input-box">
-                <input
-                type="text"
-                name="phoneNumber"
-                placeholder="Phone Number"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                required
-                />
-                <i className='bx bxs-phone'></i>
-            </div>
-            <div className="input-box">
-                <input
+              <input
                 type="email"
                 name="email"
                 placeholder="Email ID"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                />
-                <i className='bx bxs-envelope'></i>
+              />
+              <i className='bx bxs-envelope'></i>
             </div>
             <div className="input-box">
-                <input
+              <input
+                type="text"
+                name="cordName"
+                placeholder="Co-ordinator Name"
+                value={formData.cordName}
+                onChange={handleChange}
+                required
+              />
+              <i className='bx bxs-user'></i>
+            </div>
+            <div className="input-box">
+              <input
+                type="text"
+                name="clubName"
+                placeholder="Club Name"
+                value={formData.clubName}
+                onChange={handleChange}
+                required
+              />
+              <i className='bx bxs-building'></i>
+            </div>
+            <div className="input-box">
+              <input
+                type="text"
+                name="mobile"
+                placeholder="Phone Number"
+                value={formData.mobile}
+                onChange={handleChange}
+                required
+              />
+              <i className='bx bxs-phone'></i>
+            </div>
+            <div className="input-box">
+              <input
                 type="password"
                 name="password"
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
                 required
+              />
+              <i className='bx bxs-lock-alt'></i>
+            </div>
+            {otpSent && (
+              <div className="input-box">
+                <input
+                  type="text"
+                  name="verificationCode"
+                  placeholder="Verification Code"
+                  value={formData.verificationCode}
+                  onChange={handleChange}
+                  required
                 />
                 <i className='bx bxs-lock-alt'></i>
-            </div>
-            <button type="submit" className="btn"><a href="/login">Register</a></button>
-            </form>
+              </div>
+            )}
+            <button type="button" className="btn" onClick={handleSendOtp}>
+              {otpSent ? 'Resend OTP' : 'Get OTP At Email'}
+            </button>
+            <button
+              type="button"
+              className="btn"
+              onClick={handleRegister}
+              disabled={isRegistering}
+            >
+              {isRegistering ? 'Registering...' : 'Register'}
+            </button>
+          </form>
         </div>
-        </div>
+      </div>
     </div>
   );
 }
