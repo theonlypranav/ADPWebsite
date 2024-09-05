@@ -23,8 +23,9 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        // Store the JWT token in local storage
+        // Store the JWT token and user info in local storage
         localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user)); // Storing user information
 
         // Navigate based on the user's access level
         if (data.user.access === 'user') {
