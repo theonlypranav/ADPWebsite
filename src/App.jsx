@@ -76,7 +76,7 @@ function App() {
           <Route path="/inventory" element={
             <>
               <Navbar />
-              <Inventory />
+              <Login />
               <Footer />
             </>
           } />
