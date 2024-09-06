@@ -5,13 +5,7 @@ import bgImage from '../../assets/bg.jpg';
 
 function Inventory() {
   const navigate = useNavigate();
-  const [items, setItems] = useState([
-    { name: '', quantity: 0, enabled: true },
-    { name: '', quantity: 0, enabled: true },
-    { name: '', quantity: 0, enabled: true },
-    { name: '', quantity: 0, enabled: true }
-  ]);
-
+  const [items, setItems] = useState([]);
   const [addItemModal, setAddItemModal] = useState(false);
   const [itemsManagerModal, setItemsManagerModal] = useState(false);
   const [newItemName, setNewItemName] = useState('');
@@ -21,25 +15,45 @@ function Inventory() {
   const [itemBeingEditedQuantity, setItemBeingEditedQuantity] = useState(0);
   const [itemBeingEditedEnabled, setItemBeingEditedEnabled] = useState(true);
 
-  // Fetch token and cordName from localStorage
+  // Fetch token and user details from localStorage
   const userString = localStorage.getItem('user');
   const userData = userString ? JSON.parse(userString) : null;
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (!token || userData.access != 'bosslevel' ) {
-      // If no token found, redirect to inventory page
+    if (!token || userData.access !== 'bosslevel') {
       navigate('/inventory');
+    } else {
+      fetchItems();
     }
   }, [token, navigate]);
+
+  // Fetch items from the API
+  const fetchItems = async () => {
+    try {
+      const response = await fetch('http://localhost:5001/api/inventorys/inventory', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setItems(data);
+      } else {
+        alert('Failed to fetch items');
+      }
+    } catch (error) {
+      console.error('Error fetching items:', error);
+    }
+  };
 
   const addItem = async () => {
     if (newItemName.trim() === '') return;
 
-    // Prepare the item data
     const newItem = {
       itemQuantity: newItemQuantity,
-      itemStatus: 'enabled', // By default, item is enabled
+      itemStatus: 'enabled',
       itemName: newItemName
     };
 
@@ -48,14 +62,13 @@ function Inventory() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}` // Using token for authorization
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(newItem)
       });
 
       if (response.ok) {
-        // If the item is successfully added, update the local items list
-        setItems([...items, { name: newItemName, quantity: newItemQuantity, enabled: true }]);
+        fetchItems(); // Refetch items after adding
         setNewItemName('');
         setNewItemQuantity(0);
         setAddItemModal(false);
@@ -68,34 +81,59 @@ function Inventory() {
       alert('An error occurred while adding the item.');
     }
   };
-  
-  const deleteItem = () => {
+
+  const deleteItem = async () => {
     if (selectedItemIndex === null) return;
 
-    setItems(prevItems => prevItems.filter((_, index) => index !== selectedItemIndex));
+    const itemId = items[selectedItemIndex]._id;
+    try {
+      const response = await fetch(`http://localhost:5001/api/inventorys/inventory/${itemId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
 
-    // Reset form states
-    setSelectedItemIndex(null);
-    setItemBeingEditedName('');
-    setItemBeingEditedQuantity(0);
-    setItemBeingEditedEnabled(true);
-    setItemsManagerModal(false);
+      if (response.ok) {
+        fetchItems(); // Refetch items after deleting
+        setItemsManagerModal(false);
+      } else {
+        alert('Failed to delete item');
+      }
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
   };
-  
-  const updateItem = () => {
+
+  const updateItem = async () => {
     if (selectedItemIndex === null) return;
-    setItems(prevItems =>
-      prevItems.map((item, index) =>
-        index === selectedItemIndex
-          ? { name: itemBeingEditedName, quantity: itemBeingEditedQuantity, enabled: itemBeingEditedEnabled }
-          : item
-      )
-    );
-    setItemBeingEditedName('');
-    setItemBeingEditedQuantity(0);
-    setItemBeingEditedEnabled(true);
-    setSelectedItemIndex(null);
-    setItemsManagerModal(false);
+
+    const itemId = items[selectedItemIndex]._id;
+    const updatedItem = {
+      itemName: itemBeingEditedName,
+      itemStatus: itemBeingEditedEnabled ? 'enabled' : 'disabled',
+      itemQuantity: itemBeingEditedQuantity
+    };
+
+    try {
+      const response = await fetch(`http://localhost:5001/api/inventorys/inventory/${itemId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(updatedItem)
+      });
+
+      if (response.ok) {
+        fetchItems(); // Refetch items after updating
+        setItemsManagerModal(false);
+      } else {
+        alert('Failed to update item');
+      }
+    } catch (error) {
+      console.error('Error updating item:', error);
+    }
   };
 
   const closeAddItemModal = () => setAddItemModal(false);
@@ -108,19 +146,20 @@ function Inventory() {
   };
 
   const handleItemChange = (e) => {
-    const index = Number(e.target.value); // Ensure it's a number
+    const index = Number(e.target.value);
     setSelectedItemIndex(index);
-    setItemBeingEditedName(items[index].name);
-    setItemBeingEditedQuantity(items[index].quantity);
-    setItemBeingEditedEnabled(items[index].enabled);
+    const selectedItem = items[index];
+    setItemBeingEditedName(selectedItem.itemName);
+    setItemBeingEditedQuantity(selectedItem.itemQuantity);
+    setItemBeingEditedEnabled(selectedItem.itemStatus === 'enabled');
   };
 
   return (
     <div id='Inventory' className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center' style={{
       backgroundImage: `url(${bgImage})`,
       backgroundSize: 'cover',
-      backgroundPosition: 'center', 
-      backgroundRepeat: 'no-repeat' 
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
     }}>
       <div className="top-transition"></div>
       <div className='text-center w-full flex flex-col items-center mb-12'>
@@ -151,77 +190,59 @@ function Inventory() {
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl mt-8'>
         {items.map((item, index) => (
-          <div key={index} className='bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center'>
-            <img src='https://via.placeholder.com/200' alt='Item' className='w-48 h-48 object-cover rounded-lg mb-4' />
+          <div key={item._id} className='bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center'>
+            <img src='https://via.placeholder.com/200' alt={item.itemName} className='w-48 h-48 object-cover rounded-lg mb-4' />
             <div className='text-lg font-semibold mb-2'>
-              {item.name || `Item Name ${index + 1}`}
+              {item.itemName || `Item Name ${index + 1}`}
             </div>
             <div className='text-lg'>
-              Quantity: {item.quantity}
+              Quantity: {item.itemQuantity}
             </div>
-            <div className={`mt-2 text-sm ${item.enabled ? 'text-green-500' : 'text-red-500'}`}>
-              Status: {item.enabled ? 'Enabled' : 'Disabled'}
+            <div className={`mt-2 text-sm ${item.itemStatus === 'enabled' ? 'text-green-500' : 'text-red-500'}`}>
+              Status: {item.itemStatus}
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal for adding new item */}
+      {/* Add Item Modal */}
       {addItemModal && (
-        <div className='fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center'>
-          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3'>
-            <h3 className='text-xl font-semibold mb-4'>Add New Item</h3>
-            <div className='mb-4'>
-              <label className='block text-sm font-medium mb-1'>Item Name</label>
-              <input type='text' value={newItemName} onChange={(e) => setNewItemName(e.target.value)} placeholder='Enter item name' className='w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700' />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-sm font-medium mb-1'>Quantity</label>
-              <input type='number' value={newItemQuantity} onChange={(e) => setNewItemQuantity(e.target.value)} placeholder='Enter quantity' className='w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700' />
-            </div>
-            <div className='flex justify-end'>
-              <button onClick={closeAddItemModal} className='bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg mr-2'>Cancel</button>
-              <button onClick={addItem} className='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg'>Add Item</button>
+        <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
+          <div className='bg-white p-6 rounded-lg shadow-lg'>
+            <h3 className='text-2xl font-semibold mb-4'>Add New Item</h3>
+            <input type='text' className='border p-2 mb-4 w-full' placeholder='Item Name' value={newItemName} onChange={(e) => setNewItemName(e.target.value)} />
+            <input type='number' className='border p-2 mb-4 w-full' placeholder='Item Quantity' value={newItemQuantity} onChange={(e) => setNewItemQuantity(Number(e.target.value))} />
+            <div className='flex justify-end space-x-4'>
+              <button onClick={addItem} className='bg-blue-500 text-white px-4 py-2 rounded'>Add Item</button>
+              <button onClick={closeAddItemModal} className='bg-gray-500 text-white px-4 py-2 rounded'>Cancel</button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Modal for managing items */}
+      {/* Items Manager Modal */}
       {itemsManagerModal && (
-        <div className='fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center'>
-          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3'>
-            <h3 className='text-xl font-semibold mb-4'>Manage Items</h3>
-            <div className='mb-4'>
-              <label className='block text-sm font-medium mb-1'>Select Item</label>
-              <select value={selectedItemIndex || ''} onChange={handleItemChange} className='w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700'>
-                <option value='' disabled>Select an item</option>
-                {items.map((item, index) => (
-                  <option key={index} value={index}>{item.name || `Item ${index + 1}`}</option>
-                ))}
-              </select>
-            </div>
+        <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
+          <div className='bg-white p-6 rounded-lg shadow-lg'>
+            <h3 className='text-2xl font-semibold mb-4'>Manage Item</h3>
+            <select className='border p-2 mb-4 w-full' value={selectedItemIndex ?? ''} onChange={handleItemChange}>
+              <option value=''>Select an Item</option>
+              {items.map((item, index) => (
+                <option key={item._id} value={index}>{item.itemName}</option>
+              ))}
+            </select>
             {selectedItemIndex !== null && (
               <>
-                <div className='mb-4'>
-                  <label className='block text-sm font-medium mb-1'>Item Name</label>
-                  <input type='text' value={itemBeingEditedName} onChange={(e) => setItemBeingEditedName(e.target.value)} className='w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700' />
-                </div>
-                <div className='mb-4'>
-                  <label className='block text-sm font-medium mb-1'>Quantity</label>
-                  <input type='number' value={itemBeingEditedQuantity} onChange={(e) => setItemBeingEditedQuantity(e.target.value)} className='w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700' />
-                </div>
-                <div className='mb-4'>
-                  <label className='block text-sm font-medium mb-1'>Status</label>
-                  <select value={itemBeingEditedEnabled} onChange={(e) => setItemBeingEditedEnabled(e.target.value === 'true')} className='w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700'>
-                    <option value='true'>Enabled</option>
-                    <option value='false'>Disabled</option>
-                  </select>
-                </div>
-                <div className='flex justify-end'>
-                  <button onClick={closeItemsManagerModal} className='bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg mr-2'>Cancel</button>
-                  <button onClick={deleteItem} className='bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg mr-2'>Delete</button>
-                  <button onClick={updateItem} className='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg'>Save Changes</button>
+                <input type='text' className='border p-2 mb-4 w-full' value={itemBeingEditedName} onChange={(e) => setItemBeingEditedName(e.target.value)} />
+                <input type='number' className='border p-2 mb-4 w-full' value={itemBeingEditedQuantity} onChange={(e) => setItemBeingEditedQuantity(Number(e.target.value))} />
+                <label className='inline-flex items-center'>
+                  <input type='checkbox' checked={itemBeingEditedEnabled} onChange={(e) => setItemBeingEditedEnabled(e.target.checked)} />
+                  <span className='ml-2'>Enabled</span>
+                </label>
+                <div className='flex justify-end space-x-4 mt-4'>
+                  <button onClick={updateItem} className='bg-green-500 text-white px-4 py-2 rounded'>Save Changes</button>
+                  <button onClick={deleteItem} className='bg-red-500 text-white px-4 py-2 rounded'>Delete Item</button>
+                  <button onClick={closeItemsManagerModal} className='bg-gray-500 text-white px-4 py-2 rounded'>Cancel</button>
                 </div>
               </>
             )}
