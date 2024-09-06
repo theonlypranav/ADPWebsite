@@ -151,7 +151,8 @@ function Inventory() {
         return response.json();
       })
       .then((data) => {
-        alert("Order Placed");
+        setNotification("Order Placed");
+        setTimeout(() => setNotification(""), 2000);
         clearCart();
         setShowCompleteOrderModal(false);
       })
@@ -266,12 +267,7 @@ function Inventory() {
           >
             Back
           </button>
-          <button
-            onClick={() => setShowCompleteOrderModal(true)}
-            className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-6 py-2 rounded shadow-md hover:from-purple-600 hover:to-purple-800 transition duration-300"
-          >
-            Complete Order
-          </button>
+          
           <button
             onClick={handleViewOrders} // Single onClick handler
             className="bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-2 rounded shadow-md hover:from-green-600 hover:to-green-800 transition duration-300"
@@ -287,57 +283,70 @@ function Inventory() {
         </div>
       )}
 
-      {showCart && (
-        <div className="w-full max-w-6xl mt-6 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-x-auto">
-          <h3 className="text-2xl font-bold mb-4">Cart Items</h3>
-          <table className="min-w-full bg-white dark:bg-gray-900 rounded-lg">
-            <thead className="bg-gray-300 dark:bg-gray-700">
-              <tr>
-                <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-                  Item
-                </th>
-                <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-                  Quantity
-                </th>
-                <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-                  Remove
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.length === 0 ? (
-                <tr>
-                  <td
-                    colSpan="3"
-                    className="py-4 px-4 text-center text-gray-600 dark:text-gray-300"
-                  >
-                    No items in cart
-                  </td>
-                </tr>
-              ) : (
-                cart.map((item, index) => (
-                  <tr key={index}>
-                    <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                      {item.item_name}
-                    </td>
-                    <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                      {item.ordered_quantity}
-                    </td>
-                    <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                      <button
-                        onClick={() => removeFromCart(index)}
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        &#x2715; {/* Unicode for a cross symbol */}
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-      )}
+{showCart && (
+  <div className="w-full max-w-6xl mt-6 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-x-auto">
+    <h3 className="text-2xl font-bold mb-4">Cart Items</h3>
+    <table className="min-w-full bg-white dark:bg-gray-900 rounded-lg">
+      <thead className="bg-gray-300 dark:bg-gray-700">
+        <tr>
+          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
+            Item
+          </th>
+          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
+            Quantity
+          </th>
+          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
+            Remove
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {cart.length === 0 ? (
+          <tr>
+            <td
+              colSpan="3"
+              className="py-4 px-4 text-center text-gray-600 dark:text-gray-300"
+            >
+              No items in cart
+            </td>
+          </tr>
+        ) : (
+          cart.map((item, index) => (
+            <tr key={index}>
+              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
+                {item.item_name}
+              </td>
+              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
+                {item.ordered_quantity}
+              </td>
+              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
+                <button
+                  onClick={() => removeFromCart(index)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  &#x2715; {/* Unicode for cross symbol */}
+                </button>
+              </td>
+            </tr>
+          ))
+        )}
+      </tbody>
+    </table>
+
+    {cart.length > 0 && (
+      <div className="mt-4">
+        <button
+          onClick={placeOrder}
+          className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-6 py-2 rounded shadow-md hover:from-purple-600 hover:to-purple-800 transition duration-300"
+        >
+          Confirm Order
+        </button>
+      </div>
+    )}
+  </div>
+)}
+
+
 
       {showOrders && (
         <div className="w-full max-w-6xl mt-6 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-x-auto">
