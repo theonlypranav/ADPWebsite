@@ -19,13 +19,13 @@ function Inventory() {
     const userData = userString ? JSON.parse(userString) : null;
     const token = localStorage.getItem("token");
         // If token is not found, redirect to /inventory
-    if (!token) {
-      navigate("/inventory");
-      return; // Exit the useEffect if token is missing
-    }
+
 
   useEffect(() => {
-
+    if (!token || userData.access != 'user' ) {
+      // If no token found, redirect to inventory page
+      navigate('/inventory');
+    }
     setUser(userData);
     fetch("https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory/user", {
       headers: {
