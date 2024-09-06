@@ -17,8 +17,12 @@ function OrderwiseItem() {
   const token = localStorage.getItem('token');
   
   useEffect(() => {
+    if (!token || (userData && userData.access !== 'bosslevel')) {
+      navigate('/inventory');
+      return; // Prevent further execution
+    }
     const fetchItems = async () => {
-      if (!userId) return;
+      if (!userId ) return;
 
       try {
         // Fetch items based on `userId`

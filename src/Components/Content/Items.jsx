@@ -1,40 +1,86 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './OrderwiseItem.css';
 
 function Inventory() {
-  const [items, setItems] = useState([
-    { name: 'Item 1', Tdemand: 10, Tavail: 20, addQuantity: '', status: '', remarks: '' },
-    { name: 'Item 2', Tdemand: 15, Tavail: 25, addQuantity: '', status: '', remarks: '' },
-    { name: 'Item 3', Tdemand: 20, Tavail: 30, addQuantity: '', status: '', remarks: '' },
-  ]);
+  const [items, setItems] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  
+  const userString = localStorage.getItem("user");
+  const userData = userString ? JSON.parse(userString) : null;
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate(); 
 
-  const handleQuantityChange = (index, value) => {
-    const updatedItems = [...items];
-    updatedItems[index].addQuantity = value;
-    setItems(updatedItems);
-  };
+  useEffect(() => {
+    if (!token || (userData && userData.access !== 'bosslevel')) {
+      navigate('/inventory');
+      return; // Prevent further execution
+    }
 
-  const handleStatusChange = (index, value) => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/api/cart/cart-item-summary', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+
+        console.log('Fetched items:', data);
+
+        setItems(data.map((item) => ({
+          name: item.itemName,
+          availableQuantity: item.availableQuantity,
+          totalOrderedQuantity: item.totalOrderedQuantity,
+          totalAllottedQuantity: item.totalAllottedQuantity,
+          status: item.itemOrderedStatus ? 'true' : 'false',
+          remarks: item.itemRemarks || '', 
+        })));
+      } catch (error) {
+        console.error('Error fetching items:', error);
+      }
+    };
+
+    fetchItems();
+  }, [token, userData, navigate]);
+
+  const handleStatusChange = (index, event) => {
+    const value = event.target.value;
     const updatedItems = [...items];
     updatedItems[index].status = value;
     setItems(updatedItems);
   };
 
-  const handleRemarkChange = (index, value) => {
+  const handleRemarkChange = (index, event) => {
+    const value = event.target.value;
     const updatedItems = [...items];
     updatedItems[index].remarks = value;
     setItems(updatedItems);
   };
 
-  const handleSave = () => {
-    // Save functionality goes here
-    // For demonstration, we're just logging the updated items
-    console.log('Items saved:', items);
-  };
+  const handleSave = async () => {
+    try {
+      const response = await fetch('http://localhost:5001/api/cart/update-items', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(items),
+      });
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState(null);
+      if (!response.ok) {
+        throw new Error('Failed to save items');
+      }
+
+      const result = await response.json();
+      console.log('Save response:', result);
+      // Optionally handle successful save
+    } catch (error) {
+      console.error('Error saving items:', error);
+    }
+  };
 
   const handleOrderClick = (order) => {
     setSelectedOrder(order);
@@ -53,7 +99,6 @@ function Inventory() {
     >
       <h1 className='text-4xl font-bold mb-6'>Item List</h1>
       
-      {/* Button to link to /inventoryadp */}
       <Link to='/inventoryadp'>
         <button className='bg-blue-500 text-white px-4 py-2 rounded mb-4'>
           Back to Home
@@ -63,10 +108,10 @@ function Inventory() {
       <table className='min-w-full bg-white dark:bg-gray-800'>
         <thead>
           <tr className='text-left'>
-            <th className='py-2 px-4 border-b'>Item</th>
-            <th className='py-2 px-4 border-b'>Items Required</th>
-            <th className='py-2 px-4 border-b'>Given Quantity</th>
-            <th className='py-2 px-4 border-b'>Add Quantity</th>
+            <th className='py-2 px-4 border-b'>Item Name</th>
+            <th className='py-2 px-4 border-b'>Available Quantity</th>
+            <th className='py-2 px-4 border-b'>Total Ordered Quantity</th>
+            <th className='py-2 px-4 border-b'>Total Allotted Quantity</th>
             <th className='py-2 px-4 border-b'>Status</th>
             <th className='py-2 px-4 border-b'>Remarks</th>
           </tr>
@@ -75,28 +120,18 @@ function Inventory() {
           {items.map((item, index) => (
             <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
               <td className='py-2 px-4 border-b'>{item.name}</td>
-              <td className='py-2 px-4 border-b'>{item.Tdemand}</td>
-              <td className='py-2 px-4 border-b'>{item.Tavail}</td>
-              <td className='py-2 px-4 border-b'>
-                <input
-                  type='text'
-                  className='quantity-input'
-                  value={item.addQuantity}
-                  onChange={(e) => handleQuantityChange(index, e.target.value)}
-                  placeholder='Enter Quantity'
-                />
-              </td>
+              <td className='py-2 px-4 border-b'>{item.availableQuantity}</td>
+              <td className='py-2 px-4 border-b'>{item.totalOrderedQuantity}</td>
+              <td className='py-2 px-4 border-b'>{item.totalAllottedQuantity}</td>
               <td className='py-2 px-4 border-b'>
                 <select
                   className='status-dropdown'
                   value={item.status}
-                  onChange={(e) => handleStatusChange(index, e.target.value)}
+                  onChange={(e) => handleStatusChange(index, e)}
                 >
                   <option value="">Select Status</option>
-                  <option value="available">Available</option>
-                  <option value="criticallyLow">Critically Low</option>
-                  <option value="ordered">Ordered</option>
-                  <option value="outOfStock">Out of Stock</option>
+                  <option value="true">True</option>
+                  <option value="false">False</option>
                 </select>
               </td>
               <td className='py-2 px-4 border-b'>
@@ -104,7 +139,7 @@ function Inventory() {
                   type='text'
                   className='remarks-input'
                   value={item.remarks}
-                  onChange={(e) => handleRemarkChange(index, e.target.value)}
+                  onChange={(e) => handleRemarkChange(index, e)}
                   placeholder='Enter Remarks'
                 />
               </td>
@@ -113,7 +148,6 @@ function Inventory() {
         </tbody>
       </table>
 
-      {/* Save Button */}
       <button
         onClick={handleSave}
         className='bg-green-500 text-white px-4 py-2 rounded mt-6'
@@ -121,7 +155,6 @@ function Inventory() {
         Save Changes
       </button>
 
-      {/* Modal for viewing order details */}
       {modalVisible && (
         <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
           <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3 relative'>
