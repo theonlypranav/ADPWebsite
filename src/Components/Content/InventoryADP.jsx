@@ -207,18 +207,18 @@ function Inventory() {
 
       {/* Add Item Modal */}
       {addItemModal && (
-        <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
-          <div className='bg-white p-6 rounded-lg shadow-lg'>
-            <h3 className='text-2xl font-semibold mb-4'>Add New Item</h3>
-            <input type='text' className='border p-2 mb-4 w-full' placeholder='Item Name' value={newItemName} onChange={(e) => setNewItemName(e.target.value)} />
-            <input type='number' className='border p-2 mb-4 w-full' placeholder='Item Quantity' value={newItemQuantity} onChange={(e) => setNewItemQuantity(Number(e.target.value))} />
-            <div className='flex justify-end space-x-4'>
-              <button onClick={addItem} className='bg-blue-500 text-white px-4 py-2 rounded'>Add Item</button>
-              <button onClick={closeAddItemModal} className='bg-gray-500 text-white px-4 py-2 rounded'>Cancel</button>
-            </div>
-          </div>
-        </div>
-      )}
+  <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
+    <div className='bg-gray-800 p-6 rounded-lg shadow-lg'>
+      <h3 className='text-2xl font-semibold mb-4 text-white'>Add New Item</h3>
+      <input type='text' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600' placeholder='Item Name' value={newItemName} onChange={(e) => setNewItemName(e.target.value)} />
+      <input type='number' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600' placeholder='Item Quantity' value={newItemQuantity} onChange={(e) => setNewItemQuantity(Number(e.target.value))} />
+      <div className='flex justify-end space-x-4'>
+        <button onClick={addItem} className='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded'>Add Item</button>
+        <button onClick={closeAddItemModal} className='bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded'>Cancel</button>
+      </div>
+    </div>
+  </div>
+)}
 
       {/* Items Manager Modal */}
       {itemsManagerModal && (
