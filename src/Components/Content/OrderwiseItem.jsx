@@ -15,6 +15,7 @@ function OrderwiseItem() {
   const userString = localStorage.getItem('user');
   const userData = userString ? JSON.parse(userString) : null;
   const token = localStorage.getItem('token');
+  
   useEffect(() => {
     const fetchItems = async () => {
       if (!userId) return;
@@ -54,9 +55,12 @@ function OrderwiseItem() {
   }, [userId]);
 
   const handleQuantityChange = (index, value) => {
-    const updatedItems = [...items];
-    updatedItems[index].addQuantity = value;
-    setItems(updatedItems);
+    // Ensure value is an integer
+    if (/^-?\d*$/.test(value)) {
+      const updatedItems = [...items];
+      updatedItems[index].addQuantity = value;
+      setItems(updatedItems);
+    }
   };
 
   const handleStatusChange = (index, value) => {
@@ -72,22 +76,39 @@ function OrderwiseItem() {
   };
 
   const handleSave = async () => {
-    // Save functionality goes here
+    // Create an array of updated items
+    const updatedItems = items
+      .filter(item => item.addQuantity || item.status || item.remarks) // Filter out items with no changes
+      .map(item => ({
+        _id: item.id,
+        allotted_quantity: item.addQuantity ? parseInt(item.addQuantity) : undefined,
+        status: item.status,
+        remarks: item.remarks,
+      }))
+      .filter(item => item.allotted_quantity !== undefined || item.status || item.remarks); // Remove items with no changes
+
+    if (updatedItems.length === 0) {
+      alert('No changes to save.');
+      return;
+    }
+
     try {
-      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-items', {
-        method: 'POST',
+      const response = await fetch('http://localhost:5001/api/cart/update-multiple-cart-items', {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ userId, items }), // Send userId and updated items
+        body: JSON.stringify({ items: updatedItems }),
       });
 
       if (!response.ok) {
         throw new Error('Failed to save changes');
       }
 
-      console.log('Items saved:', items);
+      console.log('Items saved:', updatedItems);
       alert('Changes saved successfully!');
+      window.location.reload(); // Refresh the page
     } catch (error) {
       console.error('Error saving changes:', error);
     }
@@ -136,7 +157,7 @@ function OrderwiseItem() {
               <td className='py-2 px-4 border-b'>{item.Tavail}</td>
               <td className='py-2 px-4 border-b'>
                 <input
-                  type='text'
+                  type='number'
                   className='quantity-input'
                   value={item.addQuantity}
                   onChange={(e) => handleQuantityChange(index, e.target.value)}
@@ -152,8 +173,9 @@ function OrderwiseItem() {
                   <option value="">Select Status</option>
                   <option value="pending">Pending</option>
                   <option value="delivered">Delivered</option>
-                  <option value="pickup">Ready for Pickup</option>
+                  <option value="ready">Ready for Pickup</option>
                   <option value="rejected">Rejected</option>
+                  <option value="amazon">Amazon</option>
                 </select>
               </td>
               <td className='py-2 px-4 border-b'>
