@@ -1,13 +1,57 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import './OrderwiseItem.css';
 
-function Inventory() {
-  const [items, setItems] = useState([
-    { name: 'Item 1', Tdemand: 10, Tavail: 20, addQuantity: '', status: '', remarks: '' },
-    { name: 'Item 2', Tdemand: 15, Tavail: 25, addQuantity: '', status: '', remarks: '' },
-    { name: 'Item 3', Tdemand: 20, Tavail: 30, addQuantity: '', status: '', remarks: '' },
-  ]);
+function OrderwiseItem() {
+  const [items, setItems] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
+  // Get location state which includes `user_id`
+  const location = useLocation();
+  const { state } = location;
+  const userId = state ? state.user_id : null;
+
+  const userString = localStorage.getItem('user');
+  const userData = userString ? JSON.parse(userString) : null;
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+    const fetchItems = async () => {
+      if (!userId) return;
+
+      try {
+        // Fetch items based on `userId`
+        const response = await fetch(`http://localhost:5001/api/cart/cart-items-user/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+
+        // Log data to verify structure
+        console.log('Fetched items:', data);
+
+        // Ensure data is in expected format and map it
+        if (Array.isArray(data)) {
+          setItems(data.map((item) => ({
+            id: item._id,
+            name: item.itemName,
+            Tdemand: item.ordered_quantity,
+            Tavail: item.allotted_quantity,
+            addQuantity: '', // Initialize empty or default value
+            status: item.status,
+            remarks: item.remarks || '', // Default to empty if not provided
+          })));
+        } else {
+          console.error('Unexpected data format:', data);
+        }
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
+
+    fetchItems();
+  }, [userId]);
 
   const handleQuantityChange = (index, value) => {
     const updatedItems = [...items];
@@ -27,14 +71,27 @@ function Inventory() {
     setItems(updatedItems);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Save functionality goes here
-    // For demonstration, we're just logging the updated items
-    console.log('Items saved:', items);
-  };
+    try {
+      const response = await fetch('http://localhost:5001/api/cart/update-items', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, items }), // Send userId and updated items
+      });
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState(null);
+      if (!response.ok) {
+        throw new Error('Failed to save changes');
+      }
+
+      console.log('Items saved:', items);
+      alert('Changes saved successfully!');
+    } catch (error) {
+      console.error('Error saving changes:', error);
+    }
+  };
 
   const handleOrderClick = (order) => {
     setSelectedOrder(order);
@@ -48,10 +105,10 @@ function Inventory() {
 
   return (
     <div
-      id='Inventory'
+      id='OrderwiseItem'
       className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'
     >
-      <h1 className='text-4xl font-bold mb-6'>Item List</h1>
+      <h1 className='text-4xl font-bold mb-6'>Orderwise Item Management</h1>
       
       {/* Button to link to /inventoryadp */}
       <Link to='/inventoryadp'>
@@ -73,7 +130,7 @@ function Inventory() {
         </thead>
         <tbody>
           {items.map((item, index) => (
-            <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
+            <tr key={item.id} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
               <td className='py-2 px-4 border-b'>{item.name}</td>
               <td className='py-2 px-4 border-b'>{item.Tdemand}</td>
               <td className='py-2 px-4 border-b'>{item.Tavail}</td>
@@ -146,4 +203,4 @@ function Inventory() {
   );
 }
 
-export default Inventory;
+export default OrderwiseItem;
