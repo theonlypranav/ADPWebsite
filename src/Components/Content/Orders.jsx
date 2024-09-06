@@ -22,7 +22,7 @@ function Order() {
     // Fetch cart items summary from the API
     const fetchCartItemsSummary = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/cart/get-club-list', {
+        const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/get-club-list', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

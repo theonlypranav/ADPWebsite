@@ -21,7 +21,7 @@ function OrderwiseItem() {
 
       try {
         // Fetch items based on `userId`
-        const response = await fetch(`http://localhost:5001/api/cart/cart-items-user/${userId}`, {
+        const response = await fetch(`https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-items-user/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -74,7 +74,7 @@ function OrderwiseItem() {
   const handleSave = async () => {
     // Save functionality goes here
     try {
-      const response = await fetch('http://localhost:5001/api/cart/update-items', {
+      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-items', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

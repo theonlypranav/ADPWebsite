@@ -191,7 +191,6 @@ function Inventory() {
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl mt-8'>
         {items.map((item, index) => (
           <div key={item._id} className='bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center'>
-            <img src='https://via.placeholder.com/200' alt={item.itemName} className='w-48 h-48 object-cover rounded-lg mb-4' />
             <div className='text-lg font-semibold mb-2'>
               {item.itemName || `Item Name ${index + 1}`}
             </div>
