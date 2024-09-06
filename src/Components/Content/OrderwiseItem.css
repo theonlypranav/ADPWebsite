@@ -29,6 +29,34 @@
     height: 25px; /* Set a specific height */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
   }
-  
-  
-  
+  /* For light and dark modes */
+.quantity-input,
+.remarks-input,
+.status-dropdown {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+.quantity-input,
+.remarks-input {
+  color: black; /* Text color for input fields */
+}
+
+.status-dropdown {
+  background-color: #ffffff; /* Background color for dropdown in light mode */
+  color: #000000; /* Text color for dropdown in light mode */
+}
+
+.dark .status-dropdown {
+  background-color: #333333; /* Background color for dropdown in dark mode */
+  color: #ffffff; /* Text color for dropdown in dark mode */
+}
+
+.dark .quantity-input,
+.dark .remarks-input {
+  color: #ffffff; /* Text color for input fields in dark mode */
+  background-color: #333333; /* Background color for input fields in dark mode */
+}

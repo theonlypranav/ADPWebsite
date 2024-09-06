@@ -111,7 +111,7 @@ function App() {
           <Route path="/orderwiseitem" element={
             <>
               <Navbar />
-              <Slideshow />
+              <OrderwiseItem />
               <Footer />
             </>
           } />
