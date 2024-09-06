@@ -97,7 +97,7 @@ function OrderwiseItem() {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/cart/update-multiple-cart-items', {
+      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-multiple-cart-items', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

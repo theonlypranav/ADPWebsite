@@ -20,7 +20,7 @@ function Inventory() {
 
     const fetchItems = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/cart/cart-item-summary', {
+        const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-item-summary', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -61,7 +61,7 @@ function Inventory() {
 
   const handleSave = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/cart/update-items', {
+      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-items', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
