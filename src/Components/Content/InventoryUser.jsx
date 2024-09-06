@@ -14,13 +14,20 @@ function Inventory() {
   const [notification, setNotification] = useState("");
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
     // Fetch the user info from localStorage
     const userString = localStorage.getItem("user");
     const userData = userString ? JSON.parse(userString) : null;
     const token = localStorage.getItem("token");
+        // If token is not found, redirect to /inventory
+    if (!token) {
+      navigate("/inventory");
+      return; // Exit the useEffect if token is missing
+    }
+
+  useEffect(() => {
+
     setUser(userData);
-    fetch("http://localhost:5001/api/inventorys/inventory/user", {
+    fetch("https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory/user", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -126,7 +133,7 @@ function Inventory() {
       ordered_quantity: cartItem.ordered_quantity,
     }));
 
-    fetch("http://localhost:5001/api/cart/add-items", {
+    fetch("https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/add-items", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -168,7 +175,7 @@ function Inventory() {
     if (userData && userData.id) {
       try {
         const response = await fetch(
-          `http://localhost:5001/api/cart/cart-items-final/${userData.id}`, // Corrected userData.id
+          `https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-items-final/${userData.id}`, // Corrected userData.id
           {
             method: "GET",
             headers: {
@@ -271,7 +278,6 @@ function Inventory() {
           >
             {showOrders ? "Hide Orders" : "View Orders"}
           </button>
-          ;
         </div>
       </div>
 

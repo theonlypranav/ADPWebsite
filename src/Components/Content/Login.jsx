@@ -27,6 +27,14 @@ function Login() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user)); // Storing user information
 
+        setTimeout(() => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          console.log('Token and user data have been removed from local storage after 1 hour.');
+          alert('Your session has expired.');
+          navigate('/inventory'); // Redirect user to the inventory or login page after expiry
+        }, 3600000);
+
         // Navigate based on the user's access level
         if (data.user.access === 'user') {
           navigate('/inventoryuser');

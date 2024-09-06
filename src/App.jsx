@@ -80,13 +80,6 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path="/login" element={
-            <>
-              <Navbar />
-              <Login />
-              <Footer />
-            </>
-          } />
           <Route path="/register" element={
             <>
               <Navbar />
