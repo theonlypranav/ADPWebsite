@@ -1,14 +1,38 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import './Items.css';
+import { Link } from 'react-router-dom';
+import './OrderwiseItem.css';
 
 function Inventory() {
   const [items, setItems] = useState([
-    { name: 'Item 1', Tdemand: 10, Tavail: 20 },
-    { name: 'Item 1', Tdemand: 10, Tavail: 20 },
-    { name: 'Item 1', Tdemand: 10, Tavail: 20 },
-   
+    { name: 'Item 1', Tdemand: 10, Tavail: 20, addQuantity: '', status: '', remarks: '' },
+    { name: 'Item 2', Tdemand: 15, Tavail: 25, addQuantity: '', status: '', remarks: '' },
+    { name: 'Item 3', Tdemand: 20, Tavail: 30, addQuantity: '', status: '', remarks: '' },
   ]);
+
+  const handleQuantityChange = (index, value) => {
+    const updatedItems = [...items];
+    updatedItems[index].addQuantity = value;
+    setItems(updatedItems);
+  };
+
+  const handleStatusChange = (index, value) => {
+    const updatedItems = [...items];
+    updatedItems[index].status = value;
+    setItems(updatedItems);
+  };
+
+  const handleRemarkChange = (index, value) => {
+    const updatedItems = [...items];
+    updatedItems[index].remarks = value;
+    setItems(updatedItems);
+  };
+
+  const handleSave = () => {
+    // Save functionality goes here
+    // For demonstration, we're just logging the updated items
+    console.log('Items saved:', items);
+  };
+
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -40,31 +64,39 @@ function Inventory() {
         <thead>
           <tr className='text-left'>
             <th className='py-2 px-4 border-b'>Item</th>
-            <th className='py-2 px-4 border-b'>Total Demand</th>
-            <th className='py-2 px-4 border-b'>Total Available</th>
+            <th className='py-2 px-4 border-b'>Items Required</th>
+            <th className='py-2 px-4 border-b'>Given Quantity</th>
+            <th className='py-2 px-4 border-b'>Add Quantity</th>
             <th className='py-2 px-4 border-b'>Status</th>
             <th className='py-2 px-4 border-b'>Remarks</th>
           </tr>
-    
         </thead>
         <tbody>
           {items.map((item, index) => (
             <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
               <td className='py-2 px-4 border-b'>{item.name}</td>
-              <td className='py-2 px-4 border-b'>{`Coordinator ${index + 1}`}</td>
-              <td className='py-2 px-4 border-b'>{`Contact ${index + 1}`}</td>
-             
+              <td className='py-2 px-4 border-b'>{item.Tdemand}</td>
+              <td className='py-2 px-4 border-b'>{item.Tavail}</td>
+              <td className='py-2 px-4 border-b'>
+                <input
+                  type='text'
+                  className='quantity-input'
+                  value={item.addQuantity}
+                  onChange={(e) => handleQuantityChange(index, e.target.value)}
+                  placeholder='Enter Quantity'
+                />
+              </td>
               <td className='py-2 px-4 border-b'>
                 <select
                   className='status-dropdown'
                   value={item.status}
                   onChange={(e) => handleStatusChange(index, e.target.value)}
                 >
-                  <option value="pending">Pending</option>
-                  <option value="delivered">Delivered</option>
-                  <option value="pickup">Ready for Pickup</option>
-                  <option value="rejected">Rejected</option>
-                  <option value="amazon">Add Amazon Link</option>
+                  <option value="">Select Status</option>
+                  <option value="available">Available</option>
+                  <option value="criticallyLow">Critically Low</option>
+                  <option value="ordered">Ordered</option>
+                  <option value="outOfStock">Out of Stock</option>
                 </select>
               </td>
               <td className='py-2 px-4 border-b'>
@@ -73,13 +105,21 @@ function Inventory() {
                   className='remarks-input'
                   value={item.remarks}
                   onChange={(e) => handleRemarkChange(index, e.target.value)}
+                  placeholder='Enter Remarks'
                 />
               </td>
             </tr>
-            
           ))}
         </tbody>
       </table>
+
+      {/* Save Button */}
+      <button
+        onClick={handleSave}
+        className='bg-green-500 text-white px-4 py-2 rounded mt-6'
+      >
+        Save Changes
+      </button>
 
       {/* Modal for viewing order details */}
       {modalVisible && (
