@@ -142,6 +142,7 @@ function Register() {
             <button type="button" className="btn" onClick={handleSendOtp}>
               {otpSent ? 'Resend OTP' : 'Get OTP At Email'}
             </button>
+            
             <button
               type="button"
               className="btn"

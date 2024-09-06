@@ -44,7 +44,7 @@ function Inventory() {
     };
 
     try {
-      const response = await fetch('http://localhost:5001/api/inventorys/inventory', {
+      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
