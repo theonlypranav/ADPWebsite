@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import './OrderwiseItem.css';
-import bgImage from '../../assets/bg.jpg'; 
+import bgImage from '../../assets/bg.jpg';
 
 function OrderwiseItem() {
   const [items, setItems] = useState([]);
@@ -250,6 +249,23 @@ function OrderwiseItem() {
       <style jsx='true'>{`
         .glow {
           box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+        }
+
+        .status-dropdown {
+          background-color: black; /* Set background color to black */
+          color: white; /* White text for better contrast */
+          border: none; /* Remove green border */
+          padding: 8px;
+          border-radius: 5px; /* Rounded corners */
+        }
+
+        .quantity-input,
+        .remarks-input {
+          background-color: rgba(0, 0, 0, 0.2);
+          color: #fff;
+          border: none;
+          padding: 8px;
+          border-radius: 5px;
         }
       `}</style>
     </div>
