@@ -213,6 +213,12 @@ function Inventory() {
     {showOrders ? "Hide Orders" : "View Orders"}
   </button>;
 
+  const handleLogoutAndRedirect = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate('/inventory');
+  };
+
   return (
     <div
       id="Inventory"
@@ -262,7 +268,7 @@ function Inventory() {
             Clear Cart
           </button>
           <button
-            onClick={() => navigate("/inventory")}
+            onClick={handleLogoutAndRedirect}
             className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-2 rounded shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300"
           >
             Back
