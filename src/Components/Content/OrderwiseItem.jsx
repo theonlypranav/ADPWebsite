@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import './OrderwiseItem.css';
+import bgImage from '../../assets/bg.jpg'; 
 
 function OrderwiseItem() {
   const [items, setItems] = useState([]);
@@ -15,22 +16,27 @@ function OrderwiseItem() {
   const userString = localStorage.getItem('user');
   const userData = userString ? JSON.parse(userString) : null;
   const token = localStorage.getItem('token');
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!token || (userData && userData.access !== 'bosslevel')) {
       navigate('/inventory');
       return; // Prevent further execution
     }
+
     const fetchItems = async () => {
-      if (!userId ) return;
+      if (!userId) return;
 
       try {
         // Fetch items based on `userId`
-        const response = await fetch(`https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-items-user/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          `https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-items-user/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const data = await response.json();
 
         // Log data to verify structure
@@ -38,15 +44,17 @@ function OrderwiseItem() {
 
         // Ensure data is in expected format and map it
         if (Array.isArray(data)) {
-          setItems(data.map((item) => ({
-            id: item._id,
-            name: item.itemName,
-            Tdemand: item.ordered_quantity,
-            Tavail: item.allotted_quantity,
-            addQuantity: '', // Initialize empty or default value
-            status: item.status,
-            remarks: item.remarks || '', // Default to empty if not provided
-          })));
+          setItems(
+            data.map((item) => ({
+              id: item._id,
+              name: item.itemName,
+              Tdemand: item.ordered_quantity,
+              Tavail: item.allotted_quantity,
+              addQuantity: '', // Initialize empty or default value
+              status: item.status,
+              remarks: item.remarks || '', // Default to empty if not provided
+            }))
+          );
         } else {
           console.error('Unexpected data format:', data);
         }
@@ -82,14 +90,14 @@ function OrderwiseItem() {
   const handleSave = async () => {
     // Create an array of updated items
     const updatedItems = items
-      .filter(item => item.addQuantity || item.status || item.remarks) // Filter out items with no changes
-      .map(item => ({
+      .filter((item) => item.addQuantity || item.status || item.remarks) // Filter out items with no changes
+      .map((item) => ({
         _id: item.id,
         allotted_quantity: item.addQuantity ? parseInt(item.addQuantity) : undefined,
         status: item.status,
         remarks: item.remarks,
       }))
-      .filter(item => item.allotted_quantity !== undefined || item.status || item.remarks); // Remove items with no changes
+      .filter((item) => item.allotted_quantity !== undefined || item.status || item.remarks); // Remove items with no changes
 
     if (updatedItems.length === 0) {
       alert('No changes to save.');
@@ -97,14 +105,17 @@ function OrderwiseItem() {
     }
 
     try {
-      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-multiple-cart-items', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ items: updatedItems }),
-      });
+      const response = await fetch(
+        'https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-multiple-cart-items',
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ items: updatedItems }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Failed to save changes');
@@ -132,74 +143,83 @@ function OrderwiseItem() {
     <div
       id='OrderwiseItem'
       className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
       <h1 className='text-4xl font-bold mb-6'>Orderwise Item Management</h1>
-      
+
       {/* Button to link to /inventoryadp */}
       <Link to='/inventoryadp'>
-        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-4'>
+        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-10'>
           Back to Home
         </button>
       </Link>
-      
-      <table className='min-w-full bg-white dark:bg-gray-800'>
-        <thead>
-          <tr className='text-left'>
-            <th className='py-2 px-4 border-b'>Item</th>
-            <th className='py-2 px-4 border-b'>Items Required</th>
-            <th className='py-2 px-4 border-b'>Given Quantity</th>
-            <th className='py-2 px-4 border-b'>Add Quantity</th>
-            <th className='py-2 px-4 border-b'>Status</th>
-            <th className='py-2 px-4 border-b'>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item, index) => (
-            <tr key={item.id} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
-              <td className='py-2 px-4 border-b'>{item.name}</td>
-              <td className='py-2 px-4 border-b'>{item.Tdemand}</td>
-              <td className='py-2 px-4 border-b'>{item.Tavail}</td>
-              <td className='py-2 px-4 border-b'>
-                <input
-                  type='number'
-                  className='quantity-input'
-                  value={item.addQuantity}
-                  onChange={(e) => handleQuantityChange(index, e.target.value)}
-                  placeholder='Enter Quantity'
-                />
-              </td>
-              <td className='py-2 px-4 border-b'>
-                <select
-                  className='status-dropdown'
-                  value={item.status}
-                  onChange={(e) => handleStatusChange(index, e.target.value)}
-                >
-                  <option value="">Select Status</option>
-                  <option value="pending">Pending</option>
-                  <option value="delivered">Delivered</option>
-                  <option value="ready">Ready for Pickup</option>
-                  <option value="rejected">Rejected</option>
-                  <option value="amazon">Amazon</option>
-                </select>
-              </td>
-              <td className='py-2 px-4 border-b'>
-                <input
-                  type='text'
-                  className='remarks-input'
-                  value={item.remarks}
-                  onChange={(e) => handleRemarkChange(index, e.target.value)}
-                  placeholder='Enter Remarks'
-                />
-              </td>
+
+      {/* Table with glow and rounded corners */}
+      <div className='overflow-hidden rounded-lg shadow-lg border border-blue-400 glow'>
+        <table className='min-w-full bg-white dark:bg-gray-800'>
+          <thead>
+            <tr className='text-left'>
+              <th className='py-2 px-4 border-b'>Item</th>
+              <th className='py-2 px-4 border-b'>Items Required</th>
+              <th className='py-2 px-4 border-b'>Given Quantity</th>
+              <th className='py-2 px-4 border-b'>Add Quantity</th>
+              <th className='py-2 px-4 border-b'>Status</th>
+              <th className='py-2 px-4 border-b'>Remarks</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {items.map((item, index) => (
+              <tr key={item.id} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
+                <td className='py-2 px-4 border-b'>{item.name}</td>
+                <td className='py-2 px-4 border-b'>{item.Tdemand}</td>
+                <td className='py-2 px-4 border-b'>{item.Tavail}</td>
+                <td className='py-2 px-4 border-b'>
+                  <input
+                    type='number'
+                    className='quantity-input'
+                    value={item.addQuantity}
+                    onChange={(e) => handleQuantityChange(index, e.target.value)}
+                    placeholder='Enter Quantity'
+                  />
+                </td>
+                <td className='py-2 px-4 border-b'>
+                  <select
+                    className='status-dropdown'
+                    value={item.status}
+                    onChange={(e) => handleStatusChange(index, e.target.value)}
+                  >
+                    <option value=''>Select Status</option>
+                    <option value='pending'>Pending</option>
+                    <option value='delivered'>Delivered</option>
+                    <option value='ready'>Ready for Pickup</option>
+                    <option value='rejected'>Rejected</option>
+                    <option value='amazon'>Amazon</option>
+                  </select>
+                </td>
+                <td className='py-2 px-4 border-b'>
+                  <input
+                    type='text'
+                    className='remarks-input'
+                    value={item.remarks}
+                    onChange={(e) => handleRemarkChange(index, e.target.value)}
+                    placeholder='Enter Remarks'
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {/* Save Button */}
       <button
         onClick={handleSave}
-        className='bg-green-500 text-white px-4 py-2 rounded mt-6'
+        className='bg-green-500 text-white px-4 py-2 rounded mt-10'
       >
         Save Changes
       </button>
@@ -225,6 +245,13 @@ function OrderwiseItem() {
           </div>
         </div>
       )}
+
+      {/* CSS for Glow Effect */}
+      <style jsx='true'>{`
+        .glow {
+          box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+        }
+      `}</style>
     </div>
   );
 }

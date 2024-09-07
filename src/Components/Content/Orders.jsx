@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import bgImage from '../../assets/bg.jpg'; 
 
 function Order() {
   const [items, setItems] = useState([]);
@@ -34,7 +35,7 @@ function Order() {
           cordName: item.cordName,
           contact: item.contact,
           cart_id: item.cart_id,
-          user_id: item.user_id,  // Include cart_id for the order click
+          user_id: item.user_id,
         })));
       } catch (error) {
         console.error('Error fetching cart items summary:', error);
@@ -57,41 +58,50 @@ function Order() {
     <div
       id='Order'
       className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
-      <h1 className='text-4xl font-bold mb-6'>Order Management</h1>
-      
+      <h1 className='text-4xl font-bold mb-10'>Order Management</h1>
+
       {/* Button to link to /inventoryadp */}
       <Link to='/inventoryadp'>
-        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-4'>
+        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-10'>
           Back to Home
         </button>
       </Link>
-      
-      <table className='min-w-full bg-white dark:bg-gray-800'>
-        <thead>
-          <tr className='text-left'>
-            <th className='py-2 px-4 border-b'>Club Name</th>
-            <th className='py-2 px-4 border-b'>Coordinator</th>
-            <th className='py-2 px-4 border-b'>Contact</th>
-            <th className='py-2 px-4 border-b'>Order</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item, index) => (
-            <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
-              <td className='py-2 px-4 border-b'>{item.clubName}</td>
-              <td className='py-2 px-4 border-b'>{item.cordName}</td>
-              <td className='py-2 px-4 border-b'>{item.contact}</td>
-              <td
-                className='py-2 px-4 border-b cursor-pointer text-blue-500 hover:underline'
-                onClick={() => handleOrderClick(item.user_id)} // Pass cart_id to the next page
-              >
-                View Order
-              </td>
+
+      {/* Table with glow and rounded corners */}
+      <div className='overflow-hidden rounded-lg shadow-lg border border-blue-400 glow'>
+        <table className='min-w-full bg-white dark:bg-gray-800'>
+          <thead>
+            <tr className='text-left'>
+              <th className='py-2 px-4 border-b'>Club Name</th>
+              <th className='py-2 px-4 border-b'>Coordinator</th>
+              <th className='py-2 px-4 border-b'>Contact</th>
+              <th className='py-2 px-4 border-b'>Order</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {items.map((item, index) => (
+              <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
+                <td className='py-2 px-4 border-b'>{item.clubName}</td>
+                <td className='py-2 px-4 border-b'>{item.cordName}</td>
+                <td className='py-2 px-4 border-b'>{item.contact}</td>
+                <td
+                  className='py-2 px-4 border-b cursor-pointer text-blue-500 hover:underline'
+                  onClick={() => handleOrderClick(item.user_id)}
+                >
+                  View Order
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {/* Modal for viewing order details (if needed) */}
       {modalVisible && (
@@ -114,6 +124,12 @@ function Order() {
           </div>
         </div>
       )}
+
+      <style jsx='true'>{`
+        .glow {
+          box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+        }
+      `}</style>
     </div>
   );
 }

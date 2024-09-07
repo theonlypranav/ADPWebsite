@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './OrderwiseItem.css';
+import bgImage from '../../assets/bg.jpg';
 
 function Inventory() {
   const [items, setItems] = useState([]);
@@ -95,7 +96,12 @@ function Inventory() {
   return (
     <div
       id='Inventory'
-      className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'
+      className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center' style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
       <h1 className='text-4xl font-bold mb-6'>Item List</h1>
       
