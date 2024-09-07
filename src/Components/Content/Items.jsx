@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './OrderwiseItem.css';
-import bgImage from '../../assets/bg.jpg';
+import bgImage from '../../assets/bg.jpg'; // Ensure the correct path to your background image
 
 function Inventory() {
   const [items, setItems] = useState([]);
@@ -77,7 +76,6 @@ function Inventory() {
 
       const result = await response.json();
       console.log('Save response:', result);
-      // Optionally handle successful save
     } catch (error) {
       console.error('Error saving items:', error);
     }
@@ -96,67 +94,70 @@ function Inventory() {
   return (
     <div
       id='Inventory'
-      className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center' style={{
+      className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'
+      style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
       }}
     >
       <h1 className='text-4xl font-bold mb-6'>Item List</h1>
       
       <Link to='/inventoryadp'>
-        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-4'>
+        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-8'>
           Back to Home
         </button>
       </Link>
       
-      <table className='min-w-full bg-white dark:bg-gray-800'>
-        <thead>
-          <tr className='text-left'>
-            <th className='py-2 px-4 border-b'>Item Name</th>
-            <th className='py-2 px-4 border-b'>Available Quantity</th>
-            <th className='py-2 px-4 border-b'>Total Ordered Quantity</th>
-            <th className='py-2 px-4 border-b'>Total Allotted Quantity</th>
-            <th className='py-2 px-4 border-b'>Status</th>
-            <th className='py-2 px-4 border-b'>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item, index) => (
-            <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
-              <td className='py-2 px-4 border-b'>{item.name}</td>
-              <td className='py-2 px-4 border-b'>{item.availableQuantity}</td>
-              <td className='py-2 px-4 border-b'>{item.totalOrderedQuantity}</td>
-              <td className='py-2 px-4 border-b'>{item.totalAllottedQuantity}</td>
-              <td className='py-2 px-4 border-b'>
-                <select
-                  className='status-dropdown'
-                  value={item.status}
-                  onChange={(e) => handleStatusChange(index, e)}
-                >
-                  <option value="">Select Status</option>
-                  <option value="true">True</option>
-                  <option value="false">False</option>
-                </select>
-              </td>
-              <td className='py-2 px-4 border-b'>
-                <input
-                  type='text'
-                  className='remarks-input'
-                  value={item.remarks}
-                  onChange={(e) => handleRemarkChange(index, e)}
-                  placeholder='Enter Remarks'
-                />
-              </td>
+      <div className='overflow-hidden rounded-lg shadow-lg border border-blue-400 glow'>
+        <table className='min-w-full bg-white dark:bg-gray-800 rounded-lg'>
+          <thead>
+            <tr className='text-left'>
+              <th className='py-2 px-4 border-b'>Item Name</th>
+              <th className='py-2 px-4 border-b'>Available Quantity</th>
+              <th className='py-2 px-4 border-b'>Total Ordered Quantity</th>
+              <th className='py-2 px-4 border-b'>Total Allotted Quantity</th>
+              <th className='py-2 px-4 border-b'>Status</th>
+              <th className='py-2 px-4 border-b'>Remarks</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {items.map((item, index) => (
+              <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
+                <td className='py-2 px-4 border-b'>{item.name}</td>
+                <td className='py-2 px-4 border-b'>{item.availableQuantity}</td>
+                <td className='py-2 px-4 border-b'>{item.totalOrderedQuantity}</td>
+                <td className='py-2 px-4 border-b'>{item.totalAllottedQuantity}</td>
+                <td className='py-2 px-4 border-b'>
+                  <select
+                    className='status-dropdown'
+                    value={item.status}
+                    onChange={(e) => handleStatusChange(index, e)}
+                  >
+                    <option value="">Select Status</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                  </select>
+                </td>
+                <td className='py-2 px-4 border-b'>
+                  <input
+                    type='text'
+                    className='remarks-input'
+                    value={item.remarks}
+                    onChange={(e) => handleRemarkChange(index, e)}
+                    placeholder='Enter Remarks'
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <button
         onClick={handleSave}
-        className='bg-green-500 text-white px-4 py-2 rounded mt-6'
+        className='bg-green-500 text-white px-4 py-2 rounded mt-8'
       >
         Save Changes
       </button>
@@ -181,6 +182,42 @@ function Inventory() {
           </div>
         </div>
       )}
+
+      <style jsx='true'>{`
+        .status-dropdown {
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          border-radius: 9999px;
+          padding: 3px 8px;
+          cursor: pointer;
+          font-size: 0.875rem;
+        }
+
+        .status-dropdown option {
+          background-color: black;
+          color: white;
+        }
+
+        .status-dropdown:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .remarks-input {
+          background-color: rgba(0, 0, 0, 0.1);
+          border: 0.7px solid #ffffff;
+          border-radius: 4px;
+          padding: 4px 8px;
+          width: 150px;
+          height: 25px;
+          box-sizing: border-box;
+        }
+
+        .glow {
+          box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+        }
+      `}</style>
     </div>
   );
 }
