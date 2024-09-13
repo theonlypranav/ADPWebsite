@@ -10,12 +10,12 @@ import GRADIOSH from '../assets/Cords/SH.png';
 import GRADIOSM from '../assets/Cords/SM.png';
 
 const TechStackList = [
-    {
-        id: 1,
-        image: HTML,
-        title: "Shreyansh Vanjani",
-        subtitle: "StuCCAn, Oasis '24"
-    },
+    // {
+    //     id: 1,
+    //     image: HTML,
+    //     title: "Shreyansh Vanjani",
+    //     subtitle: "StuCCAn, Oasis '24"
+    // },
     {
         id: 2,
         image: BJ,
