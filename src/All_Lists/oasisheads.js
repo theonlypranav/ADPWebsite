@@ -12,13 +12,13 @@ import i11 from '../assets/stuccans/3.jpg';
 
 
 const oasisheads = [
-    // {
-    //     id: 1,
-    //     image: i1,
-    //     title: "Shreyansh Vanjani",
-    //     subtitle: "StuCCAn, Oasis '24",
-    //     linkedinProfile: "https://www.linkedin.com/in/shreyansh-vanjani-28b198226/"
-    // },
+    {
+        id: 1,
+        image: i1,
+        title: "Shreyansh Vanjani",
+        subtitle: "StuCCAn, Oasis '24",
+        linkedinProfile: "https://www.linkedin.com/in/shreyansh-vanjani-28b198226/"
+    },
     {
         id: 2,
         image: i2,
