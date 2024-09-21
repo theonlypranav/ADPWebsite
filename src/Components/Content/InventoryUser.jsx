@@ -290,7 +290,7 @@ function Inventory() {
       )}
 
 {showCart && (
-  <div className="w-full max-w-6xl mt-6 p-4 bg-white/30 backdrop-blur-md border border-gray-300 rounded-lg">
+  <div className="w-full max-w-6xl mt-6 p-4 bg-white/30 backdrop-blur-md shadow-lg border border-blue-400 glow rounded-lg">
     <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
       Cart Items
     </h3>
@@ -357,7 +357,7 @@ function Inventory() {
 
 
 {showOrders && (
-  <div className="w-full max-w-6xl mt-6 p-4 bg-white/30 backdrop-blur-md border border-gray-300 rounded-lg">
+  <div className="w-full max-w-6xl mt-6 p-4 bg-white/30 backdrop-blur-md shadow-lg border border-blue-400 glow rounded-lg">
     <h3 className="text-2xl font-bold mb-4">Your Orders</h3>
     <table className="min-w-full bg-white dark:bg-gray-900 rounded-lg">
       <thead className="bg-gray-300 dark:bg-gray-700">
