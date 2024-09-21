@@ -290,8 +290,10 @@ function Inventory() {
       )}
 
 {showCart && (
-  <div className="w-full max-w-6xl mt-6 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-x-auto">
-    <h3 className="text-2xl font-bold mb-4">Cart Items</h3>
+  <div className="w-full max-w-6xl mt-6 p-4 bg-white/30 backdrop-blur-md border border-gray-300 rounded-lg">
+    <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+      Cart Items
+    </h3>
     <table className="min-w-full bg-white dark:bg-gray-900 rounded-lg">
       <thead className="bg-gray-300 dark:bg-gray-700">
         <tr>
@@ -318,7 +320,7 @@ function Inventory() {
           </tr>
         ) : (
           cart.map((item, index) => (
-            <tr key={index}>
+            <tr key={index} className="hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
               <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
                 {item.item_name}
               </td>
@@ -328,7 +330,7 @@ function Inventory() {
               <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
                 <button
                   onClick={() => removeFromCart(index)}
-                  className="text-red-500 hover:text-red-700"
+                  className="text-red-500 hover:text-red-700 transition duration-200 transform hover:scale-110"
                 >
                   &#x2715; {/* Unicode for cross symbol */}
                 </button>
@@ -343,7 +345,7 @@ function Inventory() {
       <div className="mt-4">
         <button
           onClick={placeOrder}
-          className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-6 py-2 rounded shadow-md hover:from-purple-600 hover:to-purple-800 transition duration-300"
+          className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-6 py-2 rounded shadow-md transition duration-300 hover:from-purple-600 hover:to-purple-800 transform hover:scale-105 hover:shadow-lg"
         >
           Confirm Order
         </button>
@@ -354,83 +356,68 @@ function Inventory() {
 
 
 
-      {showOrders && (
-        <div className="w-full max-w-6xl mt-6 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-x-auto">
-          <h3 className="text-2xl font-bold mb-4">Your Orders</h3>
-          <table className="min-w-full bg-white dark:bg-gray-900 rounded-lg">
-            <thead className="bg-gray-300 dark:bg-gray-700">
-              <tr>
-                <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-                  Item
-                </th>
-                <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-                  Ordered Quantity
-                </th>
-                <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-                  Status
-                </th>
-                <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-                  Remarks
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.length === 0 ? (
-                <tr>
-                  <td
-                    colSpan="4"
-                    className="py-4 px-4 text-center text-gray-600 dark:text-gray-300"
+{showOrders && (
+  <div className="w-full max-w-6xl mt-6 p-4 bg-white/30 backdrop-blur-md border border-gray-300 rounded-lg">
+    <h3 className="text-2xl font-bold mb-4">Your Orders</h3>
+    <table className="min-w-full bg-white dark:bg-gray-900 rounded-lg">
+      <thead className="bg-gray-300 dark:bg-gray-700">
+        <tr>
+          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">Item</th>
+          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">Ordered Quantity</th>
+          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">Status</th>
+          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.length === 0 ? (
+          <tr>
+            <td colSpan="4" className="py-4 px-4 text-center text-gray-600 dark:text-gray-300">
+              No orders found
+            </td>
+          </tr>
+        ) : (
+          orders.map((order, index) => (
+            <tr key={index}>
+              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">{order.itemName}</td>
+              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">{order.ordered_quantity}</td>
+              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">{order.status}</td>
+              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
+                {order.remarks ? (
+                  <button
+                    className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300"
+                    onClick={() => setRemarkToShow(order.remarks)}
                   >
-                    No orders found
-                  </td>
-                </tr>
-              ) : (
-                orders.map((order, index) => (
-                  <tr key={index}>
-                    <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                      {order.itemName}
-                    </td>
-                    <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                      {order.ordered_quantity}
-                    </td>
-                    <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                      {order.status}
-                    </td>
-                    <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                      {order.remarks ? (
-                        <button
-                          className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                          onClick={() => setRemarkToShow(order.remarks)}
-                        >
-                          View Remark
-                        </button>
-                      ) : (
-                        ""
-                      )}
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                    View Remark
+                  </button>
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+          ))
+        )}
+      </tbody>
+    </table>
 
-          {/* Modal to display the remark */}
-          {remarkToShow && (
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-                <h4 className="text-lg font-bold mb-2">Remark</h4>
-                <p>{remarkToShow}</p>
-                <button
-                  className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                  onClick={() => setRemarkToShow(null)}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          )}
+    {/* Modal to display the remark */}
+    {remarkToShow && (
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-300 dark:border-gray-600">
+          <h4 className="text-2xl font-bold mb-4 text-center">Remark</h4> {/* Increased heading size */}
+          <p className="text-center mb-4">{remarkToShow}</p> {/* Added bottom margin for spacing */}
+          <div className="flex justify-center">
+            <button
+              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800 transition duration-300"
+              onClick={() => setRemarkToShow(null)}
+            >
+              Close
+            </button>
+          </div>
         </div>
-      )}
+      </div>
+    )}
+  </div>
+)}
 
       {showCompleteOrderModal && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center">
