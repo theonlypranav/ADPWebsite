@@ -182,14 +182,14 @@ function Inventory() {
           <button onClick={() => setItemsManagerModal(true)} className='bg-gradient-to-r from-purple-500 to-purple-700 text-white px-5 py-2 rounded shadow-md hover:from-purple-600 hover:to-purple-800 transition duration-300'>
             Items Manager
           </button>
-          <button onClick={handleLogoutAndRedirect} className='bg-gradient-to-r from-gray-500 to-gray-700 text-white px-5 py-2 rounded shadow-md hover:from-gray-600 hover:to-gray-800 transition duration-300'>
-            Back
-          </button>
           <button onClick={() => navigate('/orders')} className='bg-gradient-to-r from-teal-500 to-teal-700 text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300'>
             View All Orders
           </button>
           <button onClick={() => navigate('/items')} className='bg-gradient-to-r from-teal-500 to-teal-700 text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300'>
             Inventory analysis
+          </button>
+          <button onClick={handleLogoutAndRedirect} className='bg-gradient-to-r from-red-500 to-red-700 text-white px-5 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300'>
+            Logout
           </button>
         </div>
       </div>

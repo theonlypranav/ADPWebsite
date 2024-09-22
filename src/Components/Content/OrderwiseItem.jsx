@@ -121,7 +121,6 @@ function OrderwiseItem() {
       }
 
       console.log('Items saved:', updatedItems);
-      alert('Changes saved successfully!');
       window.location.reload(); // Refresh the page
     } catch (error) {
       console.error('Error saving changes:', error);
@@ -193,11 +192,11 @@ function OrderwiseItem() {
                     onChange={(e) => handleStatusChange(index, e.target.value)}
                   >
                     <option value=''>Select Status</option>
-                    <option value='pending'>Pending</option>
-                    <option value='delivered'>Delivered</option>
-                    <option value='ready'>Ready for Pickup</option>
-                    <option value='rejected'>Rejected</option>
-                    <option value='amazon'>Amazon</option>
+                    <option value='Pending'>Pending</option>
+                    <option value='Delivered'>Delivered</option>
+                    <option value='Ready'>Ready for Pickup</option>
+                    <option value='Rejected'>Rejected</option>
+                    <option value='Amazon'>Amazon</option>
                   </select>
                 </td>
                 <td className='py-2 px-4 border-b'>
