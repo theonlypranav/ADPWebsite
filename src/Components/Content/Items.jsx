@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import bgImage from '../../assets/bg.jpg'; // Ensure the correct path to your background image
 
 function Inventory() {
   const [items, setItems] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
-  
+
+  const location = useLocation();
+  const { state } = location;
+  const userId = state ? state.user_id : null;
+
   const userString = localStorage.getItem("user");
   const userData = userString ? JSON.parse(userString) : null;
   const token = localStorage.getItem("token");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!token || (userData && userData.access !== 'bosslevel')) {
@@ -20,62 +24,90 @@ function Inventory() {
 
     const fetchItems = async () => {
       try {
-        const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-item-summary', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          'https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-item-summary',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const data = await response.json();
 
         console.log('Fetched items:', data);
 
-        setItems(data.map((item) => ({
-          name: item.itemName,
-          availableQuantity: item.availableQuantity,
-          totalOrderedQuantity: item.totalOrderedQuantity,
-          totalAllottedQuantity: item.totalAllottedQuantity,
-          status: item.itemOrderedStatus ? 'true' : 'false',
-          remarks: item.itemRemarks || '', 
-        })));
+        if (Array.isArray(data)) {
+          setItems(
+            data.map((item) => ({
+              id: item._id, // Ensure you include the item ID here
+              name: item.itemName,
+              availableQuantity: item.availableQuantity,
+              totalOrderedQuantity: item.totalOrderedQuantity,
+              totalAllottedQuantity: item.totalAllottedQuantity,
+              itemOrderedStatus: item.itemOrderedStatus, // Ensure proper initial value
+              itemRemark: item.itemRemark,
+            }))
+          );
+        } else {
+          console.error('Unexpected data format:', data);
+        }
       } catch (error) {
         console.error('Error fetching items:', error);
       }
     };
 
     fetchItems();
-  }, [token, userData, navigate]);
+  }, [userId]);
 
-  const handleStatusChange = (index, event) => {
-    const value = event.target.value;
+  const handleStatusChange = (index, value) => {
     const updatedItems = [...items];
-    updatedItems[index].status = value;
+    updatedItems[index] = {
+      ...updatedItems[index],
+      itemOrderedStatus: value, // Ensure the status is updated
+    };
     setItems(updatedItems);
   };
 
-  const handleRemarkChange = (index, event) => {
-    const value = event.target.value;
+  const handleRemarkChange = (index, value) => {
     const updatedItems = [...items];
-    updatedItems[index].remarks = value;
+    updatedItems[index] = {
+      ...updatedItems[index],
+      itemRemark: value, // Ensure the status is updated
+    };
     setItems(updatedItems);
   };
 
   const handleSave = async () => {
+    const updatedItems = items
+      .map((item) => ({
+        _id: item.id,
+        itemOrderedStatus: item.itemOrderedStatus,
+        itemRemark: item.itemRemark,
+      }))
+      ; // Remove items with no changes
+
+    if (updatedItems.length === 0) {
+      alert('No changes to save.');
+      return;
+    }
     try {
-      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-items', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(items),
-      });
+      const response = await fetch(
+        'https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/update-inventory-items',
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updatedItems),
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Failed to save items');
       }
 
-      const result = await response.json();
-      console.log('Save response:', result);
+      window.location.reload();
     } catch (error) {
       console.error('Error saving items:', error);
     }
@@ -103,13 +135,13 @@ function Inventory() {
       }}
     >
       <h1 className='text-4xl font-bold mb-6'>Item List</h1>
-      
+
       <Link to='/inventoryadp'>
         <button className='bg-blue-500 text-white px-4 py-2 rounded mb-8'>
           Back to Home
         </button>
       </Link>
-      
+
       <div className='overflow-hidden rounded-lg shadow-lg border border-blue-400 glow'>
         <table className='min-w-full bg-white dark:bg-gray-800 rounded-lg'>
           <thead>
@@ -132,8 +164,8 @@ function Inventory() {
                 <td className='py-2 px-4 border-b'>
                   <select
                     className='status-dropdown'
-                    value={item.status}
-                    onChange={(e) => handleStatusChange(index, e)}
+                    value={item.itemOrderedStatus} // Ensure there's always a value
+                    onChange={(e) => handleStatusChange(index, e.target.value)}
                   >
                     <option value="">Select Status</option>
                     <option value="True">True</option>
@@ -144,8 +176,8 @@ function Inventory() {
                   <input
                     type='text'
                     className='remarks-input'
-                    value={item.remarks}
-                    onChange={(e) => handleRemarkChange(index, e)}
+                    value={item.itemRemark}
+                    onChange={(e) => handleRemarkChange(index, e.target.value)}
                     placeholder='Enter Remarks'
                   />
                 </td>
