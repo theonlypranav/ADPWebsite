@@ -168,8 +168,10 @@ function Inventory() {
                     onChange={(e) => handleStatusChange(index, e.target.value)}
                   >
                     <option value="">Select Status</option>
-                    <option value="True">True</option>
-                    <option value="False">False</option>
+                    <option value="Available">Available</option>
+                    <option value="Not Available">Not Available</option>
+                    <option value="Ordered from Akshay">Ordered from Akshay</option>
+                    <option value="Ordered from Amazon">Ordered from Amazon</option>
                   </select>
                 </td>
                 <td className='py-2 px-4 border-b'>
