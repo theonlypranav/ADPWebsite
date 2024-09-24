@@ -7,8 +7,8 @@ import bgImage from '../../assets/bg.jpg';
 function Forgpass() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [otp, setOtp] = useState('');
-  const [password, setPassword] = useState('');
+  const [verificationCode, setOtp] = useState('');
+  const [newPassword, setPassword] = useState('');
   const [showOtpAndPassword, setShowOtpAndPassword] = useState(false);
   const [resendEnabled, setResendEnabled] = useState(false);
   const [timer, setTimer] = useState(30);
@@ -31,24 +31,83 @@ function Forgpass() {
 
   const handleGenerateOtp = async (e) => {
     e.preventDefault();
-    console.log("OTP generated and sent to:", email);
-    setShowOtpAndPassword(true);
-    setResendEnabled(false);
-    setTimer(30); // Reset timer to 30 seconds
+    try {
+      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/users/request-code-pass-reset', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        console.log("OTP generated and sent to:", email);
+        setShowOtpAndPassword(true);
+        setResendEnabled(false);
+        setTimer(30);
+      } else {
+        console.error("Failed to generate OTP");
+        // Handle failure (e.g., display an error message to the user)
+      }
+    } catch (error) {
+      console.error("Error generating OTP:", error);
+      // Handle error (e.g., network error)
+    }
   };
 
   const handleResendOtp = async () => {
-    // Logic to resend the OTP to the user's email goes here
-    console.log("OTP resent to:", email);
-    setResendEnabled(false);
-    setTimer(30); // Reset timer to 30 seconds
+    try {
+      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/users/request-code-pass-reset', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        console.log("OTP generated and sent to:", email);
+        setShowOtpAndPassword(true);
+        setResendEnabled(false);
+        setTimer(30);
+      } else {
+        console.error("Failed to generate OTP");
+        // Handle failure (e.g., display an error message to the user)
+      }
+    } catch (error) {
+      console.error("Error generating OTP:", error);
+      // Handle error (e.g., network error)
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("OTP:", otp, "Password:", password);
-    // Logic to verify OTP and change password goes here
-  };
+    try {
+        const response = await fetch('http://localhost:5001/api/users/reset-password', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email,
+                newPassword,
+                verificationCode
+            }),
+        });
+
+        // Log the raw response text for better debugging
+        const responseText = await response.text(); // Get the response as text
+
+        console.log("Response status:", response.status);  // Log response status
+        console.log("Response body:", responseText); // Log the raw response body
+
+        if (response.ok) {
+            const responseData = JSON.parse(responseText); // Parse JSON response
+            console.log("Password reset successful for:", email);
+            console.log("Server response:", responseData); // Log the server response
+            navigate('/inventory'); // Redirect to the login page
+        } else {
+            console.error("Failed to reset password:", responseText); // Log error details
+        }
+    } catch (error) {
+        console.error("Error resetting password:", error); // Handle any fetch errors
+    }
+};
+  
 
   return (
     <div className='wrapper-pro' style={{
@@ -67,6 +126,7 @@ function Forgpass() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={showOtpAndPassword} 
             />
             <i className='bx bxs-user'></i>
           </div>
@@ -76,7 +136,7 @@ function Forgpass() {
                 <input
                   type="text"
                   placeholder="Enter OTP"
-                  value={otp}
+                  value={verificationCode}
                   onChange={(e) => setOtp(e.target.value)}
                   required
                 />
@@ -86,7 +146,7 @@ function Forgpass() {
                 <input
                   type="password"
                   placeholder="Create New Password"
-                  value={password}
+                  value={newPassword}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
