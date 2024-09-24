@@ -84,7 +84,7 @@ function Login() {
               <input type="checkbox" />
               Remember me
             </label>
-            <a href="#">Forget Password?</a>
+            <a href="/forgpass">Forget Password?</a>
           </div>
           <button type="submit" className="btn">Login</button>
           <div className="register-link">

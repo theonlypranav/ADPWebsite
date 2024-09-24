@@ -21,6 +21,7 @@ import Login from './Components/Content/Login';
 import Register from './Components/Content/Register';
 import Items from './Components/Content/Items';
 import OrderwiseItem from './Components/Content/OrderwiseItem';
+import Forgpass from './Components/Content/Forgpass';
 
 import './App.css';
 
@@ -84,6 +85,13 @@ function App() {
             <>
               <Navbar />
               <Register />
+              <Footer />
+            </>
+          } />
+            <Route path="/forgpass" element={
+            <>
+              <Navbar />
+              <Forgpass />
               <Footer />
             </>
           } />
