@@ -8,6 +8,11 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +57,7 @@ function Login() {
   };
 
   return (
-    <div className='wrapper-pro'style={{
+    <div className='wrapper-pro' style={{
       backgroundImage: `url(${bgImage})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -63,21 +68,28 @@ function Login() {
           <h1>Login</h1>
           <div className="input-box">
             <input
-              type="text"
-              placeholder="email"
+              type="email" // Changed type to 'email' for better validation
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required // Added required attribute for form validation
             />
-            <i className='bx bxs-user'></i>
+            <i className='bx bxs-envelope'></i> {/* Updated icon to an envelope for email */}
           </div>
           <div className="input-box">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"} // Toggle between text and password
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required // Added required attribute for form validation
             />
-            <i className='bx bxs-lock-alt'></i>
+            {/* Removed the lock icon */}
+            <i 
+              className={`bx ${showPassword ? 'bx-show' : 'bx-hide'} eye-icon`} // Toggle eye icon
+              onClick={togglePasswordVisibility} // Toggle password visibility
+              title={showPassword ? "Hide Password" : "Show Password"} // Tooltip for accessibility
+            ></i>
           </div>
           <div className="remember-forget">
             <label>
@@ -90,6 +102,7 @@ function Login() {
           <div className="register-link">
             <p>Don't have an account? <a href="/register">Register</a></p>
           </div>
+          <p>Login is available exclusively to coordinators of the respective clubs or departments using respective BITS OR OASIS email ID </p>
           <div className="tech-support">
             <p>Tech Support <a href="http://wasap.my/919937020000"><FaWhatsapp className="icon-glow text-silver-700 hover:text-silver-500" /></a></p>
           </div>
@@ -150,6 +163,12 @@ function Login() {
           font-size: 1rem;
           color: #fff;
           padding: 0 20px;
+          outline: none; /* Remove default outline */
+          transition: border-color 0.3s;
+        }
+
+        .input-box input:focus {
+          border-color: #fff; /* Highlight border on focus */
         }
 
         .input-box input::placeholder {
@@ -162,6 +181,17 @@ function Login() {
           top: 50%;
           transform: translateY(-50%);
           font-size: 1.25rem;
+          color: #fff;
+        }
+
+        .eye-icon {
+          position: absolute;
+          right: 15px; /* Adjusted to replace the lock icon's position */
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 1.25rem;
+          cursor: pointer;
+          color: #fff; /* Ensure the eye icon is visible */
         }
 
         .wrapper .remember-forget {
@@ -217,6 +247,10 @@ function Login() {
           font-weight: 600;
         }
 
+        .register-link p a:hover {
+          text-decoration: underline;
+        }
+
         .wrapper .tech-support {
           font-size: 1rem;
           text-align: center;
@@ -229,13 +263,7 @@ function Login() {
           text-decoration: none;
           font-weight: 600;
           padding-left: 8px;
-        }
-
-        .register-link p a:hover {
-          text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
+        }  @media (max-width: 768px) {
           .wrapper {
             padding: 20px;
             margin: 20px;
