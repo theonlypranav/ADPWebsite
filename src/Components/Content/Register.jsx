@@ -1,27 +1,33 @@
 import React, { useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import bgImage from '../../assets/bg.jpg'; 
 
 function Register() {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     cordName: '',
     clubName: '',
     mobile: '',
     email: '',
     password: '',
-    verificationCode: '', // State for OTP
+    verificationCode: '',
   });
   const [otpSent, setOtpSent] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
 
   const handleChange = (e) => {
+    // Prevent changing email if OTP has been sent
+    if (e.target.name === 'email' && otpSent) return;
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSendOtp = async (e) => {
     e.preventDefault();
+    if (!formData.email) {
+      alert('Please enter your email address.');
+      return;
+    }
     try {
       const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/users/request-code', {
         method: 'POST',
@@ -53,7 +59,7 @@ function Register() {
       const result = await response.json();
       if (response.ok) {
         alert('Registration successful!');
-        navigate('/login'); // Redirect to login page
+        navigate('/login');
       } else {
         alert(result.error || 'Registration failed.');
       }
@@ -69,6 +75,7 @@ function Register() {
     <>
       <style>
         {`
+          /* Your existing CSS styles */
           * {
             margin: 0;
             padding: 0;
@@ -82,8 +89,8 @@ function Register() {
           }
 
           #register {
-            padding: 100px 0; /* Adjusted padding for top and bottom */
-            min-height: 100vh; /* Ensure the container covers the full viewport height */
+            padding: 100px 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -100,7 +107,7 @@ function Register() {
             padding: 40px;
             background-color: rgba(0, 0, 0, 0.5);
             box-sizing: border-box;
-            margin: 0 auto; /* Center horizontally */
+            margin: 0 auto;
           }
 
           .wrapper h1 {
@@ -143,7 +150,7 @@ function Register() {
           }
 
           .wrapper .btn {
-            width: calc(100% - 20px); /* Adjust to account for padding */
+            width: calc(100% - 20px);
             height: 45px;
             background: #fff;
             border: none;
@@ -154,8 +161,8 @@ function Register() {
             color: #333;
             font-weight: 600;
             transition: background 0.3s, color 0.3s;
-            margin: 10px 0; /* Add margin to increase spacing between buttons */
-            padding: 0 10px; /* Add padding to increase clickable area */
+            margin: 10px 0;
+            padding: 0 10px;
           }
 
           .wrapper .btn:hover {
@@ -201,17 +208,28 @@ function Register() {
                 font-size: 16px;
             }
           }
+
+          /* Additional styles for verification message */
+          .verification-message {
+            color: #ffcc00;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+          }
         `}
       </style>
       <div className="register-page">
-        <div id="register" style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        }}>
+        <div
+          id="register"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
           <div className="wrapper">
-            <form>
+            <form onSubmit={otpSent ? handleRegister : handleSendOtp}>
               <h1>Register</h1>
               <div className="input-box">
                 <input
@@ -221,6 +239,7 @@ function Register() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  disabled={otpSent} // Disable email input if OTP is sent
                 />
                 <i className='bx bxs-envelope'></i>
               </div>
@@ -269,30 +288,49 @@ function Register() {
                 <i className='bx bxs-lock-alt'></i>
               </div>
               {otpSent && (
-                <div className="input-box">
-                  <input
-                    type="text"
-                    name="verificationCode"
-                    placeholder="Verification Code"
-                    value={formData.verificationCode}
-                    onChange={handleChange}
-                    required
-                  />
-                  <i className='bx bxs-lock-alt'></i>
-                </div>
+                <>
+                  <div className="input-box">
+                    <input
+                      type="text"
+                      name="verificationCode"
+                      placeholder="Verification Code"
+                      value={formData.verificationCode}
+                      onChange={handleChange}
+                      required
+                    />
+                    <i className='bx bxs-lock-alt'></i>
+                  </div>
+                  <p className="verification-message">
+                    Please check your spam folder if you don't see the OTP in your inbox.
+                  </p>
+                </>
               )}
-              <button type="button" className="btn" onClick={handleSendOtp}>
-                {otpSent ? 'Resend OTP' : 'Get OTP At Email'}
-              </button>
               
-              <button
-                type="button"
-                className="btn"
-                onClick={handleRegister}
-                disabled={isRegistering}
-              >
-                {isRegistering ? 'Registering...' : 'Register'}
-              </button>
+              {/* Button to send OTP */}
+              {!otpSent && (
+                <button type="button" className="btn" onClick={handleSendOtp}>
+                  Get OTP At Email
+                </button>
+              )}
+
+              {/* Button to resend OTP if already sent */}
+              {otpSent && (
+                <button type="button" className="btn" onClick={handleSendOtp}>
+                  Resend OTP
+                </button>
+              )}
+
+              {/* Register button only appears after OTP is sent */}
+              {otpSent && (
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={handleRegister}
+                  disabled={isRegistering}
+                >
+                  {isRegistering ? 'Registering...' : 'Register'}
+                </button>
+              )}
             </form>
           </div>
         </div>
