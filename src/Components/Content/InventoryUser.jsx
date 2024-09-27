@@ -13,6 +13,7 @@ function Inventory() {
   const [showCompleteOrderModal, setShowCompleteOrderModal] = useState(false);
   const [notification, setNotification] = useState("");
   const [user, setUser] = useState(null);
+  const [isGridView, setIsGridView] = useState(true);
 
     // Fetch the user info from localStorage
     const userString = localStorage.getItem("user");
@@ -197,6 +198,10 @@ function Inventory() {
       }
     }
   };
+
+  const toggleViewMode = () => {
+    setIsGridView(!isGridView)
+  };
   
 
   const handleViewOrders = () => {
@@ -278,6 +283,12 @@ function Inventory() {
             className="bg-gradient-to-r from-red-500 to-red-700 text-white px-6 py-2 rounded shadow-md hover:from-red-700 hover:to-red-900 transition duration-300"
           >
             Logout
+          </button>
+          <button
+            onClick={toggleViewMode}
+            className="bg-gradient-to-r from-red-500 to-red-700 text-white px-6 py-2 rounded shadow-md hover:from-red-700 hover:to-red-900 transition duration-300"
+          >
+            {isGridView ? 'List View' : 'Grid View'}
           </button>
         </div>
       </div>
@@ -482,22 +493,19 @@ function Inventory() {
             No items available
           </p>
         ) : (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <ul className={isGridView ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" : "space-y-4"}>
             {items.map((item, index) => (
               <li
                 key={item.id}
-                className="bg-white/30 backdrop-blur-lg shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg flex flex-col justify-between border border-gray-200"
-                style={{ minHeight: '200px', maxHeight: '400px', minWidth: '200px', maxWidth: '400px' }}
+                className={`bg-white/30 backdrop-blur-lg shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg flex ${isGridView ? 'flex-col justify-between' : 'flex-row items-center justify-between space-x-4'} border border-gray-200`}
+                style={isGridView ? { minHeight: '200px', maxHeight: '400px', minWidth: '200px', maxWidth: '400px' } : { minHeight: '100px' }}
               >
-                <div
-                  className="flex-grow flex items-start justify-center"
-                  style={{ minHeight: '60%', paddingTop: '10px', paddingBottom: '10px' }}
-                >
-                  <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-center leading-tight">
+                <div className={`flex-grow ${isGridView ? 'flex items-start justify-center' : 'flex justify-start max-w-xs'}`} style={isGridView ? { minHeight: '60%', paddingTop: '10px', paddingBottom: '10px' } : {}}>
+                  <h4 className={`text-xl sm:text-2xl md:text-3xl font-bold ${isGridView ? 'text-center' : 'text-left'} leading-tight`}>
                     {item.name}
                   </h4>
                 </div>
-                <div className="flex items-center justify-center space-x-2 sm:space-x-4 mb-2" style={{ minHeight: '20%' }}>
+                <div className={`flex items-center justify-center space-x-2 sm:space-x-4 ${isGridView ? 'mb-2' : 'flex-shrink-0 w-full absolute left-1/2 transform -translate-x-1/2'}`} style={isGridView ? { minHeight: '20%' } : {}}>
                   <button
                     onClick={() => decrementQuantity(index)}
                     className="bg-red-600 hover:bg-red-500 text-white font-semibold text-xs sm:text-sm px-2 py-1 rounded transition duration-200 transform hover:scale-105"
@@ -517,10 +525,10 @@ function Inventory() {
                     +
                   </button>
                 </div>
-                <div className="flex-grow flex items-center justify-center" style={{ minHeight: '20%' }}>
+                <div className={`flex-grow ${isGridView ? 'flex items-center justify-center' : 'flex justify-end'}`} style={isGridView ? { minHeight: '20%' } : {}}>
                   <button
                     onClick={() => addToCart(index)}
-                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm px-3 py-1 rounded w-full sm:w-5/6 md:w-3/4 lg:w-2/3 transition duration-200 transform hover:scale-105"
+                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm px-3 py-1 rounded transition duration-200 transform hover:scale-105"
                   >
                     Add to Cart
                   </button>
