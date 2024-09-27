@@ -202,7 +202,18 @@ function Inventory() {
   const toggleViewMode = () => {
     setIsGridView(!isGridView)
   };
+    // State for the search query
+    const [searchQuery, setSearchQuery] = useState("");
   
+    // Handler for search input
+    const handleSearchChange = (e) => {
+      setSearchQuery(e.target.value);
+    };
+  
+    // Filter items based on the search query (case-insensitive)
+    const filteredItems = items.filter(item =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   const handleViewOrders = () => {
     if (!showOrders) {
@@ -486,58 +497,68 @@ function Inventory() {
         </div>
       )}
 
-      <div className="w-full max-w-6xl mt-6">
-        <h3 className="text-2xl font-bold mb-4">Available Items</h3>
-        {items.length === 0 ? (
-          <p className="text-center text-gray-600 dark:text-gray-300">
-            No items available
-          </p>
-        ) : (
-          <ul className={isGridView ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" : "space-y-4"}>
-            {items.map((item, index) => (
-              <li
-                key={item.id}
-                className={`bg-white/30 backdrop-blur-lg shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg flex ${isGridView ? 'flex-col justify-between' : 'flex-row items-center justify-between space-x-4'} border border-gray-200`}
-                style={isGridView ? { minHeight: '200px', maxHeight: '400px', minWidth: '200px', maxWidth: '400px' } : { minHeight: '100px' }}
-              >
-                <div className={`flex-grow ${isGridView ? 'flex items-start justify-center' : 'flex justify-start max-w-xs'}`} style={isGridView ? { minHeight: '60%', paddingTop: '10px', paddingBottom: '10px' } : {}}>
-                  <h4 className={`text-xl sm:text-2xl md:text-3xl font-bold ${isGridView ? 'text-center' : 'text-left'} leading-tight`}>
-                    {item.name}
-                  </h4>
-                </div>
-                <div className={`flex items-center justify-center space-x-2 sm:space-x-4 ${isGridView ? 'mb-2' : 'flex-shrink-0 w-full absolute left-1/2 transform -translate-x-1/2'}`} style={isGridView ? { minHeight: '20%' } : {}}>
-                  <button
-                    onClick={() => decrementQuantity(index)}
-                    className="bg-red-600 hover:bg-red-500 text-white font-semibold text-xs sm:text-sm px-2 py-1 rounded transition duration-200 transform hover:scale-105"
-                  >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    value={item.quantity}
-                    onChange={(e) => handleQuantityChange(index, e.target.value)}
-                    className="w-10 sm:w-12 text-black text-xs sm:text-sm text-center border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                  <button
-                    onClick={() => incrementQuantity(index)}
-                    className="bg-green-600 hover:bg-green-500 text-white font-semibold text-xs sm:text-sm px-2 py-1 rounded transition duration-200 transform hover:scale-105"
-                  >
-                    +
-                  </button>
-                </div>
-                <div className={`flex-grow ${isGridView ? 'flex items-center justify-center' : 'flex justify-end'}`} style={isGridView ? { minHeight: '20%' } : {}}>
-                  <button
-                    onClick={() => addToCart(index)}
-                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm px-3 py-1 rounded transition duration-200 transform hover:scale-105"
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+<div className="w-full max-w-6xl mt-6">
+      <h3 className="text-2xl font-bold mb-4">Available Items</h3>
+
+      {/* Search bar */}
+      <input
+        type="text"
+        placeholder="Search items by title"
+        value={searchQuery}
+        onChange={handleSearchChange}
+        className="w-full p-2 mb-6 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      {filteredItems.length === 0 ? (
+        <p className="text-center text-gray-600 dark:text-gray-300">
+          No items available
+        </p>
+      ) : (
+        <ul className={isGridView ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" : "space-y-4"}>
+          {filteredItems.map((item, index) => (
+            <li
+              key={item.id}
+              className={`bg-white/30 backdrop-blur-lg shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg flex ${isGridView ? 'flex-col justify-between' : 'flex-row items-center justify-between space-x-4'} border border-gray-200`}
+              style={isGridView ? { minHeight: '200px', maxHeight: '400px', minWidth: '200px', maxWidth: '400px' } : { minHeight: '100px' }}
+            >
+              <div className={`flex-grow ${isGridView ? 'flex items-start justify-center' : 'flex justify-start max-w-xs'}`} style={isGridView ? { minHeight: '60%', paddingTop: '10px', paddingBottom: '10px' } : {}}>
+                <h4 className={`text-xl sm:text-2xl md:text-3xl font-bold ${isGridView ? 'text-center' : 'text-left'} leading-tight`}>
+                  {item.name}
+                </h4>
+              </div>
+              <div className={`flex items-center justify-center space-x-2 sm:space-x-4 ${isGridView ? 'mb-2' : 'flex-shrink-0 w-full absolute left-1/2 transform -translate-x-1/2'}`} style={isGridView ? { minHeight: '20%' } : {}}>
+                <button
+                  onClick={() => decrementQuantity(index)}
+                  className="bg-red-600 hover:bg-red-500 text-white font-semibold text-xs sm:text-sm px-2 py-1 rounded transition duration-200 transform hover:scale-105"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  value={item.quantity}
+                  onChange={(e) => handleQuantityChange(index, e.target.value)}
+                  className="w-10 sm:w-12 text-black text-xs sm:text-sm text-center border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  onClick={() => incrementQuantity(index)}
+                  className="bg-green-600 hover:bg-green-500 text-white font-semibold text-xs sm:text-sm px-2 py-1 rounded transition duration-200 transform hover:scale-105"
+                >
+                  +
+                </button>
+              </div>
+              <div className={`flex-grow ${isGridView ? 'flex items-center justify-center' : 'flex justify-end'}`} style={isGridView ? { minHeight: '20%' } : {}}>
+                <button
+                  onClick={() => addToCart(index)}
+                  className="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm px-3 py-1 rounded transition duration-200 transform hover:scale-105"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
     </div>
   );
 }
