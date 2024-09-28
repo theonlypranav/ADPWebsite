@@ -176,9 +176,7 @@ function Inventory() {
           Welcome, {userData?.cordName || 'CRAC Coordinator'}
         </h2>
         <div className='flex space-x-4 mt-4'>
-          <button onClick={() => setAddItemModal(true)} className='bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-2 rounded shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300'>
-            Add New Item
-          </button>
+          
           <button onClick={() => setItemsManagerModal(true)} className='bg-gradient-to-r from-purple-500 to-purple-700 text-white px-5 py-2 rounded shadow-md hover:from-purple-600 hover:to-purple-800 transition duration-300'>
             Items Manager
           </button>
@@ -211,8 +209,13 @@ function Inventory() {
             </div>
           </div>
         ))}
-      </div>
-
+      
+      <div className='flex justify-center items-center bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md'>
+    <button onClick={() => setAddItemModal(true)} className='text-4xl text-purple-500 hover:text-blue-700 transition duration-300'>
+    <i className='bx bx-plus text-6xl'></i>
+    </button>
+  </div>
+</div>
       {/* Add Item Modal */}
       {addItemModal && (
   <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
@@ -243,9 +246,18 @@ function Inventory() {
         <>
           <input type='text' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600' value={itemBeingEditedName} onChange={(e) => setItemBeingEditedName(e.target.value)} />
           <input type='number' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600' value={itemBeingEditedQuantity} onChange={(e) => setItemBeingEditedQuantity(Number(e.target.value))} />
-          <label className='inline-flex items-center text-white'>
-            <input type='checkbox' checked={itemBeingEditedEnabled} onChange={(e) => setItemBeingEditedEnabled(e.target.checked)} />
-            <span className='ml-2'>Enabled</span>
+          <label className='flex items-center'>
+            <span className='mr-2 text-white'>{itemBeingEditedEnabled ? 'Enabled' : 'Disabled'}</span>
+            <div className='relative'>
+              <input 
+                type='checkbox' 
+                checked={itemBeingEditedEnabled} 
+                onChange={(e) => setItemBeingEditedEnabled(e.target.checked)} 
+                className='sr-only' 
+              />
+              <div className={`w-14 h-8 bg-gray-300 rounded-full cursor-pointer ${itemBeingEditedEnabled ? 'bg-green-500' : 'bg-red-500'}`}></div>
+              <div className={`absolute left-1 top-1 w-6 h-6 bg-white rounded-full transition-transform duration-300 ${itemBeingEditedEnabled ? 'transform translate-x-full' : ''}`}></div>
+            </div>
           </label>
           <div className='flex justify-end space-x-4 mt-4'>
             <button onClick={updateItem} className='bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded'>Save Changes</button>
@@ -254,6 +266,7 @@ function Inventory() {
           </div>
         </>
       )}
+
     </div>
   </div>
 )}
