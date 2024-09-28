@@ -184,7 +184,16 @@ function Inventory() {
                     placeholder='Enter Remarks'
                   />
                 </td>
-                <td className='py-2 px-4 border-b'>{item.link}</td>
+                <td className='py-2 px-4 border-b'>
+  {item.link ? (
+    <a href={item.link} target="_blank" rel="noopener noreferrer" className='text-blue-500 underline'>
+      Link
+    </a>
+  ) : (
+    'No link'
+  )}
+</td>
+
               </tr>
             ))}
           </tbody>
