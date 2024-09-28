@@ -17,6 +17,10 @@ function OrderwiseItem() {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
+  const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+
+
   useEffect(() => {
     if (!token || (userData && userData.access !== 'bosslevel')) {
       navigate('/inventory');
@@ -52,6 +56,7 @@ function OrderwiseItem() {
               addQuantity: '', // Initialize empty or default value
               status: item.status,
               remarks: item.remarks || '', // Default to empty if not provided
+              link: item.link || '',
             }))
           );
         } else {
@@ -79,6 +84,17 @@ function OrderwiseItem() {
     updatedItems[index].status = value;
     setItems(updatedItems);
   };
+
+  const handleDelete = (id) => {
+    const updatedItems = items.filter(item => item.id !== id);
+    setItems(updatedItems);
+  };
+
+  const requestDelete = (id) => {
+    setItemToDelete(id);
+    setConfirmDeleteVisible(true);
+  };
+  
 
   const handleRemarkChange = (index, value) => {
     const updatedItems = [...items];
@@ -168,6 +184,8 @@ function OrderwiseItem() {
               <th className='py-2 px-4 border-b'>Add Quantity</th>
               <th className='py-2 px-4 border-b'>Status</th>
               <th className='py-2 px-4 border-b'>Remarks</th>
+              <th className='py-2 px-4 border-b'>Link</th>
+              <th className='py-2 px-4 border-b'>Manage</th>
             </tr>
           </thead>
           <tbody>
@@ -208,6 +226,24 @@ function OrderwiseItem() {
                     placeholder='Enter Remarks'
                   />
                 </td>
+                <td className='py-2 px-4 border-b'>
+                {item.link ? (
+                  <a href={item.link} target='_blank' rel='noopener noreferrer' className='text-blue-500'>
+                    View Link
+                  </a>
+                ) : (
+                  <span>No Link</span>
+                )}
+              </td> 
+              <td className='py-2 px-4 border-b'>
+                  <button
+                    onClick={() => requestDelete(item.id)}
+                    className='text-red-500 text-2xl px-4 py-2'
+                    title='Delete'
+                  >
+                    &times; {/* Cross symbol for delete */}
+                  </button>
+              </td>
               </tr>
             ))}
           </tbody>
@@ -243,6 +279,34 @@ function OrderwiseItem() {
           </div>
         </div>
       )}
+
+      {confirmDeleteVisible && (
+        <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-1/4 relative flex flex-col items-center'>
+            <h2 className='text-lg font-semibold mb-2'>Confirm Delete</h2>
+            <p className='text-center mb-4'>Are you sure you want to delete this item?</p>
+            <div className='flex space-x-2'>
+              <button
+                onClick={() => {
+                  handleDelete(itemToDelete);
+                  setConfirmDeleteVisible(false);
+                }}
+                className='bg-red-500 text-white px-4 py-2 rounded'
+              >
+                Yes, Delete
+              </button>
+              <button
+                onClick={() => setConfirmDeleteVisible(false)}
+                className='bg-blue-500 text-white px-4 py-2 rounded'
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+
 
       {/* CSS for Glow Effect */}
       <style jsx='true'>{`
