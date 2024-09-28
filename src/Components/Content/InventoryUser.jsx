@@ -14,6 +14,11 @@ function Inventory() {
   const [notification, setNotification] = useState("");
   const [user, setUser] = useState(null);
   const [isGridView, setIsGridView] = useState(true);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [newItemName, setNewItemName] = useState('');
+  const [newItemQuantity, setNewItemQuantity] = useState('');
+  const [newItemLink, setNewItemLink] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
     // Fetch the user info from localStorage
     const userString = localStorage.getItem("user");
@@ -114,6 +119,60 @@ function Inventory() {
 
   const removeFromCart = (index) => {
     setCart((prevCart) => prevCart.filter((_, i) => i !== index));
+  };
+
+  const toggleDialog = () => {
+    setIsDialogOpen(!isDialogOpen);
+  };
+
+  const handleAddNewItem = async () => {
+    // Fetch the user info from localStorage
+    const userString = localStorage.getItem("user");
+    const userData = userString ? JSON.parse(userString) : null;
+    const token = localStorage.getItem("token");
+    setUser(userData); // Ensure setUser updates state properly
+
+    // Basic validation before sending request
+    if (!newItemName || !newItemQuantity) {
+        setErrorMessage('Item name and quantity are required.');
+        return;
+    }
+
+    try {
+        const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/add-custom-item', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                userId: userData.id,
+                itemName: newItemName,
+                ordered_quantity: newItemQuantity,
+                link: newItemLink
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+            // Clear the fields after a successful request
+            setNewItemName('');
+            setNewItemQuantity('');
+            setNewItemLink('');
+            setErrorMessage('');
+
+            // Close the dialog
+            setIsDialogOpen(false);
+
+            // Optionally update the UI to reflect the new item (e.g., refresh cart items)
+        } else {
+            // Show any backend errors
+            setErrorMessage(data.errors ? data.errors.map(err => err.msg).join(', ') : 'Failed to add item');
+        }
+    } catch (err) {
+        setErrorMessage('Something went wrong. Please try again.');
+    }
   };
 
   const clearCart = () => {
@@ -440,6 +499,50 @@ function Inventory() {
   </div>
 )}
 
+{isDialogOpen && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg z-60 max-w-lg w-full">
+      <h2 className="text-xl font-semibold mb-4">Add New Item</h2>
+      {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
+      <input
+        type="text"
+        placeholder="Item Name"
+        value={newItemName}
+        onChange={(e) => setNewItemName(e.target.value)}
+        className="mb-3 p-2 border rounded w-full text-black"
+      />
+      <input
+        type="number"
+        placeholder="Quantity"
+        value={newItemQuantity}
+        onChange={(e) => setNewItemQuantity(e.target.value)}
+        className="mb-3 p-2 border rounded w-full text-black"
+      />
+      <input
+        type="text"
+        placeholder="Link for ordering (optional)"
+        value={newItemLink}
+        onChange={(e) => setNewItemLink(e.target.value)}
+        className="mb-3 p-2 border rounded w-full text-black"
+      />
+      <div className="flex justify-between">
+        <button
+          onClick={handleAddNewItem}
+          className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Add Item
+        </button>
+        <button
+          onClick={() => setIsDialogOpen(false)}
+          className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
       {showCompleteOrderModal && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center">
           <div className="bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3">
@@ -556,6 +659,21 @@ function Inventory() {
               </div>
             </li>
           ))}
+          <li
+            key="add-item"
+            className={`bg-white/30 backdrop-blur-lg shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg flex ${isGridView ? 'flex-col justify-center' : 'flex-row items-center justify-between space-x-4'} border border-gray-200`}
+            style={isGridView ? { minHeight: '200px', maxHeight: '400px', minWidth: '200px', maxWidth: '400px' } : { minHeight: '100px' }}
+          >
+            <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-center leading-tight mb-4">
+              Add item
+            </h4>
+            <button
+              onClick={toggleDialog}
+              className="bg-green-600 hover:bg-green-500 text-white font-bold text-4xl px-6 py-6 rounded-full transition duration-200 transform hover:scale-105"
+            >
+              +
+            </button>
+          </li>
         </ul>
       )}
     </div>
