@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Inventory.css'; 
 import bgImage from '../../assets/bg.jpg'; 
 
+
 function Inventory() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
@@ -14,6 +15,11 @@ function Inventory() {
   const [itemBeingEditedName, setItemBeingEditedName] = useState('');
   const [itemBeingEditedQuantity, setItemBeingEditedQuantity] = useState(0);
   const [itemBeingEditedEnabled, setItemBeingEditedEnabled] = useState(true);
+  const [tapCount, setTapCount] = useState(0);
+  const [tapTimeout, setTapTimeout] = useState(null);
+  const [loading, setLoading] = useState(true); // Add this line
+
+
 
   // Fetch token and user details from localStorage
   const userString = localStorage.getItem('user');
@@ -30,6 +36,7 @@ function Inventory() {
 
   // Fetch items from the API
   const fetchItems = async () => {
+    setLoading(true); 
     try {
       const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory', {
         method: 'GET',
@@ -45,6 +52,8 @@ function Inventory() {
       }
     } catch (error) {
       console.error('Error fetching items:', error);
+    }finally {
+      setLoading(false); // Set loading to false after fetching
     }
   };
 
@@ -196,25 +205,62 @@ function Inventory() {
       </div>
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl mt-8'>
-        {items.map((item, index) => (
-          <div key={item._id} className='bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center'>
-            <div className='text-lg font-semibold mb-2'>
-              {item.itemName || `Item Name ${index + 1}`}
-            </div>
-            <div className='text-lg'>
-              Quantity: {item.itemQuantity}
-            </div>
-            <div className={`mt-2 text-sm ${item.itemStatus === 'enabled' ? 'text-green-500' : 'text-red-500'}`}>
-              Status: {item.itemStatus}
-            </div>
+
+      {loading ? (
+    <div className="loading-spinner text-center text-lg">Loading...</div> // Loading indicator
+  ) : (
+    <>
+      {items.map((item, index) => (
+        <div 
+          key={item._id} 
+          className='bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center'
+          onContextMenu={(e) => {
+            e.preventDefault(); // Prevent default context menu
+            setSelectedItemIndex(index);
+            setItemBeingEditedName(item.itemName);
+            setItemBeingEditedQuantity(item.itemQuantity);
+            setItemBeingEditedEnabled(item.itemStatus === 'enabled');
+            setItemsManagerModal(true);
+          }}
+          onTouchStart={() => {
+            if (tapCount === 0) {
+              setTapCount(1);
+              setTapTimeout(setTimeout(() => {
+                setTapCount(0); // Reset tap count after delay
+              }, 300)); // Delay for detecting double tap
+            } else {
+              clearTimeout(tapTimeout); // Clear the timeout
+              setTapCount(0); // Reset tap count
+              
+              // Open the modal on double tap
+              setSelectedItemIndex(index);
+              setItemBeingEditedName(item.itemName);
+              setItemBeingEditedQuantity(item.itemQuantity);
+              setItemBeingEditedEnabled(item.itemStatus === 'enabled');
+              setItemsManagerModal(true);
+            }
+          }}
+        >
+          <div className='text-lg font-semibold mb-2'>
+            {item.itemName || `Item Name ${index + 1}`}
           </div>
-        ))}
-      
+          <div className='text-lg'>
+            Quantity: {item.itemQuantity}
+          </div>
+          <div className={`mt-2 text-sm ${item.itemStatus === 'enabled' ? 'text-green-500' : 'text-red-500'}`}>
+            Status: {item.itemStatus}
+          </div>
+        </div>
+      ))}
+
+
       <div className='flex justify-center items-center bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md'>
     <button onClick={() => setAddItemModal(true)} className='text-4xl text-purple-500 hover:text-blue-700 transition duration-300'>
     <i className='bx bx-plus text-6xl'></i>
     </button>
   </div>
+  </>
+  )}
 </div>
       {/* Add Item Modal */}
       {addItemModal && (
