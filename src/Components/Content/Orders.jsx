@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import bgImage from '../../assets/bg.jpg'; 
+import bgImage from '../../assets/bg.jpg';
 
 function Order() {
   const [items, setItems] = useState([]);
@@ -8,10 +8,13 @@ function Order() {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch user data and token from localStorage
-  const userString = localStorage.getItem('user');
-  const userData = userString ? JSON.parse(userString) : null;
-  const token = localStorage.getItem('token');
+  // Use useMemo to ensure userData and token are fetched only once
+  const userData = useMemo(() => {
+    const userString = localStorage.getItem('user');
+    return userString ? JSON.parse(userString) : null;
+  }, []);
+
+  const token = useMemo(() => localStorage.getItem('token'), []);
 
   useEffect(() => {
     // Redirect to /inventory if user is not logged in or not a boss
@@ -42,8 +45,8 @@ function Order() {
       }
     };
 
-    fetchCartItemsSummary();
-  }, [navigate, token, userData]);
+    fetchCartItemsSummary(); // Fetch data only once when component mounts
+  }, [token, userData, navigate]);
 
   const handleOrderClick = (user_id) => {
     navigate('/orderwiseitem', { state: { user_id } });
