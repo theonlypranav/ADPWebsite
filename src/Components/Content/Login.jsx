@@ -91,18 +91,18 @@ function Login() {
               title={showPassword ? "Hide Password" : "Show Password"} // Tooltip for accessibility
             ></i>
           </div>
-          <div className="remember-forget">
+          <div style={{fontSize:12}} className="remember-forget" >
             <label>
               <input type="checkbox" />
               Remember me
             </label>
             <a href="/forgpass">Forget Password?</a>
           </div>
-          <button type="submit" className="btn">Login</button>
+          <button type="submit" style={{marginTop: '24px'}}className="btn">Login</button>
           <div className="register-link">
             <p>Don't have an account? <a href="/register">Register</a></p>
           </div>
-          <p>Login is available exclusively to coordinators of the respective clubs or departments using respective BITS OR OASIS email ID </p>
+          <p style={{fontSize:12, color:'silver'}}>Login is available exclusively to coordinators of the respective clubs or departments using respective BITS OR OASIS email ID </p>
           <div className="tech-support">
             <p>Tech Support <a href="http://wasap.my/919937020000"><FaWhatsapp className="icon-glow text-silver-700 hover:text-silver-500" /></a></p>
           </div>

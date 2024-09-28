@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/bg.jpg";
+import { faStoreAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Inventory() {
   const navigate = useNavigate();
@@ -172,7 +176,7 @@ function Inventory() {
     setIsDialogOpen(false);
   };
 
-  const clearCart = () => {
+  const Cartclear = () => {
     setCart([]);
     setShowCart(false);
   };
@@ -339,178 +343,157 @@ function Inventory() {
       }}
     >
       <div className="top-transition"></div>
-      <div className="text-center w-full flex flex-col items-center mb-12">
-        <h1 className="text-4xl font-bold mb-2 text-silver-700 dark:text-silver-300">
+      <div className="w-full flex flex-col items-start mb-12 max-w-6xl">
+        <h1
+          style={{ fontFamily: 'Anton', letterSpacing: 4, fontSize: '64px' }}
+          className="text-4xl uppercase font-bold mb-2 text-silver-700 dark:text-silver-300"
+        >
           Inventory Management
         </h1>
-        <h2 className="text-xl font-semibold text-silver-600 dark:text-silver-400">
-          Welcome {user?.clubName || "Guest"}
+        <h2
+          style={{ fontSize: '36px', paddingTop: '24px', fontFamily: 'Anton', letterSpacing: 2 }}
+          className="text-xl font-semibold text-silver-600 dark:text-silver-400"
+        >
+          Welcome, {user?.clubName || "Guest"} !
         </h2>
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 text-justify">
           For any queries, contact{" "}
-          <a
-            href="https://wa.me/9937020000"
-            className="text-blue-500 underline"
-          >
-            Krish Vora
-          </a>
-          ,{" "}
-          <a
-            href="https://wa.me/8769934945"
-            className="text-blue-500 underline"
-          >
-            Ayush Jain
-          </a>
+          <a href="https://wa.me/9937020000" className="text-blue-500 underline">Krish Vora</a>,{" "}
+          <a href="https://wa.me/8769934945" className="text-blue-500 underline">Ayush Jain</a>
         </p>
-        <div className="flex space-x-4 mt-4">
+        <div className="flex flex-wrap justify-between mt-12 w-full space-x-0 sm:space-x-4">
           <button
             onClick={() => setShowCart(!showCart)}
-            className="bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-2 rounded shadow-md hover:from-green-600 hover:to-green-800 transition duration-300"
+            className="bg-[#390B31] border-2 border-white h-16 text-2xl rounded-md text-white px-4 shadow-md transition duration-300 font-bold flex items-center justify-center"
           >
             {showCart ? "Hide Cart" : "View Cart"}
+            <FontAwesomeIcon icon={faShoppingCart} className="ml-2" />
           </button>
           <button
-            onClick={clearCart}
-            className="bg-gradient-to-r from-gray-500 to-gray-700 text-white px-6 py-2 rounded shadow-md hover:from-gray-600 hover:to-gray-800 transition duration-300"
+            onClick={handleViewOrders}
+            className="bg-[#390B31] border-2 border-white h-16 text-2xl rounded-md text-white px-4 shadow-md transition duration-300 font-bold flex items-center justify-center"
           >
-            Clear Cart
-          </button>  
-          <button
-            onClick={handleViewOrders} // Single onClick handler
-            className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-2 rounded shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300"
-          >
-            {showOrders ? "Hide Orders" : "View Orders"}
-          </button>
-          <button
-            onClick={handleLogoutAndRedirect}
-            className="bg-gradient-to-r from-red-500 to-red-700 text-white px-6 py-2 rounded shadow-md hover:from-red-700 hover:to-red-900 transition duration-300"
-          >
-            Logout
+            {showOrders ? "Hide Orders" : "Your Orders"}
+            <FontAwesomeIcon icon={faStoreAlt} className="text-white ml-2" />
           </button>
           <button
             onClick={toggleViewMode}
-            className="bg-gradient-to-r from-red-500 to-red-700 text-white px-6 py-2 rounded shadow-md hover:from-red-700 hover:to-red-900 transition duration-300"
+            className="bg-[#390B31] border-2 border-white w-full sm:w-auto h-16 text-2xl rounded-md text-white px-4 shadow-md transition duration-300 font-bold flex items-center justify-center"
           >
             {isGridView ? 'List View' : 'Grid View'}
           </button>
+          <button
+            onClick={handleLogoutAndRedirect}
+            className="bg-[#390B31] border-2 border-white h-16 text-2xl rounded-md text-white px-4 shadow-md transition duration-300 font-bold flex items-center justify-center"
+          >
+            <FontAwesomeIcon icon={faSignOutAlt} className="justify-center" />
+          </button>
         </div>
       </div>
-
+  
       {notification && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg">
           {notification}
         </div>
       )}
-
-{showCart && (
-  <div className="w-full max-w-6xl mt-6 p-4 bg-white/30 backdrop-blur-md shadow-lg border border-blue-400 glow rounded-lg">
-    <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
-      Cart Items
-    </h3>
-    <table className="min-w-full bg-white dark:bg-gray-900 rounded-lg">
-      <thead className="bg-gray-300 dark:bg-gray-700">
-        <tr>
-          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-            Item
-          </th>
-          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-            Quantity
-          </th>
-          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-            Remove
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {cart.length === 0 ? (
-          <tr>
-            <td
-              colSpan="3"
-              className="py-4 px-4 text-center text-gray-600 dark:text-gray-300"
-            >
-              No items in cart
-            </td>
-          </tr>
-        ) : (
-          cart.map((item, index) => (
-            <tr key={index} className="hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
-              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                {item.item_name}
-              </td>
-              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                {item.ordered_quantity}
-              </td>
-              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                <button
-                  onClick={() => removeFromCart(index)}
-                  className="text-red-500 hover:text-red-700 transition duration-200 transform hover:scale-110"
-                >
-                  &#x2715; {/* Unicode for cross symbol */}
-                </button>
-              </td>
-            </tr>
-          ))
-        )}
-      </tbody>
-    </table>
-
-    {cart.length > 0 && (
-      <div className="mt-4">
-        <button
-          onClick={placeOrder}
-          className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-6 py-2 rounded shadow-md transition duration-300 hover:from-purple-600 hover:to-purple-800 transform hover:scale-105 hover:shadow-lg"
-        >
-          Confirm Order
-        </button>
-      </div>
-    )}
-  </div>
-)}
-
-
-
-{showOrders && (
-  <div className="w-full max-w-6xl mt-6 p-4 bg-white/30 backdrop-blur-md shadow-lg border border-blue-400 glow rounded-lg">
-    <h3 className="text-2xl font-bold mb-4">Your Orders</h3>
-    <table className="min-w-full bg-white dark:bg-gray-900 rounded-lg">
-      <thead className="bg-gray-300 dark:bg-gray-700">
-        <tr>
-          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">Item</th>
-          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">Ordered Quantity</th>
-          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">Status</th>
-          <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">Remarks</th>
-        </tr>
-      </thead>
-      <tbody>
-        {orders.length === 0 ? (
-          <tr>
-            <td colSpan="4" className="py-4 px-4 text-center text-gray-600 dark:text-gray-300">
-              No orders found
-            </td>
-          </tr>
-        ) : (
-          orders.map((order, index) => (
-            <tr key={index}>
-              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">{order.itemName}</td>
-              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">{order.ordered_quantity}</td>
-              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">{order.status}</td>
-              <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                {order.remarks ? (
-                  <button
-                    className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300"
-                    onClick={() => setRemarkToShow(order.remarks)}
-                  >
-                    View Remark
-                  </button>
-                ) : (
-                  ""
-                )}
-              </td>
-            </tr>
-          ))
-        )}
-      </tbody>
-    </table>
+  
+      {showCart && (
+        <div className="w-full max-w-6xl mt-6 p-4 bg-black/50 backdrop-blur-md shadow-lg border glow rounded-lg">
+          <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Cart Items</h3>
+          <table className="min-w-full dark:bg-black rounded-lg">
+            <thead style={{ backgroundColor: '#2A0C25' }} className="bg-gray-300 dark:bg-gray-700">
+              <tr>
+                <th className="py-4 px-4 border-b text-xl uppercase text-left text-gray-700 dark:text-gray-300">Item</th>
+                <th className="py-2 px-4 border-b text-xl uppercase text-center text-gray-700 dark:text-gray-300">Quantity</th>
+                <th className="py-2 px-4 border-b text-xl uppercase text-center text-gray-700 dark:text-gray-300">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.length === 0 ? (
+                <tr>
+                  <td colSpan="3" className="py-4 px-4 text-center text-gray-600 dark:text-gray-300">No items in cart</td>
+                </tr>
+              ) : (
+                cart.map((item, index) => (
+                  <tr key={index} className="hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
+                    <td className="py-4 px-4 text-xl border-b text-gray-600 dark:text-gray-100 ">{item.item_name}</td>
+                    <td className="py-2 px-4 border-b text-xl text-gray-600 dark:text-gray-100 text-center">{item.ordered_quantity}</td>
+                    <td className="py-2 px-4 border-b text-xl text-gray-600 dark:text-gray-100 text-center">
+                      <button
+                        onClick={() => removeFromCart(index)}
+                        className="text-red-500 hover:text-red-700 text-xl transition duration-200 transform hover:scale-110"
+                      >
+                        &#x2715; {/* Unicode for cross symbol */}
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+  
+          {cart.length > 0 && (
+            <div className="mt-4">
+              <button
+                onClick={placeOrder}
+                className="bg-[#390B31] text-white px-6 py-2 rounded shadow-md transition duration-300 hover:from-purple-600 hover:to-purple-800 transform hover:scale-105 hover:shadow-lg"
+              >
+                Confirm Order
+              </button>
+              <button
+                onClick={Cartclear}
+                className="bg-[#390B31] text-white ml-12 px-6 py-2 rounded shadow-md transition duration-300 hover:from-purple-600 hover:to-purple-800 transform hover:scale-105 hover:shadow-lg"
+              >
+                Clear cart
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+  
+      {showOrders && (
+        <div className="w-full max-w-6xl mt-6 p-4 bg-black/30 backdrop-blur-md shadow-lg border glow rounded-lg">
+          <h3 className="text-2xl font-bold mb-4">Your Orders</h3>
+          <table className="min-w-full bg-white dark:bg-black rounded-lg">
+            <thead style={{ backgroundColor: '#2A0C25' }} className="bg-gray-300 dark:bg-gray-700">
+              <tr>
+                <th className="py-4 px-4 border-b text-left text-xl uppercase text-gray-700 dark:text-gray-300">Item</th>
+                <th className="py-4 px-4 border-b text-center text-xl uppercase text-gray-700 dark:text-gray-300">Ordered Quantity</th>
+                <th className="py-4 px-4 border-b text-center text-xl uppercase text-gray-700 dark:text-gray-300">Status</th>
+                <th className="py-4 px-4 border-b text-center text-xl uppercase text-gray-700 dark:text-gray-300">Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.length === 0 ? (
+                <tr>
+                  <td colSpan="4" className="py-4 px-4 text-center text-gray-600 dark:text-gray-300">No orders found</td>
+                </tr>
+              ) : (
+                orders.map((order, index) => (
+                  <tr key={index}>
+                    <td className="py-4 px-4 border-b text-xl text-gray-800 dark:text-gray-100">{order.itemName}</td>
+                    <td className="py-4 px-4 border-b text-center text-xl text-gray-800 dark:text-gray-100">{order.ordered_quantity}</td>
+                    <td className="py-4 px-4 border-b text-center text-xl text-gray-800 dark:text-gray-100">{order.status}</td>
+                    <td className="py-4 px-4 border-b text-center text-xl text-gray-800 dark:text-gray-100">
+                      {order.remarks ? (
+                        <button
+                          style={{backgroundColor: '#390B31'}}
+                          className=" text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300"
+                          onClick={() => setRemarkToShow(order.remarks)}
+                        >
+                          View
+                        </button>
+                      ) : (
+                        "N/A"
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        
+  
 
     {/* Modal to display the remark */}
     {remarkToShow && (
@@ -534,7 +517,7 @@ function Inventory() {
 
 {isDialogOpen && (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div className="bg-white p-6 rounded-lg shadow-lg z-60 max-w-lg w-full">
+    <div className="bg-black/50 backdrop-blur-lg border glow p-6 rounded-lg shadow-lg z-60 max-w-lg w-full">
       <h2 className="text-xl font-semibold mb-4">Add New Item</h2>
       {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
       <input
@@ -542,26 +525,27 @@ function Inventory() {
         placeholder="Item Name"
         value={newItemName}
         onChange={(e) => setNewItemName(e.target.value)}
-        className="mb-3 p-2 border rounded w-full text-black"
+        className="mb-3 p-2 border rounded w-full text-black font-bold"
       />
       <input
         type="number"
         placeholder="Quantity"
         value={newItemQuantity}
         onChange={(e) => setNewItemQuantity(e.target.value)}
-        className="mb-3 p-2 border rounded w-full text-black"
+        className="mb-3 p-2 border rounded w-full text-black font-bold"
       />
       <input
         type="text"
         placeholder="Link for ordering (optional)"
         value={newItemLink}
         onChange={(e) => setNewItemLink(e.target.value)}
-        className="mb-3 p-2 border rounded w-full text-black"
+        className="mb-3 p-2 border rounded w-full text-black font-bold"
       />
       <div className="flex justify-between">
         <button
           onClick={handleAddNewItem}
-          className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded"
+          style={{backgroundColor: '#390B31'}}
+          className="hover:bg-blue-500 text-white px-4 py-2 rounded"
         >
           Add Item
         </button>
@@ -634,7 +618,7 @@ function Inventory() {
       )}
 
 <div className="w-full max-w-6xl mt-6">
-      <h3 className="text-2xl font-bold mb-4">Available Items</h3>
+      <h3 className="text-2xl font-bold mb-4 uppercase">Available Items</h3>
 
       {/* Search bar */}
       <input
@@ -642,7 +626,7 @@ function Inventory() {
         placeholder="Search items by title"
         value={searchQuery}
         onChange={handleSearchChange}
-        className="w-full p-2 mb-6 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full p-2 mb-6 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
       />
 
       {filteredItems.length === 0 ? (
@@ -654,18 +638,18 @@ function Inventory() {
           {filteredItems.map((item, index) => (
             <li
               key={item.id}
-              className={`bg-white/30 backdrop-blur-lg shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg flex ${isGridView ? 'flex-col justify-between' : 'flex-row items-center justify-between space-x-4'} border border-gray-200`}
+              className={`bg-black/50 backdrop-blur-lg flex items-center justify-center shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg flex ${isGridView ? 'flex-col justify-between' : 'flex-row items-center justify-between space-x-4'} border border-gray-200`}
               style={isGridView ? { minHeight: '200px', maxHeight: '400px', minWidth: '200px', maxWidth: '400px' } : { minHeight: '100px' }}
             >
               <div className={`flex-grow ${isGridView ? 'flex items-start justify-center' : 'flex justify-start max-w-xs'}`} style={isGridView ? { minHeight: '60%', paddingTop: '10px', paddingBottom: '10px' } : {}}>
-                <h4 className={`text-xl sm:text-2xl md:text-3xl font-bold ${isGridView ? 'text-center' : 'text-left'} leading-tight`}>
+                <h4 className={`text-xl sm:text-2xl md:text-2xl font-semibold ${isGridView ? 'text-center' : 'text-left'} leading-tight`}>
                   {item.name}
                 </h4>
               </div>
-              <div className={`flex items-center justify-center space-x-2 sm:space-x-4 ${isGridView ? 'mb-2' : 'flex-shrink-0 w-full absolute left-1/2 transform -translate-x-1/2'}`} style={isGridView ? { minHeight: '20%' } : {}}>
+              <div className={`flex items-center justify-center pd-2 bg-white rounded-xl w-l space-x-2 sm:space-x-4 ${isGridView ? 'mb-2' : 'flex-shrink-0 absolute left-1/2 transform -translate-x-1/2'}`} style={isGridView ? { minHeight: '20%' } : {}}>
                 <button
                   onClick={() => decrementQuantity(index)}
-                  className="bg-red-600 hover:bg-red-500 text-white font-semibold text-xs sm:text-sm px-2 py-1 rounded transition duration-200 transform hover:scale-105"
+                  className="text-black font-bold text-5xl sm:text-3xl px-2 py-1 rounded transition duration-200 transform hover:scale-105"
                 >
                   -
                 </button>
@@ -673,11 +657,11 @@ function Inventory() {
                   type="number"
                   value={item.quantity}
                   onChange={(e) => handleQuantityChange(index, e.target.value)}
-                  className="w-10 sm:w-12 text-black text-xs sm:text-sm text-center border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-10 sm:w-12 font-semibold text-black text-5xl sm:text-2xl text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button
                   onClick={() => incrementQuantity(index)}
-                  className="bg-green-600 hover:bg-green-500 text-white font-semibold text-xs sm:text-sm px-2 py-1 rounded transition duration-200 transform hover:scale-105"
+                  className="text-black font-bold text-3xl sm:text-3xl px-2 py-1 rounded transition duration-200 transform hover:scale-105"
                 >
                   +
                 </button>
@@ -685,7 +669,8 @@ function Inventory() {
               <div className={`flex-grow ${isGridView ? 'flex items-center justify-center' : 'flex justify-end'}`} style={isGridView ? { minHeight: '20%' } : {}}>
                 <button
                   onClick={() => addToCart(index)}
-                  className="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm px-3 py-1 rounded transition duration-200 transform hover:scale-105"
+                  style={{ backgroundColor: '#390B31'}}
+                  className=" text-white font-semibold text-xs sm:text-sm px-3 py-1 mt-2 rounded transition duration-200 transform hover:scale-105"
                 >
                   Add to Cart
                 </button>
@@ -694,15 +679,12 @@ function Inventory() {
           ))}
           <li
             key="add-item"
-            className={`bg-white/30 backdrop-blur-lg shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg flex ${isGridView ? 'flex-col justify-center' : 'flex-row items-center justify-between space-x-4'} border border-gray-200`}
+            className={`bg-black/50 backdrop-blur-lg shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-xl border borger-gray flex ${isGridView ? 'flex-col justify-center' : 'flex-column items-center justify-center space-x-4'}`}
             style={isGridView ? { minHeight: '200px', maxHeight: '400px', minWidth: '200px', maxWidth: '400px' } : { minHeight: '100px' }}
           >
-            <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-center leading-tight mb-4">
-              Add item
-            </h4>
             <button
               onClick={toggleDialog}
-              className="bg-green-600 hover:bg-green-500 text-white font-bold text-4xl px-6 py-6 rounded-full transition duration-200 transform hover:scale-105"
+              className="text-white font-bold text-6xl px-6"
             >
               +
             </button>
