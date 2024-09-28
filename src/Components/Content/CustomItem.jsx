@@ -42,11 +42,11 @@ function Inventory() {
             data.map((item) => ({
               id: item._id, // Ensure the _id is stored for updates
               name: item.itemName,
-              orderedQuantity: item.ordered_quantity || 0, // Default to 0 if undefined
-              allottedQuantity: item.allotted_quantity || 0, // Default to 0 if undefined
-              status: item.status || '', // Ensure proper initial value
-              remarks: '', // Initialize remarks (you can modify this later)
-              link: item.link || '', // Initialize link
+              orderedQuantity: item.ordered_quantity, // Default to 0 if undefined
+              allottedQuantity: item.allotted_quantity, // Default to 0 if undefined
+              status: item.status, // Ensure proper initial value
+              remarks: item.remarks, // Initialize remarks (you can modify this later)
+              link: item.link, // Initialize link
             }))
           );
         } else {
@@ -58,34 +58,30 @@ function Inventory() {
     };
 
     fetchItems();
-  }, [userId, token, userData, navigate]); // Added dependencies
+  }, [userId]); // Added dependencies
 
   const handleStatusChange = (index, value) => {
     const updatedItems = [...items];
-    updatedItems[index] = {
-      ...updatedItems[index],
-      status: value,
-    };
+    updatedItems[index].status = value;
     setItems(updatedItems);
   };
 
   const handleRemarkChange = (index, value) => {
     const updatedItems = [...items];
-    updatedItems[index] = {
-      ...updatedItems[index],
-      remarks: value,
-    };
+    updatedItems[index].remarks = value;
     setItems(updatedItems);
   };
 
   const handleSave = async () => {
+    // Create an array of updated items
     const updatedItems = items
-      .filter((item) => item.status || item.remarks) // Filter out unchanged items
+      .filter((item) => item.status || item.remarks) // Filter out items with no changes
       .map((item) => ({
         _id: item.id,
         status: item.status,
         remarks: item.remarks,
-      }));
+      }))
+      .filter((item) => item.status || item.remarks); // Remove items with no changes
 
     if (updatedItems.length === 0) {
       alert('No changes to save.');
@@ -94,24 +90,25 @@ function Inventory() {
 
     try {
       const response = await fetch(
-        'https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/update-inventory-items',
+        'https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-multiple-cart-items',
         {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(updatedItems),
+          body: JSON.stringify({ items: updatedItems }),
         }
       );
 
       if (!response.ok) {
-        throw new Error('Failed to save items');
+        throw new Error('Failed to save changes');
       }
 
-      window.location.reload(); // Refresh the page to reflect changes
+      console.log('Items saved:', updatedItems);
+      window.location.reload(); // Refresh the page
     } catch (error) {
-      console.error('Error saving items:', error);
+      console.error('Error saving changes:', error);
     }
   };
 
@@ -168,11 +165,12 @@ function Inventory() {
                     value={item.status} 
                     onChange={(e) => handleStatusChange(index, e.target.value)}
                   >
-                    <option value="">Select Status</option>
-                    <option value="Available">Available</option>
-                    <option value="Not Available">Not Available</option>
-                    <option value="Ordered from Akshay">Ordered from Akshay</option>
-                    <option value="Ordered from Amazon">Ordered from Amazon</option>
+                    <option value=''>Select Status</option>
+                    <option value='Pending'>Pending</option>
+                    <option value='Delivered'>Delivered</option>
+                    <option value='Ready'>Ready for Pickup</option>
+                    <option value='Rejected'>Rejected</option>
+                    <option value='Amazon'>Amazon</option>
                   </select>
                 </td>
                 <td className='py-2 px-4 border-b'>
@@ -185,15 +183,14 @@ function Inventory() {
                   />
                 </td>
                 <td className='py-2 px-4 border-b'>
-  {item.link ? (
-    <a href={item.link} target="_blank" rel="noopener noreferrer" className='text-blue-500 underline'>
-      Link
-    </a>
-  ) : (
-    'No link'
-  )}
-</td>
-
+                  {item.link ? (
+                    <a href={item.link} target="_blank" rel="noopener noreferrer" className='text-blue-500 underline'>
+                      Link
+                    </a>
+                  ) : (
+                    'No link'
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
