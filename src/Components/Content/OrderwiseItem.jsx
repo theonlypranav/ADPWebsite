@@ -11,6 +11,7 @@ function OrderwiseItem() {
   const location = useLocation();
   const { state } = location;
   const userId = state ? state.user_id : null;
+  const cartId = state ? state.cart_id :null;
 
   const userString = localStorage.getItem('user');
   const userData = userString ? JSON.parse(userString) : null;
@@ -266,7 +267,7 @@ function OrderwiseItem() {
               </td> 
               <td className='py-2 px-4 border-b'>
                 <button
-                  onClick={() => requestDelete(item.cart, item.name)} // Pass both cart and itemName
+                  onClick={() => requestDelete(cartId, item.name)} // Pass both cart and itemName
                   className='text-red-500 text-2xl px-4 py-2'
                   title='Delete'
                 >
