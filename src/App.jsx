@@ -20,6 +20,7 @@ import InventoryADP from './Components/Content/InventoryADP';// Import the Inven
 import Login from './Components/Content/Login';
 import Register from './Components/Content/Register';
 import Items from './Components/Content/Items';
+import CustomItem from './Components/Content/CustomItem'
 import OrderwiseItem from './Components/Content/OrderwiseItem';
 import Forgpass from './Components/Content/Forgpass';
 
@@ -113,6 +114,13 @@ function App() {
             <>
               <Navbar />
               <Items />
+              <Footer />
+            </>
+          } />
+          <Route path="/customitems" element={
+            <>
+              <Navbar />
+              <CustomItem />
               <Footer />
             </>
           } />

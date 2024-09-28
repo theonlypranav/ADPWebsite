@@ -344,7 +344,7 @@ function Inventory() {
           Inventory Management
         </h1>
         <h2 className="text-xl font-semibold text-silver-600 dark:text-silver-400">
-          Welcome, {user?.clubName || "Guest"}
+          Welcome {user?.clubName || "Guest"}
         </h2>
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 text-justify">
           For any queries, contact{" "}

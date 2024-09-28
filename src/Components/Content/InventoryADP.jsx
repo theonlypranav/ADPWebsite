@@ -186,7 +186,10 @@ function Inventory() {
             View All Orders
           </button>
           <button onClick={() => navigate('/items')} className='bg-gradient-to-r from-teal-500 to-teal-700 text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300'>
-            Inventory analysis
+            Inventory Items analysis
+          </button>
+          <button onClick={() => navigate('/customitems')} className='bg-gradient-to-r from-teal-500 to-teal-700 text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300'>
+            Inventory Custom analysis
           </button>
           <button onClick={handleLogoutAndRedirect} className='bg-gradient-to-r from-red-500 to-red-700 text-white px-5 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300'>
             Logout
