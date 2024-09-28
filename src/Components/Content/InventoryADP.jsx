@@ -266,7 +266,17 @@ function Inventory() {
     <div className='bg-gray-800 p-6 rounded-lg shadow-lg'>
       <h3 className='text-2xl font-semibold mb-4 text-white'>Add New Item</h3>
       <input type='text' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600' placeholder='Item Name' value={newItemName} onChange={(e) => setNewItemName(e.target.value)} />
-      <input type='number' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600' placeholder='Item Quantity' value={newItemQuantity} onChange={(e) => setNewItemQuantity(Number(e.target.value))} />
+      <input type='number' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600' placeholder='Item Quantity'  
+       value={newItemQuantity > 0 ? newItemQuantity : ''} // Set to empty if 0
+       onChange={(e) => {
+         const value = e.target.value;
+         if (value === '') {
+           setNewItemQuantity(0); // Reset if input is empty
+         } else {
+           setNewItemQuantity(Number(value));
+         }
+       }}
+     />
       <div className='flex justify-end space-x-4'>
         <button onClick={addItem} className='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded'>Add Item</button>
         <button onClick={closeAddItemModal} className='bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded'>Cancel</button>
@@ -289,7 +299,16 @@ function Inventory() {
       {selectedItemIndex !== null && (
         <>
           <input type='text' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600' value={itemBeingEditedName} onChange={(e) => setItemBeingEditedName(e.target.value)} />
-          <input type='number' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600' value={itemBeingEditedQuantity} onChange={(e) => setItemBeingEditedQuantity(Number(e.target.value))} />
+          <input type='number' className='border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600'  value={itemBeingEditedQuantity > 0 ? itemBeingEditedQuantity : ''} // Set to empty if 0
+  onChange={(e) => {
+    const value = e.target.value;
+    if (value === '') {
+      setItemBeingEditedQuantity(0); // Reset if input is empty
+    } else {
+      setItemBeingEditedQuantity(Number(value));
+    }
+  }}
+/>
           <label className='flex items-center'>
             <span className='mr-2 text-white'>{itemBeingEditedEnabled ? 'Enabled' : 'Disabled'}</span>
             <div className='relative'>
