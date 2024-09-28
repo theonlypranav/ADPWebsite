@@ -126,53 +126,50 @@ function Inventory() {
   };
 
   const handleAddNewItem = async () => {
-    // Fetch the user info from localStorage
-    const userString = localStorage.getItem("user");
-    const userData = userString ? JSON.parse(userString) : null;
-    const token = localStorage.getItem("token");
-    setUser(userData); // Ensure setUser updates state properly
-
     // Basic validation before sending request
     if (!newItemName || !newItemQuantity) {
         setErrorMessage('Item name and quantity are required.');
         return;
     }
 
-    try {
-        const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/add-custom-item', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-                userId: userData.id,
-                itemName: newItemName,
-                ordered_quantity: newItemQuantity,
-                link: newItemLink
-            })
-        });
+    setCart((prevCart) => {
+      // Check if the item is already in the cart
+      const existingItemIndex = prevCart.findIndex(
+        (cartItem) => cartItem.itemName === newItemName
+      );
+      if (existingItemIndex !== -1) {
+        // Update quantity if item is already in the cart
+        const updatedCart = [...prevCart];
+        updatedCart[existingItemIndex] = {
+          ...updatedCart[existingItemIndex],
+          ordered_quantity:
+            updatedCart[existingItemIndex].ordered_quantity + newItemQuantity,
+        };
+        return updatedCart;
+      } else {
+        // Add new item to the cart with item name
+        return [
+          ...prevCart,
+          {
+            item_id: null,
+            item_name: newItemName,
+            ordered_quantity: newItemQuantity,
+            link: newItemLink
+          },
+        ];
+      }
+    });
+    setNotification("Added to Cart");
+    setTimeout(() => setNotification(""), 2000);
 
-        const data = await response.json();
+    // Clear the fields after a successful request
+    setNewItemName('');
+    setNewItemQuantity('');
+    setNewItemLink('');
+    setErrorMessage('');
 
-        if (response.status === 200) {
-            // Clear the fields after a successful request
-            setNewItemName('');
-            setNewItemQuantity('');
-            setNewItemLink('');
-            setErrorMessage('');
-
-            // Close the dialog
-            setIsDialogOpen(false);
-
-            // Optionally update the UI to reflect the new item (e.g., refresh cart items)
-        } else {
-            // Show any backend errors
-            setErrorMessage(data.errors ? data.errors.map(err => err.msg).join(', ') : 'Failed to add item');
-        }
-    } catch (err) {
-        setErrorMessage('Something went wrong. Please try again.');
-    }
+    // Close the dialog
+    setIsDialogOpen(false);
   };
 
   const clearCart = () => {
@@ -180,44 +177,80 @@ function Inventory() {
     setShowCart(false);
   };
 
-  const placeOrder = () => {
+  const placeOrder = async () => {
     // Fetch the user info from localStorage
     const userString = localStorage.getItem("user");
     const userData = userString ? JSON.parse(userString) : null;
     const token = localStorage.getItem("token");
     setUser(userData);
-
-    // Format the cart items to match the required order format
-    const formattedCart = cart.map((cartItem) => ({
+  
+    // Split cart items into two categories: those with item_id and those without
+    const cartWithItemId = cart.filter(cartItem => cartItem.item_id !== null);
+    const cartWithoutItemId = cart.filter(cartItem => cartItem.item_id === null);
+  
+    // Format the cart items with item_id to match the required order format
+    const formattedCart = cartWithItemId.map(cartItem => ({
       item_id: cartItem.item_id,
       ordered_quantity: cartItem.ordered_quantity,
     }));
-
-    fetch("https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/add-items", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        userId: userData.id, // Using userData directly to avoid async issue with state
-        items: formattedCart,
-      }),
-    })
-      .then((response) => {
+  
+    try {
+      // Proceed with placing order for items with item_id (original placeOrder logic)
+      if (formattedCart.length > 0) {
+        const response = await fetch("https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/add-items", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            userId: userData.id, // Using userData directly to avoid async issue with state
+            items: formattedCart,
+          }),
+        });
+  
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return response.json();
-      })
-      .then((data) => {
+  
         setNotification("Order Placed");
         setTimeout(() => setNotification(""), 2000);
-        clearCart();
-        setShowCompleteOrderModal(false);
-      })
-      .catch((error) => console.error("Error placing order:", error));
+      }
+  
+      // Now handle items without item_id (logic from handleAddNewItem)
+      for (const newItem of cartWithoutItemId) {
+        const response = await fetch("https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/add-custom-item", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            userId: userData.id,
+            itemName: newItem.item_name,
+            ordered_quantity: newItem.ordered_quantity,
+            link: newItem.link || "", // Assuming the link is optional
+          }),
+        });
+  
+        const data = await response.json();
+        if (response.status !== 200) {
+          // Handle any errors from the backend
+          setErrorMessage(data.errors ? data.errors.map(err => err.msg).join(", ") : "Failed to add custom item");
+          continue;
+        }
+      }
+  
+      // Clear cart and close order modal after successful requests
+      clearCart();
+      setShowCompleteOrderModal(false);
+  
+    } catch (error) {
+      console.error("Error placing order:", error);
+      setErrorMessage("Something went wrong. Please try again.");
+    }
   };
+  
 
   const fetchOrders = async () => {
     // Fetch the user info from localStorage
