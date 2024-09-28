@@ -6,6 +6,10 @@ function Order() {
   const [items, setItems] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [itemToDelete, setItemToDelete] = useState(null);
+  const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
+
+
   const navigate = useNavigate();
 
   // Use useMemo to ensure userData and token are fetched only once
@@ -13,6 +17,43 @@ function Order() {
     const userString = localStorage.getItem('user');
     return userString ? JSON.parse(userString) : null;
   }, []);
+
+  const requestDelete = (cart_id) => {
+    setItemToDelete({ cart_id }); // Store both cart and itemName
+    setConfirmDeleteVisible(true);
+  };
+
+  const handleDelete = async (cart_id) => {
+    try {
+      // Make the DELETE request to the API
+      const response = await fetch(
+        `https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/remove-cart/${cart_id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`, // Use your token for authorization
+          },
+        }
+      );
+  
+      const data = await response.json(); // Get the response data
+  
+      if (response.ok) {
+        // On success, filter out the deleted item from the local state
+        const updatedItems = items.filter(item => item.cart_id !== cart_id);
+        setItems(updatedItems);
+  
+        // Optional: Notify the user of successful deletion
+        console.log('Cart successfully deleted:', data.message);
+      } else {
+        // Handle errors returned by the server
+        console.error('Error deleting Cart:', data.error || data);
+      }
+    } catch (error) {
+      // Handle network or other unexpected errors
+      console.error('Error making delete request:', error);
+    }
+  };
 
   const token = useMemo(() => localStorage.getItem('token'), []);
 
@@ -86,6 +127,7 @@ function Order() {
               <th className='py-2 px-4 border-b'>Coordinator</th>
               <th className='py-2 px-4 border-b'>Contact</th>
               <th className='py-2 px-4 border-b'>Order</th>
+              <th className='py-2 px-4 border-b'>Manage</th>
             </tr>
           </thead>
           <tbody>
@@ -100,6 +142,15 @@ function Order() {
                 >
                   View Order
                 </td>
+                <td className='py-2 px-4 border-b'>
+                <button
+                  onClick={() => requestDelete(item.cart_id)}
+                  className='text-red-500 text-2xl px-4 py-2'
+                  title='Delete'
+                >
+                  &times; {/* Cross symbol for delete */}
+                </button>
+              </td>
               </tr>
             ))}
           </tbody>
@@ -127,6 +178,32 @@ function Order() {
           </div>
         </div>
       )}
+
+{confirmDeleteVisible && (
+  <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+    <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-1/4 relative flex flex-col items-center'>
+      <h2 className='text-lg font-semibold mb-2'>Confirm Delete</h2>
+      <p className='text-center mb-4'>Are you sure you want to delete this cart?</p>
+      <div className='flex space-x-2'>
+        <button
+          onClick={() => {
+            handleDelete(itemToDelete.cart_id);
+            setConfirmDeleteVisible(false);
+          }}
+          className='bg-red-500 text-white px-4 py-2 rounded'
+        >
+          Yes, Delete
+        </button>
+        <button
+          onClick={() => setConfirmDeleteVisible(false)}
+          className='bg-blue-500 text-white px-4 py-2 rounded'
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
       <style jsx='true'>{`
         .glow {
