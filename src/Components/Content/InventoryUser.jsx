@@ -360,29 +360,27 @@ function Inventory() {
       <div className="top-transition"></div>
       <div className="w-full flex flex-col items-start mb-12 max-w-6xl">
         <div className="w-full flex flex-col lg:flex-row justify-between items-center">
-          {" "}
-          {/* Use items-center to align vertically */}
           {/* Left side: Title and Welcome text */}
-          <div className="flex flex-col">
+          <div className="flex flex-col items-start mb-4 lg:mb-0 flex-1">
             <h1
               style={{
                 fontFamily: "Anton",
                 letterSpacing: 4,
                 whiteSpace: "nowrap", // Prevent wrapping
               }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl uppercase font-bold mb-2 text-silver-700 dark:text-silver-300"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl uppercase font-bold mb-2 text-silver-700 dark:text-silver-300 truncate"
             >
-              Oasis Inventory Portal 
+              Oasis Inventory Portal
             </h1>
             <h2
               style={{ fontFamily: "Anton", letterSpacing: 2 }}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-silver-600 dark:text-silver-400 pt-2" // Adjusted top padding
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-silver-600 dark:text-silver-400 pt-2"
             >
               Welcome {user?.clubName || "Guest"}!
             </h2>
           </div>
           {/* Right side: Image */}
-          <div className="mt-4 lg:mt-0 lg:ml-8">
+          <div className="mt-4 lg:mt-0 lg:ml-8 flex-shrink-0">
             <img
               src={inImage}
               alt="description of the image"
@@ -427,7 +425,7 @@ function Inventory() {
           </div>
 
           {/* Cart and Orders Buttons */}
-          <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button
               onClick={() => setShowCart(!showCart)}
               className="bg-[#390B31] border-2 border-white h-16 text-2xl rounded-md text-white px-4 shadow-md transition duration-300 font-bold flex items-center justify-center w-full sm:w-auto p-2"
@@ -449,7 +447,10 @@ function Inventory() {
               onClick={handleLogoutAndRedirect}
               className="bg-[#390B31] border-2 border-white h-16 text-2xl rounded-md text-white px-4 shadow-md transition duration-300 font-bold flex items-center justify-center w-full sm:w-auto p-2"
             >
-              <FontAwesomeIcon icon={faSignOutAlt} className="justify-center" />
+              <FontAwesomeIcon
+                icon={faSignOutAlt}
+                className="justify-center ml-2"
+              />
             </button>
           </div>
         </div>
@@ -462,62 +463,64 @@ function Inventory() {
       )}
 
       {showCart && (
-        <div className="w-full max-w-6xl mt-6 p-4 bg-black/50 backdrop-blur-md shadow-lg border glow rounded-lg">
-          <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+        <div className="w-full max-w-6xl mt-6 p-4 bg-black/50 backdrop-blur-md shadow-lg border glow rounded-lg mx-auto">
+          <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200 text-center">
             Cart Items
           </h3>
-          <table className="min-w-full dark:bg-black rounded-lg">
-            <thead
-              style={{ backgroundColor: "#2A0C25" }}
-              className="bg-gray-300 dark:bg-gray-700"
-            >
-              <tr>
-                <th className="py-4 px-2 sm:px-4 border-b text-xl uppercase text-left text-gray-700 dark:text-gray-300">
-                  Item
-                </th>
-                <th className="py-2 px-2 sm:px-4 border-b text-xl uppercase text-center text-gray-700 dark:text-gray-300">
-                  Quantity
-                </th>
-                <th className="py-2 px-2 sm:px-4 border-b text-xl uppercase text-center text-gray-700 dark:text-gray-300">
-                  Remove
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.length === 0 ? (
+          <div className="overflow-x-auto">
+            <table className="min-w-full dark:bg-black rounded-lg">
+              <thead
+                style={{ backgroundColor: "#2A0C25" }}
+                className="bg-gray-300 dark:bg-gray-700"
+              >
                 <tr>
-                  <td
-                    colSpan="3"
-                    className="py-4 px-4 text-center text-gray-600 dark:text-gray-300"
-                  >
-                    No items in cart
-                  </td>
+                  <th className="py-4 px-2 sm:px-4 border-b text-xl uppercase text-left text-gray-700 dark:text-gray-300">
+                    Item
+                  </th>
+                  <th className="py-2 px-2 sm:px-4 border-b text-xl uppercase text-center text-gray-700 dark:text-gray-300">
+                    Quantity
+                  </th>
+                  <th className="py-2 px-2 sm:px-4 border-b text-xl uppercase text-center text-gray-700 dark:text-gray-300">
+                    Remove
+                  </th>
                 </tr>
-              ) : (
-                cart.map((item, index) => (
-                  <tr
-                    key={index}
-                    className="hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
-                  >
-                    <td className="py-4 px-2 sm:px-4 text-xl border-b text-gray-600 dark:text-gray-100">
-                      {item.item_name}
-                    </td>
-                    <td className="py-2 px-2 sm:px-4 border-b text-xl text-gray-600 dark:text-gray-100 text-center">
-                      {item.ordered_quantity}
-                    </td>
-                    <td className="py-2 px-2 sm:px-4 border-b text-xl text-gray-600 dark:text-gray-100 text-center">
-                      <button
-                        onClick={() => removeFromCart(index)}
-                        className="text-red-500 hover:text-red-700 text-xl transition duration-200 transform hover:scale-110"
-                      >
-                        &#x2715; {/* Unicode for cross symbol */}
-                      </button>
+              </thead>
+              <tbody>
+                {cart.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan="3"
+                      className="py-4 px-4 text-center text-gray-600 dark:text-gray-300"
+                    >
+                      No items in cart
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  cart.map((item, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                    >
+                      <td className="py-4 px-2 sm:px-4 text-xl border-b text-gray-600 dark:text-gray-100">
+                        {item.item_name}
+                      </td>
+                      <td className="py-2 px-2 sm:px-4 border-b text-xl text-gray-600 dark:text-gray-100 text-center">
+                        {item.ordered_quantity}
+                      </td>
+                      <td className="py-2 px-2 sm:px-4 border-b text-xl text-gray-600 dark:text-gray-100 text-center">
+                        <button
+                          onClick={() => removeFromCart(index)}
+                          className="text-red-500 hover:text-red-700 text-xl transition duration-200 transform hover:scale-110"
+                        >
+                          &#x2715; {/* Unicode for cross symbol */}
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
 
           {cart.length > 0 && (
             <div className="mt-4 flex flex-col sm:flex-row sm:justify-between">
@@ -543,72 +546,74 @@ function Inventory() {
 
       {showOrders && (
         <div className="w-full max-w-6xl mt-6 p-4 bg-black/30 backdrop-blur-md shadow-lg border glow rounded-lg mx-auto">
-          <h3 className="text-2xl font-bold mb-4">Your Orders</h3>
-          <table className="min-w-full bg-white dark:bg-black rounded-lg">
-            <thead
-              style={{ backgroundColor: "#2A0C25" }}
-              className="bg-gray-300 dark:bg-gray-700"
-            >
-              <tr>
-                <th className="py-4 px-2 sm:px-4 border-b text-left text-xl uppercase text-gray-700 dark:text-gray-300">
-                  Item
-                </th>
-                <th className="py-4 px-2 sm:px-4 border-b text-center text-xl uppercase text-gray-700 dark:text-gray-300">
-                  Ordered Quantity
-                </th>
-                <th className="py-4 px-2 sm:px-4 border-b text-center text-xl uppercase text-gray-700 dark:text-gray-300">
-                  Status
-                </th>
-                <th className="py-4 px-2 sm:px-4 border-b text-center text-xl uppercase text-gray-700 dark:text-gray-300">
-                  Remarks
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.length === 0 ? (
+          <h3 className="text-2xl font-bold mb-4 text-center">Your Orders</h3>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white dark:bg-black rounded-lg">
+              <thead
+                style={{ backgroundColor: "#2A0C25" }}
+                className="bg-gray-300 dark:bg-gray-700"
+              >
                 <tr>
-                  <td
-                    colSpan="4"
-                    className="py-4 px-4 text-center text-gray-600 dark:text-gray-300"
-                  >
-                    No orders found
-                  </td>
+                  <th className="py-4 px-2 sm:px-4 border-b text-left text-xl uppercase text-gray-700 dark:text-gray-300">
+                    Item
+                  </th>
+                  <th className="py-4 px-2 sm:px-4 border-b text-center text-xl uppercase text-gray-700 dark:text-gray-300">
+                    Ordered Quantity
+                  </th>
+                  <th className="py-4 px-2 sm:px-4 border-b text-center text-xl uppercase text-gray-700 dark:text-gray-300">
+                    Status
+                  </th>
+                  <th className="py-4 px-2 sm:px-4 border-b text-center text-xl uppercase text-gray-700 dark:text-gray-300">
+                    Remarks
+                  </th>
                 </tr>
-              ) : (
-                orders.map((order, index) => (
-                  <tr key={index}>
-                    <td className="py-4 px-2 sm:px-4 border-b text-xl text-gray-800 dark:text-gray-100">
-                      {order.itemName}
-                    </td>
-                    <td className="py-4 px-2 sm:px-4 border-b text-center text-xl text-gray-800 dark:text-gray-100">
-                      {order.ordered_quantity}
-                    </td>
-                    <td className="py-4 px-2 sm:px-4 border-b text-center text-xl text-gray-800 dark:text-gray-100">
-                      {order.status}
-                    </td>
-                    <td className="py-4 px-2 sm:px-4 border-b text-center text-xl text-gray-800 dark:text-gray-100">
-                      {order.remarks ? (
-                        <button
-                          style={{ backgroundColor: "#390B31" }}
-                          className="text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300"
-                          onClick={() => setRemarkToShow(order.remarks)}
-                        >
-                          View
-                        </button>
-                      ) : (
-                        "N/A"
-                      )}
+              </thead>
+              <tbody>
+                {orders.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan="4"
+                      className="py-4 px-4 text-center text-gray-600 dark:text-gray-300"
+                    >
+                      No orders found
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  orders.map((order, index) => (
+                    <tr key={index}>
+                      <td className="py-4 px-2 sm:px-4 border-b text-xl text-gray-800 dark:text-gray-100">
+                        {order.itemName}
+                      </td>
+                      <td className="py-4 px-2 sm:px-4 border-b text-center text-xl text-gray-800 dark:text-gray-100">
+                        {order.ordered_quantity}
+                      </td>
+                      <td className="py-4 px-2 sm:px-4 border-b text-center text-xl text-gray-800 dark:text-gray-100">
+                        {order.status}
+                      </td>
+                      <td className="py-4 px-2 sm:px-4 border-b text-center text-xl text-gray-800 dark:text-gray-100">
+                        {order.remarks ? (
+                          <button
+                            style={{ backgroundColor: "#390B31" }}
+                            className="text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300"
+                            onClick={() => setRemarkToShow(order.remarks)}
+                          >
+                            View
+                          </button>
+                        ) : (
+                          "N/A"
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
 
           {/* Modal to display the remark */}
           {remarkToShow && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-300 dark:border-gray-600">
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-300 dark:border-gray-600 max-w-sm mx-auto">
                 <h4 className="text-2xl font-bold mb-4 text-center">Remark</h4>
                 <p className="text-center mb-4">{remarkToShow}</p>
                 <div className="flex justify-center">
