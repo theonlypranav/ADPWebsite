@@ -372,13 +372,13 @@ function Inventory() {
               }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl uppercase font-bold mb-2 text-silver-700 dark:text-silver-300"
             >
-              Inventory Management
+              Oasis Inventory Portal 
             </h1>
             <h2
               style={{ fontFamily: "Anton", letterSpacing: 2 }}
               className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-silver-600 dark:text-silver-400 pt-2" // Adjusted top padding
             >
-              Welcome, {user?.clubName || "Guest"}!
+              Welcome {user?.clubName || "Guest"}!
             </h2>
           </div>
           {/* Right side: Image */}
