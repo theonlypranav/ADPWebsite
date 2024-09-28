@@ -14,7 +14,6 @@ function Inventory() {
   const [showOrders, setShowOrders] = useState(false);
   const [orders, setOrders] = useState([]);
   const [remarkToShow, setRemarkToShow] = useState(null);
-  const [showCompleteOrderModal, setShowCompleteOrderModal] = useState(false);
   const [notification, setNotification] = useState("");
   const [user, setUser] = useState(null);
   const [isGridView, setIsGridView] = useState(true);
@@ -246,8 +245,7 @@ function Inventory() {
       }
   
       // Clear cart and close order modal after successful requests
-      clearCart();
-      setShowCompleteOrderModal(false);
+      Cartclear();
   
     } catch (error) {
       console.error("Error placing order:", error);
@@ -560,62 +558,6 @@ function Inventory() {
   </div>
 )}
 
-      {showCompleteOrderModal && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center">
-          <div className="bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3">
-            <h3 className="text-xl font-semibold mb-4">Cart Items</h3>
-            <table className="min-w-full bg-gray-200 dark:bg-gray-800 rounded-lg">
-              <thead className="bg-gray-300 dark:bg-gray-700">
-                <tr>
-                  <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-                    Item
-                  </th>
-                  <th className="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">
-                    Quantity
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan="2"
-                      className="py-4 px-4 text-center text-gray-600 dark:text-gray-300"
-                    >
-                      No items in cart
-                    </td>
-                  </tr>
-                ) : (
-                  cart.map((item, index) => (
-                    <tr key={index}>
-                      <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                        {item.item_name}
-                      </td>
-                      <td className="py-2 px-4 border-b text-gray-800 dark:text-gray-100">
-                        {item.ordered_quantity}
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-            <div className="flex justify-end mt-4">
-              <button
-                onClick={() => setShowCompleteOrderModal(false)}
-                className="bg-gray-400 text-white px-4 py-2 rounded mr-2"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={placeOrder}
-                className="bg-green-500 text-white px-4 py-2 rounded"
-              >
-                Confirm Order
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
 <div className="w-full max-w-6xl mt-6">
       <h3 className="text-2xl font-bold mb-4 uppercase">Available Items</h3>
