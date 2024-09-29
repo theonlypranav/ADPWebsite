@@ -59,7 +59,7 @@ function Register() {
       const result = await response.json();
       if (response.ok) {
         alert('Registration successful!');
-        navigate('/login');
+        navigate('/inventory');
       } else {
         alert(result.error || 'Registration failed.');
       }

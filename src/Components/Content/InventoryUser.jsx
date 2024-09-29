@@ -746,12 +746,20 @@ function Inventory() {
                     isGridView ? "flex items-start justify-center" : "flex justify-start"
                   }`}
                   style={isGridView ? { minHeight: "60%" } : { width: "30%" }}
+                 
                 >
                   <h4
                     className={`text-2xl font-semibold ${
                       isGridView ? "text-center" : "text-left"
                     } leading-tight truncate`}
-                  >
+
+                    style={{
+                      whiteSpace: "normal", // Allow wrapping
+                      overflowWrap: "break-word", // Allow long words to break
+                      wordBreak: "break-word", // Break words if necessary
+                    }}
+                    >
+                  
                     {item.name}
                   </h4>
                 </div>
