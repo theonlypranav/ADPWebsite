@@ -613,19 +613,22 @@ function Inventory() {
           {/* Modal to display the remark */}
           {remarkToShow && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-300 dark:border-gray-600 max-w-sm mx-auto">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-300 dark:border-gray-600 w-96 h-80 flex flex-col">
+              <div className="flex-grow overflow-y-auto"> 
                 <h4 className="text-2xl font-bold mb-4 text-center">Remark</h4>
-                <p className="text-center mb-4">{remarkToShow}</p>
-                <div className="flex justify-center">
-                  <button
-                    className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800 transition duration-300"
-                    onClick={() => setRemarkToShow(null)}
-                  >
-                    Close
-                  </button>
-                </div>
+                <p className="text-center mb-4">{remarkToShow}</p> {/* Displaying the remark content */}
+              </div>
+              <div className="flex justify-center mt-4"> 
+                <button
+                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800 transition duration-300"
+                  onClick={() => setRemarkToShow(null)}
+                >
+                  Close
+                </button>
               </div>
             </div>
+          </div>          
+          
           )}
         </div>
       )}

@@ -174,14 +174,23 @@ function Inventory() {
                   </select>
                 </td>
                 <td className='py-2 px-4 border-b'>
-                  <input
-                    type='text'
-                    className='remarks-input'
-                    value={item.remarks}
-                    onChange={(e) => handleRemarkChange(index, e.target.value)}
-                    placeholder='Enter Remarks'
-                  />
-                </td>
+                <input
+    type='text'
+    style={{
+      border: '1px solid #555', // Lighter gray border for dark mode
+      borderRadius: '4px', // Less rounded corners
+      padding: '8px',
+      width: '100%',
+      boxSizing: 'border-box',
+      backgroundColor: 'black', // Dark background
+      color: '#fff', // Light text color
+    }}
+    value={item.remarks}
+    onChange={(e) => handleRemarkChange(index, e.target.value)}
+    placeholder='Enter Remarks'
+  />
+</td>
+
                 <td className='py-2 px-4 border-b'>
                   {item.link ? (
                     <a href={item.link} target="_blank" rel="noopener noreferrer" className='text-blue-500 underline'>
