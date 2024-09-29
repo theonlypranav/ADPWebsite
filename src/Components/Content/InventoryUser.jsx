@@ -40,11 +40,12 @@ function Inventory() {
   // If token is not found, redirect to /inventory
 
   useEffect(() => {
-    if (!token || userData.access != "user") {
+    if (!token || userData.access !== "user") {
       // If no token found, redirect to inventory page
       navigate("/inventory");
     }
     setUser(userData);
+  
     fetch(
       "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory/user",
       {
@@ -55,15 +56,33 @@ function Inventory() {
     )
       .then((response) => response.json())
       .then((data) => {
+        // Sorting logic
+        const sortedData = data.sort((a, b) => {
+          if (a.itemName.startsWith("Brush Round")) return -1;
+          if (b.itemName.startsWith("Brush Round")) return 1;
+
+          if (a.itemName.startsWith("Brush Flat")) return -1;
+          if (b.itemName.startsWith("Brush Flat")) return 1;
+  
+          if (a.itemName.startsWith("Paint (15 ml)")) return -1;
+          if (b.itemName.startsWith("Paint (15 ml)")) return 1;
+  
+          if (a.itemName.startsWith("Paint (500 ml)")) return -1;
+          if (b.itemName.startsWith("Paint (500 ml)")) return 1;
+  
+          return 0; // Other items remain in their default order
+        });
+  
+        // Set sorted items
         setItems(
-          data.map((item) => ({
+          sortedData.map((item) => ({
             id: item._id,
             name: item.itemName,
             quantity: 0,
           }))
         );
         setAllItems(
-          data.map((item) => ({
+          sortedData.map((item) => ({
             id: item._id,
             name: item.itemName,
             quantity: 0,
@@ -72,6 +91,7 @@ function Inventory() {
       })
       .catch((error) => console.error("Error fetching inventory:", error));
   }, []);
+  
 
   const handleQuantityChange = (index, value) => {
     const newQuantity = Math.max(0, Number(value));
