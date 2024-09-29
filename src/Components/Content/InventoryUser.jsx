@@ -378,7 +378,7 @@ function Inventory() {
     >
       <div className="top-transition"></div>
       <div className="w-full flex flex-col items-start mb-12 max-w-6xl">
-        <div className="w-full flex flex-col lg:flex-row justify-between items-center">
+        <div className="w-full flex flex-row justify-between items-center">
           {/* Left side: Title and Welcome text */}
           <div className="flex flex-col items-start mb-4 lg:mb-0 flex-1">
             <h1
@@ -399,14 +399,16 @@ function Inventory() {
             </h2>
           </div>
           {/* Right side: Image */}
-          <div className="mt-4 lg:mt-0 lg:ml-8 flex-shrink-0">
+          <div className="flex-shrink-0 ml-4">
             <img
               src={inImage}
               alt="description of the image"
-              className="w-full sm:w-[150px] md:w-[175px] lg:w-[300px] h-auto object-cover"
+              className="w-[100px] sm:w-[125px] md:w-[150px] lg:w-[200px] xl:w-[250px] h-auto object-cover"
             />
           </div>
         </div>
+
+
 
         <div className="flex flex-wrap justify-between mt-12 w-full space-y-4 sm:space-y-0 sm:space-x-4">
           {/* Toggle View Mode */}
@@ -787,7 +789,7 @@ function Inventory() {
           <ul
             className={
               isGridView
-                ? "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
                 : "space-y-4"
             }
           >
