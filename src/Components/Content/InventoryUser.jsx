@@ -711,14 +711,14 @@ function Inventory() {
           <ul
             className={
               isGridView
-                ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
                 : "space-y-4"
             }
           >
             {filteredItems.map((item, index) => (
               <li
                 key={item.id}
-                className={`bg-black/50 backdrop-blur-lg flex items-center justify-center shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg flex ${
+                className={`bg-black/50 backdrop-blur-lg flex items-center justify-between shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg ${
                   isGridView
                     ? "flex-col justify-between"
                     : "flex-row items-center justify-between space-x-4"
@@ -728,70 +728,99 @@ function Inventory() {
                     ? {
                         minHeight: "200px",
                         maxHeight: "400px",
-                        width: "100%",
+                        width: "230px",
                         maxWidth: "400px",
                       }
-                    : { minHeight: "100px" }
+                    : {
+                        minHeight: "100px",
+                        display: "flex",
+                        alignItems: "center",
+                        width: "100%",
+                        maxWidth: "100%",
+                      }
                 }
               >
+                {/* Item Name */}
                 <div
                   className={`flex-grow ${
-                    isGridView
-                      ? "flex items-start justify-center"
-                      : "flex justify-start max-w-xs"
+                    isGridView ? "flex items-start justify-center" : "flex justify-start"
                   }`}
-                  style={
-                    isGridView
-                      ? {
-                          minHeight: "60%",
-                          paddingTop: "10px",
-                          paddingBottom: "10px",
-                        }
-                      : {}
-                  }
+                  style={isGridView ? { minHeight: "60%" } : { width: "30%" }}
                 >
                   <h4
-                    className={`text-xl sm:text-2xl md:text-2xl font-semibold ${
+                    className={`text-2xl font-semibold ${
                       isGridView ? "text-center" : "text-left"
                     } leading-tight truncate`}
                   >
                     {item.name}
                   </h4>
                 </div>
+
+                {/* Quantity Controls */}
                 <div
-                  className={`flex items-center justify-center bg-white rounded-xl w-full sm:w-auto space-x-2 sm:space-x-4 ${
+                  className={`flex items-center justify-center bg-white rounded-xl space-x-2 sm:space-x-5 ${
                     isGridView ? "mb-2" : "flex-shrink-0"
                   }`}
-                  style={isGridView ? { minHeight: "20%" } : {}}
+                  style={
+                    isGridView
+                      ? {
+                          minHeight: "20%",
+                          width: "150px",
+                          maxWidth: "100%",
+                        }
+                      : {
+                          display: "flex",
+                          alignItems: "center", // Center the quantity controls vertically
+                          justifyContent: "center", // Center the quantity controls horizontally
+                          width: "150px",
+                          height: "40px",
+                          marginLeft: window.innerWidth >= 1024 ? "-120px" : "15px", // Apply margin based on screen size
+                        }
+                  }
                 >
                   <button
                     onClick={() => decrementQuantity(index)}
-                    className="text-black font-bold text-4xl sm:text-3xl px-2 py-1 rounded transition duration-200 transform hover:scale-105"
+                    className="text-black font-bold text-3xl sm:text-2xl lg:text-xl px-2 py-1 rounded transition duration-200 transform hover:scale-105"
                   >
                     -
                   </button>
                   <input
                     type="number"
                     value={item.quantity}
-                    onChange={(e) =>
-                      handleQuantityChange(index, e.target.value)
-                    }
-                    className="w-16 sm:w-24 font-semibold text-black text-4xl sm:text-2xl text-center bg-black/0"
+                    onChange={(e) => handleQuantityChange(index, e.target.value)}
+                    className="w-12 sm:w-16 lg:w-12 font-semibold text-black text-3xl sm:text-2xl lg:text-xl text-center bg-black/0"
                   />
                   <button
                     onClick={() => incrementQuantity(index)}
-                    className="text-black font-bold text-4xl sm:text-3xl px-2 py-1 rounded transition duration-200 transform hover:scale-105"
+                    className="text-black font-bold text-3xl sm:text-2xl lg:text-xl px-1 py-2 rounded transition duration-200 transform hover:scale-105"
                   >
                     +
                   </button>
                 </div>
+
+
+                {/* Add to Cart Button */}
                 <div
                   className={`flex-grow ${
                     isGridView
                       ? "flex items-center justify-center"
                       : "flex justify-end"
                   }`}
-                  style={isGridView ? { minHeight: "20%" } : {}}
+                  style={
+                    isGridView
+                      ? {
+                          minHeight: "20%",
+                          width: "150px",
+                          maxWidth: "100%",
+                        }
+                      : {
+                          maxWidth: "100%",
+                          display: "flex",
+                          width: "150px",
+                          height: "40px",
+                          justifyContent: "right",
+                        }
+                  }
                 >
                   <button
                     onClick={() => addToCart(index)}
@@ -815,10 +844,16 @@ function Inventory() {
                   ? {
                       minHeight: "200px",
                       maxHeight: "400px",
-                      width: "100%",
+                      width: "230px",
                       maxWidth: "400px",
                     }
-                  : { minHeight: "100px" }
+                  : {
+                      minHeight: "100px",
+                      display: "flex",
+                      alignItems: "center",
+                      width: "100%",
+                      maxWidth: "100%",
+                    }
               }
             >
               <button
