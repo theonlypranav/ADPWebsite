@@ -844,7 +844,7 @@ function Inventory() {
                   ? {
                       minHeight: "200px",
                       maxHeight: "400px",
-                      width: "230px",
+                      maxwidth: "200px",
                       maxWidth: "400px",
                     }
                   : {
