@@ -681,19 +681,19 @@ function Inventory() {
       )}
 
       <div className="w-full max-w-6xl mt-6">
-        <div className="flex justify-center w-full  ">
+        <div className="flex justify-center">
           <input
             type="text"
             placeholder="Search items by title"
             value={searchQuery}
             onChange={handleSearchChange}
             className="
-              w-full max-w-full 
-              p-3 mb-6 border border-gray-300 rounded-full 
-              text-center text-white placeholder-gray-500 
+              w-full max-w-md 
+              p-3 mb-6 border border-gray-300 rounded-md 
+              text-center text-black placeholder-gray-500
               transition-all duration-300 ease-in-out 
               focus:outline-none focus:ring-4 focus:ring-blue-500 focus:border-transparent
-              bg-gray-900
+              bg-white
             "
             style={{
               boxShadow: "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)", // Stronger bowl effect
@@ -704,7 +704,7 @@ function Inventory() {
         </div>
 
         {filteredItems.length === 0 ? (
-          <p className="text-center text-white dark:text-gray-300 mt-10">
+          <p className="text-center text-gray-600 dark:text-gray-300">
             No items available
           </p>
         ) : (
