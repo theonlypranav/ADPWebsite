@@ -457,7 +457,7 @@ function Inventory() {
       </div>
 
       {notification && (
-        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105 z-50">
           {notification}
         </div>
       )}
@@ -728,7 +728,7 @@ function Inventory() {
                     ? {
                         minHeight: "200px",
                         maxHeight: "400px",
-                        width: "230px",
+                        minwidth: "200px",
                         maxWidth: "400px",
                       }
                     : {
