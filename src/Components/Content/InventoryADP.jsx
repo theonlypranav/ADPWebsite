@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "./Inventory.css";
 import bgImage from "../../assets/bg.jpg";
 import { useOrderContext } from './OrderContext';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Inventory() {
   const navigate = useNavigate();
@@ -184,6 +187,26 @@ function Inventory() {
     navigate("/inventory");
   };
 
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Handler for search input
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Filter items based on the search query (case-insensitive)
+  const filteredItems = items.filter((item) =>
+    item.itemName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const [isOrderConfirmedEnabled, setIsOrderConfirmedEnabled] = useState(true); // State for the toggle
+
+  // Handler to toggle order confirmation state
+  const handleToggleOrderConfirmation = () => {
+    setIsOrderConfirmedEnabled(!isOrderConfirmedEnabled);
+    setIsConfirmDisabled(!isConfirmDisabled); // Update context state as well
+  };
+
   return (
     <div
       id="Inventory"
@@ -207,46 +230,78 @@ function Inventory() {
           <button
             onClick={handleToggle}
             className={`px-4 py-2 rounded shadow-md text-white ${
-              isConfirmDisabled ? "bg-green-500" : "bg-red-500"
+              isConfirmDisabled ? "bg-gray-700 border-2 border-white text-white" : "bg-[#390B31] border-2 border-white text-white"
             }`}
           >
             {isConfirmDisabled
-              ? "Enable Confirm Order"
-              : "Disable Confirm Order"}
+              ? "Orders Disabled"
+              : "Orders Enabled"}
           </button>
           <button
             onClick={() => navigate("/orders")}
-            className="bg-gradient-to-r from-teal-500 to-teal-700 text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
+            className="bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
           >
             View All Orders
           </button>
           <button
             onClick={() => navigate("/items")}
-            className="bg-gradient-to-r from-teal-500 to-teal-700 text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
+            className="bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
           >
             Inventory Items analysis
           </button>
           <button
             onClick={() => navigate("/customitems")}
-            className="bg-gradient-to-r from-teal-500 to-teal-700 text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
+            className="bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
           >
             Inventory Custom analysis
           </button>
           <button
             onClick={handleLogoutAndRedirect}
-            className="bg-gradient-to-r from-red-500 to-red-700 text-white px-5 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300"
+            className="bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300"
           >
-            Logout
+            <FontAwesomeIcon icon={faSignOutAlt} className="text-white ml-2" />
           </button>
         </div>
       </div>
+
+     
+      <div className="relative w-full mb-6">
+      
+      <div className="absolute left-3 top-3 text-gray-500 pl-5">
+        <FontAwesomeIcon icon={faSearch} />
+      </div>
+      <input
+        type="text"
+        placeholder="Search items by title"
+        value={searchQuery}
+        onChange={handleSearchChange}
+        className="
+          w-full 
+          p-3  mb-6 border border-gray-300 rounded-full
+          text-center text-white placeholder-gray-500 
+          transition-all duration-300 ease-in-out 
+          focus:outline-none focus:ring-4 focus:ring-blue-500 focus:border-transparent
+          bg-gray-900
+        "
+        style={{
+          boxShadow: "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)",
+        }}
+        onFocus={(e) => (e.target.style.boxShadow = "0 0 15px rgba(255, 255, 255, 0.5), inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)")}
+        onBlur={(e) => (e.target.style.boxShadow = "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)")}
+      />
+    </div>
+  
+
+        
+
+      
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl mt-8">
         {loading ? (
           <div className="loading-spinner text-center text-lg">Loading...</div> // Loading indicator
         ) : (
           <>
-            {items.map((item, index) => (
+            {filteredItems.map((item, index) => (
               <div
                 key={item._id}
                 className="bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center"
