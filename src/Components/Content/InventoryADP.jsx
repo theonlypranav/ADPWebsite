@@ -51,7 +51,22 @@ function Inventory() {
       );
       const data = await response.json();
       if (response.ok) {
-        setItems(data);
+        const sortedData = data.sort((a, b) => {
+          if (a.itemName.startsWith("Brush Round")) return -1;
+          if (b.itemName.startsWith("Brush Round")) return 1;
+
+          if (a.itemName.startsWith("Brush Flat")) return -1;
+          if (b.itemName.startsWith("Brush Flat")) return 1;
+  
+          if (a.itemName.startsWith("Paint (15 ml)")) return -1;
+          if (b.itemName.startsWith("Paint (15 ml)")) return 1;
+  
+          if (a.itemName.startsWith("Paint (500 ml)")) return -1;
+          if (b.itemName.startsWith("Paint (500 ml)")) return 1;
+  
+          return 0; // Other items remain in their default order
+        });
+        setItems(sortedData);
       } else {
         alert("Failed to fetch items");
       }

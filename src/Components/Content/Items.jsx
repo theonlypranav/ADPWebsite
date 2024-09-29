@@ -38,8 +38,23 @@ function Inventory() {
         console.log('Fetched items:', data);
 
         if (Array.isArray(data)) {
+          const sortedData = data.sort((a, b) => {
+            if (a.itemName.startsWith("Brush Round")) return -1;
+            if (b.itemName.startsWith("Brush Round")) return 1;
+  
+            if (a.itemName.startsWith("Brush Flat")) return -1;
+            if (b.itemName.startsWith("Brush Flat")) return 1;
+    
+            if (a.itemName.startsWith("Paint (15 ml)")) return -1;
+            if (b.itemName.startsWith("Paint (15 ml)")) return 1;
+    
+            if (a.itemName.startsWith("Paint (500 ml)")) return -1;
+            if (b.itemName.startsWith("Paint (500 ml)")) return 1;
+    
+            return 0; // Other items remain in their default order
+          });
           setItems(
-            data.map((item) => ({
+            sortedData.map((item) => ({
               id: item._id, // Ensure you include the item ID here
               name: item.itemName,
               availableQuantity: item.availableQuantity,
