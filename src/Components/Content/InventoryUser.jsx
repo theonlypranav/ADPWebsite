@@ -27,6 +27,10 @@ function Inventory() {
   const [newItemLink, setNewItemLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { isConfirmDisabled } = useOrderContext();
+  const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
+  const [confirmOrderVisible, setConfirmOrderVisible] = useState(false);
+  const [confirmDeleteItem, setconfirmDeleteItem] = useState(false);
+
 
   // Fetch the user info from localStorage
   const userString = localStorage.getItem("user");
@@ -182,10 +186,18 @@ function Inventory() {
     setIsDialogOpen(false);
   };
 
-  const Cartclear = () => {
+  const handleDelete = () => {
     setCart([]);
     setShowCart(false);
   };
+
+  const handleDeleteItem = (index) => {
+    setconfirmDeleteItem(true);
+  }
+
+  const handleOrder =() => {
+    setConfirmOrderVisible(true);
+  }
 
   const placeOrder = async () => {
     // Fetch the user info from localStorage
@@ -264,7 +276,7 @@ function Inventory() {
       }
 
       // Clear cart and close order modal after successful requests
-      Cartclear();
+      handleDelete();
     } catch (error) {
       console.error("Error placing order:", error);
       setErrorMessage("Something went wrong. Please try again.");
@@ -315,6 +327,10 @@ function Inventory() {
   };
   // State for the search query
   const [searchQuery, setSearchQuery] = useState("");
+
+  const Cartclear = () => {
+    setConfirmDeleteVisible(true);
+  }
 
   // Handler for search input
   const handleSearchChange = (e) => {
@@ -509,7 +525,7 @@ function Inventory() {
                       </td>
                       <td className="py-2 px-2 sm:px-4 border-b text-xl text-gray-600 dark:text-gray-100 text-center">
                         <button
-                          onClick={() => removeFromCart(index)}
+                          onClick={() => handleDeleteItem(index)}
                           className="text-red-500 hover:text-red-700 text-xl transition duration-200 transform hover:scale-110"
                         >
                           &#x2715; {/* Unicode for cross symbol */}
@@ -525,7 +541,7 @@ function Inventory() {
           {cart.length > 0 && (
             <div className="mt-4 flex flex-col sm:flex-row sm:justify-between">
               <button
-                onClick={placeOrder}
+                onClick={handleOrder}
                 className={`bg-[#390B31] text-white px-6 py-2 rounded shadow-md transition duration-300 hover:from-purple-600 hover:to-purple-800 transform hover:scale-105 hover:shadow-lg ${
                   isConfirmDisabled ? "opacity-50 cursor-not-allowed" : ""
                 }`}
@@ -679,6 +695,88 @@ function Inventory() {
           </div>
         </div>
       )}
+
+
+{confirmOrderVisible && (
+  <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+    <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-1/4 relative flex flex-col items-center'>
+      <h2 className='text-lg font-semibold mb-2'>Confirm Order</h2>
+      <p className='text-center mb-4'>Are you sure you want to order this item?</p>
+      <div className='flex space-x-2'>
+        <button
+          onClick={() => {
+            placeOrder();
+            setConfirmOrderVisible(false);
+          }}
+          className='bg-red-500 text-white px-4 py-2 rounded'
+        >
+          Yes, Order
+        </button>
+        <button
+          onClick={() => setConfirmOrderVisible(false)}
+          className='bg-blue-500 text-white px-4 py-2 rounded'
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+{confirmDeleteVisible && (
+  <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+    <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-1/4 relative flex flex-col items-center'>
+      <h2 className='text-lg font-semibold mb-2'>Confirm Delete</h2>
+      <p className='text-center mb-4'>Are you sure you want to delete this item?</p>
+      <div className='flex space-x-2'>
+        <button
+          onClick={() => {
+            handleDelete();
+            setConfirmDeleteVisible(false);
+          }}
+          className='bg-red-500 text-white px-4 py-2 rounded'
+        >
+          Yes, Delete
+        </button>
+        <button
+          onClick={() => setConfirmDeleteVisible(false)}
+          className='bg-blue-500 text-white px-4 py-2 rounded'
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+{confirmDeleteItem && (
+  <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+    <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-1/4 relative flex flex-col items-center'>
+      <h2 className='text-lg font-semibold mb-2'>Delete Order</h2>
+      <p className='text-center mb-4'>Are you sure you want to delete this item?</p>
+      <div className='flex space-x-2'>
+        <button
+          onClick={() => {
+            removeFromCart(a);
+            setconfirmDeleteItem(false);
+          }}
+          className='bg-red-500 text-white px-4 py-2 rounded'
+        >
+          Yes, Delete
+        </button>
+        <button
+          onClick={() => setconfirmDeleteItem(false)}
+          className='bg-blue-500 text-white px-4 py-2 rounded'
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
 
       <div className="w-full max-w-6xl mt-6">
         <div className="flex justify-center">
