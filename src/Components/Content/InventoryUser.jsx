@@ -378,22 +378,22 @@ function Inventory() {
     >
       <div className="top-transition"></div>
       <div className="w-full flex flex-col items-start mb-12 max-w-6xl">
-        <div className="w-full flex flex-row justify-between items-center">
+        <div className="w-full flex flex-row justify-between items-center overflow-hidden">
           {/* Left side: Title and Welcome text */}
-          <div className="flex flex-col items-start mb-4 lg:mb-0 flex-1">
+          <div className="flex flex-col items-start flex-1">
             <h1
               style={{
                 fontFamily: "Anton",
                 letterSpacing: 4,
                 whiteSpace: "nowrap", // Prevent wrapping
               }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl uppercase font-bold mb-2 text-silver-700 dark:text-silver-300 truncate"
+              className="text-base md:text-3xl lg:text-4xl xl:text-6xl uppercase font-bold mb-2 text-silver-700 dark:text-silver-300 truncate"
             >
               Oasis Inventory Portal
             </h1>
             <h2
               style={{ fontFamily: "Anton", letterSpacing: 2 }}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-silver-600 dark:text-silver-400 pt-2"
+              className="text-base md:text-lg lg:text-3xl xl:text-3xl font-semibold text-silver-600 dark:text-silver-400 pt-2"
             >
               Welcome {user?.clubName || "Guest"}!
             </h2>
@@ -403,7 +403,7 @@ function Inventory() {
             <img
               src={inImage}
               alt="description of the image"
-              className="w-[100px] sm:w-[125px] md:w-[150px] lg:w-[200px] xl:w-[250px] h-auto object-cover"
+              className="w-[80px] sm:w-[100px] md:w-[125px] lg:w-[150px] xl:w-[200px] h-auto object-cover"
             />
           </div>
         </div>
