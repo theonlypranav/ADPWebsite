@@ -32,7 +32,7 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
 
-  const navItems = ['Home', 'AboutUs', 'OurProjects', 'OurTeam'];
+  const navItems = ['Home', 'AboutUs', 'OurProjects', 'OurTeam', 'Inventory'];
 
   const isHomePage = location.pathname === '/';
 
@@ -63,7 +63,17 @@ function Navbar() {
           <div className='hidden lg:flex flex-1 items-center justify-end relative'>
             <ul className='flex gap-8 text-base items-center'>
               {navItems.map((item, index) => (
-                isHomePage ? (
+                item === 'Inventory' ? (
+                  <RouterLink
+                    key={index}
+                    to='/inventory' // Ensure this is the correct path for Inventory
+                    onClick={() => setClick(false)}
+                  >
+                    <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+                      {formatNavItem(item)}
+                    </li>
+                  </RouterLink>
+                ) : isHomePage ? (
                   <ScrollLink
                     key={index}
                     to={item}
@@ -82,7 +92,7 @@ function Navbar() {
                     state={{ scrollTo: item }}
                   >
                     <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                      {item}
+                      {formatNavItem(item)}
                     </li>
                   </RouterLink>
                 )
@@ -122,7 +132,17 @@ function Navbar() {
           <div className='lg:hidden'>
             <ul className='flex flex-col gap-4 text-base items-center pb-4'>
               {navItems.map((item, index) => (
-                isHomePage ? (
+                item === 'Inventory' ? (
+                  <RouterLink
+                    key={index}
+                    to='/inventory' // Ensure this is the correct path for Inventory
+                    onClick={() => setClick(false)}
+                  >
+                    <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+                      {formatNavItem(item)}
+                    </li>
+                  </RouterLink>
+                ) : isHomePage ? (
                   <ScrollLink
                     key={index}
                     to={item}
@@ -132,7 +152,7 @@ function Navbar() {
                     onClick={() => setClick(false)}
                   >
                     <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                      {item}
+                      {formatNavItem(item)}
                     </li>
                   </ScrollLink>
                 ) : (
@@ -143,7 +163,7 @@ function Navbar() {
                     onClick={() => setClick(false)}
                   >
                     <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                      {item}
+                      {formatNavItem(item)}
                     </li>
                   </RouterLink>
                 )
