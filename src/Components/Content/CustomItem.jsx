@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
+import * as XLSX from 'xlsx';
 import bgImage from '../../assets/bg.jpg'; // Ensure the correct path to your background image
 
 function Inventory() {
@@ -122,6 +123,19 @@ function Inventory() {
     setSelectedOrder(null);
   };
 
+  const handleDownloadExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(
+      items.map((item) => ({
+        'Item Name': item.name,
+        'Total Ordered Quantity': item.orderedQuantity,
+      }))
+    );
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Inventory');
+
+    XLSX.writeFile(wb, 'external_inventory_items.xlsx');
+  };
+
   return (
     <div
       id='Inventory'
@@ -135,11 +149,17 @@ function Inventory() {
     >
       <h1 className='text-4xl font-bold mb-6'>External Inventory Demand</h1>
 
-      <Link to='/inventoryadp'>
-        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-8'>
-          Back to Home
+      <div className='flex align-center justify-center w-full mb-8'>
+        <Link to='/inventoryadp'>
+          <button className='bg-blue-500 text-white px-4 py-2 rounded mr-4'>
+            Back to Home
+          </button>
+        </Link>
+
+        <button onClick={handleDownloadExcel} className='bg-green-500 text-white px-4 py-2 rounded'>
+          Download Excel
         </button>
-      </Link>
+      </div>
 
       <div className='overflow-hidden rounded-lg shadow-lg border border-blue-400 glow'>
         <table className='min-w-full bg-white dark:bg-gray-800 rounded-lg'>
