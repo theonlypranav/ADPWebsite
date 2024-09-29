@@ -29,7 +29,8 @@ function Inventory() {
   const { isConfirmDisabled } = useOrderContext();
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
   const [confirmOrderVisible, setConfirmOrderVisible] = useState(false);
-  const [confirmDeleteItem, setconfirmDeleteItem] = useState(false);
+  const [allItems, setAllItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
 
   // Fetch the user info from localStorage
@@ -55,6 +56,13 @@ function Inventory() {
       .then((response) => response.json())
       .then((data) => {
         setItems(
+          data.map((item) => ({
+            id: item._id,
+            name: item.itemName,
+            quantity: 0,
+          }))
+        );
+        setAllItems(
           data.map((item) => ({
             id: item._id,
             name: item.itemName,
@@ -191,10 +199,6 @@ function Inventory() {
     setShowCart(false);
   };
 
-  const handleDeleteItem = (index) => {
-    setconfirmDeleteItem(true);
-  }
-
   const handleOrder =() => {
     setConfirmOrderVisible(true);
   }
@@ -325,22 +329,21 @@ function Inventory() {
   const toggleViewMode = () => {
     setIsGridView(!isGridView);
   };
-  // State for the search query
-  const [searchQuery, setSearchQuery] = useState("");
-
+ 
   const Cartclear = () => {
     setConfirmDeleteVisible(true);
   }
 
   // Handler for search input
   const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+    const filteredItems = allItems.filter((item) =>
+      item.name.toLowerCase().includes(query)
+    );
+    setItems(filteredItems);
   };
 
-  // Filter items based on the search query (case-insensitive)
-  const filteredItems = items.filter((item) =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   const handleViewOrders = () => {
     if (!showOrders) {
@@ -525,7 +528,7 @@ function Inventory() {
                       </td>
                       <td className="py-2 px-2 sm:px-4 border-b text-xl text-gray-600 dark:text-gray-100 text-center">
                         <button
-                          onClick={() => handleDeleteItem(index)}
+                          onClick={() => removeFromCart(index)}
                           className="text-red-500 hover:text-red-700 text-xl transition duration-200 transform hover:scale-110"
                         >
                           &#x2715; {/* Unicode for cross symbol */}
@@ -749,31 +752,6 @@ function Inventory() {
   </div>
 )}
 
-{confirmDeleteItem && (
-  <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-    <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-1/4 relative flex flex-col items-center'>
-      <h2 className='text-lg font-semibold mb-2'>Delete Order</h2>
-      <p className='text-center mb-4'>Are you sure you want to delete this item?</p>
-      <div className='flex space-x-2'>
-        <button
-          onClick={() => {
-            removeFromCart(a);
-            setconfirmDeleteItem(false);
-          }}
-          className='bg-red-500 text-white px-4 py-2 rounded'
-        >
-          Yes, Delete
-        </button>
-        <button
-          onClick={() => setconfirmDeleteItem(false)}
-          className='bg-blue-500 text-white px-4 py-2 rounded'
-        >
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-)}
 
 
 
@@ -801,7 +779,7 @@ function Inventory() {
           />
         </div>
 
-        {filteredItems.length === 0 ? (
+        {items.length === 0 ? (
           <p className="text-center text-gray-600 dark:text-gray-300">
             No items available
           </p>
@@ -813,7 +791,7 @@ function Inventory() {
                 : "space-y-4"
             }
           >
-            {filteredItems.map((item, index) => (
+            {items.map((item, index) => (
               <li
                 key={item.id}
                 className={`bg-black/50 backdrop-blur-lg flex items-center justify-between shadow-lg hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.6)] transition-all duration-300 transform hover:scale-105 p-4 sm:p-6 rounded-lg ${
