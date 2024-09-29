@@ -281,7 +281,7 @@ function Inventory() {
           text-center text-white placeholder-gray-500 
           transition-all duration-300 ease-in-out 
           focus:outline-none focus:ring-4 focus:ring-blue-500 focus:border-transparent
-          bg-gray-900
+          bg-black/50 
         "
         style={{
           boxShadow: "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)",
@@ -304,7 +304,7 @@ function Inventory() {
             {filteredItems.map((item, index) => (
               <div
                 key={item._id}
-                className="bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center"
+                className="bg-black/50 backdrop-blur-lg dark:bg-black/50 backdrop-blur-lg border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center"
                 onContextMenu={(e) => {
                   e.preventDefault(); // Prevent default context menu
                   setSelectedItemIndex(index);
@@ -350,10 +350,10 @@ function Inventory() {
               </div>
             ))}
 
-            <div className="flex justify-center items-center bg-gray-800 dark:bg-gray-900 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md">
+            <div className="flex justify-center items-center bg-black/50 backdrop-blur-lg dark:bg-black/50 backdrop-blur-lg border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md">
               <button
                 onClick={() => setAddItemModal(true)}
-                className="text-4xl text-purple-500 hover:text-blue-700 transition duration-300"
+                className="text-4xl text-green-500 hover:text-blue-700 transition duration-300"
               >
                 <i className="bx bx-plus text-6xl"></i>
               </button>
