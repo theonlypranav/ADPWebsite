@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
+import * as XLSX from 'xlsx';
 import bgImage from '../../assets/bg.jpg'; // Ensure the correct path to your background image
 
 function Inventory() {
@@ -123,6 +124,20 @@ function Inventory() {
     setSelectedOrder(null);
   };
 
+  const handleDownloadExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(
+      items.map((item) => ({
+        'Item Name': item.name,
+        'Available Quantity': item.availableQuantity,
+        'Total Ordered Quantity': item.totalOrderedQuantity,
+      }))
+    );
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Inventory');
+
+    XLSX.writeFile(wb, 'inventory_items.xlsx');
+  };
+
   return (
     <div
       id='Inventory'
@@ -136,11 +151,17 @@ function Inventory() {
     >
       <h1 className='text-4xl font-bold mb-6'>Item List</h1>
 
-      <Link to='/inventoryadp'>
-        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-8'>
-          Back to Home
+      <div className='flex align-center justify-center w-full mb-8'>
+        <Link to='/inventoryadp'>
+          <button className='bg-blue-500 text-white px-4 py-2 rounded mr-4'>
+            Back to Home
+          </button>
+        </Link>
+
+        <button onClick={handleDownloadExcel} className='bg-green-500 text-white px-4 py-2 rounded'>
+          Download Excel
         </button>
-      </Link>
+      </div>
 
       <div className='overflow-hidden rounded-lg shadow-lg border border-blue-400 glow'>
         <table className='min-w-full bg-white dark:bg-gray-800 rounded-lg'>
@@ -221,35 +242,15 @@ function Inventory() {
         .status-dropdown {
           background-color: rgba(0, 0, 0, 0.5);
           color: white;
-          border: none;
-          border-radius: 9999px;
-          padding: 3px 8px;
-          cursor: pointer;
-          font-size: 0.875rem;
-        }
-
-        .status-dropdown option {
-          background-color: black;
-          color: white;
-        }
-
-        .status-dropdown:focus {
-          outline: none;
-          box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
+          padding: 4px;
+          border-radius: 4px;
         }
 
         .remarks-input {
-          background-color: rgba(0, 0, 0, 0.1);
-          border: 0.7px solid #ffffff;
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
+          padding: 4px;
           border-radius: 4px;
-          padding: 4px 8px;
-          width: 150px;
-          height: 25px;
-          box-sizing: border-box;
-        }
-
-        .glow {
-          box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
         }
       `}</style>
     </div>
