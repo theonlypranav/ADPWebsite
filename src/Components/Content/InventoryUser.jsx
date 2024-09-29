@@ -678,16 +678,27 @@ function Inventory() {
       )}
 
       <div className="w-full max-w-6xl mt-6">
-        <h3 className="text-2xl font-bold mb-4 uppercase">Available Items</h3>
-
-        {/* Search bar */}
-        <input
-          type="text"
-          placeholder="Search items by title"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="w-full p-2 mb-6 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-        />
+        <div className="flex justify-center">
+          <input
+            type="text"
+            placeholder="Search items by title"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="
+              w-full max-w-md 
+              p-3 mb-6 border border-gray-300 rounded-md 
+              text-center text-black placeholder-gray-500 
+              transition-all duration-300 ease-in-out 
+              focus:outline-none focus:ring-4 focus:ring-blue-500 focus:border-transparent
+              bg-white
+            "
+            style={{
+              boxShadow: "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)", // Stronger bowl effect
+            }}
+            onFocus={(e) => (e.target.style.boxShadow = "0 0 15px rgba(255, 255, 255, 0.5), inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)")} // Glow effect on typing
+            onBlur={(e) => (e.target.style.boxShadow = "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)")} // Revert to original when unfocused
+          />
+        </div>
 
         {filteredItems.length === 0 ? (
           <p className="text-center text-gray-600 dark:text-gray-300">
