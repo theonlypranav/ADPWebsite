@@ -99,7 +99,6 @@ function Inventory() {
         );
         const data = await response.json();
         setIsConfirmDisabled(data.isConfirmDisabled);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching order status:", error);
       }
