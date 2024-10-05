@@ -23,7 +23,6 @@ import Items from './Components/Content/Items';
 import CustomItem from './Components/Content/CustomItem'
 import OrderwiseItem from './Components/Content/OrderwiseItem';
 import Forgpass from './Components/Content/Forgpass';
-import { OrderProvider } from './Components/Content/OrderContext';
 
 import './App.css';
 
@@ -39,7 +38,6 @@ function App() {
   }, []);
 
   return (
-    <OrderProvider>
     <Router>
       {loading ? (
         <div className="bg-black min-h-screen flex flex-grow justify-center items-center">
@@ -156,7 +154,6 @@ function App() {
         </Routes>
       )}
     </Router>
-    </OrderProvider>
   );
 }
 
