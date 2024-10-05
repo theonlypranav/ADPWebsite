@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Inventory.css";
 import bgImage from "../../assets/bg.jpg";
-import { useOrderContext } from './OrderContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -21,12 +20,12 @@ function Inventory() {
   const [tapCount, setTapCount] = useState(0);
   const [tapTimeout, setTapTimeout] = useState(null);
   const [loading, setLoading] = useState(true); // Add this line
-  const { isConfirmDisabled, setIsConfirmDisabled } = useOrderContext();
 
   // Fetch token and user details from localStorage
   const userString = localStorage.getItem("user");
   const userData = userString ? JSON.parse(userString) : null;
   const token = localStorage.getItem("token");
+  const [isConfirmDisabled, setIsConfirmDisabled] = useState(false);
 
   useEffect(() => {
     if (!token || userData.access !== "bosslevel") {
@@ -57,13 +56,13 @@ function Inventory() {
 
           if (a.itemName.startsWith("Brush Flat")) return -1;
           if (b.itemName.startsWith("Brush Flat")) return 1;
-  
+
           if (a.itemName.startsWith("Paint (15 ml)")) return -1;
           if (b.itemName.startsWith("Paint (15 ml)")) return 1;
-  
+
           if (a.itemName.startsWith("Paint (500 ml)")) return -1;
           if (b.itemName.startsWith("Paint (500 ml)")) return 1;
-  
+
           return 0; // Other items remain in their default order
         });
         setItems(sortedData);
@@ -75,6 +74,24 @@ function Inventory() {
     } finally {
       setLoading(false); // Set loading to false after fetching
     }
+
+    const fetchOrderStatus = async () => {
+      try {
+        const response = await fetch(
+          "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/confirm-disabled",
+          {
+            method: "GET",
+          }
+        );
+        const data = await response.json();
+        setIsConfirmDisabled(data.isConfirmDisabled);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching order status:", error);
+      }
+    };
+
+    fetchOrderStatus();
   };
 
   const addItem = async () => {
@@ -140,8 +157,33 @@ function Inventory() {
     }
   };
   // Toggle the button state
-  const handleToggle = () => {
-    setIsConfirmDisabled(!isConfirmDisabled);
+  const handleToggle = async () => {
+    try {
+      // Toggle the confirmation status locally first
+      const newStatus = !isConfirmDisabled;
+      const response = await fetch(
+        "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/confirm-disabled",
+        {
+          method: "PUT", // Assuming you want to update the status
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ isConfirmDisabled: newStatus }), // Send the new status in the request body
+        }
+      );
+
+      // Check if the response is okay before parsing
+      if (!response.ok) {
+        throw new Error("Failed to update order status");
+      }
+
+      const data = await response.json();
+      setIsConfirmDisabled(data.isConfirmDisabled); // Update the state based on the response
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching order status:", error);
+    }
   };
 
   const updateItem = async () => {
@@ -242,15 +284,16 @@ function Inventory() {
           Welcome, {userData?.cordName || "CRAC Coordinator"}
         </h2>
         <div className="flex space-x-4 mt-4">
+          {/* // Button rendering */}
           <button
             onClick={handleToggle}
             className={`px-4 py-2 rounded shadow-md text-white ${
-              isConfirmDisabled ? "bg-gray-700 border-2 border-white text-white" : "bg-[#390B31] border-2 border-white text-white"
+              isConfirmDisabled
+                ? "bg-gray-700 border-2 border-white text-white"
+                : "bg-[#390B31] border-2 border-white text-white"
             }`}
           >
-            {isConfirmDisabled
-              ? "Orders Disabled"
-              : "Orders Enabled"}
+            {isConfirmDisabled ? "Orders Disabled" : "Orders Enabled"}
           </button>
           <button
             onClick={() => navigate("/orders")}
@@ -279,18 +322,16 @@ function Inventory() {
         </div>
       </div>
 
-     
       <div className="relative w-full mb-6">
-      
-      <div className="absolute left-3 top-3 text-gray-500 pl-5">
-        <FontAwesomeIcon icon={faSearch} />
-      </div>
-      <input
-        type="text"
-        placeholder="Search items by title"
-        value={searchQuery}
-        onChange={handleSearchChange}
-        className="
+        <div className="absolute left-3 top-3 text-gray-500 pl-5">
+          <FontAwesomeIcon icon={faSearch} />
+        </div>
+        <input
+          type="text"
+          placeholder="Search items by title"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="
           w-full 
           p-3  mb-6 border border-gray-300 rounded-full
           text-center text-white placeholder-gray-500 
@@ -298,18 +339,20 @@ function Inventory() {
           focus:outline-none focus:ring-4 focus:ring-blue-500 focus:border-transparent
           bg-black/50 
         "
-        style={{
-          boxShadow: "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)",
-        }}
-        onFocus={(e) => (e.target.style.boxShadow = "0 0 15px rgba(255, 255, 255, 0.5), inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)")}
-        onBlur={(e) => (e.target.style.boxShadow = "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)")}
-      />
-    </div>
-  
-
-        
-
-      
+          style={{
+            boxShadow:
+              "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)",
+          }}
+          onFocus={(e) =>
+            (e.target.style.boxShadow =
+              "0 0 15px rgba(255, 255, 255, 0.5), inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)")
+          }
+          onBlur={(e) =>
+            (e.target.style.boxShadow =
+              "inset 0px -6px 12px rgba(0, 0, 0, 0.2), inset 0px 6px 12px rgba(0, 0, 0, 0.1)")
+          }
+        />
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl mt-8">
         {loading ? (

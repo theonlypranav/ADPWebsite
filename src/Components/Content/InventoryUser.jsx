@@ -8,7 +8,6 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faDice } from "@fortawesome/free-solid-svg-icons";
-import { useOrderContext } from "./OrderContext";
 
 function Inventory() {
   const navigate = useNavigate();
@@ -26,7 +25,6 @@ function Inventory() {
   const [newItemQuantity, setNewItemQuantity] = useState("");
   const [newItemLink, setNewItemLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { isConfirmDisabled } = useOrderContext();
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
   const [confirmOrderVisible, setConfirmOrderVisible] = useState(false);
   const [allItems, setAllItems] = useState([]);
@@ -37,6 +35,7 @@ function Inventory() {
   const userString = localStorage.getItem("user");
   const userData = userString ? JSON.parse(userString) : null;
   const token = localStorage.getItem("token");
+  const [isConfirmDisabled, setIsConfirmDisabled] = useState(false);
   // If token is not found, redirect to /inventory
 
   useEffect(() => {
@@ -90,9 +89,27 @@ function Inventory() {
         );
       })
       .catch((error) => console.error("Error fetching inventory:", error));
-  }, []);
-  
 
+    const fetchOrderStatus = async () => {
+      try {
+        const response = await fetch(
+          "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/confirm-disabled",{
+            method: "GET",
+          }
+        );
+        const data = await response.json();
+        setIsConfirmDisabled(data.isConfirmDisabled);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching order status:", error);
+      }
+    };
+
+    fetchOrderStatus();
+  }
+  , []);
+  
+   
   const handleQuantityChange = (index, value) => {
     const newQuantity = Math.max(0, Number(value));
     setItems((prevItems) =>
@@ -353,6 +370,7 @@ function Inventory() {
   const Cartclear = () => {
     setConfirmDeleteVisible(true);
   }
+
 
   // Handler for search input
   const handleSearchChange = (e) => {
