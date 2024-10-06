@@ -314,7 +314,7 @@ function Inventory() {
           continue;
         }
       }
-//hello
+//hello2
       // Clear cart and close order modal after successful requests
       handleDelete();
     } catch (error) {
