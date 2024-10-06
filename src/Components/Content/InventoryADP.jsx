@@ -267,7 +267,7 @@ function Inventory() {
   return (
     <div
       id="Inventory"
-      className="bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center"
+      className="bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 md:px-16 sm:px-8 px-5 py-20 min-h-screen flex flex-col items-center"
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
@@ -277,17 +277,17 @@ function Inventory() {
     >
       <div className="top-transition"></div>
       <div className="text-center w-full flex flex-col items-center mb-12">
-        <h1 className="text-4xl font-bold mb-2 text-silver-700 dark:text-silver-300">
+        <h1 className="text-4xl font-bold mb-2 text-silver-700 dark:text-silver-300 sm:text-3xl text-2xl">
           Inventory Management
         </h1>
-        <h2 className="text-xl font-semibold text-silver-600 dark:text-silver-400">
+        <h2 className="text-xl font-semibold text-silver-600 dark:text-silver-400 sm:text-lg text-base">
           Welcome, {userData?.cordName || "CRAC Coordinator"}
         </h2>
-        <div className="flex space-x-4 mt-4">
-          {/* // Button rendering */}
+        <div className="flex flex-wrap justify-center gap-4 mt-4">
+          {/* Button rendering */}
           <button
             onClick={handleToggle}
-            className={`px-4 py-2 rounded shadow-md text-white ${
+            className={`w-full sm:w-auto px-4 py-2 rounded shadow-md text-white ${
               isConfirmDisabled
                 ? "bg-gray-700 border-2 border-white text-white"
                 : "bg-[#390B31] border-2 border-white text-white"
@@ -297,32 +297,32 @@ function Inventory() {
           </button>
           <button
             onClick={() => navigate("/orders")}
-            className="bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
+            className="w-full sm:w-auto bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
           >
             View All Orders
           </button>
           <button
             onClick={() => navigate("/items")}
-            className="bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
+            className="w-full sm:w-auto bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
           >
-            Inventory Items analysis
+            Inventory Items Analysis
           </button>
           <button
             onClick={() => navigate("/customitems")}
-            className="bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
+            className="w-full sm:w-auto bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-teal-600 hover:to-teal-800 transition duration-300"
           >
-            Inventory Custom analysis
+            Inventory Custom Analysis
           </button>
           <button
             onClick={handleLogoutAndRedirect}
-            className="bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300"
+            className="w-full sm:w-auto bg-[#390B31] border-2 border-white text-white px-5 py-2 rounded shadow-md hover:from-red-600 hover:to-red-800 transition duration-300"
           >
             <FontAwesomeIcon icon={faSignOutAlt} className="text-white ml-2" />
           </button>
         </div>
       </div>
 
-      <div className="relative w-full mb-6">
+      <div className="relative w-full mb-6 max-w-lg">
         <div className="absolute left-3 top-3 text-gray-500 pl-5">
           <FontAwesomeIcon icon={faSearch} />
         </div>
@@ -333,7 +333,7 @@ function Inventory() {
           onChange={handleSearchChange}
           className="
           w-full 
-          p-3  mb-6 border border-gray-300 rounded-full
+          p-3 mb-6 border border-gray-300 rounded-full
           text-center text-white placeholder-gray-500 
           transition-all duration-300 ease-in-out 
           focus:outline-none focus:ring-4 focus:ring-blue-500 focus:border-transparent
@@ -354,7 +354,7 @@ function Inventory() {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-6xl mt-8">
         {loading ? (
           <div className="loading-spinner text-center text-lg">Loading...</div> // Loading indicator
         ) : (
@@ -362,7 +362,7 @@ function Inventory() {
             {filteredItems.map((item, index) => (
               <div
                 key={item._id}
-                className="bg-black/50 backdrop-blur-lg dark:bg-black/50 backdrop-blur-lg border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center"
+                className="bg-black/50 backdrop-blur-lg dark:bg-black/50 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md flex flex-col items-center text-center"
                 onContextMenu={(e) => {
                   e.preventDefault(); // Prevent default context menu
                   setSelectedItemIndex(index);
@@ -408,7 +408,7 @@ function Inventory() {
               </div>
             ))}
 
-            <div className="flex justify-center items-center bg-black/50 backdrop-blur-lg dark:bg-black/50 backdrop-blur-lg border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md">
+            <div className="flex justify-center items-center bg-black/50 backdrop-blur-lg dark:bg-black/50 border border-gray-600 dark:border-gray-700 p-8 rounded-lg shadow-md">
               <button
                 onClick={() => setAddItemModal(true)}
                 className="text-4xl text-green-500 hover:text-blue-700 transition duration-300"
@@ -419,10 +419,11 @@ function Inventory() {
           </>
         )}
       </div>
+
       {/* Add Item Modal */}
       {addItemModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
             <h3 className="text-2xl font-semibold mb-4 text-white">
               Add New Item
             </h3>
@@ -461,103 +462,6 @@ function Inventory() {
                 Cancel
               </button>
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* Items Manager Modal */}
-      {itemsManagerModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-semibold mb-4 text-white">
-              Manage Item
-            </h3>
-            <select
-              className="border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600"
-              value={selectedItemIndex ?? ""}
-              onChange={handleItemChange}
-            >
-              <option value="" className="text-gray-400">
-                Select an Item
-              </option>
-              {items.map((item, index) => (
-                <option key={item._id} value={index} className="text-white">
-                  {item.itemName}
-                </option>
-              ))}
-            </select>
-            {selectedItemIndex !== null && (
-              <>
-                <input
-                  type="text"
-                  className="border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600"
-                  value={itemBeingEditedName}
-                  onChange={(e) => setItemBeingEditedName(e.target.value)}
-                />
-                <input
-                  type="number"
-                  className="border p-2 mb-4 w-full bg-gray-700 text-white border-gray-600"
-                  value={
-                    itemBeingEditedQuantity > 0 ? itemBeingEditedQuantity : ""
-                  } // Set to empty if 0
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    if (value === "") {
-                      setItemBeingEditedQuantity(0); // Reset if input is empty
-                    } else {
-                      setItemBeingEditedQuantity(Number(value));
-                    }
-                  }}
-                />
-                <label className="flex items-center">
-                  <span className="mr-2 text-white">
-                    {itemBeingEditedEnabled ? "Enabled" : "Disabled"}
-                  </span>
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      checked={itemBeingEditedEnabled}
-                      onChange={(e) =>
-                        setItemBeingEditedEnabled(e.target.checked)
-                      }
-                      className="sr-only"
-                    />
-                    <div
-                      className={`w-14 h-8 bg-gray-300 rounded-full cursor-pointer ${
-                        itemBeingEditedEnabled ? "bg-green-500" : "bg-red-500"
-                      }`}
-                    ></div>
-                    <div
-                      className={`absolute left-1 top-1 w-6 h-6 bg-white rounded-full transition-transform duration-300 ${
-                        itemBeingEditedEnabled
-                          ? "transform translate-x-full"
-                          : ""
-                      }`}
-                    ></div>
-                  </div>
-                </label>
-                <div className="flex justify-end space-x-4 mt-4">
-                  <button
-                    onClick={updateItem}
-                    className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
-                  >
-                    Save Changes
-                  </button>
-                  <button
-                    onClick={deleteItem}
-                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
-                  >
-                    Delete Item
-                  </button>
-                  <button
-                    onClick={closeItemsManagerModal}
-                    className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </>
-            )}
           </div>
         </div>
       )}

@@ -164,56 +164,61 @@ function Inventory() {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <h1 className='text-4xl font-bold mb-6'>Item List</h1>
-
-      <div className='flex align-center justify-center w-full mb-8'>
+      <h1 className='text-3xl md:text-4xl font-bold mb-6 text-center'>Item List</h1>
+  
+      {/* Action buttons */}
+      <div className='flex flex-col sm:flex-row align-center justify-center w-full mb-8 space-y-4 sm:space-y-0 sm:space-x-4'>
         <Link to='/inventoryadp'>
-          <button className='bg-blue-500 text-white px-4 py-2 rounded mr-4'>
+          <button className='bg-blue-500 text-white px-4 py-2 rounded w-full sm:w-auto'>
             Back to Home
           </button>
         </Link>
-
-        <button onClick={handleDownloadExcel} className='bg-green-500 text-white px-4 py-2 rounded'>
+  
+        <button
+          onClick={handleDownloadExcel}
+          className='bg-green-500 text-white px-4 py-2 rounded w-full sm:w-auto'
+        >
           Download Excel
         </button>
       </div>
-
-      <div className='overflow-hidden rounded-lg shadow-lg border border-blue-400 glow'>
+  
+      {/* Scrollable table container */}
+      <div className='w-full overflow-x-auto rounded-lg shadow-lg border border-blue-400 glow'>
         <table className='min-w-full bg-white dark:bg-gray-800 rounded-lg'>
           <thead>
             <tr className='text-left'>
-              <th className='py-2 px-4 border-b'>Item Name</th>
-              <th className='py-2 px-4 border-b'>Available Quantity</th>
-              <th className='py-2 px-4 border-b'>Total Ordered Quantity</th>
-              <th className='py-2 px-4 border-b'>Total Allotted Quantity</th>
-              <th className='py-2 px-4 border-b'>Status</th>
-              <th className='py-2 px-4 border-b'>Remarks</th>
+              <th className='py-2 px-4 border-b text-xs md:text-sm'>Item Name</th>
+              <th className='py-2 px-4 border-b text-xs md:text-sm'>Available Quantity</th>
+              <th className='py-2 px-4 border-b text-xs md:text-sm'>Total Ordered Quantity</th>
+              <th className='py-2 px-4 border-b text-xs md:text-sm'>Total Allotted Quantity</th>
+              <th className='py-2 px-4 border-b text-xs md:text-sm'>Status</th>
+              <th className='py-2 px-4 border-b text-xs md:text-sm'>Remarks</th>
             </tr>
           </thead>
           <tbody>
             {items.map((item, index) => (
               <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
-                <td className='py-2 px-4 border-b'>{item.name}</td>
-                <td className='py-2 px-4 border-b'>{item.availableQuantity}</td>
-                <td className='py-2 px-4 border-b'>{item.totalOrderedQuantity}</td>
-                <td className='py-2 px-4 border-b'>{item.totalAllottedQuantity}</td>
+                <td className='py-2 px-4 border-b text-xs md:text-sm'>{item.name}</td>
+                <td className='py-2 px-4 border-b text-xs md:text-sm'>{item.availableQuantity}</td>
+                <td className='py-2 px-4 border-b text-xs md:text-sm'>{item.totalOrderedQuantity}</td>
+                <td className='py-2 px-4 border-b text-xs md:text-sm'>{item.totalAllottedQuantity}</td>
                 <td className='py-2 px-4 border-b'>
                   <select
-                    className='status-dropdown'
-                    value={item.itemOrderedStatus} // Ensure there's always a value
+                    className='status-dropdown text-xs md:text-sm'
+                    value={item.itemOrderedStatus}
                     onChange={(e) => handleStatusChange(index, e.target.value)}
                   >
-                    <option value="">Select Status</option>
-                    <option value="Available">Available</option>
-                    <option value="Not Available">Not Available</option>
-                    <option value="Ordered from Akshay">Ordered from Akshay</option>
-                    <option value="Ordered from Amazon">Ordered from Amazon</option>
+                    <option value=''>Select Status</option>
+                    <option value='Available'>Available</option>
+                    <option value='Not Available'>Not Available</option>
+                    <option value='Ordered from Akshay'>Ordered from Akshay</option>
+                    <option value='Ordered from Amazon'>Ordered from Amazon</option>
                   </select>
                 </td>
                 <td className='py-2 px-4 border-b'>
                   <input
                     type='text'
-                    className='remarks-input'
+                    className='remarks-input text-xs md:text-sm'
                     value={item.itemRemark}
                     onChange={(e) => handleRemarkChange(index, e.target.value)}
                     placeholder='Enter Remarks'
@@ -224,17 +229,19 @@ function Inventory() {
           </tbody>
         </table>
       </div>
-
+  
+      {/* Save button */}
       <button
         onClick={handleSave}
-        className='bg-green-500 text-white px-4 py-2 rounded mt-8'
+        className='bg-green-500 text-white px-4 py-2 rounded mt-8 w-full sm:w-auto'
       >
         Save Changes
       </button>
-
+  
+      {/* Modal for order details */}
       {modalVisible && (
         <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3 relative'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-11/12 sm:w-2/3 md:w-1/2 lg:w-1/3 relative'>
             <button
               onClick={closeModal}
               className='absolute top-2 right-2 text-gray-500 dark:text-gray-300 text-2xl'
@@ -252,7 +259,7 @@ function Inventory() {
           </div>
         </div>
       )}
-
+  
       <style jsx='true'>{`
         .status-dropdown {
           background-color: rgba(0, 0, 0, 0.5);
@@ -260,16 +267,21 @@ function Inventory() {
           padding: 4px;
           border-radius: 4px;
         }
-
+  
         .remarks-input {
           background-color: rgba(0, 0, 0, 0.5);
           color: white;
           padding: 4px;
           border-radius: 4px;
         }
+  
+        .glow {
+          box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+        }
       `}</style>
     </div>
   );
+  
 }
 
 export default Inventory;

@@ -101,7 +101,7 @@ function Order() {
   return (
     <div
       id='Order'
-      className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'
+      className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-10 min-h-screen flex flex-col items-center'
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: 'cover',
@@ -109,58 +109,68 @@ function Order() {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <h1 className='text-4xl font-bold mb-10'>Order Management</h1>
-
+      <h1 className='text-3xl md:text-4xl font-bold mb-8 md:mb-10 text-center'>
+        Order Management
+      </h1>
+  
       {/* Button to link to /inventoryadp */}
       <Link to='/inventoryadp'>
-        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-10'>
+        <button className='bg-blue-500 text-white px-3 py-2 md:px-4 md:py-2 rounded mb-8 md:mb-10'>
           Back to Home
         </button>
       </Link>
-
-      {/* Table with glow and rounded corners */}
-      <div className='overflow-hidden rounded-lg shadow-lg border border-blue-400 glow'>
-        <table className='min-w-full bg-white dark:bg-gray-800'>
-          <thead>
-            <tr className='text-left'>
-              <th className='py-2 px-4 border-b'>Club Name</th>
-              <th className='py-2 px-4 border-b'>Coordinator</th>
-              <th className='py-2 px-4 border-b'>Contact</th>
-              <th className='py-2 px-4 border-b'>Order</th>
-              <th className='py-2 px-4 border-b'>Manage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item, index) => (
-              <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
-                <td className='py-2 px-4 border-b'>{item.clubName}</td>
-                <td className='py-2 px-4 border-b'>{item.cordName}</td>
-                <td className='py-2 px-4 border-b'>{item.contact}</td>
-                <td
-                  className='py-2 px-4 border-b cursor-pointer text-blue-500 hover:underline'
-                  onClick={() => handleOrderClick(item.user_id, item.cart_id)}
-                >
-                  View Order
-                </td>
-                <td className='py-2 px-4 border-b'>
-                <button
-                  onClick={() => requestDelete(item.cart_id)}
-                  className='text-red-500 text-2xl px-4 py-2'
-                  title='Delete'
-                >
-                  &times; {/* Cross symbol for delete */}
-                </button>
-              </td>
+  
+      {/* Scrollable container for the table on small screens */}
+      <div className='w-full max-w-full overflow-x-auto'>
+        <div className='min-w-full overflow-x-auto rounded-lg shadow-lg border border-blue-400 glow'>
+          <table className='min-w-full bg-white dark:bg-gray-800'>
+            <thead>
+              <tr className='text-left'>
+                <th className='py-2 px-4 border-b text-sm md:text-base'>Club Name</th>
+                <th className='py-2 px-4 border-b text-sm md:text-base'>Coordinator</th>
+                <th className='py-2 px-4 border-b text-sm md:text-base'>Contact</th>
+                <th className='py-2 px-4 border-b text-sm md:text-base'>Order</th>
+                <th className='py-2 px-4 border-b text-sm md:text-base'>Manage</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {items.map((item, index) => (
+                <tr key={index} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
+                  <td className='py-2 px-2 md:px-4 border-b text-sm md:text-base'>
+                    {item.clubName}
+                  </td>
+                  <td className='py-2 px-2 md:px-4 border-b text-sm md:text-base'>
+                    {item.cordName}
+                  </td>
+                  <td className='py-2 px-2 md:px-4 border-b text-sm md:text-base'>
+                    {item.contact}
+                  </td>
+                  <td
+                    className='py-2 px-2 md:px-4 border-b cursor-pointer text-blue-500 hover:underline text-sm md:text-base'
+                    onClick={() => handleOrderClick(item.user_id, item.cart_id)}
+                  >
+                    View Order
+                  </td>
+                  <td className='py-2 px-2 md:px-4 border-b'>
+                    <button
+                      onClick={() => requestDelete(item.cart_id)}
+                      className='text-red-500 text-2xl px-3 md:px-4 py-1 md:py-2'
+                      title='Delete'
+                    >
+                      &times;
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-
-      {/* Modal for viewing order details (if needed) */}
+  
+      {/* Modal for viewing order details */}
       {modalVisible && (
         <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3 relative'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/2 lg:w-1/3 relative'>
             <button
               onClick={closeModal}
               className='absolute top-2 right-2 text-gray-500 dark:text-gray-300 text-2xl'
@@ -178,33 +188,34 @@ function Order() {
           </div>
         </div>
       )}
-
-{confirmDeleteVisible && (
-  <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-    <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-1/4 relative flex flex-col items-center'>
-      <h2 className='text-lg font-semibold mb-2'>Confirm Delete</h2>
-      <p className='text-center mb-4'>Are you sure you want to delete this cart?</p>
-      <div className='flex space-x-2'>
-        <button
-          onClick={() => {
-            handleDelete(itemToDelete.cart_id);
-            setConfirmDeleteVisible(false);
-          }}
-          className='bg-red-500 text-white px-4 py-2 rounded'
-        >
-          Yes, Delete
-        </button>
-        <button
-          onClick={() => setConfirmDeleteVisible(false)}
-          className='bg-blue-500 text-white px-4 py-2 rounded'
-        >
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-
+  
+      {/* Confirm Delete Modal */}
+      {confirmDeleteVisible && (
+        <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-11/12 md:w-1/3 lg:w-1/4 relative flex flex-col items-center'>
+            <h2 className='text-lg font-semibold mb-2'>Confirm Delete</h2>
+            <p className='text-center mb-4'>Are you sure you want to delete this cart?</p>
+            <div className='flex space-x-2'>
+              <button
+                onClick={() => {
+                  handleDelete(itemToDelete.cart_id);
+                  setConfirmDeleteVisible(false);
+                }}
+                className='bg-red-500 text-white px-4 py-2 rounded'
+              >
+                Yes, Delete
+              </button>
+              <button
+                onClick={() => setConfirmDeleteVisible(false)}
+                className='bg-blue-500 text-white px-4 py-2 rounded'
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+  
       <style jsx='true'>{`
         .glow {
           box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
@@ -212,6 +223,8 @@ function Order() {
       `}</style>
     </div>
   );
+  
+  
 }
 
 export default Order;

@@ -186,7 +186,7 @@ function OrderwiseItem() {
   return (
     <div
       id='OrderwiseItem'
-      className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-32 px-5 py-20 min-h-screen flex flex-col items-center'
+      className='bg-custom-light text-black dark:bg-custom-dark dark:text-white px-4 sm:px-6 lg:px-16 py-10 min-h-screen flex flex-col items-center'
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: 'cover',
@@ -194,20 +194,20 @@ function OrderwiseItem() {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <h1 className='text-4xl font-bold mb-6'>Orderwise Item Management</h1>
-
+      <h1 className='text-3xl lg:text-4xl font-bold mb-6 text-center'>Orderwise Item Management</h1>
+  
       {/* Button to link to /inventoryadp */}
       <Link to='/inventoryadp'>
-        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-10'>
+        <button className='bg-blue-500 text-white px-4 py-2 rounded mb-6 lg:mb-10'>
           Back to Home
         </button>
       </Link>
-
-      {/* Table with glow and rounded corners */}
-      <div className='overflow-hidden rounded-lg shadow-lg border border-blue-400 glow'>
-        <table className='min-w-full bg-white dark:bg-gray-800'>
+  
+      {/* Responsive Table */}
+      <div className='w-full max-w-6xl overflow-x-auto rounded-lg shadow-lg border border-blue-400 glow'>
+        <table className='min-w-full bg-white dark:bg-gray-800 table-auto'>
           <thead>
-            <tr className='text-left'>
+            <tr className='text-left text-sm md:text-base'>
               <th className='py-2 px-4 border-b'>Item</th>
               <th className='py-2 px-4 border-b'>Items Required</th>
               <th className='py-2 px-4 border-b'>Given Quantity</th>
@@ -221,9 +221,9 @@ function OrderwiseItem() {
           <tbody>
             {items.map((item, index) => (
               <tr key={item.id} className='hover:bg-gray-100 dark:hover:bg-gray-700'>
-                <td className='py-2 px-4 border-b'>{item.name}</td>
-                <td className='py-2 px-4 border-b'>{item.Tdemand}</td>
-                <td className='py-2 px-4 border-b'>{item.Tavail}</td>
+                <td className='py-2 px-4 border-b text-sm md:text-base'>{item.name}</td>
+                <td className='py-2 px-4 border-b text-sm md:text-base'>{item.Tdemand}</td>
+                <td className='py-2 px-4 border-b text-sm md:text-base'>{item.Tavail}</td>
                 <td className='py-2 px-4 border-b'>
                   <input
                     type='number'
@@ -257,41 +257,41 @@ function OrderwiseItem() {
                   />
                 </td>
                 <td className='py-2 px-4 border-b'>
-                {item.link ? (
-                  <a href={item.link} target='_blank' rel='noopener noreferrer' className='text-blue-500'>
-                    View Link
-                  </a>
-                ) : (
-                  <span>No Link</span>
-                )}
-              </td> 
-              <td className='py-2 px-4 border-b'>
-                <button
-                  onClick={() => requestDelete(cartId, item.name)} // Pass both cart and itemName
-                  className='text-red-500 text-2xl px-4 py-2'
-                  title='Delete'
-                >
-                  &times; {/* Cross symbol for delete */}
-                </button>
-              </td>
+                  {item.link ? (
+                    <a href={item.link} target='_blank' rel='noopener noreferrer' className='text-blue-500'>
+                      View Link
+                    </a>
+                  ) : (
+                    <span>No Link</span>
+                  )}
+                </td>
+                <td className='py-2 px-4 border-b'>
+                  <button
+                    onClick={() => requestDelete(cartId, item.name)} // Pass both cart and itemName
+                    className='text-red-500 text-2xl px-4 py-2'
+                    title='Delete'
+                  >
+                    &times; {/* Cross symbol for delete */}
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
+  
       {/* Save Button */}
       <button
         onClick={handleSave}
-        className='bg-green-500 text-white px-4 py-2 rounded mt-10'
+        className='bg-green-500 text-white px-6 py-2 rounded mt-8 lg:mt-10'
       >
         Save Changes
       </button>
-
+  
       {/* Modal for viewing order details */}
       {modalVisible && (
         <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-1/3 relative'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-full max-w-lg relative'>
             <button
               onClick={closeModal}
               className='absolute top-2 right-2 text-gray-500 dark:text-gray-300 text-2xl'
@@ -309,49 +309,48 @@ function OrderwiseItem() {
           </div>
         </div>
       )}
-
-{confirmDeleteVisible && (
-  <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-    <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-1/4 relative flex flex-col items-center'>
-      <h2 className='text-lg font-semibold mb-2'>Confirm Delete</h2>
-      <p className='text-center mb-4'>Are you sure you want to delete this item?</p>
-      <div className='flex space-x-2'>
-        <button
-          onClick={() => {
-            handleDelete(itemToDelete.cart, itemToDelete.itemName); // Use both cart and itemName
-            setConfirmDeleteVisible(false);
-          }}
-          className='bg-red-500 text-white px-4 py-2 rounded'
-        >
-          Yes, Delete
-        </button>
-        <button
-          onClick={() => setConfirmDeleteVisible(false)}
-          className='bg-blue-500 text-white px-4 py-2 rounded'
-        >
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-
-
-
+  
+      {/* Confirm Delete Modal */}
+      {confirmDeleteVisible && (
+        <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+          <div className='bg-white dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg shadow-lg w-full max-w-xs relative flex flex-col items-center'>
+            <h2 className='text-lg font-semibold mb-2'>Confirm Delete</h2>
+            <p className='text-center mb-4'>Are you sure you want to delete this item?</p>
+            <div className='flex space-x-2'>
+              <button
+                onClick={() => {
+                  handleDelete(itemToDelete.cart, itemToDelete.itemName); // Use both cart and itemName
+                  setConfirmDeleteVisible(false);
+                }}
+                className='bg-red-500 text-white px-4 py-2 rounded'
+              >
+                Yes, Delete
+              </button>
+              <button
+                onClick={() => setConfirmDeleteVisible(false)}
+                className='bg-blue-500 text-white px-4 py-2 rounded'
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+  
       {/* CSS for Glow Effect */}
       <style jsx='true'>{`
         .glow {
           box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
         }
-
+  
         .status-dropdown {
-          background-color: black; /* Set background color to black */
-          color: white; /* White text for better contrast */
-          border: none; /* Remove green border */
+          background-color: black;
+          color: white;
+          border: none;
           padding: 8px;
-          border-radius: 5px; /* Rounded corners */
+          border-radius: 5px;
         }
-
+  
         .quantity-input,
         .remarks-input {
           background-color: rgba(0, 0, 0, 0.2);
@@ -359,10 +358,12 @@ function OrderwiseItem() {
           border: none;
           padding: 8px;
           border-radius: 5px;
+          width: 100%; /* Full width for better responsiveness */
         }
       `}</style>
     </div>
   );
+  
 }
 
 export default OrderwiseItem;
