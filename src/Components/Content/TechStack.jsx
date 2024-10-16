@@ -121,9 +121,10 @@ function TechStack() {
                                 <img className='h-full w-full object-cover rounded-3xl' src={tech.image} alt="" />
                             </div>
                             <h2 style={{ fontFamily: 'Poppins', letterSpacing: 0.6 }} className='text-[20px] sm:text-[26px] md:text-[32px] font-bold mt-4 text-center text-silver-700'>{tech.title}</h2>
-                            <h3 style={{ fontFamily: 'Poppins', letterSpacing: 0.6 }} className='text-[18px] sm:text-[22px] md:text-[28px] font-medium text-center text-silver-500'>{tech.subtitle}</h3>
+                            <h3 style={{ fontFamily: 'Poppins', letterSpacing: 0.6, whiteSpace: 'pre-wrap' }} className='text-[18px] sm:text-[22px] md:text-[28px] font-medium text-center text-silver-500'>{tech.subtitles}</h3>
+                            
                         </div>
-                    ))}
+                             ))}
                 </div>
 
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10'>
@@ -133,6 +134,7 @@ function TechStack() {
                                 <img className='h-full w-full object-cover rounded-3xl' src={tech.image} alt="" />
                             </div>
                             <h2 style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className='text-[20px] sm:text-[24px] md:text-[26px] font-bold mt-4 text-center text-silver-700'>{tech.title}</h2>
+
                             <h3 style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className='text-[16px] sm:text-[18px] md:text-[20px] font-medium text-center text-silver-500'>{tech.subtitle}</h3>
                         </div>
                     ))}
