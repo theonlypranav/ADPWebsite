@@ -20,7 +20,7 @@ function Inventory() {
   useEffect(() => {
     if (!token || (userData && userData.access !== 'bosslevel')) {
       navigate('/inventory');
-      return; // Prevent further execution
+      return; // Prevent further executions
     }
 
     const fetchItems = async () => {
