@@ -1,4 +1,4 @@
-import HTML from '../assets/Cords/SV2.png';
+import HTML from '../assets/Cords/SV3.jpg';
 import BJ from '../assets/Cords/bj.jpeg';
 import ND from '../assets/Cords/ND.png';
 import REACT from '../assets/Cords/PD.png';
@@ -14,7 +14,7 @@ const TechStackList = [
         id: 1,
         image: HTML,
         title: "Shreyansh Vanjani",
-        subtitle: "StuCCAn, Oasis '24"
+        subtitle: "Sexy Available Daddy\nStuCCAn, Oasis '24"
     },
     {
         id: 2,
