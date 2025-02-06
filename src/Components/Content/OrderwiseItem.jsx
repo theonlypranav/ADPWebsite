@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import bgImage from '../../assets/bg.jpg';
+import { BACKEND_URL } from './constants';
 
 function OrderwiseItem() {
   const [items, setItems] = useState([]);
@@ -34,7 +35,7 @@ function OrderwiseItem() {
       try {
         // Fetch items based on `userId`
         const response = await fetch(
-          `https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/cart-items-user/${userId}`,
+          `${BACKEND_URL}/cart/cart-items-user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -90,7 +91,7 @@ function OrderwiseItem() {
     try {
       // Make the DELETE request to the API
       const response = await fetch(
-        `https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/remove-item/${cart}/${itemName}`,
+        `${BACKEND_URL}/cart/remove-item/${cart}/${itemName}`,
         {
           method: 'DELETE',
           headers: {
@@ -151,7 +152,7 @@ function OrderwiseItem() {
 
     try {
       const response = await fetch(
-        'https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/update-multiple-cart-items',
+        `${BACKEND_URL}/cart/update-multiple-cart-items`,
         {
           method: 'PUT',
           headers: {

@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api";

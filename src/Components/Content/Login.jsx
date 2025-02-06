@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import bgImage from '../../assets/bg.jpg'; 
+import bgImage from '../../assets/bg.jpg';
+import { BACKEND_URL } from './constants';
 
 function Login() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/users/login', {
+      const response = await fetch(`${BACKEND_URL}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

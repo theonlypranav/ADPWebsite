@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import { useNavigate } from 'react-router-dom';
-import bgImage from '../../assets/bg.jpg'; 
+import bgImage from '../../assets/bg.jpg';
+import { BACKEND_URL } from './constants';
 
 function Register() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function Register() {
       return;
     }
     try {
-      const response = await fetch('https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/users/request-code', {
+      const response = await fetch(`${BACKEND_URL}/users/request-code`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: formData.email }),
@@ -51,7 +52,7 @@ function Register() {
     e.preventDefault();
     setIsRegistering(true);
     try {
-      const response = await fetch('https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/users/register', {
+      const response = await fetch(`${BACKEND_URL}/users/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

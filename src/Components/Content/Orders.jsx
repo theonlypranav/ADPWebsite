@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import bgImage from '../../assets/bg.jpg';
+import { BACKEND_URL } from './constants';
 
 function Order() {
   const [items, setItems] = useState([]);
@@ -27,7 +28,7 @@ function Order() {
     try {
       // Make the DELETE request to the API
       const response = await fetch(
-        `https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/remove-cart/${cart_id}`,
+        `${BACKEND_URL}/cart/remove-cart/${cart_id}`,
         {
           method: 'DELETE',
           headers: {
@@ -67,7 +68,7 @@ function Order() {
     // Fetch cart items summary from the API
     const fetchCartItemsSummary = async () => {
       try {
-        const response = await fetch('https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/get-club-list', {
+        const response = await fetch(`${BACKEND_URL}/cart/get-club-list`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -8,6 +8,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faDice } from "@fortawesome/free-solid-svg-icons";
+import { BACKEND_URL } from './constants';
 
 function Inventory() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ function Inventory() {
     setUser(userData);
   
     fetch(
-      "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/inventorys/inventory/user",
+      `${BACKEND_URL}/inventorys/inventory/user`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -93,7 +94,7 @@ function Inventory() {
     const fetchOrderStatus = async () => {
       try {
         const response = await fetch(
-          "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/confirm-disabled",{
+          `${BACKEND_URL}/cart/confirm-disabled`,{
             method: "GET",
           }
         );
@@ -262,7 +263,7 @@ function Inventory() {
       // Proceed with placing order for items with item_id (original placeOrder logic)
       if (formattedCart.length > 0) {
         const response = await fetch(
-          "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/add-items",
+          `${BACKEND_URL}/cart/add-items`,
           {
             method: "POST",
             headers: {
@@ -287,7 +288,7 @@ function Inventory() {
       // Now handle items without item_id (logic from handleAddNewItem)
       for (const newItem of cartWithoutItemId) {
         const response = await fetch(
-          "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/add-custom-item",
+          `${BACKEND_URL}/cart/add-custom-item`,
           {
             method: "POST",
             headers: {
@@ -340,7 +341,7 @@ function Inventory() {
     if (userData && userData.id) {
       try {
         const response = await fetch(
-          `https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/cart-items-final/${userData.id}`, // Corrected userData.id
+          `${BACKEND_URL}/cart/cart-items-final/${userData.id}`, // Corrected userData.id
           {
             method: "GET",
             headers: {

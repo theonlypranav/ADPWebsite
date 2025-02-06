@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import bgImage from '../../assets/bg.jpg'; 
+import bgImage from '../../assets/bg.jpg';
+import { BACKEND_URL } from './constants';
 
 function Forgpass() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ function Forgpass() {
   const handleGenerateOtp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/users/request-code-pass-reset', {
+      const response = await fetch(`${BACKEND_URL}/users/request-code-pass-reset`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -55,7 +56,7 @@ function Forgpass() {
 
   const handleResendOtp = async () => {
     try {
-      const response = await fetch('https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/users/request-code-pass-reset', {
+      const response = await fetch(`${BACKEND_URL}/users/request-code-pass-reset`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -79,7 +80,7 @@ function Forgpass() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/users/reset-password', {
+        const response = await fetch(`${BACKEND_URL}/users/reset-password`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

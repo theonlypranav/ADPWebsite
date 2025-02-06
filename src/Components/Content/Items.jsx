@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import * as XLSX from 'xlsx';
 import bgImage from '../../assets/bg.jpg'; // Ensure the correct path to your background image
+import { BACKEND_URL } from './constants';
 
 function Inventory() {
   const [items, setItems] = useState([]);
@@ -26,7 +27,7 @@ function Inventory() {
     const fetchItems = async () => {
       try {
         const response = await fetch(
-          'https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/cart-item-summary',
+          `${BACKEND_URL}/cart/cart-item-summary`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -108,7 +109,7 @@ function Inventory() {
     }
     try {
       const response = await fetch(
-        'https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/inventorys/update-inventory-items',
+        `${BACKEND_URL}/inventorys/update-inventory-items`,
         {
           method: 'PUT',
           headers: {

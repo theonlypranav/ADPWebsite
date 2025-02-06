@@ -5,6 +5,7 @@ import bgImage from "../../assets/bg.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { BACKEND_URL } from './constants';
 
 function Inventory() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ function Inventory() {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/inventorys/inventory",
+        `${BACKEND_URL}/inventorys/inventory`,
         {
           method: "GET",
           headers: {
@@ -78,7 +79,7 @@ function Inventory() {
     const fetchOrderStatus = async () => {
       try {
         const response = await fetch(
-          "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/confirm-disabled",
+          `${BACKEND_URL}/cart/confirm-disabled`,
           {
             method: "GET",
           }
@@ -105,7 +106,7 @@ function Inventory() {
 
     try {
       const response = await fetch(
-        "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/inventorys/inventory",
+        `${BACKEND_URL}/inventorys/inventory`,
         {
           method: "POST",
           headers: {
@@ -137,7 +138,7 @@ function Inventory() {
     const itemId = items[selectedItemIndex]._id;
     try {
       const response = await fetch(
-        `https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/inventorys/inventory/${itemId}`,
+        `${BACKEND_URL}/inventorys/inventory/${itemId}`,
         {
           method: "DELETE",
           headers: {
@@ -162,7 +163,7 @@ function Inventory() {
       // Toggle the confirmation status locally first
       const newStatus = !isConfirmDisabled;
       const response = await fetch(
-        "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/confirm-disabled",
+        `${BACKEND_URL}/cart/confirm-disabled`,
         {
           method: "PUT", // Assuming you want to update the status
           headers: {
@@ -198,7 +199,7 @@ function Inventory() {
 
     try {
       const response = await fetch(
-        `https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/inventorys/inventory/${itemId}`,
+        `${BACKEND_URL}/inventorys/inventory/${itemId}`,
         {
           method: "PUT",
           headers: {
