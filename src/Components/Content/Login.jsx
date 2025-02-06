@@ -18,7 +18,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/users/login', {
+      const response = await fetch('https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

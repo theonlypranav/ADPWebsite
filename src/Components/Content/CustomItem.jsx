@@ -26,7 +26,7 @@ function Inventory() {
     const fetchItems = async () => {
       try {
         const response = await fetch(
-          'https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-item-summary-custom',
+          'https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/cart-item-summary-custom',
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -91,7 +91,7 @@ function Inventory() {
 
     try {
       const response = await fetch(
-        'https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-multiple-cart-items',
+        'https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/update-multiple-cart-items',
         {
           method: 'PUT',
           headers: {

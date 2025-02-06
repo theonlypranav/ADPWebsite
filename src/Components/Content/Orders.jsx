@@ -27,7 +27,7 @@ function Order() {
     try {
       // Make the DELETE request to the API
       const response = await fetch(
-        `https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/remove-cart/${cart_id}`,
+        `https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/remove-cart/${cart_id}`,
         {
           method: 'DELETE',
           headers: {
@@ -67,7 +67,7 @@ function Order() {
     // Fetch cart items summary from the API
     const fetchCartItemsSummary = async () => {
       try {
-        const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/get-club-list', {
+        const response = await fetch('https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/get-club-list', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

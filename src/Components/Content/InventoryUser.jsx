@@ -46,7 +46,7 @@ function Inventory() {
     setUser(userData);
   
     fetch(
-      "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory/user",
+      "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/inventorys/inventory/user",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -93,7 +93,7 @@ function Inventory() {
     const fetchOrderStatus = async () => {
       try {
         const response = await fetch(
-          "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/confirm-disabled",{
+          "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/confirm-disabled",{
             method: "GET",
           }
         );
@@ -262,7 +262,7 @@ function Inventory() {
       // Proceed with placing order for items with item_id (original placeOrder logic)
       if (formattedCart.length > 0) {
         const response = await fetch(
-          "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/add-items",
+          "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/add-items",
           {
             method: "POST",
             headers: {
@@ -287,7 +287,7 @@ function Inventory() {
       // Now handle items without item_id (logic from handleAddNewItem)
       for (const newItem of cartWithoutItemId) {
         const response = await fetch(
-          "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/add-custom-item",
+          "https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/add-custom-item",
           {
             method: "POST",
             headers: {
@@ -340,7 +340,7 @@ function Inventory() {
     if (userData && userData.id) {
       try {
         const response = await fetch(
-          `https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-items-final/${userData.id}`, // Corrected userData.id
+          `https://adpwebs-a4geehfwhtchdraw.centralindia-01.azurewebsites.net/api/cart/cart-items-final/${userData.id}`, // Corrected userData.id
           {
             method: "GET",
             headers: {
