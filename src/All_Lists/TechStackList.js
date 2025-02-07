@@ -14,7 +14,7 @@ const TechStackList = [
         id: 1,
         image: HTML,
         title: "Shreyansh Vanjani",
-        subtitle: "Sexy Available Daddy\nStuCCAn, Oasis '24"
+        subtitle: "Sexy Available Daddy\nStuCCAn, Oasis ' 24"
     },
     {
         id: 2,
