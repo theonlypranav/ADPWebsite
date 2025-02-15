@@ -8,13 +8,14 @@ import GRADIOCJ from '../assets/Cords/CJ.png';
 import GRADIOAP from '../assets/Cords/AP.png';
 import GRADIOSH from '../assets/Cords/SH.png';
 import GRADIOSM from '../assets/Cords/SM.png';
+import pdd from '../assets/Cords/pdd.png';
 
 const TechStackList = [
     {
         id: 1,
-        image: REACT,
+        image: pdd,
         title: "Pranav Deshpande",
-        subtitle: "StuCCAn, Oasis ' 25"
+        subtitle: "StuCCAn, Oasis '25"
     },
     {
         id: 2,
@@ -36,7 +37,7 @@ const TechStackList = [
     },
     {
         id: 5,
-        image: REACT,
+        image: pdd,
         title: "Pranav Deshpande",
         subtitle: "Publicity Coord, Oasis '24"
     },

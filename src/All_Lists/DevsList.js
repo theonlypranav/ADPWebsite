@@ -4,6 +4,7 @@ import TAILWIND from '../assets/Cords/Aj.png';
 import DUMMY from '../assets/Cords/nj.png';
 import REDUX from '../assets/Cords/kv1.png';
 import IMAGE from '../assets/Cords/da.png';
+import pdd from '../assets/Cords/pdd.png';
 
 const DevsList = [
     {
@@ -15,7 +16,7 @@ const DevsList = [
     },
     {
         id: 2,
-        image: REACT,
+        image: pdd,
         title: "Pranav Deshpande",
         subtitle: "Technical Lead",
         linkedin: "https://www.linkedin.com/in/pranav-deshpande-0a0764246/"
