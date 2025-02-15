@@ -12,9 +12,9 @@ import GRADIOSM from '../assets/Cords/SM.png';
 const TechStackList = [
     {
         id: 1,
-        image: HTML,
-        title: "Shreyansh Vanjani",
-        subtitle: "Sexy Available Daddy\nStuCCAn, Oasis ' 24"
+        image: REACT,
+        title: "Pranav Deshpande",
+        subtitle: "StuCCAn, Oasis ' 25"
     },
     {
         id: 2,
