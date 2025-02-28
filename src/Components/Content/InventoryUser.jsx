@@ -427,7 +427,7 @@ function Inventory() {
               }}
               className="text-base md:text-3xl lg:text-4xl xl:text-6xl uppercase font-bold mb-2 text-silver-700 dark:text-silver-300 truncate"
             >
-              Oasis Inventory Portal
+              Apogee Inventory Portal
             </h1>
             <h2
               style={{ fontFamily: "Anton", letterSpacing: 2 }}
