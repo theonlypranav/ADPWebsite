@@ -146,6 +146,7 @@ function Inventory() {
         'Item Name': item.name,
         'Available Quantity': item.availableQuantity,
         'Total Ordered Quantity': item.totalOrderedQuantity,
+        'Total Allotted Quantity': item.totalAllottedQuantity
       }))
     );
     const wb = XLSX.utils.book_new();
