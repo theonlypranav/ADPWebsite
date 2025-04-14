@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import bgImage from '../../assets/bg.jpg';
 import { BACKEND_URL } from './constants';
+import * as XLSX from 'xlsx';
 
 function OrderwiseItem() {
   const [items, setItems] = useState([]);
@@ -13,6 +14,7 @@ function OrderwiseItem() {
   const { state } = location;
   const userId = state ? state.user_id : null;
   const cartId = state ? state.cart_id :null;
+  const clubName = state ? state.clubName :null;
 
   const userString = localStorage.getItem('user');
   const userData = userString ? JSON.parse(userString) : null;
@@ -80,6 +82,22 @@ function OrderwiseItem() {
       setItems(updatedItems);
     }
   };
+
+  const handleDownloadExcelOrderWise = () => {
+      const ws = XLSX.utils.json_to_sheet(
+        items.map((item) => ({
+          'Item Name': item.name,
+          'Items Required': item.Tdemand,
+          'Given Quantity': item.Tavail,
+          'Remarks': item.remarks,
+          'Link': item.link
+        }))
+      );
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Inventory');
+  
+      XLSX.writeFile(wb, `${clubName}_inventory_items.xlsx`);
+    };
 
   const handleStatusChange = (index, value) => {
     const updatedItems = [...items];
@@ -198,12 +216,23 @@ function OrderwiseItem() {
       <h1 className='text-3xl lg:text-4xl font-bold mb-6 text-center'>Orderwise Item Management</h1>
   
       {/* Button to link to /inventoryadp */}
+      <div style={{display: 'flex', gap: '1rem'}}>
       <Link to='/inventoryadp'>
         <button className='bg-blue-500 text-white px-4 py-2 rounded mb-6 lg:mb-10'>
           Back to Home
         </button>
       </Link>
-  
+
+      <button
+          onClick={handleDownloadExcelOrderWise}
+          className='bg-green-500 text-white px-4 py-2 rounded mb-6 lg:mb-10'
+        >
+          Download Excel
+        </button>
+      </div>
+
+      <h2 className='text-2xl lg:text-3xl font-bold mb-6 text-center'>{clubName}</h2>
+
       {/* Responsive Table */}
       <div className='w-full max-w-6xl overflow-x-auto rounded-lg shadow-lg border border-blue-400 glow'>
         <table className='min-w-full bg-white dark:bg-gray-800 table-auto'>

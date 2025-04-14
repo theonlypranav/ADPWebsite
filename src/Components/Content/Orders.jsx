@@ -90,8 +90,8 @@ function Order() {
     fetchCartItemsSummary(); // Fetch data only once when component mounts
   }, [token, userData, navigate]);
 
-  const handleOrderClick = (user_id, cart_id) => {
-    navigate('/orderwiseitem', { state: { user_id, cart_id} });
+  const handleOrderClick = (user_id, cart_id, clubName) => {
+    navigate('/orderwiseitem', { state: { user_id, cart_id, clubName} });
   };
 
   const closeModal = () => {
@@ -148,7 +148,7 @@ function Order() {
                   </td>
                   <td
                     className='py-2 px-2 md:px-4 border-b cursor-pointer text-blue-500 hover:underline text-sm md:text-base'
-                    onClick={() => handleOrderClick(item.user_id, item.cart_id)}
+                    onClick={() => handleOrderClick(item.user_id, item.cart_id, item.clubName)}
                   >
                     View Order
                   </td>
