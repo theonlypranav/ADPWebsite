@@ -25,7 +25,7 @@ const DevsList = [
         id: 3,
         image: TAILWIND,
         title: "Ayush Jain",
-        subtitle: "Front-End Lead",
+        subtitle: "Full Stack Lead",
         linkedin: "https://www.linkedin.com/in/ayush-jain-0275a8252/"
     },
     {
