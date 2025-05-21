@@ -1,3 +1,4 @@
+import nx from '../assets/APOGEE/APOGEE 2025/a25.jpeg';
 import AS from '../assets/APOGEE/APOGEE 2024/central structure.jpg';
 import AD from '../assets/APOGEE/APOGEE 2023/backdrop 1 edit.jpg';
 import AF from '../assets/APOGEE/APOGEE 2000/Struct 2.jpeg';
@@ -9,7 +10,6 @@ import TR from '../assets/APOGEE/APOGEE 2007/structure 4.jpg';
 import AW from '../assets/APOGEE/APOGEE 2015/Painting 2015.jpeg';
 import DF from '../assets/APOGEE/APOGEE 2022/panel 7 edit.jpeg';
 import YY from '../assets/APOGEE/APOGEE 2008/structure - arabian nights.jpg';
-
 import XX from '../assets/APOGEE/logos/ApLogoYear 02.jpeg';
 import AA from '../assets/APOGEE/logos/ApLogoYear 03.jpeg';
 import DD from '../assets/APOGEE/logos/ApLogoYear 09.jpeg';
@@ -27,6 +27,14 @@ import ZZ from '../assets/APOGEE/logos/ApLogoYear 18.jpeg';
 
 
 const TechStackList2 = [
+    {
+        id: 1,
+        image: nx,
+        title: "APOGEE 2025",
+        subtitle: "Revved-Up Rhapsody",
+        link:"/endpoint",
+        description: "APOGEE 2025"
+    },
     {
         id: 2,
         image: AS,

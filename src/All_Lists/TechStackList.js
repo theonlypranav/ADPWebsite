@@ -5,10 +5,10 @@ import REACT from '../assets/Cords/PD.png';
 import TAILWIND from '../assets/Cords/Aj.png';
 import REDUX from '../assets/Cords/Sj.jpeg';
 import GRADIOCJ from '../assets/Cords/CJ.png';
-import GRADIOAP from '../assets/Cords/AP.png';
+import GRADIOAP from '../assets/Cords/sb3.jpeg';
 import GRADIOSH from '../assets/Cords/SH.png';
 import GRADIOSM from '../assets/Cords/SM.png';
-import pdd from '../assets/Cords/pdd.png';
+import pdd from '../assets/Cords/pdd2.png';
 
 const TechStackList = [
     {
@@ -69,7 +69,7 @@ const TechStackList = [
         id: 10,
         image: GRADIOAP,
         title: "Archi Patel",
-        subtitle: "Media Coord, APOGEE '25"
+        subtitle: "Media Coord, APOGEE '26"
     },
 
 ];

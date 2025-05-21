@@ -1,3 +1,4 @@
+import nw from '../assets/OASIS/OASIS 2024/o241.jpeg';
 import i1 from '../assets/OASIS/OASIS 2023/front structure 3.jpg';
 import i2 from '../assets/OASIS/OASIS 2022/inside audi panel 1 with junta.jpg';
 import i3 from '../assets/OASIS/OASIS 2019/central structure.jpg';
@@ -28,6 +29,14 @@ import i24 from '../assets/OASIS/oasis 9.jpg';
 const TechStackList2 = [
    
 
+    {
+        id: 0,
+        image: nw,
+        title: "Oasis 2024 | #52",
+        subtitle: "Regal Roulette",
+        link: "/endpoint",
+        description:"OASIS 2024"
+    },
     {
         id: 1,
         image: i1,
@@ -219,7 +228,7 @@ const TechStackList2 = [
         subtitle: "Call of The Wild",
         link:"/endpoint",
         description: "OASIS 1998"
-    },
+    }
    
 
 

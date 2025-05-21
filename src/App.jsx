@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Header/Navbar';
 import Home from './Components/Content/Home';
 import About from './Components/Content/About';
+import About2 from './Components/Content/About2';
 import TechStack from './Components/Content/TechStack';
 import Projects from './Components/Content/Projects';
 import Contact from './Components/Content/Contact';
@@ -143,6 +144,7 @@ function App() {
               <Navbar />
               <Home />
               <About />
+              <About2 />
               <Projects />
               <TechStack />
               <Contact />

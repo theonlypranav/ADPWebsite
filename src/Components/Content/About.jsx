@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Modal from 'react-modal';
-import img from '../../assets/snap2.jpeg';
+import img from '../../assets/snap3.jpeg';
 import './Home.css';
 
 Modal.setAppElement('#root');
