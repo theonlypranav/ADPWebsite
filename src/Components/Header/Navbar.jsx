@@ -32,21 +32,21 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
 
-  const navItems = ['Home', 'AboutUs', 'OurProjects', 'OurTeam', 'Inventory'];
+  const navItems = ['Home', 'AboutUs', 'Aftermovie', 'OurProjects', 'OurTeam', 'Inventory', 'Snaps', 'Blogs'];
 
   const isHomePage = location.pathname === '/';
 
   function formatNavItem(navItem) {
     return navItem.replace(/([A-Z])/g, ' $1').trim();
   }
-  
+
   return (
     <>
       <nav
         style={{ 
           fontFamily: 'Poppins', 
-          backgroundColor: 'rgba(0, 13, 26, 0.8)', // Very dark blue with 80% opacity
-          backdropFilter: 'blur(10px)', // Apply the blur effect
+          backgroundColor: 'rgba(0, 13, 26, 0.8)', 
+          backdropFilter: 'blur(10px)', 
         }}
         className='fixed top-0 left-0 right-0 text-white z-50'
       >
@@ -54,50 +54,50 @@ function Navbar() {
           <RouterLink to='/' className='flex items-center'>
             <img src={logo} alt="Logo" className='h-8 w-8 lg:h-12 lg:w-12' />
           </RouterLink>
-          <button
-            className='block lg:hidden text-2xl'
-            onClick={handleClick}
-          >
+          <button className='block lg:hidden text-2xl' onClick={handleClick}>
             {click ? <FaTimes /> : <CiMenuFries />}
           </button>
           <div className='hidden lg:flex flex-1 items-center justify-end relative'>
             <ul className='flex gap-8 text-base items-center'>
               {navItems.map((item, index) => (
-                item === 'Inventory' ? (
-                  <RouterLink
-                    key={index}
-                    to='/inventory' // Ensure this is the correct path for Inventory
-                    onClick={() => setClick(false)}
-                  >
-                    <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                      {formatNavItem(item)}
-                    </li>
-                  </RouterLink>
-                ) : isHomePage ? (
-                  <ScrollLink
-                    key={index}
-                    to={item}
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                  >
-                    <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                      {formatNavItem(item)}
-                    </li>
-                  </ScrollLink>
-                ) : (
-                  <RouterLink
-                    key={index}
-                    to='/'
-                    state={{ scrollTo: item }}
-                  >
-                    <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
-                      {formatNavItem(item)}
-                    </li>
-                  </RouterLink>
-                )
-              ))}
-              {/* Add Apply Button */}
+  (['Inventory', 'Snaps', 'Blogs'].includes(item)) ? (
+    <RouterLink
+      key={index}
+      to={`/${item.toLowerCase()}`}
+      onClick={() => setClick(false)}
+    >
+      <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+        {formatNavItem(item)}
+      </li>
+    </RouterLink>
+  ) : isHomePage ? (
+    <ScrollLink
+      key={index}
+      to={item}       // item is now 'Aftermovie' as well, so scrolls correctly
+      spy={true}
+      smooth={true}
+      offset={-70}
+      activeClass="border-b-2 border-white font-bold" // optional: highlight styles when active
+      onClick={() => setClick(false)}
+    >
+      <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+        {formatNavItem(item)}
+      </li>
+    </ScrollLink>
+  ) : (
+    <RouterLink
+      key={index}
+      to='/'
+      state={{ scrollTo: item }}
+      onClick={() => setClick(false)}
+    >
+      <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
+        {formatNavItem(item)}
+      </li>
+    </RouterLink>
+  )
+))}
+
               <a href='https://forms.gle/RViQ2nyPqwKUc1PV7' target='_blank' rel='noopener noreferrer'>
                 <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
                   Apply
@@ -110,7 +110,7 @@ function Navbar() {
                 <div 
                   className='absolute left-0 mt-2 text-white border border-silver-500 py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity z-50'
                   style={{
-                    backgroundColor: 'rgba(0, 13, 26, 0.8)', // Match navbar background color and opacity
+                    backgroundColor: 'rgba(0, 13, 26, 0.8)',
                   }}
                 >
                   <RouterLink to='/treedesign?param=stuccan'>
@@ -128,14 +128,16 @@ function Navbar() {
             </ul>
           </div>
         </div>
+
+        {/* ✅ Mobile menu */}
         {click && (
           <div className='lg:hidden'>
             <ul className='flex flex-col gap-4 text-base items-center pb-4'>
               {navItems.map((item, index) => (
-                item === 'Inventory' ? (
+                (item === 'Inventory' || item === 'Snaps') ? (
                   <RouterLink
                     key={index}
-                    to='/inventory' // Ensure this is the correct path for Inventory
+                    to={`/${item.toLowerCase()}`}
                     onClick={() => setClick(false)}
                   >
                     <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
@@ -168,7 +170,6 @@ function Navbar() {
                   </RouterLink>
                 )
               ))}
-              {/* Add Apply Button */}
               <a href='https://forms.gle/RViQ2nyPqwKUc1PV7' target='_blank' rel='noopener noreferrer'>
                 <li className='border-b-0 hover:border-b-2 hover:border-silver-700 hover:text-silver-700 transition cursor-pointer whitespace-nowrap'>
                   Apply
@@ -181,7 +182,7 @@ function Navbar() {
                 <div 
                   className='absolute left-0 mt-2 text-white border border-silver-500 py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity z-50'
                   style={{
-                    backgroundColor: 'rgba(0, 13, 26, 0.8)', // Match navbar background color and opacity
+                    backgroundColor: 'rgba(0, 13, 26, 0.8)',
                   }}
                 >
                   <RouterLink to='/treedesign?param=stuccan'>
@@ -200,6 +201,7 @@ function Navbar() {
           </div>
         )}
       </nav>
+
       <div style={{ paddingTop: '64px' }}>
         {/* Your main content goes here */}
       </div>

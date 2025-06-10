@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Header/Navbar';
 import Home from './Components/Content/Home';
 import About from './Components/Content/About';
-import About2 from './Components/Content/About2';
+import Aftermovie from './Components/Content/About2';
 import TechStack from './Components/Content/TechStack';
 import Projects from './Components/Content/Projects';
 import Contact from './Components/Content/Contact';
@@ -24,6 +24,8 @@ import Items from './Components/Content/Items';
 import CustomItem from './Components/Content/CustomItem'
 import OrderwiseItem from './Components/Content/OrderwiseItem';
 import Forgpass from './Components/Content/Forgpass';
+import Snaps from './Components/Content/Gallery';
+import Blogs from './Components/Content/Blogs';
 
 import './App.css';
 
@@ -139,12 +141,26 @@ function App() {
               <Footer />
             </>
           } />
+          <Route path="/snaps" element={
+              <>
+                <Navbar />
+                <Snaps />
+                <Footer />
+              </>
+            } />
+          <Route path="/blogs" element={
+              <>
+                <Navbar />
+                <Blogs />
+                <Footer />
+              </>
+            } />
           <Route path="/" element={
             <>
               <Navbar />
               <Home />
               <About />
-              <About2 />
+              <Aftermovie />
               <Projects />
               <TechStack />
               <Contact />

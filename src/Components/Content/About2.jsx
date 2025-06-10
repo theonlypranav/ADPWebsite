@@ -7,7 +7,7 @@ import './Home.css';
 
 Modal.setAppElement('#root');
 
-function About() {
+function Aftermovie() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
@@ -32,11 +32,11 @@ function About() {
 
   return (
     <div
-      id='AboutUs'
+      id='Aftermovie'  // <--- Changed this from 'AboutUs' to 'Aftermovie'
       className='bg-custom-light text-black dark:bg-custom-dark dark:text-white lg:px-16 px-5 py-20 text-center gap-5 lg:text-start flex lg:flex-row flex-col justify-between lg:gap-20 items-center min-h-screen overflow-hidden'
     >
       <div className="top-transition"></div>
-  
+
       {/* Text side: limit max width */}
       <div className='h-full lg:py-20 flex flex-col justify-center lg:items-start items-center lg:w-1/3 w-full'>
         <h1
@@ -58,7 +58,7 @@ function About() {
           material, and adorning the campus with massive paintings and breathtaking structures alike.
         </p>
       </div>
-  
+
       {/* Video side: take more width */}
       <div
         data-aos="fade-down"
@@ -73,13 +73,12 @@ function About() {
           allowFullScreen
         ></iframe>
       </div>
-  
+
       <div className="bottom-transition"></div>
     </div>
   );
-  
-  
-  
 }
 
-export default About;
+export default Aftermovie;
+
+
