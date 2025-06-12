@@ -11,9 +11,7 @@ const blogPosts = [
     image: A25,
     title: 'APOGEE 25 Structure',
     subtitle: 'Shlok Jaiswal (2022B1A40134P)',
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, 
-              vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa.`,
+    content: `ADP Structure team made a neat rail model using paper, Fevicol, and some extra welding to strengthen it. It showed good effort and creativity with simple materials. Maybe next time, adding a bit more detail or making it more sturdy could make it even better.`,
   },
   {
     id: 2,
