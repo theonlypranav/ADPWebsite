@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaTimes } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 import { HiOutlineDownload, HiOutlineArrowsExpand } from 'react-icons/hi';
 import img from '../../assets/panel.jpeg';
 import img2 from '../../assets/snap24.jpeg';
 
 const galleryItems = [
   {
-    id: 'Siya Bansal - 2023A1PS0171P',
+    id: 'Siya Bansal - 2023A1PS0171P +916239610198',
     image: img,
     name: '"Gwen" from Spider-Man',
     price: 1500,
@@ -15,7 +15,7 @@ const galleryItems = [
     description: 'The grand event showcasing innovation and technology in 2025.',
   },
   {
-    id: 'P002',
+    id: 'P002 +919123456789',
     image: img2,
     name: 'Oasis 2024',
     price: 199.99,
@@ -23,18 +23,10 @@ const galleryItems = [
     description: 'Capturing moments full of joy and enthusiasm.',
   },
   {
-    id: 'P003',
+    id: 'P003 +919876543210',
     image: 'https://via.placeholder.com/400x300.png?text=Image+3',
     name: 'Moment 3',
     price: 149.99,
-    subtitle: 'Team spirit',
-    description: 'Celebrating unity and collaboration among teams.',
-  },
-  {
-    id: 'P004',
-    image: 'https://via.placeholder.com/400x300.png?text=Image+4',
-    name: 'Moment 4',
-    price: 179.99,
     subtitle: 'Team spirit',
     description: 'Celebrating unity and collaboration among teams.',
   },
@@ -48,31 +40,30 @@ const Listing = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
+  const handleBackClick = () => navigate(-1);
 
   const openFullscreen = (item) => {
     setFullscreenItem(item);
-    document.body.style.overflow = 'hidden'; // prevent background scroll
+    document.body.style.overflow = 'hidden';
   };
 
   const closeFullscreen = () => {
     setFullscreenItem(null);
-    document.body.style.overflow = 'unset'; // restore scroll
+    document.body.style.overflow = 'unset';
+  };
+
+  const extractPhoneNumber = (text) => {
+    const match = text.match(/(\+91\s*\d{10})|(\+91\d{10})|(\d{10})/);
+    return match ? match[0].replace(/\D/g, '') : null;
   };
 
   return (
     <div
-      id="listing"
-      className="bg-custom-light text-black dark:bg-custom-dark dark:text-white pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-10 px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center justify-start relative min-h-screen overflow-hidden"
+      className="bg-custom-light text-black dark:bg-custom-dark dark:text-white pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-10 px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center min-h-screen"
     >
       <div className="flex items-center mb-12 justify-between w-full max-w-7xl">
         <div onClick={handleBackClick} className="cursor-pointer">
-          <FaArrowLeft
-            className="text-silver-700 hover:text-silver-500 transition duration-300"
-            size={32}
-          />
+          <FaArrowLeft className="text-silver-700 hover:text-silver-500 transition duration-300" size={32} />
         </div>
         <h1
           style={{ fontFamily: 'Anton', letterSpacing: 0.8 }}
@@ -80,17 +71,16 @@ const Listing = () => {
         >
           Best of ADP Listings
         </h1>
-        <div className="w-8" /> {/* Spacer */}
+        <div className="w-8" />
       </div>
 
-      {/* Card Grid */}
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mt-10 max-w-7xl w-full">
         {galleryItems.map((item) => (
           <div
             key={item.id}
-            className="bg-white dark:bg-gray-900 rounded-2xl border border-silver-700 shadow-lg p-4 flex flex-col cursor-pointer hover:shadow-xl transition"
+            className="backdrop-blur-md bg-white/10 dark:bg-white/10 border border-white/20 dark:border-white/20 rounded-2xl shadow-lg p-4 flex flex-col cursor-pointer hover:shadow-xl transition h-[420px]"
           >
-            <div className="relative rounded-lg overflow-hidden h-48">
+            <div className="relative rounded-lg overflow-hidden h-72">
               <img
                 src={item.image}
                 alt={item.name}
@@ -107,7 +97,6 @@ const Listing = () => {
               >
                 <HiOutlineArrowsExpand className="text-white" size={20} />
               </button>
-
               <a
                 href={item.image}
                 download
@@ -120,43 +109,61 @@ const Listing = () => {
             </div>
 
             <div className="mt-4 flex flex-col flex-grow">
-              <h2 className="text-xl font-semibold text-silver-700 mb-1">{item.name}</h2>
-              <p className="text-sm text-gray-500 mb-2">{item.id}</p>
-              <p className="text-lg font-bold text-gray-900 dark:text-white mb-4">Rs. {item.price.toFixed(2)}</p>
-              <p className="text-gray-600 dark:text-gray-300 flex-grow">{item.subtitle}</p>
+              <h2 className="text-xl font-semibold text-white mb-1">{item.name}</h2>
+              <p className="text-sm text-gray-300 mb-1">{item.id}</p>
+              <p className="text-lg font-bold text-white mb-2">Rs. {item.price.toFixed(2)}</p>
+              <p className="text-gray-300 flex-grow">{item.subtitle}</p>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Fullscreen Overlay */}
+      {/* Fullscreen Modal */}
       {fullscreenItem && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-6"
+          className="fixed inset-0 flex items-center justify-center z-50 p-6"
           onClick={closeFullscreen}
         >
           <div
-            className="relative max-w-full max-h-full flex flex-col items-center"
+            className="relative max-w-6xl w-full backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl shadow-xl overflow-hidden flex flex-col md:flex-row"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={closeFullscreen}
-              className="absolute top-4 right-4 text-white text-3xl p-2 bg-black bg-opacity-60 rounded-full hover:bg-opacity-80 transition z-50"
+              className="absolute top-4 right-4 text-white text-xl p-2 bg-red-600 hover:bg-red-700 rounded-full shadow-lg transition z-50"
               aria-label="Close fullscreen"
             >
-              <FaTimes />
+              ✖
             </button>
-            <img
-              src={fullscreenItem.image}
-              alt={fullscreenItem.name}
-              className="w-auto max-w-screen h-[80vh] rounded-xl object-cover object-center"
-            />
-            <div className="mt-4 bg-black bg-opacity-70 rounded-lg p-4 max-w-[90vw] w-full text-center text-white">
-              <h2 className="text-3xl font-semibold mb-1">{fullscreenItem.name}</h2>
-              <p className="text-lg mb-1">ID: {fullscreenItem.id}</p>
-              <p className="text-xl font-bold mb-2">${fullscreenItem.price.toFixed(2)}</p>
-              <p className="text-base whitespace-pre-wrap">{fullscreenItem.subtitle}</p>
-              <p className="mt-2 text-gray-300">{fullscreenItem.description}</p>
+
+            <div className="md:w-1/2 w-full h-[300px] md:h-auto">
+              <img
+                src={fullscreenItem.image}
+                alt={fullscreenItem.name}
+                className="object-cover w-full h-full"
+              />
+            </div>
+
+            <div className="md:w-1/2 w-full p-6 text-white flex flex-col justify-between">
+              <div>
+                <h2 className="text-3xl font-bold mb-2">{fullscreenItem.name}</h2>
+                <p className="text-lg mb-1">ID: {fullscreenItem.id}</p>
+                <p className="text-xl font-bold mb-2">Rs. {fullscreenItem.price.toFixed(2)}</p>
+                <p className="text-base mb-1">{fullscreenItem.subtitle}</p>
+                <p className="text-gray-300 mt-2">{fullscreenItem.description}</p>
+              </div>
+
+              {/* Contact Now Button */}
+              {extractPhoneNumber(fullscreenItem.id) && (
+                <a
+                  href={`https://wa.me/${extractPhoneNumber(fullscreenItem.id)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 w-fit bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg text-lg font-semibold self-end transition"
+                >
+                  Contact Now
+                </a>
+              )}
             </div>
           </div>
         </div>
