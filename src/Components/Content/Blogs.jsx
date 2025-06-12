@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowLeft, FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import A25 from '../../assets/front.jpeg';
+import O24 from '../../assets/fron24.jpeg';
+import A24 from '../../assets/apo24.jpeg';
 
 const blogPosts = [
   {
     id: 1,
-    image: 'https://via.placeholder.com/400x300.png?text=Blog+1',
+    image: A25,
     title: 'APOGEE 25 Structure',
     subtitle: 'Shlok Jaiswal (2022B1A40134P)',
     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -14,17 +17,17 @@ const blogPosts = [
   },
   {
     id: 2,
-    image: 'https://via.placeholder.com/400x300.png?text=Blog+2',
-    title: 'Design Thinking in Modern Projects',
-    subtitle: 'How design impacts project success',
+    image: O24,
+    title: 'Oasis 24 Structure',
+    subtitle: 'Ayush Jain (2022B3A70551P)',
     content: `Praesent ut ligula non mi varius sagittis. 
               Pellentesque posuere. Praesent turpis. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.`,
   },
   {
     id: 3,
-    image: 'https://via.placeholder.com/400x300.png?text=Blog+3',
-    title: 'Sustainable Innovations',
-    subtitle: 'Building a greener tomorrow',
+    image: A24,
+    title: 'APOGEE 24 Structure',
+    subtitle: 'Samarth Jaiswal (2021A4PS0245P)',
     content: `Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. 
               Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.`,
   },
@@ -61,9 +64,11 @@ const Blogs = () => {
 
   return (
     <div
-      id="blogs"
-      className="bg-custom-light text-black dark:bg-custom-dark dark:text-white p-4 sm:p-6 md:p-10 lg:p-20 flex flex-col items-center justify-center relative min-h-screen overflow-hidden"
-    >
+  id="blogs"
+  className="bg-custom-light text-black dark:bg-custom-dark dark:text-white pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-10 px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center justify-start relative min-h-screen overflow-hidden"
+>
+
+
       <div className="flex items-center mb-12 justify-between w-full max-w-[1200px]">
         <div onClick={handleBackClick} className="cursor-pointer">
           <FaArrowLeft
@@ -83,30 +88,31 @@ const Blogs = () => {
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-24 gap-y-6 mt-10 max-w-[1200px] w-full">
         {blogPosts.map((post) => (
           <div
-            key={post.id}
-            onClick={() => openModal(post)}
-            className="relative rounded-2xl border-2 border-silver-700 shadow-silver-glow-strong p-0 flex flex-col cursor-pointer overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow"
-            style={{ minHeight: '320px' }}
-          >
+  key={post.id}
+  onClick={() => openModal(post)}
+  className="relative rounded-2xl border-2 border-silver-700 shadow-silver-glow-strong bg-black text-white p-0 flex flex-col cursor-pointer overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-silver-glow"
+  style={{ minHeight: '320px' }}
+>
             <img
               src={post.image}
               alt={post.title}
-              className="h-48 w-full object-cover rounded-t-2xl"
+              className="h-60 w-full object-cover rounded-t-2xl"
             />
-            <div className="p-4 flex flex-col flex-grow">
-              <h2
-                style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }}
-                className="text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-semibold text-silver-700 mb-2"
-              >
-                {post.title}
-              </h2>
-              <p
-                style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }}
-                className="text-sm sm:text-base md:text-lg lg:text-xl font-regular text-silver-500 flex-grow"
-              >
-                {post.subtitle}
-              </p>
-            </div>
+            <div className="px-4 pt-3 pb-2 flex flex-col bg-black text-white rounded-b-2xl">
+  <h2
+    style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }}
+    className="text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-semibold text-silver-700 mb-1"
+  >
+    {post.title}
+  </h2>
+  <p
+    style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }}
+    className="text-sm sm:text-base md:text-lg lg:text-xl text-silver-500"
+  >
+    {post.subtitle}
+  </p>
+</div>
+
           </div>
         ))}
       </div>
@@ -129,20 +135,29 @@ const Blogs = () => {
             <img
               src={selectedPost.image}
               alt={selectedPost.title}
-              className="rounded-2xl w-full h-64 object-cover mb-6"
+              className="rounded-2xl w-full h-60 object-cover mb-6"
             />
             <h2
-              style={{ fontFamily: 'Anton', letterSpacing: 0.8 }}
-              className="text-4xl font-bold mb-4 text-silver-700"
-            >
-              {selectedPost.title}
-            </h2>
-            <p
-              style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }}
-              className="text-lg leading-relaxed whitespace-pre-line"
-            >
-              {selectedPost.content}
-            </p>
+  style={{ fontFamily: 'Anton', letterSpacing: 0.8 }}
+  className="text-4xl font-bold text-silver-700 mb-2"
+>
+  {selectedPost.title}
+</h2>
+
+<p
+  style={{ fontFamily: 'Poppins', letterSpacing: 0.5 }}
+  className="text-base sm:text-lg text-silver-500 mb-6"
+>
+  {selectedPost.subtitle}
+</p>
+
+<p
+  style={{ fontFamily: 'Poppins', letterSpacing: 0.4 }}
+  className="text-[15px] sm:text-base leading-relaxed text-white/90 whitespace-pre-line"
+>
+  {selectedPost.content}
+</p>
+
           </div>
         </div>
       )}

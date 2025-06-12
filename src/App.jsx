@@ -26,6 +26,7 @@ import OrderwiseItem from './Components/Content/OrderwiseItem';
 import Forgpass from './Components/Content/Forgpass';
 import Snaps from './Components/Content/Gallery';
 import Blogs from './Components/Content/Blogs';
+import Listing from './Components/Content/Listing';
 
 import './App.css';
 
@@ -152,6 +153,13 @@ function App() {
               <>
                 <Navbar />
                 <Blogs />
+                <Footer />
+              </>
+            } />
+            <Route path="/listing" element={
+              <>
+                <Navbar />
+                <Listing />
                 <Footer />
               </>
             } />
