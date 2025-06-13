@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaTimes } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 import { HiOutlineDownload, HiOutlineArrowsExpand } from 'react-icons/hi';
 import img from '../../assets/snap3.jpeg';
 import img2 from '../../assets/snap24.jpeg';
@@ -43,23 +43,26 @@ const galleryImages = [
 const Gallery = () => {
   const navigate = useNavigate();
   const [fullscreenImg, setFullscreenImg] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
+  const handleBackClick = () => navigate(-1);
 
   const openFullscreen = (img) => {
     setFullscreenImg(img);
+    setTimeout(() => setModalVisible(true), 50);
     document.body.style.overflow = 'hidden';
   };
 
   const closeFullscreen = () => {
-    setFullscreenImg(null);
-    document.body.style.overflow = 'unset';
+    setModalVisible(false);
+    setTimeout(() => {
+      setFullscreenImg(null);
+      document.body.style.overflow = 'unset';
+    }, 300);
   };
 
   return (
@@ -70,10 +73,7 @@ const Gallery = () => {
       {/* Header */}
       <div className="flex items-center mb-12 justify-between w-full">
         <div onClick={handleBackClick} className="cursor-pointer">
-          <FaArrowLeft
-            className="text-silver-700 hover:text-silver-500 transition duration-300"
-            size={32}
-          />
+          <FaArrowLeft className="text-silver-700 hover:text-silver-500 transition duration-300" size={32} />
         </div>
         <h1
           style={{ fontFamily: 'Anton', letterSpacing: 0.8 }}
@@ -89,26 +89,21 @@ const Gallery = () => {
         {galleryImages.map((img) => (
           <div
             key={img.id}
-            className="bg-black/40 dark:bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 overflow-hidden"
+            onClick={() => openFullscreen(img)}
+            className="cursor-pointer group bg-white/5 dark:bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden"
           >
-            <div className="relative h-64 w-full">
+            {/* Image */}
+            <div className="relative w-full h-64 overflow-hidden">
               <img
                 src={img.image}
                 alt={img.title}
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
               />
 
-              {/* Fullscreen Button */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  openFullscreen(img);
-                }}
-                title="Fullscreen"
-                className="absolute top-2 left-2 bg-black/60 hover:bg-black/80 p-2 rounded-full z-10"
-              >
+              {/* Expand Icon */}
+              <div className="absolute top-2 left-2 bg-black/60 hover:bg-black/80 p-2 rounded-full z-10">
                 <HiOutlineArrowsExpand className="text-white" size={20} />
-              </button>
+              </div>
 
               {/* Download Button */}
               <a
@@ -122,9 +117,9 @@ const Gallery = () => {
               </a>
             </div>
 
-            {/* Info Box */}
+            {/* Text Content */}
             <div className="p-4 text-white">
-              <h2 className="text-lg font-semibold mb-1 tracking-wide">{img.title}</h2>
+              <h2 className="text-xl font-semibold mb-1 tracking-wide text-white">{img.title}</h2>
               <p className="text-sm text-gray-300 mb-1">{img.subtitle}</p>
               <p className="text-sm text-gray-400">{img.description}</p>
             </div>
@@ -132,34 +127,40 @@ const Gallery = () => {
         ))}
       </div>
 
-      {/* Fullscreen Overlay */}
+      {/* Fullscreen Modal */}
       {fullscreenImg && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-6"
+          className={`fixed inset-0 flex items-center justify-center z-50 p-6 transition-all duration-300 bg-black ${
+            modalVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
           onClick={closeFullscreen}
         >
           <div
-            className="relative max-w-full max-h-full flex flex-col items-center"
+            className="relative max-w-6xl w-full backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl shadow-xl overflow-hidden flex flex-col md:flex-row transition-all duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={closeFullscreen}
-              className="absolute top-4 right-4 text-white text-3xl p-2 bg-black bg-opacity-60 rounded-full hover:bg-opacity-80 transition z-50"
+              className="absolute top-4 right-4 text-white text-xl p-2 bg-red-600 hover:bg-red-700 rounded-full shadow-lg transition z-50"
               aria-label="Close fullscreen"
             >
-              <FaTimes />
+              ✖
             </button>
-            <img
-              src={fullscreenImg.image}
-              alt={fullscreenImg.title}
-              className="w-auto max-w-screen h-[80vh] rounded-xl object-cover object-center"
-            />
-            <div className="mt-4 bg-black bg-opacity-70 rounded-lg p-4 max-w-[90vw] w-full text-center">
-              <h2 className="text-3xl font-semibold text-white mb-1">
-                {fullscreenImg.title}
-              </h2>
-              <p className="text-lg text-silver-300 mb-2">{fullscreenImg.subtitle}</p>
-              <p className="text-base text-gray-300 whitespace-pre-wrap">{fullscreenImg.description}</p>
+
+            <div className="md:w-1/2 w-full h-[300px] md:h-auto">
+              <img
+                src={fullscreenImg.image}
+                alt={fullscreenImg.title}
+                className="object-cover w-full h-full"
+              />
+            </div>
+
+            <div className="md:w-1/2 w-full p-6 text-white flex flex-col justify-between">
+              <div>
+                <h2 className="text-3xl font-bold mb-2">{fullscreenImg.title}</h2>
+                <p className="text-base text-gray-300 mb-1">{fullscreenImg.subtitle}</p>
+                <p className="text-base text-gray-400 mt-2">{fullscreenImg.description}</p>
+              </div>
             </div>
           </div>
         </div>

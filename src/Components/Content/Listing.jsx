@@ -5,6 +5,8 @@ import { HiOutlineDownload, HiOutlineArrowsExpand } from 'react-icons/hi';
 import img from '../../assets/panel.jpeg';
 import img2 from '../../assets/snap24.jpeg';
 import bgImage from '../../assets/bgr.jpg';
+import bg2 from '../../assets/panel2.jpeg';
+import bg3 from '../../assets/panel3.jpeg';
 
 const galleryItems = [
   {
@@ -12,23 +14,23 @@ const galleryItems = [
     image: img,
     name: '"Gwen" from Spider-Man',
     price: 1500,
-    subtitle: 'Contact @ +91 6239 610 198',
+    subtitle: 'Contact @ +916239610198',
     description: 'The grand event showcasing innovation and technology in 2025.',
   },
   {
-    id: 'Siya Bansal - 2023A1PS0171P',
-    image: img,
-    name: '"Gwen" from Spider-Man',
-    price: 1500,
-    subtitle: 'Contact @ +91 6239 610 198',
+    id: 'Name Surname - 2024A4PS1321P',
+    image: bg2,
+    name: '"Neo" from Greek Mythology',
+    price: 6500,
+    subtitle: 'Contact @ +919819354555',
     description: 'The grand event showcasing innovation and technology in 2025.',
   },
   {
-    id: 'P002 +919123456789',
-    image: img2,
-    name: 'Oasis 2024',
-    price: 199.99,
-    subtitle: 'Fun and energy',
+    id: 'Name Surname - 2022B1A50244P',
+    image: bg3,
+    name: '"The Wounded Warrior"',
+    price: 1850,
+    subtitle: 'Contact @ +919819354555',
     description: 'Capturing moments full of joy and enthusiasm.',
   },
   {
@@ -45,6 +47,7 @@ const Listing = () => {
   const navigate = useNavigate();
   const [fullscreenItem, setFullscreenItem] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [hoverPreview, setHoverPreview] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -54,7 +57,7 @@ const Listing = () => {
 
   const openFullscreen = (item) => {
     setFullscreenItem(item);
-    setTimeout(() => setModalVisible(true), 50); // for entrance animation
+    setTimeout(() => setModalVisible(true), 50);
     document.body.style.overflow = 'hidden';
   };
 
@@ -63,7 +66,7 @@ const Listing = () => {
     setTimeout(() => {
       setFullscreenItem(null);
       document.body.style.overflow = 'unset';
-    }, 300); // match modal exit animation duration
+    }, 300);
   };
 
   const extractPhoneNumber = (text) => {
@@ -73,14 +76,14 @@ const Listing = () => {
 
   return (
     <div
-  className="bg-custom-light text-black dark:bg-custom-dark dark:text-white pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-10 px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center min-h-screen"
-  style={{
-    backgroundImage: `url(${bgImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}
->
+      className="bg-custom-light text-black dark:bg-custom-dark dark:text-white pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-10 px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center min-h-screen"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="flex items-center mb-12 justify-between w-full max-w-7xl">
         <div onClick={handleBackClick} className="cursor-pointer">
           <FaArrowLeft className="text-silver-700 hover:text-silver-500 transition duration-300" size={32} />
@@ -94,20 +97,24 @@ const Listing = () => {
         <div className="w-8" />
       </div>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mt-10 max-w-7xl w-full">
-        {galleryItems.map((item) => (
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mt-10 max-w-7xl w-full relative">
+        {galleryItems.map((item, index) => (
           <div
-  key={item.id}
-  onClick={() => openFullscreen(item)}
-  className="group bg-black/50 dark:bg-black/60 border border-white/20 rounded-2xl shadow-lg p-4 flex flex-col cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl h-[440px] active:scale-95"
->
+            key={item.id}
+            onClick={() => openFullscreen(item)}
+            onMouseEnter={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              setHoverPreview({ ...item, top: rect.top + window.scrollY, left: rect.left + rect.width + 12 });
+            }}
+            onMouseLeave={() => setHoverPreview(null)}
+            className="group bg-black/50 dark:bg-black/60 border border-white/20 rounded-2xl shadow-lg p-4 flex flex-col cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl h-[440px] active:scale-95"
+          >
             <div className="relative rounded-lg overflow-hidden h-72">
               <img
                 src={item.image}
                 alt={item.name}
                 className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:brightness-110"
               />
-              
             </div>
 
             <div className="mt-4 flex flex-col flex-grow">
@@ -118,14 +125,33 @@ const Listing = () => {
             </div>
           </div>
         ))}
+
+        {/* Hover Popup Image */}
+        {hoverPreview && (
+          <div
+            className="fixed z-50 transition-opacity duration-300 pointer-events-none hidden md:block"
+            style={{
+              top: hoverPreview.top + 'px',
+              left: hoverPreview.left + 'px',
+            }}
+          >
+            <div className="w-48 h-36 rounded-lg overflow-hidden shadow-xl border border-white/10 bg-black/80">
+              <img
+                src={hoverPreview.image}
+                alt="Preview"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Fullscreen Modal with Animation */}
+      {/* Fullscreen Modal */}
       {fullscreenItem && (
         <div
-    className={`fixed inset-0 flex items-center justify-center z-50 p-6 transition-all duration-300 bg-black ${
-      modalVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-    }`}
+          className={`fixed inset-0 flex items-center justify-center z-50 p-6 transition-all duration-300 bg-black ${
+            modalVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
           onClick={closeFullscreen}
         >
           <div
@@ -157,7 +183,7 @@ const Listing = () => {
                 <p className="text-sm text-gray-400 mt-2">{fullscreenItem.description}</p>
               </div>
 
-              {extractPhoneNumber(fullscreenItem.id) && (
+              {extractPhoneNumber(fullscreenItem.subtitle) && (
                 <a
                   href={`https://wa.me/${extractPhoneNumber(fullscreenItem.id)}`}
                   target="_blank"
