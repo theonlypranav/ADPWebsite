@@ -3,42 +3,87 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { HiOutlineDownload, HiOutlineArrowsExpand } from 'react-icons/hi';
 import img from '../../assets/snap3.jpeg';
-import img2 from '../../assets/snap24.jpeg';
+import img2 from '../../assets/Oasis23Snap.jpg';
+import img3 from '../../assets/Oasis24Snap.png';
+import img4 from '../../assets/Oasis19Snap.jpg';
+import img5 from '../../assets/Oasis22Snap.jpeg';
 
 const galleryImages = [
   {
     id: 1,
     image: img,
     title: 'APOGEE 2025',
-    subtitle: 'Batches: 2021-2024',
+    subtitle: 'Batches: 2021–2024',
     description: 'The grand event showcasing innovation and technology in 2025.',
     link: '#',
   },
   {
     id: 2,
-    image: img2,
+    image: img3,
     title: 'Oasis 2024',
-    subtitle: 'Fun and energy',
-    description: 'Capturing moments full of joy and enthusiasm.',
+    subtitle: 'Batches: 2020–2023',
+    description: 'A cultural extravaganza celebrating art, music, and drama.',
     link: '#',
   },
   {
     id: 3,
-    image: 'https://via.placeholder.com/400x300.png?text=Image+3',
-    title: 'Moment 3',
-    subtitle: 'Team spirit',
-    description: 'Celebrating unity and collaboration among teams.',
+    image: 'https://via.placeholder.com/400x300.png?text=APOGEE+2024',
+    title: 'APOGEE 2024',
+    subtitle: 'Batches: 2020–2023',
+    description: 'Technical brilliance and futuristic ideas at display.',
     link: '#',
   },
   {
     id: 4,
-    image: 'https://via.placeholder.com/400x300.png?text=Image+4',
-    title: 'Flashback',
-    subtitle: 'Legacy and Vibes',
-    description: 'A tribute to the unforgettable legacy of past editions.',
+    image: img2,
+    title: 'Oasis 2023',
+    subtitle: 'Batches: 2019–2022',
+    description: 'The most awaited cultural celebration of Pilani’s year.',
+    link: '#',
+  },
+  {
+    id: 5,
+    image: 'https://via.placeholder.com/400x300.png?text=APOGEE+2023',
+    title: 'APOGEE 2023',
+    subtitle: 'Batches: 2019–2022',
+    description: 'India’s premier student-led technical festival returns with impact.',
+    link: '#',
+  },
+  {
+    id: 6,
+    image: img5,
+    title: 'Oasis 2022',
+    subtitle: 'Batches: 2018–2021',
+    description: 'Oasis returns with joy and color after a long pause.',
+    link: '#',
+  },
+  {
+    id: 7,
+    image: 'https://via.placeholder.com/400x300.png?text=APOGEE+2022',
+    title: 'APOGEE 2022',
+    subtitle: 'Batches: 2018–2021',
+    description: 'Exploring science, research, and innovation post-pandemic.',
+    link: '#',
+  },
+  // Skipping 2021 and 2020
+  {
+    id: 8,
+    image: img4,
+    title: 'Oasis 2019',
+    subtitle: 'Batches: 2015–2018',
+    description: 'A spectacle of cultural expression and artistic vibrance.',
+    link: '#',
+  },
+  {
+    id: 9,
+    image: 'https://via.placeholder.com/400x300.png?text=APOGEE+2019',
+    title: 'APOGEE 2019',
+    subtitle: 'Batches: 2015–2018',
+    description: 'Cutting-edge research and technical innovation took center stage.',
     link: '#',
   },
 ];
+
 
 const Gallery = () => {
   const navigate = useNavigate();

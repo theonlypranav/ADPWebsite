@@ -126,24 +126,7 @@ const Listing = () => {
           </div>
         ))}
 
-        {/* Hover Popup Image */}
-        {hoverPreview && (
-          <div
-            className="fixed z-50 transition-opacity duration-300 pointer-events-none hidden md:block"
-            style={{
-              top: hoverPreview.top + 'px',
-              left: hoverPreview.left + 'px',
-            }}
-          >
-            <div className="w-48 h-36 rounded-lg overflow-hidden shadow-xl border border-white/10 bg-black/80">
-              <img
-                src={hoverPreview.image}
-                alt="Preview"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        )}
+        
       </div>
 
       {/* Fullscreen Modal */}
