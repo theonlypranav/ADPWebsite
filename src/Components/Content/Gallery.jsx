@@ -7,6 +7,9 @@ import img2 from '../../assets/Oasis23Snap.jpg';
 import img3 from '../../assets/Oasis24Snap.png';
 import img4 from '../../assets/Oasis19Snap.jpg';
 import img5 from '../../assets/Oasis22Snap.jpeg';
+import img6 from '../../assets/ADP.2023.jpg';
+import img7 from '../../assets/ADP.2024.jpg';
+import img8 from '../../assets/snapa22.png';
 
 const galleryImages = [
   {
@@ -27,7 +30,7 @@ const galleryImages = [
   },
   {
     id: 3,
-    image: 'https://via.placeholder.com/400x300.png?text=APOGEE+2024',
+    image: img7,
     title: 'APOGEE 2024',
     subtitle: 'Batches: 2020–2023',
     description: 'Technical brilliance and futuristic ideas at display.',
@@ -43,7 +46,7 @@ const galleryImages = [
   },
   {
     id: 5,
-    image: 'https://via.placeholder.com/400x300.png?text=APOGEE+2023',
+    image: img6,
     title: 'APOGEE 2023',
     subtitle: 'Batches: 2019–2022',
     description: 'India’s premier student-led technical festival returns with impact.',
@@ -59,7 +62,7 @@ const galleryImages = [
   },
   {
     id: 7,
-    image: 'https://via.placeholder.com/400x300.png?text=APOGEE+2022',
+    image: img8,
     title: 'APOGEE 2022',
     subtitle: 'Batches: 2018–2021',
     description: 'Exploring science, research, and innovation post-pandemic.',
@@ -74,14 +77,7 @@ const galleryImages = [
     description: 'A spectacle of cultural expression and artistic vibrance.',
     link: '#',
   },
-  {
-    id: 9,
-    image: 'https://via.placeholder.com/400x300.png?text=APOGEE+2019',
-    title: 'APOGEE 2019',
-    subtitle: 'Batches: 2015–2018',
-    description: 'Cutting-edge research and technical innovation took center stage.',
-    link: '#',
-  },
+  
 ];
 
 
