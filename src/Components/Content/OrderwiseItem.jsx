@@ -34,7 +34,7 @@ function OrderwiseItem() {
       try {
         // Fetch items based on `userId`
         const response = await fetch(
-          `https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/cart-items-user/${userId}`,
+          `http://localhost:5001/api/cart/cart-items-user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -90,7 +90,7 @@ function OrderwiseItem() {
     try {
       // Make the DELETE request to the API
       const response = await fetch(
-        `https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/remove-item/${cart}/${itemName}`,
+        `http://localhost:5001/api/cart/remove-item/${cart}/${itemName}`,
         {
           method: 'DELETE',
           headers: {
@@ -151,7 +151,7 @@ function OrderwiseItem() {
 
     try {
       const response = await fetch(
-        'https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/update-multiple-cart-items',
+        'http://localhost:5001/api/cart/update-multiple-cart-items',
         {
           method: 'PUT',
           headers: {

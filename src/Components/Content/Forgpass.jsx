@@ -32,7 +32,7 @@ function Forgpass() {
   const handleGenerateOtp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/users/request-code-pass-reset', {
+      const response = await fetch('http://localhost:5001/api/users/request-code-pass-reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -55,7 +55,7 @@ function Forgpass() {
 
   const handleResendOtp = async () => {
     try {
-      const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/users/request-code-pass-reset', {
+      const response = await fetch('http://localhost:5001/api/users/request-code-pass-reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -79,7 +79,7 @@ function Forgpass() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/users/reset-password', {
+        const response = await fetch('http://localhost:5001/api/users/reset-password', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

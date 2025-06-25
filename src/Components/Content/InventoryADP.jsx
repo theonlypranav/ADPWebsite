@@ -40,7 +40,7 @@ function Inventory() {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory",
+        "http://localhost:5001/api/inventorys/inventory",
         {
           method: "GET",
           headers: {
@@ -78,7 +78,7 @@ function Inventory() {
     const fetchOrderStatus = async () => {
       try {
         const response = await fetch(
-          "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/confirm-disabled",
+          "http://localhost:5001/api/cart/confirm-disabled",
           {
             method: "GET",
           }
@@ -105,7 +105,7 @@ function Inventory() {
 
     try {
       const response = await fetch(
-        "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory",
+        "http://localhost:5001/api/inventorys/inventory",
         {
           method: "POST",
           headers: {
@@ -137,7 +137,7 @@ function Inventory() {
     const itemId = items[selectedItemIndex]._id;
     try {
       const response = await fetch(
-        `https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory/${itemId}`,
+        `http://localhost:5001/api/inventorys/inventory/${itemId}`,
         {
           method: "DELETE",
           headers: {
@@ -162,7 +162,7 @@ function Inventory() {
       // Toggle the confirmation status locally first
       const newStatus = !isConfirmDisabled;
       const response = await fetch(
-        "https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/cart/confirm-disabled",
+        "http://localhost:5001/api/cart/confirm-disabled",
         {
           method: "PUT", // Assuming you want to update the status
           headers: {
@@ -198,7 +198,7 @@ function Inventory() {
 
     try {
       const response = await fetch(
-        `https://adp-backend-bzdrfdhvbhbngbgu.southindia-01.azurewebsites.net/api/inventorys/inventory/${itemId}`,
+        `http://localhost:5001/api/inventorys/inventory/${itemId}`,
         {
           method: "PUT",
           headers: {
