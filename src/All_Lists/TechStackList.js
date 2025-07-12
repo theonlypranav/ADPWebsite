@@ -9,6 +9,7 @@ import GRADIOAP from '../assets/Cords/sb3.jpeg';
 import GRADIOSH from '../assets/Cords/SH.png';
 import GRADIOSM from '../assets/Cords/SM.png';
 import pdd from '../assets/Cords/pdd2.png';
+import REDUX2 from '../assets/Cords/kv1.png';
 
 const TechStackList = [
     {
@@ -19,7 +20,7 @@ const TechStackList = [
     },
     {
         id: 2,
-        image: BJ,
+        image: pdd,
         title: "Bhoomika Jain",
         subtitle: "CoStAAn, APOGEE '25"
     },
@@ -43,9 +44,9 @@ const TechStackList = [
     },
     {
         id: 6,
-        image: REDUX,
-        title: "Sarthak Juneja",
-        subtitle: "Media Coord, Oasis '24"
+        image: REDUX2,
+        title: "Krish Vora",
+        subtitle: "Media Coord, Oasis '25"
     },
     {
         id: 7,
