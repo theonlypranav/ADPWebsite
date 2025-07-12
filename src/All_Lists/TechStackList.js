@@ -20,7 +20,7 @@ const TechStackList = [
     },
     {
         id: 2,
-        image: pdd,
+        image: BJ,
         title: "Bhoomika Jain",
         subtitle: "CoStAAn, APOGEE '25"
     },
