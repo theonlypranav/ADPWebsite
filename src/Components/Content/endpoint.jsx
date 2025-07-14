@@ -14,6 +14,7 @@ const Endpoint = () => {
 
   // Import images based on the description
   const imageFolders = {
+    'OASIS 2024': import.meta.glob('../../assets/OASIS/OASIS 2024/*.{jpg,jpeg,png}'),
     'OASIS 2023': import.meta.glob('../../assets/OASIS/OASIS 2023/*.{jpg,jpeg,png}'),
     'OASIS 2022': import.meta.glob('../../assets/OASIS/OASIS 2022/*.{jpg,jpeg,png}'),
     'OASIS 2019': import.meta.glob('../../assets/OASIS/OASIS 2019/*.{jpg,jpeg,png}'),
