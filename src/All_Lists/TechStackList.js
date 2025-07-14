@@ -1,15 +1,12 @@
-import HTML from '../assets/Cords/SV3.jpg';
-import BJ from '../assets/Cords/bj.jpeg';
-import ND from '../assets/Cords/ND.png';
-import REACT from '../assets/Cords/PD.png';
-import TAILWIND from '../assets/Cords/Aj.png';
-import REDUX from '../assets/Cords/Sj.jpeg';
-import GRADIOCJ from '../assets/Cords/CJ.png';
-import GRADIOAP from '../assets/Cords/sb3.jpeg';
-import GRADIOSH from '../assets/Cords/SH.png';
-import GRADIOSM from '../assets/Cords/SM.png';
+import AVD from '../assets/Cords/avd2.jpg';
+import TAILWIND from '../assets/Cords/ps2.jpg';
+import GRADIOHM from '../assets/Cords/hm2.png';
+import GRADIOSB from '../assets/Cords/sb3.jpeg';
+import GRADIOMC from '../assets/Cords/mann2.jpg';
+import GRADIOLB from '../assets/Cords/lb2.jpg';
 import pdd from '../assets/Cords/pdd2.png';
-import REDUX2 from '../assets/Cords/kv1.png';
+import REDUX2 from '../assets/Cords/kv2.jpg';
+import DA from '../assets/Cords/da2.jpg';
 
 const TechStackList = [
     {
@@ -20,27 +17,27 @@ const TechStackList = [
     },
     {
         id: 2,
-        image: BJ,
-        title: "Bhoomika Jain",
-        subtitle: "CoStAAn, APOGEE '25"
+        image: AVD,
+        title: "Aurvind Mohanty",
+        subtitle: "CoStAAn, APOGEE '26"
     },
     {
         id: 3,
         image: TAILWIND,
-        title: "Ayush Jain",
-        subtitle: "Structure Coord, Oasis '24"
+        title: "Priyanshu Sinha",
+        subtitle: "Structure Coord, Oasis '25       "
     },
     {
         id: 4,
-        image: ND,
-        title: "Navya Dhiman",
-        subtitle: "Painting Coord, Oasis '24"
+        image: DA,
+        title: "Devansh Agarwal",
+        subtitle: "Painting Coord, Oasis '25"
     },
     {
         id: 5,
-        image: pdd,
-        title: "Pranav Deshpande",
-        subtitle: "Publicity Coord, Oasis '24"
+        image: AVD,
+        title: "Aurvind Mohanty",
+        subtitle: "Publicity Coord, Oasis '25"
     },
     {
         id: 6,
@@ -50,26 +47,26 @@ const TechStackList = [
     },
     {
         id: 7,
-        image: GRADIOSH,
-        title: "Shlok Jaiswal",
-        subtitle: "Structure Coord, APOGEE '25"
+        image: GRADIOMC,
+        title: "Mann Chhapolia",
+        subtitle: "Structure Coord, APOGEE '26"
     },
     {
         id: 8,
-        image: GRADIOSM,
-        title: "Saanidhya Mittal",
-        subtitle: "Painting Coord, APOGEE '25"
+        image: GRADIOLB,
+        title: "Lakshit Bansal",
+        subtitle: "Painting Coord, APOGEE '26"
     },
     {
         id: 9,
-        image: GRADIOCJ,
-        title: "Chavi Gupta",
-        subtitle: "Publicity Coord, APOGEE '25"
+        image: GRADIOHM,
+        title: "Harsh Munje",
+        subtitle: "Publicity Coord, APOGEE '26"
     },
     {
         id: 10,
-        image: GRADIOAP,
-        title: "Archi Patel",
+        image: GRADIOSB,
+        title: "Siya Bansal",
         subtitle: "Media Coord, APOGEE '26"
     },
 
