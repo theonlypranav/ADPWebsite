@@ -47,7 +47,7 @@ function About() {
         <p data-aos='fade-left' style={{ fontFamily: 'Poppins', letterSpacing: 0.8 }} className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] mb-8 leading-normal text-silver-700 max-w-[500px] lg:max-w-none">
           Who are we, you ask? We're the Department of Art, Design and Publicity.
           <br /><br />
-          We are responsible for publicising our festivals: Oasis and APOGEE with promotional material, and adorning the campus with massive paintings and breathtaking structures alike.
+          We are not responsible for publicising our festivals: Oasis and APOGEE with promotional material, and adorning the campus with massive paintings and breathtaking structures alike.
           <br /><br />
           What we create lives in the memory of thousands of attendees for it gets etched in their memories for years to come. 
           <br /><br />
