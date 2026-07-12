@@ -8,7 +8,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faDice } from "@fortawesome/free-solid-svg-icons";
-import { BACKEND_URL } from './constants';
+import { BACKEND_URL, isSafeHttpUrl } from './constants';
 
 function Inventory() {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ function Inventory() {
   // If token is not found, redirect to /inventory
 
   useEffect(() => {
-    if (!token || userData.access !== "user") {
+    if (!token || !userData || userData.access !== "user") {
       // If no token found, redirect to inventory page
       navigate("/inventory");
     }
@@ -191,6 +191,13 @@ function Inventory() {
       return;
     }
 
+    if (newItemLink && !isSafeHttpUrl(newItemLink)) {
+      setErrorMessage("Link must be a valid http:// or https:// URL.");
+      return;
+    }
+
+    const quantity = Number(newItemQuantity);
+
     setCart((prevCart) => {
       // Check if the item is already in the cart
       const existingItemIndex = prevCart.findIndex(
@@ -202,7 +209,7 @@ function Inventory() {
         updatedCart[existingItemIndex] = {
           ...updatedCart[existingItemIndex],
           ordered_quantity:
-            updatedCart[existingItemIndex].ordered_quantity + newItemQuantity,
+            updatedCart[existingItemIndex].ordered_quantity + quantity,
         };
         return updatedCart;
       } else {
@@ -212,7 +219,7 @@ function Inventory() {
           {
             item_id: null,
             item_name: newItemName,
-            ordered_quantity: newItemQuantity,
+            ordered_quantity: quantity,
             link: newItemLink,
           },
         ];

@@ -18,6 +18,7 @@ function Order() {
     const userString = localStorage.getItem('user');
     return userString ? JSON.parse(userString) : null;
   }, []);
+  const token = useMemo(() => localStorage.getItem('token'), []);
 
   const requestDelete = (cart_id) => {
     setItemToDelete({ cart_id }); // Store both cart and itemName
@@ -49,14 +50,14 @@ function Order() {
       } else {
         // Handle errors returned by the server
         console.error('Error deleting Cart:', data.error || data);
+        alert('Failed to delete cart. Please try again.');
       }
     } catch (error) {
       // Handle network or other unexpected errors
       console.error('Error making delete request:', error);
+      alert('Something went wrong while deleting the cart. Please try again.');
     }
   };
-
-  const token = useMemo(() => localStorage.getItem('token'), []);
 
   useEffect(() => {
     // Redirect to /inventory if user is not logged in or not a boss

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import bgImage from '../../assets/bg.jpg';
-import { BACKEND_URL } from './constants';
+import { BACKEND_URL, isSafeHttpUrl } from './constants';
 import * as XLSX from 'xlsx';
 
 function OrderwiseItem() {
@@ -13,7 +13,6 @@ function OrderwiseItem() {
   const location = useLocation();
   const { state } = location;
   const userId = state ? state.user_id : null;
-  const cartId = state ? state.cart_id :null;
   const clubName = state ? state.clubName :null;
 
   const userString = localStorage.getItem('user');
@@ -105,11 +104,11 @@ function OrderwiseItem() {
     setItems(updatedItems);
   };
 
-  const handleDelete = async (cart, itemName) => {
+  const handleDelete = async (itemId) => {
     try {
       // Make the DELETE request to the API
       const response = await fetch(
-        `${BACKEND_URL}/cart/remove-item/${cart}/${itemName}`,
+        `${BACKEND_URL}/cart/admin-remove-item/${itemId}`,
         {
           method: 'DELETE',
           headers: {
@@ -117,30 +116,32 @@ function OrderwiseItem() {
           },
         }
       );
-  
+
       const data = await response.json(); // Get the response data
-  
+
       if (response.ok) {
         // On success, filter out the deleted item from the local state
-        const updatedItems = items.filter(item => item.name !== itemName);
+        const updatedItems = items.filter(item => item.id !== itemId);
         setItems(updatedItems);
-  
+
         // Optional: Notify the user of successful deletion
         console.log('Item successfully deleted:', data.message);
       } else {
         // Handle errors returned by the server
         console.error('Error deleting item:', data.error || data);
+        alert('Failed to delete item. Please try again.');
       }
     } catch (error) {
       // Handle network or other unexpected errors
       console.error('Error making delete request:', error);
+      alert('Something went wrong while deleting the item. Please try again.');
     }
   };
-  
-  
 
-  const requestDelete = (cart, itemName) => {
-    setItemToDelete({ cart, itemName }); // Store both cart and itemName
+
+
+  const requestDelete = (itemId) => {
+    setItemToDelete({ itemId });
     setConfirmDeleteVisible(true);
   };
   
@@ -287,7 +288,7 @@ function OrderwiseItem() {
                   />
                 </td>
                 <td className='py-2 px-4 border-b'>
-                  {item.link ? (
+                  {isSafeHttpUrl(item.link) ? (
                     <a href={item.link} target='_blank' rel='noopener noreferrer' className='text-blue-500'>
                       View Link
                     </a>
@@ -297,7 +298,7 @@ function OrderwiseItem() {
                 </td>
                 <td className='py-2 px-4 border-b'>
                   <button
-                    onClick={() => requestDelete(cartId, item.name)} // Pass both cart and itemName
+                    onClick={() => requestDelete(item.id)}
                     className='text-red-500 text-2xl px-4 py-2'
                     title='Delete'
                   >
@@ -349,7 +350,7 @@ function OrderwiseItem() {
             <div className='flex space-x-2'>
               <button
                 onClick={() => {
-                  handleDelete(itemToDelete.cart, itemToDelete.itemName); // Use both cart and itemName
+                  handleDelete(itemToDelete.itemId);
                   setConfirmDeleteVisible(false);
                 }}
                 className='bg-red-500 text-white px-4 py-2 rounded'

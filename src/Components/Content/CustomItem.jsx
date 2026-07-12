@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import * as XLSX from 'xlsx';
 import bgImage from '../../assets/bg.jpg'; // Ensure the correct path to your background image
-import { BACKEND_URL } from './constants';
+import { BACKEND_URL, isSafeHttpUrl } from './constants';
 
 function Inventory() {
   const [items, setItems] = useState([]);
@@ -107,10 +107,10 @@ function Inventory() {
         throw new Error('Failed to save changes');
       }
 
-      console.log('Items saved:', updatedItems);
       window.location.reload(); // Refresh the page
     } catch (error) {
       console.error('Error saving changes:', error);
+      alert('Failed to save changes. Please try again.');
     }
   };
 
@@ -211,7 +211,7 @@ function Inventory() {
                   />
                 </td>
                 <td className="py-2 px-4 border-b">
-                  {item.link ? (
+                  {isSafeHttpUrl(item.link) ? (
                     <a
                       href={item.link}
                       target="_blank"

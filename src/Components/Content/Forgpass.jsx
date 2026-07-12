@@ -40,17 +40,15 @@ function Forgpass() {
       });
 
       if (response.ok) {
-        console.log("OTP generated and sent to:", email);
         setShowOtpAndPassword(true);
         setResendEnabled(false);
         setTimer(30);
       } else {
-        console.error("Failed to generate OTP");
-        // Handle failure (e.g., display an error message to the user)
+        alert("Failed to generate OTP. Please check the email and try again.");
       }
     } catch (error) {
       console.error("Error generating OTP:", error);
-      // Handle error (e.g., network error)
+      alert("Something went wrong while sending the OTP. Please try again.");
     }
   };
 
@@ -63,17 +61,15 @@ function Forgpass() {
       });
 
       if (response.ok) {
-        console.log("OTP generated and sent to:", email);
         setShowOtpAndPassword(true);
         setResendEnabled(false);
         setTimer(30);
       } else {
-        console.error("Failed to generate OTP");
-        // Handle failure (e.g., display an error message to the user)
+        alert("Failed to resend OTP. Please try again.");
       }
     } catch (error) {
       console.error("Error generating OTP:", error);
-      // Handle error (e.g., network error)
+      alert("Something went wrong while resending the OTP. Please try again.");
     }
   };
 
@@ -90,22 +86,17 @@ function Forgpass() {
             }),
         });
 
-        // Log the raw response text for better debugging
-        const responseText = await response.text(); // Get the response as text
-
-        console.log("Response status:", response.status);  // Log response status
-        console.log("Response body:", responseText); // Log the raw response body
+        const responseText = await response.text();
 
         if (response.ok) {
-            const responseData = JSON.parse(responseText); // Parse JSON response
-            console.log("Password reset successful for:", email);
-            console.log("Server response:", responseData); // Log the server response
             navigate('/inventory'); // Redirect to the login page
         } else {
-            console.error("Failed to reset password:", responseText); // Log error details
+            console.error("Failed to reset password:", responseText);
+            alert("Failed to reset password. Please check your OTP and try again.");
         }
     } catch (error) {
-        console.error("Error resetting password:", error); // Handle any fetch errors
+        console.error("Error resetting password:", error);
+        alert("Something went wrong while resetting your password. Please try again.");
     }
 };
   

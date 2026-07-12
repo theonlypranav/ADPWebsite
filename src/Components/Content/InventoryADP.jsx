@@ -29,7 +29,7 @@ function Inventory() {
   const [isConfirmDisabled, setIsConfirmDisabled] = useState(false);
 
   useEffect(() => {
-    if (!token || userData.access !== "bosslevel") {
+    if (!token || !userData || userData.access !== "bosslevel") {
       navigate("/inventory");
     } else {
       fetchItems();
@@ -155,6 +155,7 @@ function Inventory() {
       }
     } catch (error) {
       console.error("Error deleting item:", error);
+      alert("Something went wrong while deleting the item. Please try again.");
     }
   };
   // Toggle the button state
@@ -218,6 +219,7 @@ function Inventory() {
       }
     } catch (error) {
       console.error("Error updating item:", error);
+      alert("Something went wrong while updating the item. Please try again.");
     }
   };
 
