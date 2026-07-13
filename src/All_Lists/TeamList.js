@@ -21,7 +21,7 @@ const TeamList = {
       title: 'Publicity',
       picture: REACT,
       description: 'The Publicity Side manages the social media for Oasis and APOGEE, and essentially takes care of all the marketing and branding needs for the fests, as the name suggests. It also creates both short-form (for Instagram) and long-form (for Inauguration) style videos, with the fast-expanding Video & 3D Team. Pub, as its better known, shares it\'s members with the finest technical clubs on campus, and their skills and expertise and put to good use with their newest pursuits and plans!',
-      list: ['Aurvind Mohanty', 'Harsh Munje', 'Arpit Maity', 'Sajal Batra', 'Krishnansh Sood',  'Aditya Bhusari', 'Medhansh Adlakha', 'Nakshatara Garg','Aaryan Singh','Ram Avtar Dube','Palak Jha','Aarna Trivedi','Shreyansh Jain','Agastya Madaan','Umit Adalakha','Anshuman Pathak', 'Navam Harsha', 'Ishan Joshi', 'Atharva Tomar']
+      list: ['Navam Harsha', 'Chaitanya Patil', 'Prann Vijay Singh', 'Atharva Gupta', 'Arnav Gupta', 'Anvith Hegde', 'Yutika Chhabra', 'Nikhil Arora', 'Parth Sharma', 'Soumil Garg', 'Tanmay Arora', 'Tanisk Mishra', 'Chaitanya Sharma']
   },
   3: {
       title: 'Media',

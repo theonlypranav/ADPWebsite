@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
@@ -9,6 +9,7 @@ const Endpoint = () => {
   const [photos, setPhotos] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
   const description = query.get('description');
 
@@ -80,15 +81,15 @@ const Endpoint = () => {
         setCurrentIndex(0); // Reset to the first image when loading new images
       }
     };
-    const handleBackClick = () => {
-      navigate(-1); // Go back to the previous page
-    };
-  
 
     loadImages();
     AOS.init({ duration: 1000 });
     window.scrollTo(0, 0);
   }, [description]);
+
+  const handleBackClick = () => {
+    navigate(-1); // Go back to the previous page
+  };
 
   const handleNext = () => {
     if (photos.length > 0) {

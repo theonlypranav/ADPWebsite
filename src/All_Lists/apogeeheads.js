@@ -5,18 +5,20 @@ import i4 from '../assets/costaans/rhythm saxena.jpg';
 import i6 from '../assets/costaans/2.jpg';
 import i5 from '../assets/sad2.jpg';
 import i7 from '../assets/Acircle.png';
+import AVD from '../assets/Cords/avd2.jpg';
+import AK from '../assets/Cords/AK.jpeg';
 
-const oasisheads = [
+const apogeeheads = [
 {
     id: 1,
-    image: i1,
+    image: AK,
     title: "Arnav Khandelwal",
     subtitle: "CoStAAn, APOGEE '27",
     linkedinProfile: "https://www.linkedin.com/in/arnav-khandelwal-/"
 },
 {
     id: 2,
-    image: i1,
+    image: AVD,
     title: "Aurvind Mohanty",
     subtitle: "CoStAAn, APOGEE '26",
     linkedinProfile: "https://www.linkedin.com/in/aurvindmohanty/"
@@ -78,4 +80,4 @@ const oasisheads = [
     linkedinProfile: "https://www.linkedin.com/company/apogee-bits-pilani/"
 }
 ];
-export default oasisheads;
+export default apogeeheads;
