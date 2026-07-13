@@ -30,10 +30,10 @@ const DevsList = [
     },
     {
         id: 4,
-        image: DUMMY,
-        title: "Navya Jain",
-        subtitle: "Developer",
-        linkedin: "https://www.linkedin.com/in/navya-jain-a6a5aa29b/"
+        image: IMAGE,
+        title: "Devansh Agarwal",
+        subtitle: "Developer and UI/UX Designer",
+        linkedin: "https://www.linkedin.com/in/devansh-agarwal-8bbab228b/"
     },
     {
         id: 5,
@@ -44,11 +44,12 @@ const DevsList = [
     },
     {
         id: 6,
-        image: IMAGE,
-        title: "Devansh Agarwal",
-        subtitle: "UI/UX Designer",
-        linkedin: "https://www.linkedin.com/in/devansh-agarwal-8bbab228b/"
-    }
+        image: DUMMY,
+        title: "Navya Jain",
+        subtitle: "Developer",
+        linkedin: "https://www.linkedin.com/in/navya-jain-a6a5aa29b/"
+    },
+    
 ];
 
 export default DevsList;

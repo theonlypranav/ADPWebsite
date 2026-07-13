@@ -12,62 +12,62 @@ const TechStackList = [
     {
         id: 1,
         image: pdd,
-        title: "Pranav Deshpande",
-        subtitle: "StuCCAn, Oasis '25"
+        title: "Devansh Agarwal",
+        subtitle: "StuCCAn, Oasis '26"
     },
     {
         id: 2,
         image: AVD,
-        title: "Aurvind Mohanty",
-        subtitle: "CoStAAn, APOGEE '26"
+        title: "Arnav Khandelwal",
+        subtitle: "CoStAAn, APOGEE '27"
     },
     {
         id: 3,
         image: TAILWIND,
-        title: "Priyanshu Sinha",
-        subtitle: "Structure Coord, Oasis '25       "
+        title: "Hridbeg Choudhary",
+        subtitle: "Structure Coord, Oasis '26"
     },
     {
         id: 4,
         image: DA,
-        title: "Devansh Agarwal",
-        subtitle: "Painting Coord, Oasis '25"
+        title: "Aniket Gupta",
+        subtitle: "Painting Coord, Oasis '26"
     },
     {
         id: 5,
         image: AVD,
-        title: "Aurvind Mohanty",
-        subtitle: "Publicity Coord, Oasis '25"
+        title: "Navam Harsha",
+        subtitle: "Publicity Coord, Oasis '26"
     },
     {
         id: 6,
         image: REDUX2,
-        title: "Krish Vora",
-        subtitle: "Media Coord, Oasis '25"
+        title: "Aarna Trivedi",
+        subtitle: "Media Coord, Oasis '26"
     },
     {
         id: 7,
         image: GRADIOMC,
-        title: "Mann Chhapolia",
-        subtitle: "Structure Coord, APOGEE '26"
+        title: "Rishit Goel",
+        subtitle: "Structure Coord, APOGEE '27"
     },
     {
         id: 8,
         image: GRADIOLB,
-        title: "Lakshit Bansal",
-        subtitle: "Painting Coord, APOGEE '26"
+        title: "Aditya Chordia",
+        subtitle: "Painting Coord, APOGEE '27"
     },
     {
         id: 9,
         image: GRADIOHM,
-        title: "Harsh Munje",
-        subtitle: "Publicity Coord, APOGEE '26"
+        title: "Chaitanya Patil",
+        subtitle: "Publicity Coord, APOGEE '27"
     },
     {
         id: 10,
         image: GRADIOSB,
-        title: "Siya Bansal",
-        subtitle: "Media Coord, APOGEE '26"
+        title: "Sharayu Musale",
+        subtitle: "Media Coord, APOGEE '27"
     },
 
 ];

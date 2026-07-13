@@ -13,97 +13,104 @@ import pdd from '../assets/Cords/pdd.png';
 
 
 const oasisheads = [
-    {
-        id: 1,
-        image: pdd,
-        title: "Pranav Deshpande",
-        subtitle: "StuCCAn, Oasis '25",
-        linkedinProfile: "https://www.linkedin.com/in/pranav-deshpande-0a0764246/"
-    },
-    {
-        id: 2,
-        image: i1,
-        title: "Shreyansh Vanjani",
-        subtitle: "StuCCAn, Oasis '24",
-        linkedinProfile: "https://www.linkedin.com/in/shreyansh-vanjani-28b198226/"
-    },
-    {
-        id: 3,
-        image: i2,
-        title: "Adarsh Goel",
-        subtitle: "StuCCAn, Oasis '23",
-        linkedinProfile: "https://www.linkedin.com/in/adarsh-goel-64b0b01bb/"
-    },
-    {
-        id: 4,
-        image: i3,
-        title: "Rhythm Saxena",
-        subtitle: "StuCCAn, Oasis '22",
-        linkedinProfile: "https://www.linkedin.com/in/rhythmsaxena/"
-    },
-    {
-        id: 5,
-        image: i5,
-        title: "Aman Ali",
-        subtitle: "StuCCAn, Oasis '21",
-        linkedinProfile: "https://www.linkedin.com/in/aman-ali-b21548218/"
-    },
-    {
-        id: 6,
-        image: i6,
-        title: "Ruchir Aggrwal",
-        subtitle: "StuCCAn, Oasis '20",
-        linkedinProfile: "https://www.linkedin.com/in/ruchir-aggarwal-42274b170/"
-    },
-    {
-        id: 7,
-        image: i7,
-        title: "Aditya Pawar",
-        subtitle: "StuCCAn, Oasis '19",
-        linkedinProfile: "https://www.linkedin.com/in/aditya-pawar-351838133/"
-    },
-    {
-        id: 8,
-        image: i8,
-        title: "Chirag Parikh",
-        subtitle: "StuCCAn, Oasis '18",
-        linkedinProfile: "https://www.linkedin.com/in/chirag-parikh-bits/"
-    },
-    {
-        id: 9,
-        image: i4,
-        title: "Gowtam Chandrahasa",
-        subtitle: "StuCCAn, Oasis '17",
-        linkedinProfile: "https://www.linkedin.com/company/oasis24-bits-pilani/"
-    },
-    {
-        id: 10,
-        image: i9,
-        title: "Abhishek Prasad",
-        subtitle: "StuCCAn, Oasis '16",
-        linkedinProfile: "https://www.linkedin.com/in/abhishek-prasad-8ab511aa/"
-    },
-    {
-        id: 11,
-        image: i4,
-        title: "Krishna Chaitanya",
-        subtitle: "StuCCAn, Oasis '15",
-        linkedinProfile: "https://www.linkedin.com/company/oasis24-bits-pilani/"
-    },
-    {
-        id: 12,
-        image: i10,
-        title: "Ashfaque Ahmad Bari",
-        subtitle: "StuCCAn, Oasis '14",
-        linkedinProfile: "https://www.linkedin.com/in/ashfaqueahmadbari/"
-    },
-    {
-        id: 13,
-        image: i11,
-        title: "Abhijit Kurve",
-        subtitle: "StuCCAn, Oasis '13",
-        linkedinProfile: "https://www.linkedin.com/in/abhijitkurve/"
-    },
-];
+{
+    id: 1,
+    image: pdd,
+    title: "Devansh Agarwal",
+    subtitle: "StuCCAn, Oasis '26",
+    linkedinProfile: "https://www.linkedin.com/in/devansh-agarwal-8bbab228b/"
+},
+{
+    id: 2,
+    image: pdd,
+    title: "Pranav Deshpande",
+    subtitle: "StuCCAn, Oasis '25",
+    linkedinProfile: "https://www.linkedin.com/in/pranav-deshpande-0a0764246/"
+},
+{
+    id: 3,
+    image: i1,
+    title: "Shreyansh Vanjani",
+    subtitle: "StuCCAn, Oasis '24",
+    linkedinProfile: "https://www.linkedin.com/in/shreyansh-vanjani-28b198226/"
+},
+{
+    id: 4,
+    image: i2,
+    title: "Adarsh Goel",
+    subtitle: "StuCCAn, Oasis '23",
+    linkedinProfile: "https://www.linkedin.com/in/adarsh-goel-64b0b01bb/"
+},
+{
+    id: 5,
+    image: i3,
+    title: "Rhythm Saxena",
+    subtitle: "StuCCAn, Oasis '22",
+    linkedinProfile: "https://www.linkedin.com/in/rhythmsaxena/"
+},
+{
+    id: 6,
+    image: i5,
+    title: "Aman Ali",
+    subtitle: "StuCCAn, Oasis '21",
+    linkedinProfile: "https://www.linkedin.com/in/aman-ali-b21548218/"
+},
+{
+    id: 7,
+    image: i6,
+    title: "Ruchir Aggarwal",
+    subtitle: "StuCCAn, Oasis '20",
+    linkedinProfile: "https://www.linkedin.com/in/ruchir-aggarwal-42274b170/"
+},
+{
+    id: 8,
+    image: i7,
+    title: "Aditya Pawar",
+    subtitle: "StuCCAn, Oasis '19",
+    linkedinProfile: "https://www.linkedin.com/in/aditya-pawar-351838133/"
+},
+{
+    id: 9,
+    image: i8,
+    title: "Chirag Parikh",
+    subtitle: "StuCCAn, Oasis '18",
+    linkedinProfile: "https://www.linkedin.com/in/chirag-parikh-bits/"
+},
+{
+    id: 10,
+    image: i4,
+    title: "Gowtam Chandrahasa",
+    subtitle: "StuCCAn, Oasis '17",
+    linkedinProfile: "https://www.linkedin.com/company/oasis24-bits-pilani/"
+},
+{
+    id: 11,
+    image: i9,
+    title: "Abhishek Prasad",
+    subtitle: "StuCCAn, Oasis '16",
+    linkedinProfile: "https://www.linkedin.com/in/abhishek-prasad-8ab511aa/"
+},
+{
+    id: 12,
+    image: i4,
+    title: "Krishna Chaitanya",
+    subtitle: "StuCCAn, Oasis '15",
+    linkedinProfile: "https://www.linkedin.com/company/oasis24-bits-pilani/"
+},
+{
+    id: 13,
+    image: i10,
+    title: "Ashfaque Ahmad Bari",
+    subtitle: "StuCCAn, Oasis '14",
+    linkedinProfile: "https://www.linkedin.com/in/ashfaqueahmadbari/"
+},
+{
+    id: 14,
+    image: i11,
+    title: "Abhijit Kurve",
+    subtitle: "StuCCAn, Oasis '13",
+    linkedinProfile: "https://www.linkedin.com/in/abhijitkurve/"
+},
+]
 
 export default oasisheads;
