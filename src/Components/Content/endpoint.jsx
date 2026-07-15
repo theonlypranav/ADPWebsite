@@ -15,6 +15,7 @@ const Endpoint = () => {
 
   // Import images based on the description
   const imageFolders = {
+    'OASIS 2025': import.meta.glob('../../assets/OASIS/OASIS 2025/*.{jpg,jpeg,png}'),
     'OASIS 2024': import.meta.glob('../../assets/OASIS/OASIS 2024/*.{jpg,jpeg,png}'),
     'OASIS 2023': import.meta.glob('../../assets/OASIS/OASIS 2023/*.{jpg,jpeg,png}'),
     'OASIS 2022': import.meta.glob('../../assets/OASIS/OASIS 2022/*.{jpg,jpeg,png}'),
@@ -40,6 +41,7 @@ const Endpoint = () => {
     'OASIS 2000': import.meta.glob('../../assets/OASIS/OASIS 2000/*.{jpg,jpeg,png}'),
     'OASIS 1999': import.meta.glob('../../assets/OASIS/OASIS 1999/*.{jpg,jpeg,png}'),
     'OASIS 1998': import.meta.glob('../../assets/OASIS/OASIS 1998/*.{jpg,jpeg,png}'),
+    'APOGEE 2026': import.meta.glob('../../assets/APOGEE/APOGEE 2026/*.{jpg,jpeg,png}'),
     'APOGEE 2025': import.meta.glob('../../assets/APOGEE/APOGEE 2025/*.{jpg,jpeg,png}'),
     'APOGEE 2024': import.meta.glob('../../assets/APOGEE/APOGEE 2024/*.{jpg,jpeg,png}'),
     'APOGEE 2023': import.meta.glob('../../assets/APOGEE/APOGEE 2023/*.{jpg,jpeg,png}'),

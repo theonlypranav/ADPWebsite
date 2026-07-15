@@ -1,3 +1,4 @@
+import A26 from '../assets/APOGEE/APOGEE 2026/BD.jpeg';
 import nx from '../assets/APOGEE/APOGEE 2025/a25.jpeg';
 import AS from '../assets/APOGEE/APOGEE 2024/central structure.jpg';
 import AD from '../assets/APOGEE/APOGEE 2023/backdrop 1 edit.jpg';
@@ -29,6 +30,14 @@ import ZZ from '../assets/APOGEE/logos/ApLogoYear 18.jpeg';
 const TechStackList2 = [
     {
         id: 1,
+        image: A26,
+        title: "APOGEE 2026",
+        subtitle: "Under Steel Skies",
+        link:"/endpoint",
+        description: "APOGEE 2026"
+    },
+    {
+        id: 2,
         image: nx,
         title: "APOGEE 2025",
         subtitle: "Revved-Up Rhapsody",
@@ -36,7 +45,7 @@ const TechStackList2 = [
         description: "APOGEE 2025"
     },
     {
-        id: 2,
+        id: 3,
         image: AS,
         title: "APOGEE 2024",
         subtitle: "Celestial Epiphany",
@@ -44,7 +53,7 @@ const TechStackList2 = [
         description: "APOGEE 2024"
     },
     {
-        id: 3,
+        id: 4,
         image: AD,
         title: "APOGEE 2023",
         subtitle: "A Hivemind Genesis",
@@ -52,7 +61,7 @@ const TechStackList2 = [
         description: "APOGEE 2023"
     },
     {
-        id: 4,
+        id: 5,
         image: DF,
         title: "APOGEE 2022",
         subtitle: "Encrypted Dimension",
@@ -60,7 +69,7 @@ const TechStackList2 = [
         description: "APOGEE 2022"
     },
     {
-        id: 5,
+        id: 6,
         image: NN,
         title: "APOGEE 2021",
         subtitle: "Digitilized Renaissance",
@@ -68,7 +77,7 @@ const TechStackList2 = [
         description: "APOGEE 2021"
     },
     {
-        id: 6,
+        id: 7,
         image: MM,
         title: "APOGEE 2020",
         subtitle: "The Glitch Repository",
@@ -76,7 +85,7 @@ const TechStackList2 = [
         description: "APOGEE 2020"
     },
     {
-        id: 7,
+        id: 8,
         image: LL,
         title: "APOGEE 2019",
         subtitle: "Reality Roulette",
@@ -84,7 +93,7 @@ const TechStackList2 = [
         description: "APOGEE 2019"
     },
     {
-        id: 8,
+        id: 9,
         image: ZZ,
         title: "APOGEE 2018",
         subtitle: "A Cybernetic Vision",
@@ -92,7 +101,7 @@ const TechStackList2 = [
         description: "APOGEE 2018"
     },
     {
-        id: 9,
+        id: 10,
         image: KK,
         title: "APOGEE 2017",
         subtitle: "The RetroFuture",
@@ -100,7 +109,7 @@ const TechStackList2 = [
         description: "APOGEE 2017"
     },
     {
-        id: 10,
+        id: 11,
         image: JJ,
         title: "APOGEE 2016",
         subtitle: "Information Unavailable",
@@ -108,7 +117,7 @@ const TechStackList2 = [
         description: "APOGEE 2016"
     },
     {
-        id: 11,
+        id: 12,
         image: AW,
         title: "APOGEE 2015",
         subtitle: "Information Unavailable",
@@ -116,7 +125,7 @@ const TechStackList2 = [
         description: "APOGEE 2015"
     },
     {
-        id: 12,
+        id: 13,
         image: II,
         title: "APOGEE 2014",
         subtitle: "Information Unavailable",
@@ -124,7 +133,7 @@ const TechStackList2 = [
         description: "APOGEE 2014"
     },
     {
-        id: 13,
+        id: 14,
         image: HH,
         title: "APOGEE 2013",
         subtitle: "Information Unavailable",
@@ -132,7 +141,7 @@ const TechStackList2 = [
         description: "APOGEE 2013"
     },
     {
-        id: 14,
+        id: 15,
         image: GG,
         title: "APOGEE 2012",
         subtitle: "Information Unavailable",
@@ -140,7 +149,7 @@ const TechStackList2 = [
         description: "APOGEE 2012"
     },
     {
-        id: 15,
+        id: 16,
         image: FF,
         title: "APOGEE 2011",
         subtitle: "Information Unavailable",
@@ -148,7 +157,7 @@ const TechStackList2 = [
         description: "APOGEE 2011"
     },
     {
-        id: 16,
+        id: 17,
         image: EE,
         title: "APOGEE 2010",
         subtitle: "Information Unavailable",
@@ -156,7 +165,7 @@ const TechStackList2 = [
         description: "APOGEE 2010"
     },
     {
-        id: 17,
+        id: 18,
         image: DD,
         title: "APOGEE 2009",
         subtitle: "Information Unavailable",
@@ -164,7 +173,7 @@ const TechStackList2 = [
         description: "APOGEE 2009"
     },
     {
-        id: 18,
+        id: 19,
         image: YY,
         title: "APOGEE 2008",
         subtitle: "Thought Pivot",
@@ -172,7 +181,7 @@ const TechStackList2 = [
         description: "APOGEE 2008"
     },
     {
-        id: 19,
+        id: 20,
         image: TR,
         title: "APOGEE 2007",
         subtitle: "Dhiti",
@@ -180,7 +189,7 @@ const TechStackList2 = [
         description: "APOGEE 2007"
     },
     {
-        id: 20,
+        id: 21,
         image: RT,
         title: "APOGEE 2006",
         subtitle: "Sanshodhanam",
@@ -188,7 +197,7 @@ const TechStackList2 = [
         description: "APOGEE 2006"
     },
     {
-        id: 21,
+        id: 22,
         image: AK,
         title: "APOGEE 2005",
         subtitle: "Inspiring Innovation",
@@ -196,7 +205,7 @@ const TechStackList2 = [
         description: "APOGEE 2005"
     },
     {
-        id: 22,
+        id: 23,
         image: AG,
         title: "APOGEE 2004",
         subtitle: "Celebrating Technology",
@@ -204,7 +213,7 @@ const TechStackList2 = [
         description: "APOGEE 2004"
     },
     {
-        id: 23,
+        id: 24,
         image: AA,
         title: "APOGEE 2003",
         subtitle: "Vivista",
@@ -212,7 +221,7 @@ const TechStackList2 = [
         description: "APOGEE 2003"
     },
     {
-        id: 24,
+        id: 25,
         image: XX,
         title: "APOGEE 2002",
         subtitle: "Transcending Reality",
@@ -220,7 +229,7 @@ const TechStackList2 = [
         description: "APOGEE 2002"
     },
     {
-        id: 25,
+        id: 26,
         image: AH,
         title: "APOGEE 2001",
         subtitle: "Cradling Aspirations",
@@ -228,7 +237,7 @@ const TechStackList2 = [
         description: "APOGEE 2001"
     },
     {
-        id: 26,
+        id: 27,
         image: AF,
         title: "APOGEE 2000",
         subtitle: "Exploring the Genie'us",

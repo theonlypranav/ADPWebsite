@@ -1,3 +1,4 @@
+import O25 from '../assets/OASIS/OASIS 2025/BD.jpeg';
 import nw from '../assets/OASIS/OASIS 2024/o241.jpeg';
 import i1 from '../assets/OASIS/OASIS 2023/front structure 3.jpg';
 import i2 from '../assets/OASIS/OASIS 2022/inside audi panel 1 with junta.jpg';
@@ -27,10 +28,18 @@ import i24 from '../assets/OASIS/oasis 9.jpg';
 
 
 const TechStackList2 = [
+    {
+        id: 0,
+        image: O25,
+        title: "Oasis 2025 | #53",
+        subtitle: "Whispers of Edo",
+        link: "/endpoint",
+        description: "OASIS 2025"
+    },
    
 
     {
-        id: 0,
+        id: 1,
         image: nw,
         title: "Oasis 2024 | #52",
         subtitle: "Regal Roulette",
@@ -38,7 +47,7 @@ const TechStackList2 = [
         description:"OASIS 2024"
     },
     {
-        id: 1,
+        id: 2,
         image: i1,
         title: "Oasis 2023 | #51",
         subtitle: "Grimoire Galore",
@@ -46,7 +55,7 @@ const TechStackList2 = [
         description:"OASIS 2023"
     },
     {
-        id: 2,
+        id: 3,
         image: i2,
         title: "Oasis 2022 | #50",
         subtitle: "Demesne of the Lost Gold",
@@ -54,7 +63,7 @@ const TechStackList2 = [
         description: "OASIS 2022"
     },
     {
-        id: 3,
+        id: 4,
         image: i3,
         title: "Oasis 2019 | #48",
         subtitle: "Neon-Noir",
@@ -62,7 +71,7 @@ const TechStackList2 = [
         description: "OASIS 2019"
     },
     {
-        id: 4,
+        id: 5,
         image: i4,
         title: "Oasis 2018 | #47",
         subtitle: "The Far Out Fest",
@@ -70,7 +79,7 @@ const TechStackList2 = [
         description: "OASIS 2018"
     },
     {
-        id: 5,
+        id: 6,
         image: i5,
         title: "Oasis 2017 | #46",
         subtitle: "Realms Of Fiction",
@@ -78,7 +87,7 @@ const TechStackList2 = [
         description: "OASIS 2017"
     },
     {
-        id: 6,
+        id: 7,
         image: i17,
         title: "Oasis 2016 | #45",
         subtitle: "Of Gods and Men",
@@ -86,7 +95,7 @@ const TechStackList2 = [
         description: "OASIS 2016"
     },
     {
-        id: 7,
+        id: 8,
         image: i18,
         title: "Oasis 2015 | #44",
         subtitle: "Information Unavailable",
@@ -94,7 +103,7 @@ const TechStackList2 = [
         description: "OASIS 2015"
     },
     {
-        id: 8,
+        id: 9,
         image: i19,
         title: "Oasis 2014 | #43",
         subtitle: "Information Unavailable",
@@ -102,7 +111,7 @@ const TechStackList2 = [
         description: "OASIS 2014"
     },
     {
-        id: 9,
+        id: 10,
         image: i20,
         title: "Oasis 2013 | #42",
         subtitle: "Information Unavailable",
@@ -110,7 +119,7 @@ const TechStackList2 = [
         description: "OASIS 2013"
     },
     {
-        id: 10,
+        id: 11,
         image: i21,
         title: "Oasis 2012 | #41",
         subtitle: "Information Unavailable",
@@ -118,7 +127,7 @@ const TechStackList2 = [
         description: "OASIS 2012"
     },
     {
-        id: 11,
+        id: 12,
         image: i22,
         title: "Oasis 2011 | #40",
         subtitle: "Information Unavailable",
@@ -126,7 +135,7 @@ const TechStackList2 = [
         description: "OASIS 2011"
     },
     {
-        id: 12,
+        id: 13,
         image: i23,
         title: "Oasis 2010 | #39",
         subtitle: "Insomnia",
@@ -134,7 +143,7 @@ const TechStackList2 = [
         description: "OASIS 2010"
     },
     {
-        id: 13,
+        id: 14,
         image: i24,
         title: "Oasis 2009 | #38",
         subtitle: "Information Unavailable",
@@ -142,7 +151,7 @@ const TechStackList2 = [
         description: "OASIS 2009"
     },
     {
-        id: 14,
+        id: 15,
         image: i6,
         title: "Oasis 2008 | #37",
         subtitle: "Unio Mystica",
@@ -150,7 +159,7 @@ const TechStackList2 = [
         description: "OASIS 2008"
     },
     {
-        id: 15,
+        id: 16,
         image: i7,
         title: "Oasis 2007 | #36",
         subtitle: "Psychedelia",
@@ -158,7 +167,7 @@ const TechStackList2 = [
         description: "OASIS 2007"
     },
     {
-        id: 16,
+        id: 17,
         image: i8,
         title: "Oasis 2006 | #35",
         subtitle: "Scintillations",
@@ -166,7 +175,7 @@ const TechStackList2 = [
         description: "OASIS 2006"
     },
     {
-        id: 17,
+        id: 18,
         image: i9,
         title: "Oasis 2005 | #34",
         subtitle: "Nix Periphera",
@@ -174,7 +183,7 @@ const TechStackList2 = [
         description: "OASIS 2005"
     },
     {
-        id: 18,
+        id: 19,
         image: i10,
         title: "Oasis 2004 | #33",
         subtitle: "Expressions Unleashed",
@@ -182,7 +191,7 @@ const TechStackList2 = [
         description: "OASIS 2004"
     },
     {
-        id: 19,
+        id: 20,
         image: i11,
         title: "Oasis 2003 | #32",
         subtitle: "My Elysium",
@@ -190,7 +199,7 @@ const TechStackList2 = [
         description: "OASIS 2003"
     },
     {
-        id: 20,
+        id: 21,
         image: i12,
         title: "Oasis 2002 | #31",
         subtitle: "Apotheosis",
@@ -198,7 +207,7 @@ const TechStackList2 = [
         description: "OASIS 2002"
     },
     {
-        id: 21,
+        id: 22,
         image: i13,
         title: "Oasis 2001 | #30",
         subtitle: "Praharsha",
@@ -206,7 +215,7 @@ const TechStackList2 = [
         description: "OASIS 2001"
     },
     {
-        id: 22,
+        id: 23,
         image: i14,
         title: "Oasis 2000 | #29",
         subtitle: "Adventure",
@@ -214,7 +223,7 @@ const TechStackList2 = [
         description: "OASIS 2000"
     },
     {
-        id: 23,
+        id: 24,
         image: i15,
         title: "Oasis 1999 | #28",
         subtitle: "Mystic Realms",
@@ -222,7 +231,7 @@ const TechStackList2 = [
         description: "OASIS 1999"
     },
     {
-        id: 24,
+        id: 25,
         image: i16,
         title: "Oasis 1998 | #27",
         subtitle: "Call of The Wild",
