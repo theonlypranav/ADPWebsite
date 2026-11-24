@@ -4,7 +4,7 @@ import TAILWIND from '../assets/Cords/Aj.png';
 import DUMMY from '../assets/Cords/nj.png';
 import REDUX from '../assets/Cords/kv1.png';
 import DA from '../assets/Cords/DA.jpeg';
-import pdd from '../assets/Cords/pdd.png';
+import pdd from '../assets/Cords/pdd.jpeg';
 
 const DevsList = [
     {
