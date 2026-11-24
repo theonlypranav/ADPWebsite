@@ -9,7 +9,7 @@ import i8 from '../assets/stuccans/5.jpg';
 import i9 from '../assets/stuccans/1.jpg';
 import i10 from '../assets/stuccans/4.jpg';
 import i11 from '../assets/stuccans/3.jpg';
-import pdd from '../assets/Cords/pdd.png';
+import pdd from '../assets/Cords/pdd.jpeg';
 import DA from '../assets/stuccans/DA.jpeg';
 
 
